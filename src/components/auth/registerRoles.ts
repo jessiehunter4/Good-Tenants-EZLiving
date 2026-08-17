@@ -40,9 +40,9 @@ export const ROLE_OPTIONS: readonly RoleOption[] = [
     next: "Tell us your budget, your timing, and where you want to live.",
     scene: tenantScene,
     icon: Home,
-    badgeClass: "border-blue-400 bg-slate-900 text-blue-300",
-    buttonClass: "bg-blue-500 text-white hover:bg-blue-400",
-    ringClass: "hover:ring-blue-400/60",
+    badgeClass: "border-role-tenant bg-canvas-elevated text-role-tenant",
+    buttonClass: "bg-role-tenant text-role-tenant-foreground hover:bg-role-tenant/90",
+    ringClass: "hover:ring-role-tenant/60",
   },
   {
     value: "landlord",
@@ -53,9 +53,9 @@ export const ROLE_OPTIONS: readonly RoleOption[] = [
     next: "Tell us how many properties you have and how you manage them.",
     scene: landlordScene,
     icon: Building2,
-    badgeClass: "border-amber-400 bg-slate-900 text-amber-300",
-    buttonClass: "bg-amber-500 text-slate-950 hover:bg-amber-400",
-    ringClass: "hover:ring-amber-400/60",
+    badgeClass: "border-role-landlord bg-canvas-elevated text-role-landlord",
+    buttonClass: "bg-role-landlord text-role-landlord-foreground hover:bg-role-landlord/90",
+    ringClass: "hover:ring-role-landlord/60",
   },
   {
     value: "agent",
@@ -66,9 +66,9 @@ export const ROLE_OPTIONS: readonly RoleOption[] = [
     next: "Tell us your agency and licence details.",
     scene: agentScene,
     icon: Users,
-    badgeClass: "border-emerald-400 bg-slate-900 text-emerald-300",
-    buttonClass: "bg-emerald-500 text-slate-950 hover:bg-emerald-400",
-    ringClass: "hover:ring-emerald-400/60",
+    badgeClass: "border-role-agent bg-canvas-elevated text-role-agent",
+    buttonClass: "bg-role-agent text-role-agent-foreground hover:bg-role-agent/90",
+    ringClass: "hover:ring-role-agent/60",
   },
 ] as const;
 

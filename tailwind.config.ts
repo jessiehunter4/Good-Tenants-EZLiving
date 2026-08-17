@@ -52,6 +52,31 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
+				brand: {
+					DEFAULT: 'hsl(var(--brand))',
+					foreground: 'hsl(var(--brand-foreground))'
+				},
+				canvas: {
+					DEFAULT: 'hsl(var(--canvas))',
+					elevated: 'hsl(var(--canvas-elevated))',
+					foreground: 'hsl(var(--canvas-foreground))',
+					muted: 'hsl(var(--canvas-muted))',
+					border: 'hsl(var(--canvas-border))'
+				},
+				role: {
+					tenant: {
+						DEFAULT: 'hsl(var(--role-tenant))',
+						foreground: 'hsl(var(--role-tenant-foreground))'
+					},
+					landlord: {
+						DEFAULT: 'hsl(var(--role-landlord))',
+						foreground: 'hsl(var(--role-landlord-foreground))'
+					},
+					agent: {
+						DEFAULT: 'hsl(var(--role-agent))',
+						foreground: 'hsl(var(--role-agent-foreground))'
+					}
+				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',

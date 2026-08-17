@@ -20,7 +20,7 @@ const AuthCard = () => (
   <Card className="w-full max-w-md">
     <CardHeader>
       <div className="mb-4 flex justify-center">
-        <h1 className="text-center text-2xl font-bold text-blue-900">Good Tenants</h1>
+        <h1 className="text-center text-2xl font-bold text-brand">Good Tenants</h1>
       </div>
       <CardTitle className="text-center">Welcome back</CardTitle>
     </CardHeader>

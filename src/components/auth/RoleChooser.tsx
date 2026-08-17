@@ -23,7 +23,7 @@ export const RoleChooser = ({ onChoose }: RoleChooserProps) => (
         <article
           key={option.value}
           className={cn(
-            "group flex flex-col overflow-hidden rounded-2xl bg-slate-900 ring-1 ring-white/10",
+            "group flex flex-col overflow-hidden rounded-2xl bg-canvas-elevated ring-1 ring-canvas-border",
             "transition-all duration-200 hover:-translate-y-1 hover:shadow-2xl hover:ring-2",
             option.ringClass,
           )}
@@ -36,7 +36,7 @@ export const RoleChooser = ({ onChoose }: RoleChooserProps) => (
               className="aspect-[16/10] w-full object-cover transition-transform duration-500 group-hover:scale-105"
             />
             {/* Blends the artwork into the card body, as the reference does. */}
-            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-slate-900 to-transparent" />
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-canvas-elevated to-transparent" />
             <span
               className={cn(
                 "absolute -bottom-7 left-1/2 flex h-14 w-14 -translate-x-1/2 items-center justify-center rounded-full border-2",
@@ -48,14 +48,14 @@ export const RoleChooser = ({ onChoose }: RoleChooserProps) => (
           </div>
 
           <div className="flex flex-1 flex-col px-6 pb-6 pt-11 text-center">
-            <h2 className="text-xl font-semibold text-white">{option.title}</h2>
-            <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-400">{option.blurb}</p>
+            <h2 className="text-xl font-semibold text-canvas-foreground">{option.title}</h2>
+            <p className="mt-2 flex-1 text-sm leading-relaxed text-canvas-muted">{option.blurb}</p>
             <button
               type="button"
               onClick={() => onChoose(option.value)}
               className={cn(
                 "mt-6 inline-flex w-full items-center justify-center gap-2 rounded-lg px-4 py-3 text-sm font-semibold transition-colors",
-                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900",
+                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-canvas-foreground focus-visible:ring-offset-2 focus-visible:ring-offset-canvas-elevated",
                 option.buttonClass,
               )}
             >

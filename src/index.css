@@ -35,6 +35,40 @@
 
     --radius: 0.5rem;
 
+    /* ---------------------------------------------------------------------
+     * Brand
+     * ---------------------------------------------------------------------
+     * Every colour in the product comes from this file. Components reference
+     * tokens (bg-brand, text-canvas-muted, bg-role-tenant) and never literal
+     * palette classes like bg-slate-900 or text-blue-300 — a literal is a
+     * colour that cannot be changed anywhere but the file it is written in.
+     *
+     * Values are HSL channels without the wrapper, per the shadcn convention,
+     * so Tailwind can compose opacity: bg-role-tenant/60.
+     */
+
+    /* The wordmark navy. Hue 222 is the same family as --primary. */
+    --brand: 222 47% 24%;
+    --brand-foreground: 210 40% 98%;
+
+    /* Canvas: the dark full-bleed surface used by whole-page flows such as
+     * registration. Deliberately in the brand hue rather than neutral grey, so
+     * it reads as this product rather than a generic dark theme. */
+    --canvas: 222 47% 8%;
+    --canvas-elevated: 222 40% 13%;
+    --canvas-foreground: 210 40% 98%;
+    --canvas-muted: 215 20% 65%;
+    --canvas-border: 222 30% 22%;
+
+    /* Account types. One accent each, used by the role chooser, its badges and
+     * anywhere a role needs to be identifiable at a glance. */
+    --role-tenant: 217 91% 60%;
+    --role-tenant-foreground: 0 0% 100%;
+    --role-landlord: 38 92% 50%;
+    --role-landlord-foreground: 222 47% 11%;
+    --role-agent: 160 84% 39%;
+    --role-agent-foreground: 222 47% 11%;
+
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
     --sidebar-primary: 240 5.9% 10%;
@@ -46,6 +80,11 @@
   }
 
   .dark {
+    /* The canvas is already dark, so it does not invert. The brand lightens so
+     * the wordmark stays legible on a dark background. */
+    --brand: 217 91% 72%;
+    --brand-foreground: 222 47% 11%;
+
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
 

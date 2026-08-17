@@ -49,22 +49,22 @@ const Register = () => {
   }, [roleFromUrl]);
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-slate-950">
+    <div className="relative min-h-screen overflow-hidden bg-canvas">
       {/* Brand wash. Two soft pools rather than a flat gradient, so the cards
           sit on something with depth without competing with the artwork. */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_45%_at_15%_0%,rgba(59,130,246,0.28),transparent_60%),radial-gradient(55%_45%_at_85%_10%,rgba(245,158,11,0.20),transparent_60%)]"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_45%_at_15%_0%,hsl(var(--role-tenant)/0.28),transparent_60%),radial-gradient(55%_45%_at_85%_10%,hsl(var(--role-landlord)/0.18),transparent_60%)]"
       />
 
       <div className="relative mx-auto flex min-h-screen max-w-6xl flex-col px-4 py-8 sm:px-6 lg:py-12">
         <header className="flex items-center justify-between">
-          <Link to="/" className="text-lg font-bold tracking-tight text-white">
+          <Link to="/" className="text-lg font-bold tracking-tight text-canvas-foreground">
             Good Tenants
           </Link>
-          <p className="text-sm text-slate-400">
+          <p className="text-sm text-canvas-muted">
             Already have an account?{" "}
-            <Link to="/auth" className="font-medium text-white underline-offset-4 hover:underline">
+            <Link to="/auth" className="font-medium text-canvas-foreground underline-offset-4 hover:underline">
               Sign in
             </Link>
           </p>
@@ -74,17 +74,17 @@ const Register = () => {
           {role === null ? (
             <div className="duration-300 animate-in fade-in">
               <div className="mx-auto max-w-2xl text-center">
-                <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">
+                <h1 className="text-4xl font-bold tracking-tight text-canvas-foreground sm:text-5xl">
                   Welcome to Good Tenants
                 </h1>
-                <p className="mt-4 text-lg text-slate-300">How would you like to get started?</p>
+                <p className="mt-4 text-lg text-canvas-muted">How would you like to get started?</p>
               </div>
 
               <div className="mt-12">
                 <RoleChooser onChoose={setRole} />
               </div>
 
-              <p className="mt-10 text-center text-sm text-slate-500">
+              <p className="mt-10 text-center text-sm text-canvas-muted/80">
                 You can change most of this later. Your account type you cannot, so pick the one
                 that describes you today.
               </p>
@@ -104,7 +104,7 @@ const Register = () => {
           )}
         </main>
 
-        <footer className="text-center text-xs text-slate-500">
+        <footer className="text-center text-xs text-canvas-muted/70">
           By continuing, you agree to Good Tenants' Terms of Service and Privacy Policy.
         </footer>
       </div>

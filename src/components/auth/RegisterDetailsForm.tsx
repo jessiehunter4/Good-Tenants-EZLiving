@@ -155,7 +155,7 @@ export const RegisterDetailsForm = ({
   };
 
   return (
-    <div className="w-full max-w-lg rounded-2xl bg-white p-6 shadow-2xl sm:p-8">
+    <div className="w-full max-w-lg rounded-2xl bg-card p-6 text-card-foreground shadow-2xl sm:p-8">
       <ol className="mb-6 flex items-center gap-2" aria-label={`Step ${step + 1} of 3`}>
         {["Role", "Account", "Details"].map((label, index) => {
           const isDone = index < step;
