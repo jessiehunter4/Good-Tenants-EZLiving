@@ -4,7 +4,7 @@ import { Session, User } from "@supabase/supabase-js";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/components/ui/use-toast";
 import { TenantProfile, LandlordProfile } from "@/types/profiles";
-import { devBypassSession, devBypassUser, isDevAuthBypass } from "@/lib/devBypass";
+import { devBypassRole, devBypassSession, devBypassUser, isDevAuthBypass } from "@/lib/devBypass";
 
 // Generic profile interface that all profiles extend
 interface BaseProfile {
@@ -49,14 +49,47 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [user, setUser] = useState<User | null>(null);
   const [session, setSession] = useState<Session | null>(null);
   const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
+  const [resolvedRole, setResolvedRole] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const { toast } = useToast();
 
-  // Get role from user metadata (stored during signup)
-  const getUserRole = (): string | null => {
-    if (!user) return null;
-    return user.user_metadata?.role || null;
+  /*
+   * Read the role from the database rather than from signup metadata. The
+   * `users` view resolves it out of user_roles, and its policies mean a caller
+   * only ever sees their own row. 'realtor' is presented as 'agent' there, which
+   * is the spelling this app's screens use.
+   */
+  const fetchUserRole = async (userId: string): Promise<string | null> => {
+    if (isDevAuthBypass()) return devBypassRole();
+
+    const { data, error } = await supabase
+      .from('users')
+      .select('role')
+      .eq('id', userId)
+      .single();
+
+    if (error) {
+      console.error('Error resolving role:', error);
+      return null;
+    }
+    return data?.role ?? null;
   };
+
+  /*
+   * The account's role, as the database records it.
+   *
+   * This used to read user.user_metadata.role — the value the browser supplied
+   * at signup. The database stopped trusting that (see the platform baseline
+   * migration), and so does this: an account that asked for `admin` at signup
+   * receives no role at all, but its metadata still says "admin" forever. Left
+   * as it was, the app would route that user into admin screens, which would
+   * then render empty because every query is refused. Confusing, and it reads
+   * like a broken page rather than a denied one.
+   *
+   * Resolved once per session into state below, so this stays synchronous for
+   * the call sites that expect it.
+   */
+  const getUserRole = (): string | null => resolvedRole;
 
   // Fetch user profile based on role - moved outside useEffect to prevent deadlock
   const fetchUserProfile = async (userId: string, role: string): Promise<UserProfile | null> => {
@@ -122,6 +155,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     if (isDevAuthBypass()) {
       setSession(devBypassSession());
       setUser(devBypassUser());
+      setResolvedRole(devBypassRole());
       setUserProfile(null);
       setLoading(false);
       return;
@@ -138,15 +172,18 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         
         // Defer any Supabase calls to prevent deadlock
         if (sessionData?.user) {
-          const role = sessionData.user.user_metadata?.role;
-          if (role) {
-            setTimeout(() => {
-              fetchUserProfile(sessionData.user.id, role).then(profile => {
-                setUserProfile(profile);
-              });
-            }, 0);
-          }
+          setTimeout(() => {
+            fetchUserRole(sessionData.user.id).then(role => {
+              setResolvedRole(role);
+              if (role) {
+                fetchUserProfile(sessionData.user.id, role).then(profile => {
+                  setUserProfile(profile);
+                });
+              }
+            });
+          }, 0);
         } else {
+          setResolvedRole(null);
           setUserProfile(null);
         }
       }
@@ -159,14 +196,16 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       setUser(sessionData?.user ?? null);
       
       if (sessionData?.user) {
-        const role = sessionData.user.user_metadata?.role;
-        if (role) {
-          fetchUserProfile(sessionData.user.id, role).then(profile => {
-            setUserProfile(profile);
-          });
-        }
+        fetchUserRole(sessionData.user.id).then(role => {
+          setResolvedRole(role);
+          if (role) {
+            fetchUserProfile(sessionData.user.id, role).then(profile => {
+              setUserProfile(profile);
+            });
+          }
+        });
       }
-      
+
       setLoading(false);
     });
 
