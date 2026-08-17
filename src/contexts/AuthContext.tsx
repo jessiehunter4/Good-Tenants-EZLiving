@@ -6,6 +6,17 @@ import { useToast } from "@/components/ui/use-toast";
 import { TenantProfile, LandlordProfile } from "@/types/profiles";
 import { devBypassRole, devBypassSession, devBypassUser, isDevAuthBypass } from "@/lib/devBypass";
 
+/**
+ * Non-privileged facts a person gives about themselves at registration. These
+ * ride along in the signup metadata and are copied into the matching profile
+ * row by handle_new_user, so the details survive the email-confirmation gap
+ * without needing a session.
+ *
+ * `role` is deliberately not part of this type. It is passed separately and
+ * clamped server-side; nothing here confers privilege.
+ */
+export type SignupDetails = Record<string, string>;
+
 // Generic profile interface that all profiles extend
 interface BaseProfile {
   id: string;
@@ -21,7 +32,12 @@ interface AuthContextType {
   userProfile: UserProfile | null;
   loading: boolean;
   signIn: (email: string, password: string) => Promise<void>;
-  signUp: (email: string, password: string, role: string) => Promise<void>;
+  signUp: (
+    email: string,
+    password: string,
+    role: string,
+    details?: SignupDetails,
+  ) => Promise<void>;
   signOut: () => Promise<void>;
   getUserRole: () => string | null;
 }
@@ -235,7 +251,12 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   };
 
-  const signUp = async (email: string, password: string, role: string) => {
+  const signUp = async (
+    email: string,
+    password: string,
+    role: string,
+    details: SignupDetails = {},
+  ) => {
     try {
       // Validate email format
       if (!validateEmail(email)) {
@@ -244,7 +265,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
       // Validate password strength
       if (!validatePassword(password)) {
-        throw new Error("Password must be at least 8 characters and include a number and special character");
+        throw new Error("Passwords need at least 6 characters.");
       }
 
       // Privileged roles are never self-assignable. This is a usability guard
@@ -259,9 +280,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         password,
         options: {
           data: {
-            role: role
-          }
-        }
+            ...details,
+            role,
+          },
+        },
       });
 
       if (error) throw error;
@@ -323,13 +345,16 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     return emailRegex.test(email);
   };
 
-  // Helper function to validate password strength
-  const validatePassword = (password: string): boolean => {
-    // Require at least 8 characters, 1 number, and 1 special character
-    return password.length >= 8 && 
-           /\d/.test(password) && 
-           /[!@#$%^&*(),.?":{}|<>]/.test(password);
-  };
+  /*
+   * Six characters, which is the floor the auth service itself enforces.
+   *
+   * This previously required eight characters with a digit and a symbol, while
+   * the registration form promised six — so a valid-looking password passed the
+   * form and was then rejected here by a toast, with the rule stated for the
+   * first time in the error. Composition rules also push people towards
+   * Passw0rd! and away from length, which is the part that matters.
+   */
+  const validatePassword = (password: string): boolean => password.length >= 6;
 
   return (
     <AuthContext.Provider value={{ user, session, userProfile, loading, signIn, signUp, signOut, getUserRole }}>

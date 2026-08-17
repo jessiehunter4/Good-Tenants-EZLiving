@@ -6,6 +6,7 @@ import { Toaster } from "./components/ui/sonner";
 import LandingPage from "./pages/LandingPage";
 import SummerLandingPage from "./pages/SummerLandingPage";
 import Auth from "./pages/Auth";
+import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import MarketAnalytics from "./pages/MarketAnalytics";
 import NotFound from "./pages/NotFound";
@@ -37,6 +38,7 @@ function App() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/summer" element={<SummerLandingPage />} />
           <Route path="/auth" element={<Auth />} />
+          <Route path="/register" element={<Register />} />
           <Route path="/index" element={<Index />} />
 
           {/* Market Analytics - Public Access */}
