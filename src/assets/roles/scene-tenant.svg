@@ -1,56 +1,48 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 260" width="400" height="260" role="img" aria-label="A lit house at dusk">
+  <!-- Shared composition: horizon at y=200, subject centred on x=200 and kept
+       inside x=40..360 so the card's crop never clips it. -->
   <defs>
     <linearGradient id="t-sky" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#1E3A8A"/>
-      <stop offset="0.55" stop-color="#3B82F6"/>
-      <stop offset="1" stop-color="#93C5FD"/>
+      <stop offset="0" stop-color="#132B63"/><stop offset="0.6" stop-color="#3B82F6"/><stop offset="1" stop-color="#9DC4FD"/>
     </linearGradient>
     <linearGradient id="t-ground" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#1E40AF"/>
-      <stop offset="1" stop-color="#172554"/>
+      <stop offset="0" stop-color="#1E3A8A"/><stop offset="1" stop-color="#0F1E45"/>
     </linearGradient>
+    <mask id="t-moon">
+      <rect width="400" height="260" fill="black"/>
+      <circle cx="318" cy="58" r="19" fill="white"/>
+      <circle cx="308" cy="51" r="17" fill="black"/>
+    </mask>
   </defs>
 
   <rect width="400" height="260" fill="url(#t-sky)"/>
+  <rect y="200" width="400" height="60" fill="url(#t-ground)"/>
 
-  <!-- moon and stars -->
-  <circle cx="330" cy="52" r="20" fill="#FDE68A" opacity="0.9"/>
-  <circle cx="322" cy="46" r="20" fill="url(#t-sky)" opacity="0.85"/>
-  <g fill="#FFFFFF" opacity="0.7">
-    <circle cx="60" cy="40" r="1.6"/><circle cx="110" cy="26" r="1.2"/>
-    <circle cx="168" cy="52" r="1.5"/><circle cx="248" cy="34" r="1.2"/>
-    <circle cx="286" cy="86" r="1.4"/><circle cx="88" cy="76" r="1.1"/>
+  <!-- A real crescent: masked, so no seam where two discs overlap. -->
+  <rect width="400" height="260" fill="#FDE68A" mask="url(#t-moon)"/>
+  <g fill="#FFFFFF" opacity="0.65">
+    <circle cx="72" cy="46" r="1.6"/><circle cx="120" cy="30" r="1.2"/><circle cx="168" cy="56" r="1.4"/>
+    <circle cx="250" cy="38" r="1.2"/><circle cx="96" cy="86" r="1.1"/><circle cx="345" cy="112" r="1.3"/>
   </g>
 
-  <!-- distant hills -->
-  <path d="M0 176c46-26 82-24 124 2s86 22 130-4 96-18 146 10v76H0z" fill="#1D4ED8" opacity="0.55"/>
+  <path d="M0 178c52-24 92-20 138 4s92 20 130-6 84-14 132 12v22H0z" fill="#1D4ED8" opacity="0.5"/>
 
-  <!-- house -->
-  <g>
-    <path d="M112 128 200 74l88 54v10H112z" fill="#F8FAFC"/>
-    <rect x="126" y="132" width="148" height="82" rx="4" fill="#E2E8F0"/>
-    <rect x="186" y="168" width="30" height="46" rx="2" fill="#1E3A8A"/>
-    <circle cx="210" cy="192" r="2.4" fill="#FDE68A"/>
-    <g fill="#FDE68A">
-      <rect x="142" y="150" width="30" height="24" rx="2"/>
-      <rect x="230" y="150" width="30" height="24" rx="2"/>
-    </g>
-    <g stroke="#CBD5E1" stroke-width="1.6">
-      <path d="M157 150v24M142 162h30M245 150v24M230 162h30"/>
-    </g>
-    <rect x="238" y="86" width="18" height="30" rx="2" fill="#CBD5E1"/>
+  <!-- House: 130 wide, centred. -->
+  <path d="M135 128 200 80l65 48v6H135z" fill="#F8FAFC"/>
+  <rect x="146" y="132" width="108" height="68" rx="3" fill="#E2E8F0"/>
+  <rect x="236" y="92" width="14" height="26" rx="2" fill="#CBD5E1"/>
+  <rect x="188" y="164" width="24" height="36" rx="2" fill="#1E3A8A"/>
+  <circle cx="206" cy="183" r="2" fill="#FDE68A"/>
+  <g fill="#FDE68A">
+    <rect x="158" y="146" width="24" height="20" rx="2"/><rect x="218" y="146" width="24" height="20" rx="2"/>
+  </g>
+  <g stroke="#CBD5E1" stroke-width="1.4">
+    <path d="M170 146v20M158 156h24M230 146v20M218 156h24"/>
   </g>
 
-  <!-- warm light spill -->
-  <path d="M186 214l-26 24h96l-26-24z" fill="#FDE68A" opacity="0.35"/>
-
-  <!-- ground + path -->
-  <rect y="214" width="400" height="46" fill="url(#t-ground)"/>
-  <path d="M188 214h24l16 46h-56z" fill="#334155" opacity="0.6"/>
-
-  <!-- shrubs -->
+  <path d="M188 200h24l14 60h-52z" fill="#0F1E45" opacity="0.55"/>
   <g fill="#166534">
-    <circle cx="118" cy="210" r="12"/><circle cx="132" cy="212" r="9"/>
-    <circle cx="284" cy="211" r="11"/><circle cx="270" cy="213" r="8"/>
+    <circle cx="122" cy="196" r="12"/><circle cx="136" cy="199" r="9"/>
+    <circle cx="278" cy="197" r="11"/><circle cx="264" cy="200" r="8"/>
   </g>
 </svg>

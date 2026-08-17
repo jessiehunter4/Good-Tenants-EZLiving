@@ -1,53 +1,35 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 260" width="400" height="260" role="img" aria-label="Rooftops with a location pin marking a home">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 260" width="400" height="260" role="img" aria-label="A house marked with a location pin">
   <defs>
     <linearGradient id="a-sky" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#064E3B"/>
-      <stop offset="0.55" stop-color="#10B981"/>
-      <stop offset="1" stop-color="#A7F3D0"/>
+      <stop offset="0" stop-color="#052e26"/><stop offset="0.55" stop-color="#10B981"/><stop offset="1" stop-color="#A7F3D0"/>
     </linearGradient>
     <linearGradient id="a-ground" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#065F46"/>
-      <stop offset="1" stop-color="#022C22"/>
+      <stop offset="0" stop-color="#065F46"/><stop offset="1" stop-color="#02231C"/>
     </linearGradient>
+    <radialGradient id="a-glow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#ECFDF5" stop-opacity="0.55"/><stop offset="1" stop-color="#ECFDF5" stop-opacity="0"/>
+    </radialGradient>
   </defs>
 
   <rect width="400" height="260" fill="url(#a-sky)"/>
+  <!-- A glow rather than a flat disc, which read as a rendering fault. -->
+  <circle cx="96" cy="70" r="62" fill="url(#a-glow)"/>
+  <rect y="200" width="400" height="60" fill="url(#a-ground)"/>
 
-  <!-- soft sun -->
-  <circle cx="86" cy="62" r="30" fill="#ECFDF5" opacity="0.5"/>
-
-  <!-- rooftops -->
-  <g fill="#047857" opacity="0.7">
-    <path d="M0 200l50-38 50 38z"/>
-    <path d="M300 204l50-40 50 40z"/>
-  </g>
-  <g fill="#065F46">
-    <path d="M40 214l46-36 46 36z"/>
-    <path d="M268 216l46-36 46 36z"/>
+  <g fill="#047857" opacity="0.55">
+    <path d="M40 200l46-34 46 34z"/><path d="M268 200l46-34 46 34z"/>
   </g>
 
-  <!-- centre house, the one being represented -->
-  <g>
-    <path d="M138 150 200 106l62 44v6H138z" fill="#ECFDF5"/>
-    <rect x="150" y="154" width="100" height="62" rx="4" fill="#D1FAE5"/>
-    <rect x="188" y="180" width="24" height="36" rx="2" fill="#047857"/>
-    <rect x="160" y="166" width="20" height="16" rx="2" fill="#FFFFFF"/>
-    <rect x="220" y="166" width="20" height="16" rx="2" fill="#FFFFFF"/>
-  </g>
+  <!-- House 120 wide, centred, with the pin above it. -->
+  <path d="M140 140 200 100l60 40v6H140z" fill="#ECFDF5"/>
+  <rect x="150" y="144" width="100" height="56" rx="3" fill="#D1FAE5"/>
+  <rect x="188" y="168" width="24" height="32" rx="2" fill="#047857"/>
+  <rect x="160" y="156" width="18" height="14" rx="2" fill="#FFFFFF"/>
+  <rect x="222" y="156" width="18" height="14" rx="2" fill="#FFFFFF"/>
 
-  <!-- location pin above it -->
-  <g>
-    <path d="M200 30c-16 0-29 13-29 29 0 21 29 47 29 47s29-26 29-47c0-16-13-29-29-29z" fill="#FFFFFF"/>
-    <path d="M200 36c-13 0-23 10-23 23 0 17 23 38 23 38s23-21 23-38c0-13-10-23-23-23z" fill="#059669"/>
-    <path d="M188 62l12-10 12 10v14h-24z" fill="#ECFDF5"/>
-    <rect x="196" y="66" width="8" height="10" rx="1" fill="#059669"/>
-  </g>
-
-  <!-- pin shadow -->
-  <ellipse cx="200" cy="112" rx="14" ry="4" fill="#065F46" opacity="0.35"/>
-
-  <rect y="216" width="400" height="44" fill="url(#a-ground)"/>
-
-  <!-- path -->
-  <path d="M190 216h20l14 44h-48z" fill="#064E3B" opacity="0.6"/>
+  <ellipse cx="200" cy="96" rx="15" ry="4" fill="#04513c" opacity="0.35"/>
+  <path d="M200 26c-15 0-27 12-27 27 0 20 27 43 27 43s27-23 27-43c0-15-12-27-27-27z" fill="#FFFFFF"/>
+  <path d="M200 32c-11.6 0-21 9.4-21 21 0 15.5 21 35 21 35s21-19.5 21-35c0-11.6-9.4-21-21-21z" fill="#059669"/>
+  <path d="M189 56l11-9 11 9v13h-22z" fill="#ECFDF5"/>
+  <rect x="196" y="60" width="8" height="9" rx="1" fill="#059669"/>
 </svg>
