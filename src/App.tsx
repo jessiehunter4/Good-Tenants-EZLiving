@@ -1,7 +1,7 @@
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./contexts/AuthContext";
-import { Toaster } from "./components/ui/toaster";
+import { Toaster } from "./components/ui/sonner";
 
 import LandingPage from "./pages/LandingPage";
 import SummerLandingPage from "./pages/SummerLandingPage";
@@ -11,6 +11,7 @@ import MarketAnalytics from "./pages/MarketAnalytics";
 import NotFound from "./pages/NotFound";
 
 import ProtectedRoute from "./components/ProtectedRoute";
+import DevBypassBanner from "./components/DevBypassBanner";
 import { RoleBasedRoute } from "./components/access";
 
 import OnboardTenant from "./pages/onboarding/OnboardTenant";
@@ -30,6 +31,7 @@ function App() {
   return (
     <AuthProvider>
       <Router>
+        <DevBypassBanner />
         <Routes>
           {/* Public Routes */}
           <Route path="/" element={<LandingPage />} />
