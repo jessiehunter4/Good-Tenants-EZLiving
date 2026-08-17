@@ -1,6 +1,8 @@
 
 import { useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { ArrowLeft } from "lucide-react";
+
 import { useAuth } from "@/contexts/AuthContext";
 import AuthCard from "@/components/auth/AuthCard";
 
@@ -70,7 +72,7 @@ const Auth = () => {
   // Don't show auth card if user is already authenticated
   if (user) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-gray-50 px-4">
+      <div className="flex min-h-screen items-center justify-center bg-muted/30 px-4">
         <div className="text-center">
           <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent mx-auto"></div>
           <p className="mt-2 text-sm text-muted-foreground">Redirecting...</p>
@@ -80,8 +82,22 @@ const Auth = () => {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-50 px-4">
-      <AuthCard />
+    <div className="flex min-h-screen flex-col bg-muted/30 px-4">
+      {/* Signing in is a dead end without this: the card has no navigation, so
+          anyone who lands here by mistake has only the browser's back button. */}
+      <div className="mx-auto w-full max-w-md pt-6">
+        <Link
+          to="/"
+          className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
+        >
+          <ArrowLeft className="h-4 w-4" aria-hidden="true" />
+          Back to home
+        </Link>
+      </div>
+
+      <div className="flex flex-1 items-center justify-center py-8">
+        <AuthCard />
+      </div>
     </div>
   );
 };

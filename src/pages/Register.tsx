@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { ArrowLeft } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import RoleChooser from "@/components/auth/RoleChooser";
@@ -59,9 +60,18 @@ const Register = () => {
 
       <div className="relative mx-auto flex min-h-screen max-w-6xl flex-col px-4 py-8 sm:px-6 lg:py-12">
         <header className="flex items-center justify-between">
-          <Link to="/" className="text-lg font-bold tracking-tight text-canvas-foreground">
-            Good Tenants
-          </Link>
+          <div className="flex items-center gap-4">
+            <Link to="/" className="text-lg font-bold tracking-tight text-canvas-foreground">
+              Good Tenants
+            </Link>
+            <Link
+              to="/"
+              className="inline-flex items-center gap-1.5 text-sm text-canvas-muted transition-colors hover:text-canvas-foreground"
+            >
+              <ArrowLeft className="h-4 w-4" aria-hidden="true" />
+              Back to home
+            </Link>
+          </div>
           <p className="text-sm text-canvas-muted">
             Already have an account?{" "}
             <Link to="/auth" className="font-medium text-canvas-foreground underline-offset-4 hover:underline">
