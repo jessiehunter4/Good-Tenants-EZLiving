@@ -23,22 +23,31 @@ const Auth = () => {
   const city = queryParams.get("city");
   const role = queryParams.get("role");
 
-  // Store the pre-filled values in sessionStorage to be used by the registration form
+  /*
+   * These parameters only ever meant "this person wants to register", and
+   * registration used to be the second tab on this page. It is now its own
+   * route, so anything still pointing here — landing page CTAs, bookmarks,
+   * links already sent — is forwarded rather than dropped on a sign-in form
+   * with its role quietly discarded.
+   */
+  const hasRegistrationIntent = Boolean(name || email || phone || moveInDate || city || role);
+
   useEffect(() => {
-    if (name || email || phone || moveInDate || city || role) {
-      sessionStorage.setItem(
-        "prefilled_registration", 
-        JSON.stringify({
-          name,
-          email,
-          phone,
-          moveInDate,
-          city,
-          role: role || "tenant"
-        })
-      );
-    }
-  }, [name, email, phone, moveInDate, city, role]);
+    if (!hasRegistrationIntent || user) return;
+
+    sessionStorage.setItem(
+      "prefilled_registration",
+      JSON.stringify({
+        name,
+        email,
+        phone,
+        moveInDate,
+        city,
+        role: role || "tenant",
+      }),
+    );
+    navigate(`/register${location.search}`, { replace: true });
+  }, [hasRegistrationIntent, user, name, email, phone, moveInDate, city, role, navigate, location.search]);
 
   // Handle authenticated users who access /auth directly
   useEffect(() => {

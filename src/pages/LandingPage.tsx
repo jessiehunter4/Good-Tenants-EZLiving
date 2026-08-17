@@ -13,7 +13,7 @@ const LandingPage = () => {
   }, []);
 
   const handleRoleSelect = (role: string) => {
-    navigate(`/auth?role=${role}`);
+    navigate(`/register?role=${role}`);
   };
 
   return (
