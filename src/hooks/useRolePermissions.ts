@@ -17,7 +17,7 @@ export type Permission =
 
 export type AccessTier = "basic" | "verified" | "premium";
 
-export type RoleType = "tenant" | "agent" | "landlord" | "admin";
+export type RoleType = "tenant" | "agent" | "landlord" | "admin" | "lender";
 export type UserRole = RoleType; // Add this export for compatibility
 
 interface RolePermissions {
@@ -28,6 +28,13 @@ interface RolePermissions {
 }
 
 const ROLE_PERMISSIONS: RolePermissions = {
+  /* Lenders read the scenarios shared with them and answer on their own record.
+     They hold no permission over tenants, listings or messaging: a lender is a
+     counterparty to a funding request, not a participant in the rental side. */
+  lender: {
+    permissions: ["profile_management"],
+    tier: "basic"
+  },
   tenant: {
     permissions: ["profile_management", "view_invites", "use_messaging", "schedule_showings"],
     tier: "basic"
@@ -91,7 +98,12 @@ const VERIFICATION_STATUS: VerificationStatus = {
 
 export const useRolePermissions = () => {
   const { user, userProfile, getUserRole } = useAuth();
-  const [role, setRole] = useState<RoleType>("tenant");
+  /*
+   * Null until resolved, and null for an account that holds no role at all.
+   * Defaulting to "tenant" handed unresolved accounts a tenant's screens, which
+   * then render empty because the database refuses every query behind them.
+   */
+  const [role, setRole] = useState<RoleType | null>(null);
   const [permissions, setPermissions] = useState<Permission[]>([]);
   const [tier, setTier] = useState<AccessTier>("basic");
   const [isVerified, setIsVerified] = useState<boolean>(false);
@@ -108,7 +120,7 @@ export const useRolePermissions = () => {
         setRole(userRole);
 
         // Set permissions based on role
-        const rolePerms = ROLE_PERMISSIONS[userRole]?.permissions || [];
+        const rolePerms = userRole ? ROLE_PERMISSIONS[userRole]?.permissions || [] : [];
         setPermissions(rolePerms);
 
         // Determine tier based on profile status

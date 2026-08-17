@@ -7,6 +7,10 @@ import LandingPage from "./pages/LandingPage";
 import SummerLandingPage from "./pages/SummerLandingPage";
 import Auth from "./pages/Auth";
 import Register from "./pages/Register";
+import NewScenario from "./pages/lending/NewScenario";
+import MyScenarios from "./pages/lending/MyScenarios";
+import LenderDashboard from "./pages/lending/LenderDashboard";
+import LenderProfile from "./pages/lending/LenderProfile";
 import Dashboard from "./pages/Dashboard";
 import MarketAnalytics from "./pages/MarketAnalytics";
 import NotFound from "./pages/NotFound";
@@ -39,6 +43,13 @@ function App() {
           <Route path="/summer" element={<SummerLandingPage />} />
           <Route path="/auth" element={<Auth />} />
           <Route path="/register" element={<Register />} />
+
+          {/* Lending. Scenario authoring is open to any signed-in account;
+              the lender views require the lender role. */}
+          <Route path="/scenarios" element={<ProtectedRoute><MyScenarios /></ProtectedRoute>} />
+          <Route path="/scenarios/new" element={<ProtectedRoute><NewScenario /></ProtectedRoute>} />
+          <Route path="/lender" element={<RoleBasedRoute allowedRoles={["lender", "admin"]}><LenderDashboard /></RoleBasedRoute>} />
+          <Route path="/lender/profile" element={<RoleBasedRoute allowedRoles={["lender", "admin"]}><LenderProfile /></RoleBasedRoute>} />
           <Route path="/index" element={<Index />} />
 
           {/* Market Analytics - Public Access */}

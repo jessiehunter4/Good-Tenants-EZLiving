@@ -812,31 +812,365 @@ export type Database = {
           },
         ]
       }
+      /**
+       * A view over profiles and user_roles, not a table. Reads work; writes do
+       * not, which is the point — role stopped being writable by the account it
+       * describes. `role` is text rather than the old user_role enum because the
+       * view maps 'realtor' to 'agent' for these screens.
+       */
       users: {
         Row: {
-          created_at: string
-          email: string
-          id: string
-          role: Database["public"]["Enums"]["user_role"]
-          updated_at: string
+          created_at: string | null
+          email: string | null
+          id: string | null
+          role: string | null
+          updated_at: string | null
         }
         Insert: {
-          created_at?: string
-          email: string
-          id: string
-          role: Database["public"]["Enums"]["user_role"]
-          updated_at?: string
+          created_at?: never
+          email?: never
+          id?: never
+          role?: never
+          updated_at?: never
         }
         Update: {
-          created_at?: string
-          email?: string
-          id?: string
-          role?: Database["public"]["Enums"]["user_role"]
-          updated_at?: string
+          created_at?: never
+          email?: never
+          id?: never
+          role?: never
+          updated_at?: never
         }
         Relationships: []
       }
-    }
+    },
+      lender_profiles: {
+        Row: {
+          id: string
+          company_name: string | null
+          contact_name: string | null
+          contact_phone: string | null
+          website: string | null
+          acn: string | null
+          credit_licence: string | null
+          products: Database["public"]["Enums"]["scenario_product"][] | null
+          security_types: Database["public"]["Enums"]["security_type"][] | null
+          regions: string[] | null
+          min_loan_amount: number | null
+          max_loan_amount: number | null
+          max_lvr: number | null
+          indicative_rate_from: number | null
+          typical_turnaround_days: number | null
+          notes: string | null
+          is_verified: boolean
+          status: Database["public"]["Enums"]["profile_status"]
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id: string
+          company_name?: string | null
+          contact_name?: string | null
+          contact_phone?: string | null
+          website?: string | null
+          acn?: string | null
+          credit_licence?: string | null
+          products?: Database["public"]["Enums"]["scenario_product"][] | null
+          security_types?: Database["public"]["Enums"]["security_type"][] | null
+          regions?: string[] | null
+          min_loan_amount?: number | null
+          max_loan_amount?: number | null
+          max_lvr?: number | null
+          indicative_rate_from?: number | null
+          typical_turnaround_days?: number | null
+          notes?: string | null
+          is_verified?: boolean
+          status?: Database["public"]["Enums"]["profile_status"]
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          company_name?: string | null
+          contact_name?: string | null
+          contact_phone?: string | null
+          website?: string | null
+          acn?: string | null
+          credit_licence?: string | null
+          products?: Database["public"]["Enums"]["scenario_product"][] | null
+          security_types?: Database["public"]["Enums"]["security_type"][] | null
+          regions?: string[] | null
+          min_loan_amount?: number | null
+          max_loan_amount?: number | null
+          max_lvr?: number | null
+          indicative_rate_from?: number | null
+          typical_turnaround_days?: number | null
+          notes?: string | null
+          is_verified?: boolean
+          status?: Database["public"]["Enums"]["profile_status"]
+          created_at?: string
+          updated_at?: string
+        }
+        Relationships: []
+      },
+      loan_scenarios: {
+        Row: {
+          id: string
+          reference: number
+          created_by: string
+          product: Database["public"]["Enums"]["scenario_product"]
+          status: Database["public"]["Enums"]["scenario_status"]
+          transaction_type: Database["public"]["Enums"]["transaction_type"] | null
+          loan_amount: number | null
+          loan_term_months: number | null
+          interest_payment_method: string | null
+          broker_fee_percent: number | null
+          loan_purpose: string | null
+          exit_strategy: string | null
+          borrowing_entity_type: string | null
+          borrowing_entity_name: string | null
+          borrowing_entity_acn: string | null
+          turnaround_to_settlement: string | null
+          preferred_valuer: string | null
+          outstanding_tax: boolean | null
+          credit_impairments: boolean | null
+          additional_comments: string | null
+          submitted_at: string | null
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          reference?: never
+          created_by: string
+          product: Database["public"]["Enums"]["scenario_product"]
+          status?: Database["public"]["Enums"]["scenario_status"]
+          transaction_type?: Database["public"]["Enums"]["transaction_type"] | null
+          loan_amount?: number | null
+          loan_term_months?: number | null
+          interest_payment_method?: string | null
+          broker_fee_percent?: number | null
+          loan_purpose?: string | null
+          exit_strategy?: string | null
+          borrowing_entity_type?: string | null
+          borrowing_entity_name?: string | null
+          borrowing_entity_acn?: string | null
+          turnaround_to_settlement?: string | null
+          preferred_valuer?: string | null
+          outstanding_tax?: boolean | null
+          credit_impairments?: boolean | null
+          additional_comments?: string | null
+          submitted_at?: string | null
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          reference?: never
+          created_by?: string
+          product?: Database["public"]["Enums"]["scenario_product"]
+          status?: Database["public"]["Enums"]["scenario_status"]
+          transaction_type?: Database["public"]["Enums"]["transaction_type"] | null
+          loan_amount?: number | null
+          loan_term_months?: number | null
+          interest_payment_method?: string | null
+          broker_fee_percent?: number | null
+          loan_purpose?: string | null
+          exit_strategy?: string | null
+          borrowing_entity_type?: string | null
+          borrowing_entity_name?: string | null
+          borrowing_entity_acn?: string | null
+          turnaround_to_settlement?: string | null
+          preferred_valuer?: string | null
+          outstanding_tax?: boolean | null
+          credit_impairments?: boolean | null
+          additional_comments?: string | null
+          submitted_at?: string | null
+          created_at?: string
+          updated_at?: string
+        }
+        Relationships: []
+      },
+      scenario_properties: {
+        Row: {
+          id: string
+          scenario_id: string
+          position: number
+          address: string | null
+          description: string | null
+          security_type: Database["public"]["Enums"]["security_type"] | null
+          property_use: string | null
+          land_size_sqm: number | null
+          estimated_value: number | null
+          current_debt: number | null
+          comments: string | null
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          scenario_id: string
+          position?: number
+          address?: string | null
+          description?: string | null
+          security_type?: Database["public"]["Enums"]["security_type"] | null
+          property_use?: string | null
+          land_size_sqm?: number | null
+          estimated_value?: number | null
+          current_debt?: number | null
+          comments?: string | null
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          scenario_id?: string
+          position?: number
+          address?: string | null
+          description?: string | null
+          security_type?: Database["public"]["Enums"]["security_type"] | null
+          property_use?: string | null
+          land_size_sqm?: number | null
+          estimated_value?: number | null
+          current_debt?: number | null
+          comments?: string | null
+          created_at?: string
+        }
+        Relationships: []
+      },
+      scenario_guarantors: {
+        Row: {
+          id: string
+          scenario_id: string
+          position: number
+          full_name: string | null
+          employment_type: string | null
+          property_assets: number
+          property_liabilities: number
+          other_assets: number
+          other_liabilities: number
+          total_assets: number | null
+          total_liabilities: number | null
+          net_position: number | null
+          outstanding_tax: boolean | null
+          credit_impairments: boolean | null
+          comments: string | null
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          scenario_id: string
+          position?: number
+          full_name?: string | null
+          employment_type?: string | null
+          property_assets?: number
+          property_liabilities?: number
+          other_assets?: number
+          other_liabilities?: number
+          total_assets?: never
+          total_liabilities?: never
+          net_position?: never
+          outstanding_tax?: boolean | null
+          credit_impairments?: boolean | null
+          comments?: string | null
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          scenario_id?: string
+          position?: number
+          full_name?: string | null
+          employment_type?: string | null
+          property_assets?: number
+          property_liabilities?: number
+          other_assets?: number
+          other_liabilities?: number
+          total_assets?: never
+          total_liabilities?: never
+          net_position?: never
+          outstanding_tax?: boolean | null
+          credit_impairments?: boolean | null
+          comments?: string | null
+          created_at?: string
+        }
+        Relationships: []
+      },
+      scenario_documents: {
+        Row: {
+          id: string
+          scenario_id: string
+          storage_path: string
+          file_name: string
+          file_size: number | null
+          content_type: string | null
+          document_type: string | null
+          uploaded_by: string | null
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          scenario_id: string
+          storage_path: string
+          file_name: string
+          file_size?: number | null
+          content_type?: string | null
+          document_type?: string | null
+          uploaded_by?: string | null
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          scenario_id?: string
+          storage_path?: string
+          file_name?: string
+          file_size?: number | null
+          content_type?: string | null
+          document_type?: string | null
+          uploaded_by?: string | null
+          created_at?: string
+        }
+        Relationships: []
+      },
+      scenario_lender_access: {
+        Row: {
+          id: string
+          scenario_id: string
+          lender_id: string
+          shared_by: string | null
+          shared_at: string
+          revoked_at: string | null
+          response: string | null
+          responded_at: string | null
+          indicative_rate: number | null
+          indicative_amount: number | null
+          lender_notes: string | null
+        }
+        Insert: {
+          id?: string
+          scenario_id: string
+          lender_id: string
+          shared_by?: string | null
+          shared_at?: string
+          revoked_at?: string | null
+          response?: string | null
+          responded_at?: string | null
+          indicative_rate?: number | null
+          indicative_amount?: number | null
+          lender_notes?: string | null
+        }
+        Update: {
+          id?: string
+          scenario_id?: string
+          lender_id?: string
+          shared_by?: string | null
+          shared_at?: string
+          revoked_at?: string | null
+          response?: string | null
+          responded_at?: string | null
+          indicative_rate?: number | null
+          indicative_amount?: number | null
+          lender_notes?: string | null
+        }
+        Relationships: []
+      }
+
     Views: {
       [_ in never]: never
     }
@@ -851,11 +1185,15 @@ export type Database = {
       }
     }
     Enums: {
-      listing_status: "active" | "coming_soon" | "rented" | "inactive"
-      management_type: "self" | "company" | "hybrid"
-      profile_status: "incomplete" | "basic" | "verified" | "premium"
-      property_type: "house" | "townhouse_condo" | "apartment"
-      user_role: "tenant" | "agent" | "landlord" | "admin"
+      app_role: 'admin' | 'editor' | 'tenant' | 'landlord' | 'realtor' | 'lender'
+      listing_status: 'active' | 'coming_soon' | 'rented' | 'inactive'
+      management_type: 'self' | 'company' | 'hybrid'
+      profile_status: 'incomplete' | 'basic' | 'verified' | 'premium'
+      property_type: 'house' | 'townhouse_condo' | 'apartment'
+      scenario_product: 'first_mortgage' | 'second_mortgage' | 'construction'
+      scenario_status: 'draft' | 'submitted' | 'in_review' | 'quoted' | 'closed' | 'withdrawn'
+      security_type: 'residential' | 'commercial' | 'industrial' | 'agriculture_farming' | 'development_site' | 'vacant_land' | 'specialised' | 'residual_stock' | 'mid_construction'
+      transaction_type: 'purchase' | 'refinance' | 'equity_release' | 'development' | 'land_subdivision'
     }
     CompositeTypes: {
       [_ in never]: never
