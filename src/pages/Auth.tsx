@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 
 import { useAuth } from "@/contexts/AuthContext";
+import { Button } from "@/components/ui/button";
 import AuthCard from "@/components/auth/AuthCard";
 
 const Auth = () => {
@@ -86,13 +87,12 @@ const Auth = () => {
       {/* Signing in is a dead end without this: the card has no navigation, so
           anyone who lands here by mistake has only the browser's back button. */}
       <div className="mx-auto w-full max-w-md pt-6">
-        <Link
-          to="/"
-          className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
-        >
-          <ArrowLeft className="h-4 w-4" aria-hidden="true" />
-          Back to home
-        </Link>
+        <Button asChild variant="ghost" size="sm" className="-ml-2 text-muted-foreground">
+          <Link to="/">
+            <ArrowLeft className="mr-1.5 h-4 w-4" aria-hidden="true" />
+            Back to home
+          </Link>
+        </Button>
       </div>
 
       <div className="flex flex-1 items-center justify-center py-8">

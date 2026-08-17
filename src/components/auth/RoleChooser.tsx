@@ -20,11 +20,14 @@ export const RoleChooser = ({ onChoose }: RoleChooserProps) => (
     {ROLE_OPTIONS.map((option) => {
       const Icon = option.icon;
       return (
-        <article
+        <button
           key={option.value}
+          type="button"
+          onClick={() => onChoose(option.value)}
           className={cn(
-            "group flex flex-col overflow-hidden rounded-2xl bg-canvas-elevated ring-1 ring-canvas-border",
+            "group flex flex-col overflow-hidden rounded-2xl bg-canvas-elevated text-left ring-1 ring-canvas-border",
             "transition-all duration-200 hover:-translate-y-1 hover:shadow-2xl hover:ring-2",
+            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-canvas-foreground",
             option.ringClass,
           )}
         >
@@ -48,14 +51,13 @@ export const RoleChooser = ({ onChoose }: RoleChooserProps) => (
           </div>
 
           <div className="flex flex-1 flex-col px-6 pb-6 pt-11 text-center">
-            <h2 className="text-xl font-semibold text-canvas-foreground">{option.title}</h2>
-            <p className="mt-2 flex-1 text-sm leading-relaxed text-canvas-muted">{option.blurb}</p>
-            <button
-              type="button"
-              onClick={() => onChoose(option.value)}
+            <span className="block text-xl font-semibold text-canvas-foreground">{option.title}</span>
+            <span className="mt-2 block flex-1 text-sm leading-relaxed text-canvas-muted">{option.blurb}</span>
+            {/* Presentational: the whole card is the control, so this must
+                not be a nested button. */}
+            <span
               className={cn(
                 "mt-6 inline-flex w-full items-center justify-center gap-2 rounded-lg px-4 py-3 text-sm font-semibold transition-colors",
-                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-canvas-foreground focus-visible:ring-offset-2 focus-visible:ring-offset-canvas-elevated",
                 option.buttonClass,
               )}
             >
@@ -64,9 +66,9 @@ export const RoleChooser = ({ onChoose }: RoleChooserProps) => (
                 className="h-4 w-4 transition-transform group-hover:translate-x-1"
                 aria-hidden="true"
               />
-            </button>
+            </span>
           </div>
-        </article>
+        </button>
       );
     })}
   </div>

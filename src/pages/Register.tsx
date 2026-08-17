@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { ArrowLeft } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
+import { Button } from "@/components/ui/button";
 import RoleChooser from "@/components/auth/RoleChooser";
 import RegisterDetailsForm from "@/components/auth/RegisterDetailsForm";
 import { isSignupRole, type SignupRole } from "@/components/auth/registerRoles";
@@ -60,18 +61,20 @@ const Register = () => {
 
       <div className="relative mx-auto flex min-h-screen max-w-6xl flex-col px-4 py-8 sm:px-6 lg:py-12">
         <header className="flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <Link to="/" className="text-lg font-bold tracking-tight text-canvas-foreground">
-              Good Tenants
-            </Link>
-            <Link
-              to="/"
-              className="inline-flex items-center gap-1.5 text-sm text-canvas-muted transition-colors hover:text-canvas-foreground"
-            >
-              <ArrowLeft className="h-4 w-4" aria-hidden="true" />
+          {/* The wordmark used to sit here too, directly above an <h1> that
+              says "Welcome to Good Tenants" — two links to / and the brand name
+              twice in 80px of vertical space. */}
+          <Button
+            asChild
+            variant="ghost"
+            size="sm"
+            className="-ml-2 text-canvas-muted hover:bg-canvas-elevated hover:text-canvas-foreground"
+          >
+            <Link to="/">
+              <ArrowLeft className="mr-1.5 h-4 w-4" aria-hidden="true" />
               Back to home
             </Link>
-          </div>
+          </Button>
           <p className="text-sm text-canvas-muted">
             Already have an account?{" "}
             <Link to="/auth" className="font-medium text-canvas-foreground underline-offset-4 hover:underline">
@@ -94,9 +97,9 @@ const Register = () => {
                 <RoleChooser onChoose={setRole} />
               </div>
 
-              <p className="mt-10 text-center text-sm text-canvas-muted/80">
-                You can change most of this later. Your account type you cannot, so pick the one
-                that describes you today.
+              <p className="mt-10 text-center text-sm text-canvas-muted">
+                Most of this is editable later. Your account type is not, so pick the one that
+                describes you today.
               </p>
             </div>
           ) : (
@@ -114,7 +117,7 @@ const Register = () => {
           )}
         </main>
 
-        <footer className="text-center text-xs text-canvas-muted/70">
+        <footer className="text-center text-xs text-canvas-muted">
           By continuing, you agree to Good Tenants' Terms of Service and Privacy Policy.
         </footer>
       </div>

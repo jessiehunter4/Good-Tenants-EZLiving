@@ -157,11 +157,12 @@ export const RegisterDetailsForm = ({
   return (
     <div className="w-full max-w-lg rounded-2xl bg-card p-6 text-card-foreground shadow-2xl sm:p-8">
       <ol className="mb-6 flex items-center gap-2" aria-label={`Step ${step + 1} of 3`}>
-        {["Role", "Account", "Details"].map((label, index) => {
+        {["Role", "Account", "Details"].map((label, index, all) => {
           const isDone = index < step;
           const isCurrent = index === step;
+          const isLast = index === all.length - 1;
           return (
-            <li key={label} className="flex flex-1 items-center gap-2">
+            <li key={label} className={cn("flex items-center gap-2", !isLast && "flex-1")}>
               <span
                 className={cn(
                   "flex h-6 w-6 shrink-0 items-center justify-center rounded-full border text-xs font-medium",
@@ -181,10 +182,12 @@ export const RegisterDetailsForm = ({
               >
                 {label}
               </span>
-              <span
-                className={cn("ml-1 h-px flex-1", isDone ? "bg-primary" : "bg-border")}
-                aria-hidden="true"
-              />
+              {!isLast && (
+                <span
+                  className={cn("ml-1 h-px flex-1", isDone ? "bg-primary" : "bg-border")}
+                  aria-hidden="true"
+                />
+              )}
             </li>
           );
         })}
