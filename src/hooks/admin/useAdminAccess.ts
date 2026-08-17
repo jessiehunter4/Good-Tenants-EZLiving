@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/components/ui/use-toast";
+import { devBypassRole, isDevAuthBypass } from "@/lib/devBypass";
 
 export const useAdminAccess = () => {
   const { user } = useAuth();
@@ -13,6 +14,19 @@ export const useAdminAccess = () => {
   const [hasAccess, setHasAccess] = useState(false);
 
   const checkAdminAccess = async () => {
+    /*
+     * Under the development bypass, answer from the stub user rather than the
+     * database. This hook queries `users` independently of the auth context,
+     * so bypassing sign-in alone is not enough: the query fails against a
+     * project that no longer exists, and the catch below redirects away.
+     */
+    if (isDevAuthBypass()) {
+      const isAdmin = devBypassRole() === "admin";
+      setHasAccess(isAdmin);
+      setLoading(false);
+      return isAdmin;
+    }
+
     if (!user) {
       setHasAccess(false);
       setLoading(false);

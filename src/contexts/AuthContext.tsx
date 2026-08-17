@@ -3,8 +3,8 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 import { Session, User } from "@supabase/supabase-js";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/components/ui/use-toast";
-import { createHash } from "crypto-js/sha256";
 import { TenantProfile, LandlordProfile } from "@/types/profiles";
+import { devBypassSession, devBypassUser, isDevAuthBypass } from "@/lib/devBypass";
 
 // Generic profile interface that all profiles extend
 interface BaseProfile {
@@ -21,15 +21,29 @@ interface AuthContextType {
   userProfile: UserProfile | null;
   loading: boolean;
   signIn: (email: string, password: string) => Promise<void>;
-  signUp: (email: string, password: string, role: string, adminCode?: string) => Promise<void>;
+  signUp: (email: string, password: string, role: string) => Promise<void>;
   signOut: () => Promise<void>;
   getUserRole: () => string | null;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-// Store a hash of the admin code instead of the raw value
-const ADMIN_CODE_HASH = "8c1c86e76a314f2a7637d60318111195b0c3c6f999e99282aaf1068f699b32e5"; // SHA-256 hash of GT_ADMIN_2024
+// Roles a visitor may choose for themselves at registration. These are user
+// *types* that select an onboarding flow — they carry no elevated privilege.
+//
+// `admin` is deliberately absent. It was previously self-assignable behind a
+// registration code whose SHA-256 hash was a constant in this file; that check
+// could not work in any case, because `createHash` is not a named export of
+// crypto-js/sha256 (the module exports the hash function itself), so the call
+// threw and was swallowed by the catch below.
+//
+// Elevation to admin happens server-side only. See the accompanying migration.
+const SELF_ASSIGNABLE_ROLES = ["tenant", "agent", "landlord"] as const;
+type SelfAssignableRole = (typeof SELF_ASSIGNABLE_ROLES)[number];
+
+function isSelfAssignableRole(role: string): role is SelfAssignableRole {
+  return (SELF_ASSIGNABLE_ROLES as readonly string[]).includes(role);
+}
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
@@ -97,6 +111,22 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   useEffect(() => {
+    /*
+     * Development bypass. Signs in a stub user without contacting Supabase,
+     * which matters here because this project's auth endpoint no longer
+     * resolves: a real sign-in cannot succeed, and neither can registration.
+     *
+     * Returning early also skips the auth subscription entirely, so nothing
+     * below issues a network call that would fail and log noise.
+     */
+    if (isDevAuthBypass()) {
+      setSession(devBypassSession());
+      setUser(devBypassUser());
+      setUserProfile(null);
+      setLoading(false);
+      return;
+    }
+
     // Set up auth state listener FIRST - no async operations here to prevent deadlock
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       (event, sessionData) => {
@@ -166,7 +196,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   };
 
-  const signUp = async (email: string, password: string, role: string, adminCode?: string) => {
+  const signUp = async (email: string, password: string, role: string) => {
     try {
       // Validate email format
       if (!validateEmail(email)) {
@@ -178,17 +208,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         throw new Error("Password must be at least 8 characters and include a number and special character");
       }
 
-      // Verify admin code if trying to register as admin
-      if (role === "admin") {
-        if (!adminCode) {
-          throw new Error("Admin registration code is required");
-        }
-        
-        // Compare the hash of the provided code with the stored hash
-        const providedCodeHash = createHash(adminCode).toString();
-        if (providedCodeHash !== ADMIN_CODE_HASH) {
-          throw new Error("Invalid admin registration code");
-        }
+      // Privileged roles are never self-assignable. This is a usability guard
+      // only — the database must not trust this value either, since anyone can
+      // call the Supabase auth endpoint directly.
+      if (!isSelfAssignableRole(role)) {
+        throw new Error("That account type cannot be self-registered.");
       }
 
       const { error } = await supabase.auth.signUp({

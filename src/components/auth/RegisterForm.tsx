@@ -4,7 +4,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { LockIcon } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 import { useToast } from "@/hooks/use-toast";
 
@@ -27,19 +26,12 @@ import {
 const registerSchema = z.object({
   email: z.string().email({ message: "Please enter a valid email address." }),
   password: z.string().min(6, { message: "Password must be at least 6 characters." }),
-  role: z.enum(["tenant", "agent", "landlord", "admin"], {
+  // Administrator is intentionally not offered here. Admin access is granted
+  // server-side only; it was previously self-assignable behind a registration
+  // code that could never validate. See AuthContext.SELF_ASSIGNABLE_ROLES.
+  role: z.enum(["tenant", "agent", "landlord"], {
     required_error: "Please select a role.",
   }),
-  adminCode: z.string().optional(),
-}).refine((data) => {
-  // If role is admin, adminCode is required
-  if (data.role === "admin") {
-    return !!data.adminCode;
-  }
-  return true;
-}, {
-  message: "Admin registration code is required",
-  path: ["adminCode"],
 });
 
 export type RegisterFormValues = z.infer<typeof registerSchema>;
@@ -53,7 +45,6 @@ export const RegisterForm = ({ setActiveTab }: RegisterFormProps) => {
   const location = useLocation();
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
-  const [showAdminCode, setShowAdminCode] = useState(false);
 
   // Get role from URL query params
   const queryParams = new URLSearchParams(location.search);
@@ -81,8 +72,7 @@ export const RegisterForm = ({ setActiveTab }: RegisterFormProps) => {
     defaultValues: {
       email: prefilledData?.email || "",
       password: "",
-      role: roleFromUrl as "tenant" | "agent" | "landlord" | "admin" || prefilledData?.role || "tenant",
-      adminCode: "",
+      role: roleFromUrl as "tenant" | "agent" | "landlord" || prefilledData?.role || "tenant",
     },
   });
 
@@ -103,21 +93,10 @@ export const RegisterForm = ({ setActiveTab }: RegisterFormProps) => {
     }
   }, [roleFromUrl, form]);
 
-  // Watch for role changes to show/hide admin code field
-  useEffect(() => {
-    const subscription = form.watch((value, { name }) => {
-      if (name === 'role' || name === undefined) {
-        setShowAdminCode(value.role === 'admin');
-      }
-    });
-    
-    return () => subscription.unsubscribe();
-  }, [form.watch]);
-
   const onSubmit = async (values: RegisterFormValues) => {
     try {
       setIsLoading(true);
-      await signUp(values.email, values.password, values.role, values.adminCode);
+      await signUp(values.email, values.password, values.role);
       toast({
         title: "Registration successful!",
         description: "Please check your email to verify your account.",
@@ -210,39 +189,12 @@ export const RegisterForm = ({ setActiveTab }: RegisterFormProps) => {
                       Landlord/Property Owner
                     </FormLabel>
                   </FormItem>
-                  <FormItem className="flex items-center space-x-3 space-y-0">
-                    <FormControl>
-                      <RadioGroupItem value="admin" />
-                    </FormControl>
-                    <FormLabel className="font-normal">
-                      Administrator
-                    </FormLabel>
-                  </FormItem>
                 </RadioGroup>
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-
-        {showAdminCode && (
-          <FormField
-            control={form.control}
-            name="adminCode"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Admin Registration Code</FormLabel>
-                <FormControl>
-                  <div className="relative">
-                    <Input type="password" {...field} />
-                    <LockIcon className="absolute right-2 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                  </div>
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-        )}
 
         <Button type="submit" disabled={isLoading} className="w-full">
           {isLoading ? "Creating account..." : "Create account"}
