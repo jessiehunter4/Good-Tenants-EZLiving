@@ -3,12 +3,15 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { ArrowLeft, Building2, Check, ChevronRight, Eye, EyeOff, Home, Users } from "lucide-react";
-import type { LucideIcon } from "lucide-react";
+import { ArrowLeft, Check, ChevronRight, Eye, EyeOff } from "lucide-react";
 
 import { useAuth } from "@/contexts/AuthContext";
 import { useToast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
+
+import agentIllustration from "@/assets/roles/agent.svg";
+import landlordIllustration from "@/assets/roles/landlord.svg";
+import tenantIllustration from "@/assets/roles/tenant.svg";
 
 import {
   Form,
@@ -53,8 +56,11 @@ interface RoleOption {
   tagline: string;
   /** What this account type does next, shown once it is chosen. */
   next: string;
-  icon: LucideIcon;
-  iconClass: string;
+  /** Local SVG. Decorative — the card's text carries the meaning, so the
+   *  illustrations are hidden from assistive technology rather than described
+   *  twice. */
+  image: string;
+  imageClass: string;
 }
 
 const ROLE_OPTIONS: readonly RoleOption[] = [
@@ -63,24 +69,24 @@ const ROLE_OPTIONS: readonly RoleOption[] = [
     title: "I'm looking for a home",
     tagline: "Build one profile and reuse it everywhere",
     next: "Next you'll tell us your budget, timing and where you want to live.",
-    icon: Home,
-    iconClass: "bg-blue-50 text-blue-700",
+    image: tenantIllustration,
+    imageClass: "bg-blue-50/70",
   },
   {
     value: "landlord",
     title: "I own property",
     tagline: "List a property and meet qualified renters",
     next: "Next you'll add your first property and how you manage it.",
-    icon: Building2,
-    iconClass: "bg-amber-50 text-amber-700",
+    image: landlordIllustration,
+    imageClass: "bg-amber-50/70",
   },
   {
     value: "agent",
     title: "I'm a real estate agent",
     tagline: "Represent clients on both sides of a lease",
     next: "Next you'll add your agency and licence details.",
-    icon: Users,
-    iconClass: "bg-emerald-50 text-emerald-700",
+    image: agentIllustration,
+    imageClass: "bg-emerald-50/70",
   },
 ] as const;
 
@@ -232,7 +238,6 @@ export const RegisterForm = ({ setActiveTab }: RegisterFormProps) => {
 
               <div className="space-y-2">
                 {ROLE_OPTIONS.map((option) => {
-                  const Icon = option.icon;
                   const isSelected = selectedRole === option.value;
                   return (
                     <button
@@ -241,7 +246,7 @@ export const RegisterForm = ({ setActiveTab }: RegisterFormProps) => {
                       onClick={() => chooseRole(option.value)}
                       aria-pressed={isSelected}
                       className={cn(
-                        "group flex w-full items-center gap-3 rounded-lg border p-3 text-left transition-all",
+                        "group flex w-full items-center gap-3 overflow-hidden rounded-lg border p-2.5 text-left transition-all",
                         "hover:-translate-y-px hover:border-primary/60 hover:shadow-md",
                         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
                         isSelected ? "border-primary ring-1 ring-primary" : "border-border",
@@ -249,11 +254,18 @@ export const RegisterForm = ({ setActiveTab }: RegisterFormProps) => {
                     >
                       <span
                         className={cn(
-                          "flex h-10 w-10 shrink-0 items-center justify-center rounded-md",
-                          option.iconClass,
+                          "flex h-14 w-[72px] shrink-0 items-center justify-center rounded-md",
+                          option.imageClass,
                         )}
                       >
-                        <Icon className="h-5 w-5" aria-hidden="true" />
+                        <img
+                          src={option.image}
+                          alt=""
+                          aria-hidden="true"
+                          width={64}
+                          height={48}
+                          className="h-12 w-16 object-contain transition-transform duration-200 group-hover:scale-105"
+                        />
                       </span>
                       <span className="min-w-0 flex-1">
                         <span className="block text-sm font-medium leading-tight">
@@ -288,11 +300,18 @@ export const RegisterForm = ({ setActiveTab }: RegisterFormProps) => {
                 <div className="flex items-center gap-3 rounded-lg border bg-muted/40 p-3">
                   <span
                     className={cn(
-                      "flex h-9 w-9 shrink-0 items-center justify-center rounded-md",
-                      activeOption.iconClass,
+                      "flex h-11 w-14 shrink-0 items-center justify-center rounded-md",
+                      activeOption.imageClass,
                     )}
                   >
-                    <activeOption.icon className="h-4 w-4" aria-hidden="true" />
+                    <img
+                      src={activeOption.image}
+                      alt=""
+                      aria-hidden="true"
+                      width={48}
+                      height={36}
+                      className="h-9 w-12 object-contain"
+                    />
                   </span>
                   <div className="min-w-0 flex-1">
                     <p className="text-sm font-medium leading-tight">{activeOption.title}</p>
