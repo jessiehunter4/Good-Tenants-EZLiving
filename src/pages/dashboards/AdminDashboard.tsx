@@ -5,6 +5,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import AdminHeader from "@/components/admin/AdminHeader";
 import KPICard from "@/components/admin/KPICard";
 import AdminCharts from "@/components/admin/AdminCharts";
+import useSignupTrend from "@/hooks/admin/useSignupTrend";
 import StatsBreakdown from "@/components/admin/StatsBreakdown";
 import UserTable from "@/components/admin/UserTable";
 import UserVerificationTable from "@/components/admin/UserVerificationTable";
@@ -32,6 +33,8 @@ const AdminDashboard = () => {
     loading,
     refreshData
   } = useAdminStats();
+
+  const { trend } = useSignupTrend();
 
   const {
     integrations,
@@ -136,6 +139,7 @@ const AdminDashboard = () => {
           agentStatus={profileStats.agents}
           landlordStatus={profileStats.landlords}
           listingStats={listingStats}
+          trend={trend}
         />
 
         <Tabs defaultValue="users">
