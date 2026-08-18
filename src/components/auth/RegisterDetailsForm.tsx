@@ -155,7 +155,18 @@ export const RegisterDetailsForm = ({
   };
 
   return (
-    <div className="w-full max-w-lg rounded-2xl bg-card p-6 text-card-foreground shadow-2xl sm:p-8">
+    /*
+     * `dark` scopes the theme's dark tokens to this subtree, so every shadcn
+     * control inside — inputs, selects, labels, buttons — adopts the dark
+     * palette without a single restyled primitive. The card was white before,
+     * which kept the controls legible at the cost of a white slab dropped onto
+     * a dark page.
+     *
+     * The surface is canvas-elevated rather than the dark `card` token, which
+     * is nearly black: elevated sits *above* the canvas, which is what a card
+     * on a page should do.
+     */
+    <div className="dark w-full max-w-lg rounded-2xl bg-canvas-elevated p-6 text-canvas-foreground shadow-2xl ring-1 ring-canvas-border sm:p-8">
       <ol className="mb-6 flex items-center gap-2" aria-label={`Step ${step + 1} of 3`}>
         {["Role", "Account", "Details"].map((label, index, all) => {
           const isDone = index < step;
