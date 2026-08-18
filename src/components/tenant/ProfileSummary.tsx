@@ -33,22 +33,22 @@ const profileStatusMap: Record<string, ProfileStatus> = {
   incomplete: {
     label: "Incomplete",
     progress: 25,
-    color: "text-yellow-600 bg-yellow-100",
+    color: "text-warning bg-warning/10",
   },
   basic: {
     label: "Basic",
     progress: 50,
-    color: "text-blue-600 bg-blue-100",
+    color: "text-primary bg-role-tenant/10",
   },
   verified: {
     label: "Verified",
     progress: 75,
-    color: "text-green-600 bg-green-100",
+    color: "text-role-agent bg-role-agent/10",
   },
   premium: {
     label: "Premium",
     progress: 100,
-    color: "text-purple-600 bg-purple-100",
+    color: "text-role-landlord bg-role-landlord/10",
   },
 };
 
@@ -95,19 +95,19 @@ const ProfileSummary = ({ profile }: ProfileSummaryProps) => {
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
             <div>
-              <h3 className="font-medium text-gray-700">Move-in Date</h3>
+              <h3 className="font-medium text-foreground">Move-in Date</h3>
               <p>{formatDate(profile.move_in_date)}</p>
             </div>
             <div>
-              <h3 className="font-medium text-gray-700">Household Size</h3>
+              <h3 className="font-medium text-foreground">Household Size</h3>
               <p>{profile.household_size || 'Not specified'}</p>
             </div>
             <div>
-              <h3 className="font-medium text-gray-700">Household Income</h3>
+              <h3 className="font-medium text-foreground">Household Income</h3>
               <p>{profile.household_income ? `$${profile.household_income.toLocaleString()}/month` : 'Not specified'}</p>
             </div>
             <div>
-              <h3 className="font-medium text-gray-700">Pets</h3>
+              <h3 className="font-medium text-foreground">Pets</h3>
               <p>{profile.pets ? 'Yes' : 'No'}</p>
             </div>
           </div>

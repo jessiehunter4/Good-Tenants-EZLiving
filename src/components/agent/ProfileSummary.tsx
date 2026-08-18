@@ -33,33 +33,33 @@ const ProfileSummary = ({ profile }: ProfileSummaryProps) => {
       <CardContent>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <h3 className="font-medium text-gray-700">License Number</h3>
+            <h3 className="font-medium text-foreground">License Number</h3>
             <p>{profile.license_number || 'Not specified'}</p>
           </div>
           <div>
-            <h3 className="font-medium text-gray-700">Agency/Brokerage</h3>
+            <h3 className="font-medium text-foreground">Agency/Brokerage</h3>
             <p>{profile.agency || 'Not specified'}</p>
           </div>
           <div>
-            <h3 className="font-medium text-gray-700">Years of Experience</h3>
+            <h3 className="font-medium text-foreground">Years of Experience</h3>
             <p>{profile.years_experience !== null ? profile.years_experience : 'Not specified'}</p>
           </div>
           <div>
-            <h3 className="font-medium text-gray-700">Specialties</h3>
+            <h3 className="font-medium text-foreground">Specialties</h3>
             <p>{profile.specialties?.join(', ') || 'Not specified'}</p>
           </div>
         </div>
 
         {profile.bio && (
           <div className="mt-4">
-            <h3 className="font-medium text-gray-700">Bio</h3>
-            <p className="text-sm text-gray-600">{profile.bio}</p>
+            <h3 className="font-medium text-foreground">Bio</h3>
+            <p className="text-sm text-muted-foreground">{profile.bio}</p>
           </div>
         )}
 
         {(profile.status === 'incomplete' || !profile.license_number) && (
-          <div className="mt-4 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
-            <p className="text-sm text-yellow-800">
+          <div className="mt-4 p-4 bg-warning/10 border border-warning/25 rounded-lg">
+            <p className="text-sm text-warning">
               <strong>Action Required:</strong> Complete your license verification to access the tenant directory and send invitations.
             </p>
           </div>

@@ -81,7 +81,7 @@ const SummerLandingPage = () => {
   return (
     <div className="min-h-screen flex flex-col bg-white">
       {/* Hero Section */}
-      <div className="relative bg-blue-900 text-white py-16 md:py-24">
+      <div className="relative bg-primary text-primary-foreground py-16 md:py-24">
         <div className="absolute inset-0 overflow-hidden opacity-20">
           <img 
             src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=1974&auto=format&fit=crop" 
@@ -95,8 +95,8 @@ const SummerLandingPage = () => {
             Good tenants get seen first. Create your free profile to start getting invited to rental listings in your area.
           </p>
           
-          <div className="bg-white text-gray-800 rounded-lg p-6 md:p-8 max-w-2xl mx-auto shadow-lg">
-            <h2 className="text-2xl font-bold mb-6 text-blue-900">Find Your Next Rental – Get Invited, Not Ignored</h2>
+          <div className="bg-white text-foreground rounded-lg p-6 md:p-8 max-w-2xl mx-auto shadow-lg">
+            <h2 className="text-2xl font-bold mb-6 text-primary">Find Your Next Rental – Get Invited, Not Ignored</h2>
             
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
@@ -200,7 +200,7 @@ const SummerLandingPage = () => {
                 
                 <Button 
                   type="submit" 
-                  className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg mt-4" 
+                  className="w-full bg-primary hover:bg-primary text-white font-bold py-3 px-6 rounded-lg mt-4" 
                   disabled={isSubmitting}
                 >
                   {isSubmitting ? "Creating Profile..." : "Create My Free Profile"}
@@ -212,16 +212,16 @@ const SummerLandingPage = () => {
       </div>
 
       {/* Social Proof Section */}
-      <div className="py-12 md:py-16 bg-gray-50">
+      <div className="py-12 md:py-16 bg-muted/40">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-2xl font-bold mb-8 text-blue-900">What Our Users Say</h2>
+          <h2 className="text-2xl font-bold mb-8 text-primary">What Our Users Say</h2>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
             {/* Testimonial 1 */}
             <div className="bg-white p-6 rounded-lg shadow-md">
               <div className="flex justify-center mb-2">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} size={16} className="text-yellow-400 fill-yellow-400" />
+                  <Star key={i} size={16} className="text-warning fill-yellow-400" />
                 ))}
               </div>
               <p className="mb-4">"I found my dream apartment in just 3 days! Landlords were contacting me directly with available units."</p>
@@ -232,7 +232,7 @@ const SummerLandingPage = () => {
             <div className="bg-white p-6 rounded-lg shadow-md">
               <div className="flex justify-center mb-2">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} size={16} className="text-yellow-400 fill-yellow-400" />
+                  <Star key={i} size={16} className="text-warning fill-yellow-400" />
                 ))}
               </div>
               <p className="mb-4">"As a landlord, I love being able to browse pre-screened tenants. It saves so much time in the leasing process."</p>
@@ -243,7 +243,7 @@ const SummerLandingPage = () => {
             <div className="bg-white p-6 rounded-lg shadow-md">
               <div className="flex justify-center mb-2">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} size={16} className="text-yellow-400 fill-yellow-400" />
+                  <Star key={i} size={16} className="text-warning fill-yellow-400" />
                 ))}
               </div>
               <p className="mb-4">"This platform made it so much easier for me to find qualified tenants for my client's listings."</p>
@@ -251,48 +251,48 @@ const SummerLandingPage = () => {
             </div>
           </div>
           
-          <p className="mt-8 text-gray-600">Trusted by tenants and real estate professionals in Southern California</p>
+          <p className="mt-8 text-muted-foreground">Trusted by tenants and real estate professionals in Southern California</p>
         </div>
       </div>
 
       {/* How It Works Section */}
       <div className="py-12 md:py-16 bg-white">
         <div className="container mx-auto px-4">
-          <h2 className="text-2xl font-bold mb-12 text-center text-blue-900">How It Works</h2>
+          <h2 className="text-2xl font-bold mb-12 text-center text-primary">How It Works</h2>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             {/* Step 1 */}
             <div className="text-center">
-              <div className="bg-blue-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                <span className="text-blue-600 font-bold text-2xl">1</span>
+              <div className="bg-role-tenant/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                <span className="text-primary font-bold text-2xl">1</span>
               </div>
               <h3 className="text-xl font-semibold mb-2">Create your free profile</h3>
-              <p className="text-gray-600">Sign up and complete your tenant profile with preferences and requirements.</p>
+              <p className="text-muted-foreground">Sign up and complete your tenant profile with preferences and requirements.</p>
             </div>
             
             {/* Step 2 */}
             <div className="text-center">
-              <div className="bg-blue-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                <span className="text-blue-600 font-bold text-2xl">2</span>
+              <div className="bg-role-tenant/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                <span className="text-primary font-bold text-2xl">2</span>
               </div>
               <h3 className="text-xl font-semibold mb-2">Get matched with new listings</h3>
-              <p className="text-gray-600">Our system matches your profile with available properties in your desired area.</p>
+              <p className="text-muted-foreground">Our system matches your profile with available properties in your desired area.</p>
             </div>
             
             {/* Step 3 */}
             <div className="text-center">
-              <div className="bg-blue-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                <span className="text-blue-600 font-bold text-2xl">3</span>
+              <div className="bg-role-tenant/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                <span className="text-primary font-bold text-2xl">3</span>
               </div>
               <h3 className="text-xl font-semibold mb-2">Get invited by landlords and agents</h3>
-              <p className="text-gray-600">Receive direct invitations to view properties that match your criteria.</p>
+              <p className="text-muted-foreground">Receive direct invitations to view properties that match your criteria.</p>
             </div>
           </div>
         </div>
       </div>
 
       {/* Final CTA */}
-      <div className="py-12 md:py-16 bg-blue-900 text-white">
+      <div className="py-12 md:py-16 bg-primary text-primary-foreground">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-6">Ready to find your perfect rental?</h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto">
@@ -301,7 +301,7 @@ const SummerLandingPage = () => {
           <Button 
             onClick={() => document.documentElement.scrollTop = 0} 
             size="lg"
-            className="bg-white text-blue-900 hover:bg-gray-100"
+            className="bg-white text-primary hover:bg-muted"
           >
             Start My Profile – It's Free
           </Button>
@@ -309,13 +309,13 @@ const SummerLandingPage = () => {
       </div>
 
       {/* Footer */}
-      <footer className="bg-gray-800 text-white py-8">
+      <footer className="bg-espresso text-sand py-8">
         <div className="container mx-auto px-4">
           <div className="text-center">
             <p>&copy; {new Date().getFullYear()} {BRAND.legalName}. All rights reserved.</p>
             <div className="mt-2">
-              <a href="#" className="text-gray-400 hover:text-white mx-2">Privacy Policy</a>
-              <a href="#" className="text-gray-400 hover:text-white mx-2">Terms of Service</a>
+              <a href="#" className="text-muted-foreground hover:text-white mx-2">Privacy Policy</a>
+              <a href="#" className="text-muted-foreground hover:text-white mx-2">Terms of Service</a>
             </div>
           </div>
         </div>

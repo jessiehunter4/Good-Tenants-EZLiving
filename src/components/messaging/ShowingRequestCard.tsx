@@ -37,12 +37,12 @@ const ShowingRequestCard: React.FC<ShowingRequestCardProps> = ({
 }) => {
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'requested': return 'bg-yellow-100 text-yellow-800';
-      case 'confirmed': return 'bg-green-100 text-green-800';
-      case 'completed': return 'bg-blue-100 text-blue-800';
-      case 'cancelled': return 'bg-red-100 text-red-800';
-      case 'rescheduled': return 'bg-orange-100 text-orange-800';
-      default: return 'bg-gray-100 text-gray-800';
+      case 'requested': return 'bg-warning/10 text-warning';
+      case 'confirmed': return 'bg-role-agent/10 text-role-agent';
+      case 'completed': return 'bg-role-tenant/10 text-primary';
+      case 'cancelled': return 'bg-destructive/10 text-destructive';
+      case 'rescheduled': return 'bg-warning/10 text-warning';
+      default: return 'bg-muted text-foreground';
     }
   };
 

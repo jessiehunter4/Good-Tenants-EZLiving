@@ -79,9 +79,9 @@ const InvitationCard = ({ invitation, onStatusChange }: InvitationCardProps) => 
             {invitation.listing?.address || 'Address not available'}, {invitation.listing?.city || 'City not available'}
           </CardTitle>
           <Badge className={
-            invitation.status === 'pending' ? 'bg-yellow-500' : 
-            invitation.status === 'accepted' ? 'bg-green-500' : 
-            'bg-gray-500'
+            invitation.status === 'pending' ? 'bg-warning' : 
+            invitation.status === 'accepted' ? 'bg-success' : 
+            'bg-muted-foreground'
           }>
             {(invitation.status || 'pending').charAt(0).toUpperCase() + (invitation.status || 'pending').slice(1)}
           </Badge>
@@ -94,25 +94,25 @@ const InvitationCard = ({ invitation, onStatusChange }: InvitationCardProps) => 
         <div className="space-y-2">
           <div className="grid grid-cols-2 gap-2">
             <div>
-              <span className="text-sm text-gray-500">Bedrooms</span>
+              <span className="text-sm text-muted-foreground">Bedrooms</span>
               <p>{invitation.listing?.bedrooms || 'N/A'}</p>
             </div>
             <div>
-              <span className="text-sm text-gray-500">Bathrooms</span>
+              <span className="text-sm text-muted-foreground">Bathrooms</span>
               <p>{invitation.listing?.bathrooms || 'N/A'}</p>
             </div>
             <div>
-              <span className="text-sm text-gray-500">Price</span>
+              <span className="text-sm text-muted-foreground">Price</span>
               <p>${invitation.listing?.price?.toLocaleString() || 'N/A'}/month</p>
             </div>
             <div>
-              <span className="text-sm text-gray-500">Date Received</span>
+              <span className="text-sm text-muted-foreground">Date Received</span>
               <p>{new Date(invitation.created_at).toLocaleDateString()}</p>
             </div>
           </div>
           {invitation.message && (
-            <div className="mt-2 pt-2 border-t border-gray-200">
-              <p className="text-sm text-gray-500">Message:</p>
+            <div className="mt-2 pt-2 border-t border-border">
+              <p className="text-sm text-muted-foreground">Message:</p>
               <p className="text-sm">{invitation.message}</p>
             </div>
           )}

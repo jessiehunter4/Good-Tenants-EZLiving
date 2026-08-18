@@ -93,11 +93,11 @@ const UserVerificationTable = ({ users, onUserVerified }: UserVerificationTableP
                 <Badge
                   className={
                     user.role === "tenant"
-                      ? "bg-blue-100 text-blue-800"
+                      ? "bg-role-tenant/10 text-primary"
                       : user.role === "agent"
-                      ? "bg-green-100 text-green-800"
+                      ? "bg-role-agent/10 text-role-agent"
                       : user.role === "landlord"
-                      ? "bg-purple-100 text-purple-800"
+                      ? "bg-role-landlord/10 text-role-landlord"
                       : "bg-muted text-muted-foreground"
                   }
                 >
@@ -115,7 +115,7 @@ const UserVerificationTable = ({ users, onUserVerified }: UserVerificationTableP
                   size="sm"
                   onClick={() => handleVerifyUser(user.id, user.role)}
                   disabled={isLoading || processingUsers[user.id] || user.status === "verified"}
-                  className={user.status === "verified" ? "bg-green-500" : ""}
+                  className={user.status === "verified" ? "bg-success" : ""}
                 >
                   {user.status === "verified" ? (
                     <>

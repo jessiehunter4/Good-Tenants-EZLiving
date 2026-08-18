@@ -14,17 +14,17 @@ interface DocumentListProps {
 const DocumentList: React.FC<DocumentListProps> = ({ documents }) => {
   const getStatusIcon = (status: string) => {
     switch (status) {
-      case 'verified': return <Check className="h-4 w-4 text-green-600" />;
-      case 'rejected': return <X className="h-4 w-4 text-red-600" />;
-      default: return <Clock className="h-4 w-4 text-yellow-600" />;
+      case 'verified': return <Check className="h-4 w-4 text-role-agent" />;
+      case 'rejected': return <X className="h-4 w-4 text-destructive" />;
+      default: return <Clock className="h-4 w-4 text-warning" />;
     }
   };
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'verified': return 'bg-green-100 text-green-800';
-      case 'rejected': return 'bg-red-100 text-red-800';
-      default: return 'bg-yellow-100 text-yellow-800';
+      case 'verified': return 'bg-role-agent/10 text-role-agent';
+      case 'rejected': return 'bg-destructive/10 text-destructive';
+      default: return 'bg-warning/10 text-warning';
     }
   };
 

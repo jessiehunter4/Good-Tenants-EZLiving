@@ -16,8 +16,8 @@ const PriceAnalyticsCard = ({ type }: PriceAnalyticsCardProps) => {
       <Card>
         <CardContent className="p-6">
           <div className="animate-pulse space-y-2">
-            <div className="h-4 bg-gray-200 rounded w-3/4"></div>
-            <div className="h-8 bg-gray-200 rounded w-1/2"></div>
+            <div className="h-4 bg-muted rounded w-3/4"></div>
+            <div className="h-8 bg-muted rounded w-1/2"></div>
           </div>
         </CardContent>
       </Card>
@@ -85,11 +85,11 @@ const PriceAnalyticsCard = ({ type }: PriceAnalyticsCardProps) => {
           {content.trend !== 0 && (
             <>
               {isPositive ? (
-                <TrendingUp className="h-3 w-3 mr-1 text-green-500" />
+                <TrendingUp className="h-3 w-3 mr-1 text-success" />
               ) : (
-                <TrendingDown className="h-3 w-3 mr-1 text-red-500" />
+                <TrendingDown className="h-3 w-3 mr-1 text-destructive" />
               )}
-              <span className={isPositive ? "text-green-500" : "text-red-500"}>
+              <span className={isPositive ? "text-success" : "text-destructive"}>
                 {Math.abs(content.trend)}%
               </span>
               <span className="ml-1">{content.description}</span>

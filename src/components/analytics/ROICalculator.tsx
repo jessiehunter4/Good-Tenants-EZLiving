@@ -156,9 +156,9 @@ const ROICalculator = () => {
             <div className="text-2xl font-bold flex items-center gap-2">
               {formatCurrency(metrics.monthlyCashFlow)}
               {metrics.monthlyCashFlow >= 0 ? (
-                <TrendingUp className="h-4 w-4 text-green-600" />
+                <TrendingUp className="h-4 w-4 text-role-agent" />
               ) : (
-                <TrendingDown className="h-4 w-4 text-red-600" />
+                <TrendingDown className="h-4 w-4 text-destructive" />
               )}
             </div>
             <p className="text-sm text-muted-foreground">
@@ -225,7 +225,7 @@ const ROICalculator = () => {
                 </div>
                 <div className="flex justify-between font-medium">
                   <span>Net Cash Flow:</span>
-                  <span className={metrics.monthlyCashFlow >= 0 ? "text-green-600" : "text-red-600"}>
+                  <span className={metrics.monthlyCashFlow >= 0 ? "text-role-agent" : "text-destructive"}>
                     {formatCurrency(metrics.monthlyCashFlow)}
                   </span>
                 </div>
@@ -246,7 +246,7 @@ const ROICalculator = () => {
                   </div>
                   <div className="flex justify-between">
                     <span>Your Rent vs Market:</span>
-                    <span className={marketComparison.rentComparison >= 0 ? "text-green-600" : "text-red-600"}>
+                    <span className={marketComparison.rentComparison >= 0 ? "text-role-agent" : "text-destructive"}>
                       {formatPercentage(marketComparison.rentComparison)}
                     </span>
                   </div>

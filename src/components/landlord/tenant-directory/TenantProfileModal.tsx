@@ -47,12 +47,12 @@ const TenantProfileModal = ({ tenant, isOpen, onClose, onInvite }: TenantProfile
     
     switch (status) {
       case 'pre-screened':
-        return <Badge className="bg-green-100 text-green-800">Pre-Screened</Badge>;
+        return <Badge className="bg-role-agent/10 text-role-agent">Pre-Screened</Badge>;
       case 'completed':
-        return <Badge className="bg-blue-100 text-blue-800">Screening Completed</Badge>;
+        return <Badge className="bg-role-tenant/10 text-primary">Screening Completed</Badge>;
       case 'in-process':
       default:
-        return <Badge className="bg-yellow-100 text-yellow-800">Screening In Process</Badge>;
+        return <Badge className="bg-warning/10 text-warning">Screening In Process</Badge>;
     }
   };
   
@@ -72,13 +72,13 @@ const TenantProfileModal = ({ tenant, isOpen, onClose, onInvite }: TenantProfile
             <div className="flex items-center space-x-4">
               <Avatar className="h-16 w-16">
                 <AvatarImage src={tenant.profile_image_url || undefined} />
-                <AvatarFallback className="bg-blue-100 text-blue-600">
+                <AvatarFallback className="bg-role-tenant/10 text-primary">
                   {getInitials(tenant.user_email)}
                 </AvatarFallback>
               </Avatar>
               <div>
                 <h3 className="text-lg font-medium">{tenant.user_email}</h3>
-                <p className="text-sm text-gray-500">
+                <p className="text-sm text-muted-foreground">
                   Last active: {tenant.last_activity ? formatDate(tenant.last_activity) : "Unknown"}
                 </p>
               </div>
@@ -86,7 +86,7 @@ const TenantProfileModal = ({ tenant, isOpen, onClose, onInvite }: TenantProfile
             <div className="flex gap-2">
               {getScreeningStatusBadge(tenant.screening_status)}
               {tenant.is_pre_screened && (
-                <Badge className="bg-green-100 text-green-800">Verified</Badge>
+                <Badge className="bg-role-agent/10 text-role-agent">Verified</Badge>
               )}
             </div>
           </div>
@@ -94,21 +94,21 @@ const TenantProfileModal = ({ tenant, isOpen, onClose, onInvite }: TenantProfile
           {/* Tenant details */}
           <div className="grid grid-cols-2 gap-4 border-t border-b py-4">
             <div>
-              <p className="text-sm text-gray-500">Moving Date</p>
+              <p className="text-sm text-muted-foreground">Moving Date</p>
               <p className="font-medium">{formatDate(tenant.move_in_date)}</p>
             </div>
             <div>
-              <p className="text-sm text-gray-500">Income</p>
+              <p className="text-sm text-muted-foreground">Income</p>
               <p className="font-medium">{formatIncome(tenant.household_income)}</p>
             </div>
             <div>
-              <p className="text-sm text-gray-500">Household Size</p>
+              <p className="text-sm text-muted-foreground">Household Size</p>
               <p className="font-medium">
                 {tenant.household_size || 'Not specified'} {tenant.household_size === 1 ? 'person' : 'people'}
               </p>
             </div>
             <div>
-              <p className="text-sm text-gray-500">Pets</p>
+              <p className="text-sm text-muted-foreground">Pets</p>
               <p className="font-medium">{tenant.pets ? 'Yes' : 'No'}</p>
             </div>
           </div>
@@ -118,10 +118,10 @@ const TenantProfileModal = ({ tenant, isOpen, onClose, onInvite }: TenantProfile
             <h4 className="font-medium mb-2">Preferred Locations</h4>
             <div className="flex flex-wrap gap-2">
               {tenant.preferred_locations?.map((location, index) => (
-                <Badge key={index} variant="outline" className="bg-gray-100">
+                <Badge key={index} variant="outline" className="bg-muted">
                   {location}
                 </Badge>
-              )) || <p className="text-gray-500 text-sm">No preferred locations specified</p>}
+              )) || <p className="text-muted-foreground text-sm">No preferred locations specified</p>}
             </div>
           </div>
           
@@ -129,7 +129,7 @@ const TenantProfileModal = ({ tenant, isOpen, onClose, onInvite }: TenantProfile
           {tenant.bio && (
             <div>
               <h4 className="font-medium mb-2">About</h4>
-              <p className="text-sm text-gray-700">{tenant.bio}</p>
+              <p className="text-sm text-foreground">{tenant.bio}</p>
             </div>
           )}
           

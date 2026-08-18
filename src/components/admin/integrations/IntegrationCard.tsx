@@ -15,28 +15,28 @@ const IntegrationCard = ({ integration, onStatusChange, onTest }: IntegrationCar
   const getStatusColor = (status: Integration['status']) => {
     switch (status) {
       case 'active':
-        return 'bg-green-500';
+        return 'bg-success';
       case 'inactive':
-        return 'bg-gray-500';
+        return 'bg-muted-foreground';
       case 'maintenance':
-        return 'bg-yellow-500';
+        return 'bg-warning';
       case 'deprecated':
-        return 'bg-red-500';
+        return 'bg-destructive';
       default:
-        return 'bg-gray-500';
+        return 'bg-muted-foreground';
     }
   };
 
   const getTestResultColor = (result?: string) => {
     switch (result) {
       case 'success':
-        return 'bg-green-500';
+        return 'bg-success';
       case 'failed':
-        return 'bg-red-500';
+        return 'bg-destructive';
       case 'pending':
-        return 'bg-yellow-500';
+        return 'bg-warning';
       default:
-        return 'bg-gray-500';
+        return 'bg-muted-foreground';
     }
   };
 

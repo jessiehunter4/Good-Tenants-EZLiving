@@ -102,12 +102,12 @@ const IntegrationTester = () => {
         {testResult && (
           <div className="space-y-2">
             <Label className="text-sm font-medium">Test Results</Label>
-            <div className="p-3 bg-gray-50 rounded-lg">
+            <div className="p-3 bg-muted/40 rounded-lg">
               <div className="flex items-center gap-2 mb-2">
                 {testResult.success ? (
-                  <CheckCircle className="h-4 w-4 text-green-500" />
+                  <CheckCircle className="h-4 w-4 text-success" />
                 ) : (
-                  <XCircle className="h-4 w-4 text-red-500" />
+                  <XCircle className="h-4 w-4 text-destructive" />
                 )}
                 <Badge variant={testResult.success ? "default" : "destructive"}>
                   {testResult.success ? "Success" : "Failed"}

@@ -65,7 +65,7 @@ const PropertyFilters = ({
             step={100}
             className="mb-2"
           />
-          <div className="text-xs text-gray-500">
+          <div className="text-xs text-muted-foreground">
             ${priceRange[0]} - ${priceRange[1]}
           </div>
         </div>

@@ -31,7 +31,7 @@ const MessagingCenter: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-muted/40">
       <DashboardHeader 
         title="Messaging Center" 
         subtitle="Manage your communications with tenants, agents and landlords"

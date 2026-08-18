@@ -48,7 +48,7 @@ const FeatureGate: React.FC<FeatureGateProps> = ({
     };
 
     return (
-      <Alert className="border-amber-200 bg-amber-50">
+      <Alert className="border-warning/25 bg-warning/10">
         {getTierIcon()}
         <AlertDescription className="flex items-center justify-between">
           <span>{getTierMessage()}</span>

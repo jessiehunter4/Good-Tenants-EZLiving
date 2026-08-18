@@ -56,9 +56,9 @@ const TenantProfileTable = ({ tenants }: TenantProfileTableProps) => {
                   variant={tenant.status === "verified" ? "default" : "outline"}
                   className={
                     tenant.status === "verified" 
-                      ? "bg-green-100 text-green-800" 
+                      ? "bg-role-agent/10 text-role-agent" 
                       : tenant.status === "basic"
-                      ? "bg-blue-100 text-blue-800"
+                      ? "bg-role-tenant/10 text-primary"
                       : "bg-muted text-muted-foreground"
                   }
                 >
@@ -68,7 +68,7 @@ const TenantProfileTable = ({ tenants }: TenantProfileTableProps) => {
               <TableCell>
                 {tenant.pets !== null ? (
                   tenant.pets ? (
-                    <Badge className="bg-amber-100 text-amber-800">Yes</Badge>
+                    <Badge className="bg-role-landlord/10 text-role-landlord">Yes</Badge>
                   ) : (
                     <Badge variant="outline">No</Badge>
                   )

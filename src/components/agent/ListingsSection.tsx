@@ -43,7 +43,7 @@ const ListingsSection = ({ listings }: ListingsSectionProps) => {
           </div>
         ) : (
           <EmptyState
-            icon={<Home className="h-6 w-6 text-gray-400" />}
+            icon={<Home className="h-6 w-6 text-muted-foreground" />}
             title="No listings yet"
             description="Add your first property listing to start finding tenants."
             action={

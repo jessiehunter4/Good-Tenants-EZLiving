@@ -28,39 +28,39 @@ const PropertyCard = ({ listing, onExpressInterest, onViewProperty }: PropertyCa
           </div>
           <div className="flex gap-2">
             {listing.featured && (
-              <Badge className="bg-yellow-100 text-yellow-800">Featured</Badge>
+              <Badge className="bg-warning/10 text-warning">Featured</Badge>
             )}
-            <Badge className="bg-green-100 text-green-800">Available</Badge>
+            <Badge className="bg-role-agent/10 text-role-agent">Available</Badge>
           </div>
         </div>
       </CardHeader>
       <CardContent className="pt-0">
         <div className="grid grid-cols-2 gap-4 mb-4">
           <div className="flex items-center">
-            <Home className="h-4 w-4 mr-2 text-gray-500" />
+            <Home className="h-4 w-4 mr-2 text-muted-foreground" />
             <span className="text-sm">
               {listing.bedrooms} bed, {listing.bathrooms} bath
             </span>
           </div>
           <div className="flex items-center">
-            <DollarSign className="h-4 w-4 mr-2 text-gray-500" />
+            <DollarSign className="h-4 w-4 mr-2 text-muted-foreground" />
             <span className="text-sm font-medium">
               {listing.price ? formatPrice(listing.price) : 'Price on request'}
             </span>
           </div>
           <div className="flex items-center">
-            <Calendar className="h-4 w-4 mr-2 text-gray-500" />
+            <Calendar className="h-4 w-4 mr-2 text-muted-foreground" />
             <span className="text-sm">
               Available: {listing.available_date ? formatDate(listing.available_date) : 'Now'}
             </span>
           </div>
-          <div className="text-sm text-gray-500">
+          <div className="text-sm text-muted-foreground">
             {listing.square_feet ? `${listing.square_feet.toLocaleString()} sq ft` : 'Size not specified'}
           </div>
         </div>
 
         {listing.description && (
-          <p className="text-sm text-gray-600 mb-4 line-clamp-2">
+          <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
             {listing.description}
           </p>
         )}

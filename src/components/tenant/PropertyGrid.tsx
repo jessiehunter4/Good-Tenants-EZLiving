@@ -14,7 +14,7 @@ const PropertyGrid = ({ listings, onExpressInterest, onViewProperty }: PropertyG
   if (listings.length === 0) {
     return (
       <EmptyState
-        icon={<Home className="h-8 w-8 text-gray-400" />}
+        icon={<Home className="h-8 w-8 text-muted-foreground" />}
         title="No properties found"
         description="No properties match your search criteria. Try adjusting your filters."
       />

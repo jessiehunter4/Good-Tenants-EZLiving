@@ -6,7 +6,7 @@ import EmptyState from "@/components/tenant/EmptyState";
 const VerificationRequired = () => {
   return (
     <EmptyState
-      icon={<User className="h-6 w-6 text-gray-400" />}
+      icon={<User className="h-6 w-6 text-muted-foreground" />}
       title="Verification Required"
       description="You need to be verified to access the tenant directory."
       action={<Button>Get Verified</Button>}

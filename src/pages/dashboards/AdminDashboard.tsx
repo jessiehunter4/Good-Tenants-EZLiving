@@ -216,25 +216,25 @@ const AdminDashboard = () => {
                         label: "Incomplete",
                         value: profileStats.tenants.incomplete,
                         total: getTotalProfiles("tenants"),
-                        color: "bg-yellow-400",
+                        color: "bg-warning",
                       },
                       {
                         label: "Basic",
                         value: profileStats.tenants.basic,
                         total: getTotalProfiles("tenants"),
-                        color: "bg-blue-400",
+                        color: "bg-info",
                       },
                       {
                         label: "Verified",
                         value: profileStats.tenants.verified,
                         total: getTotalProfiles("tenants"),
-                        color: "bg-green-400",
+                        color: "bg-success",
                       },
                       {
                         label: "Premium",
                         value: profileStats.tenants.premium,
                         total: getTotalProfiles("tenants"),
-                        color: "bg-purple-400",
+                        color: "bg-role-landlord",
                       },
                     ]}
                   />
@@ -247,25 +247,25 @@ const AdminDashboard = () => {
                         label: "Incomplete",
                         value: profileStats.agents.incomplete,
                         total: getTotalProfiles("agents"),
-                        color: "bg-yellow-400",
+                        color: "bg-warning",
                       },
                       {
                         label: "Basic",
                         value: profileStats.agents.basic,
                         total: getTotalProfiles("agents"),
-                        color: "bg-blue-400",
+                        color: "bg-info",
                       },
                       {
                         label: "Verified",
                         value: profileStats.agents.verified,
                         total: getTotalProfiles("agents"),
-                        color: "bg-green-400",
+                        color: "bg-success",
                       },
                       {
                         label: "Premium",
                         value: profileStats.agents.premium,
                         total: getTotalProfiles("agents"),
-                        color: "bg-purple-400",
+                        color: "bg-role-landlord",
                       },
                     ]}
                   />
@@ -278,25 +278,25 @@ const AdminDashboard = () => {
                         label: "Incomplete",
                         value: profileStats.landlords.incomplete,
                         total: getTotalProfiles("landlords"),
-                        color: "bg-yellow-400",
+                        color: "bg-warning",
                       },
                       {
                         label: "Basic",
                         value: profileStats.landlords.basic,
                         total: getTotalProfiles("landlords"),
-                        color: "bg-blue-400",
+                        color: "bg-info",
                       },
                       {
                         label: "Verified",
                         value: profileStats.landlords.verified,
                         total: getTotalProfiles("landlords"),
-                        color: "bg-green-400",
+                        color: "bg-success",
                       },
                       {
                         label: "Premium",
                         value: profileStats.landlords.premium,
                         total: getTotalProfiles("landlords"),
-                        color: "bg-purple-400",
+                        color: "bg-role-landlord",
                       },
                     ]}
                   />

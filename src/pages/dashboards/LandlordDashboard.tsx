@@ -40,7 +40,7 @@ const LandlordDashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-muted/40">
       <LandlordHeader email={user?.email} onSignOut={signOut} />
 
       <main className="container mx-auto px-4 py-8">
@@ -64,7 +64,7 @@ const LandlordDashboard = () => {
               }}
               fallback={
                 <EmptyState
-                  icon={<Plus className="h-8 w-8 text-gray-400" />}
+                  icon={<Plus className="h-8 w-8 text-muted-foreground" />}
                   title="Create a Property Listing First"
                   description={
                     listings.length === 0 

@@ -21,32 +21,32 @@ const IntegrationRequestsTable = ({ requests, onStatusUpdate }: IntegrationReque
   const getPriorityColor = (priority: IntegrationRequest['priority']) => {
     switch (priority) {
       case 'critical':
-        return 'bg-red-500';
+        return 'bg-destructive';
       case 'high':
-        return 'bg-orange-500';
+        return 'bg-warning';
       case 'medium':
-        return 'bg-yellow-500';
+        return 'bg-warning';
       case 'low':
-        return 'bg-blue-500';
+        return 'bg-info';
       default:
-        return 'bg-gray-500';
+        return 'bg-muted-foreground';
     }
   };
 
   const getStatusColor = (status: IntegrationRequest['status']) => {
     switch (status) {
       case 'pending':
-        return 'bg-yellow-500';
+        return 'bg-warning';
       case 'approved':
-        return 'bg-green-500';
+        return 'bg-success';
       case 'in_development':
-        return 'bg-blue-500';
+        return 'bg-info';
       case 'completed':
-        return 'bg-green-600';
+        return 'bg-success';
       case 'rejected':
-        return 'bg-red-500';
+        return 'bg-destructive';
       default:
-        return 'bg-gray-500';
+        return 'bg-muted-foreground';
     }
   };
 
@@ -69,7 +69,7 @@ const IntegrationRequestsTable = ({ requests, onStatusUpdate }: IntegrationReque
             <TableCell>
               <div>
                 <div className="font-medium">{request.integration_name}</div>
-                <div className="text-sm text-gray-500">{request.provider_name}</div>
+                <div className="text-sm text-muted-foreground">{request.provider_name}</div>
               </div>
             </TableCell>
             <TableCell>{request.user?.email}</TableCell>

@@ -53,7 +53,7 @@ const ListingCard = ({
               {city}, {state} {zip}
             </CardDescription>
           </div>
-          <Badge className={is_active ? 'bg-green-100 text-green-800' : 'bg-gray-100'}>
+          <Badge className={is_active ? 'bg-role-agent/10 text-role-agent' : 'bg-muted'}>
             {is_active ? 'Active' : 'Inactive'}
           </Badge>
         </div>
@@ -61,23 +61,23 @@ const ListingCard = ({
       <CardContent className="pt-3">
         <div className="grid grid-cols-3 gap-2">
           <div>
-            <p className="text-sm text-gray-500">Bedrooms</p>
+            <p className="text-sm text-muted-foreground">Bedrooms</p>
             <p className="font-medium">{bedrooms}</p>
           </div>
           <div>
-            <p className="text-sm text-gray-500">Bathrooms</p>
+            <p className="text-sm text-muted-foreground">Bathrooms</p>
             <p className="font-medium">{bathrooms}</p>
           </div>
           <div>
-            <p className="text-sm text-gray-500">Square Feet</p>
+            <p className="text-sm text-muted-foreground">Square Feet</p>
             <p className="font-medium">{square_feet.toLocaleString()}</p>
           </div>
           <div>
-            <p className="text-sm text-gray-500">Price</p>
+            <p className="text-sm text-muted-foreground">Price</p>
             <p className="font-medium">${price.toLocaleString()}/month</p>
           </div>
           <div>
-            <p className="text-sm text-gray-500">Available</p>
+            <p className="text-sm text-muted-foreground">Available</p>
             <p className="font-medium">{new Date(available_date).toLocaleDateString()}</p>
           </div>
         </div>

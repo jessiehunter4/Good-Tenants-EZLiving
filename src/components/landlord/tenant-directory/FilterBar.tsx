@@ -58,7 +58,7 @@ const FilterBar = ({
       {/* Date Filter */}
       <Popover>
         <PopoverTrigger asChild>
-          <Button variant="outline" className={`flex items-center gap-2 ${isFilteringByDate ? 'bg-blue-100' : ''}`}>
+          <Button variant="outline" className={`flex items-center gap-2 ${isFilteringByDate ? 'bg-role-tenant/10' : ''}`}>
             <Calendar className="h-4 w-4" />
             {selectedDate && isFilteringByDate 
               ? `Moves after: ${format(selectedDate, 'PP')}` 

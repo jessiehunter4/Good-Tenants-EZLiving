@@ -86,13 +86,13 @@ const CreateProperty = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-muted/40">
       <div className="container mx-auto px-4 py-8">
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-4">
+          <h1 className="text-3xl font-bold text-foreground mb-4">
             Create Your Property Listing
           </h1>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             To access our tenant directory, please create at least one property listing. 
             This helps ensure all landlords and agents have active properties available for our tenants.
           </p>

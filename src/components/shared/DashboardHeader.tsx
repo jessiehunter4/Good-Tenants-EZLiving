@@ -30,8 +30,8 @@ const DashboardHeader = ({ title, subtitle, showControls = true, email, onSignOu
     <header className="bg-white shadow">
       <div className="container mx-auto px-4 py-6 flex flex-col md:flex-row justify-between items-start md:items-center">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">{title}</h1>
-          {subtitle && <p className="mt-1 text-sm text-gray-500">{subtitle}</p>}
+          <h1 className="text-2xl font-bold text-foreground">{title}</h1>
+          {subtitle && <p className="mt-1 text-sm text-muted-foreground">{subtitle}</p>}
         </div>
 
         {showControls && (

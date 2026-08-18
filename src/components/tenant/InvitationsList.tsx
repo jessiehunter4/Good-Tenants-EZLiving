@@ -31,7 +31,7 @@ const InvitationsList = ({ invitations, onStatusChange }: InvitationsListProps) 
           </div>
         ) : (
           <EmptyState
-            icon={<User className="h-6 w-6 text-gray-400" />}
+            icon={<User className="h-6 w-6 text-muted-foreground" />}
             title="No invitations yet"
             description="Complete your profile to increase your chances of receiving invitations."
           />

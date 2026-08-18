@@ -22,25 +22,25 @@ const ProfileVerificationBadge = ({
         return {
           icon: CheckCircle,
           text: userRole === 'agent' ? 'Licensed Agent' : 'Verified',
-          className: 'bg-green-100 text-green-800',
+          className: 'bg-role-agent/10 text-role-agent',
         };
       case 'pending':
         return {
           icon: Clock,
           text: 'Verification Pending',
-          className: 'bg-yellow-100 text-yellow-800',
+          className: 'bg-warning/10 text-warning',
         };
       case 'incomplete':
         return {
           icon: AlertCircle,
           text: 'Profile Incomplete',
-          className: 'bg-gray-100 text-gray-800',
+          className: 'bg-muted text-foreground',
         };
       default:
         return {
           icon: AlertCircle,
           text: 'Basic Profile',
-          className: 'bg-gray-100 text-gray-800',
+          className: 'bg-muted text-foreground',
         };
     }
   };
@@ -56,14 +56,14 @@ const ProfileVerificationBadge = ({
       </Badge>
       
       {userRole === 'agent' && licenseNumber && (
-        <Badge variant="outline" className="bg-blue-50 text-blue-700">
+        <Badge variant="outline" className="bg-role-tenant/10 text-primary">
           <Shield className="h-3 w-3 mr-1" />
           License: {licenseNumber}
         </Badge>
       )}
       
       {isVerified && (
-        <Badge className="bg-blue-100 text-blue-800">
+        <Badge className="bg-role-tenant/10 text-primary">
           <CheckCircle className="h-3 w-3 mr-1" />
           Background Verified
         </Badge>

@@ -49,11 +49,11 @@ const ListingsSection = ({ listings }: ListingsSectionProps) => {
           </div>
         ) : (
           <div className="text-center py-12">
-            <div className="mx-auto w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center mb-4">
-              <Building className="h-6 w-6 text-gray-400" />
+            <div className="mx-auto w-12 h-12 rounded-full bg-muted flex items-center justify-center mb-4">
+              <Building className="h-6 w-6 text-muted-foreground" />
             </div>
-            <h3 className="text-lg font-medium text-gray-900 mb-1">No properties yet</h3>
-            <p className="text-gray-500 mb-4">
+            <h3 className="text-lg font-medium text-foreground mb-1">No properties yet</h3>
+            <p className="text-muted-foreground mb-4">
               Add your first property listing to start finding tenants.
             </p>
             <Button>

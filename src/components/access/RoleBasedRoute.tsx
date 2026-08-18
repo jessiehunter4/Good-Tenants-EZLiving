@@ -39,7 +39,7 @@ const RoleBasedRoute: React.FC<RoleBasedRouteProps> = ({
   // Check if user has required permission
   if (requiredPermission && !canAccess(requiredPermission)) {
     return (
-      <div className="flex h-screen items-center justify-center bg-gray-50 px-4">
+      <div className="flex h-screen items-center justify-center bg-muted/40 px-4">
         <Alert className="max-w-md">
           <Shield className="h-4 w-4" />
           <AlertDescription>
@@ -54,7 +54,7 @@ const RoleBasedRoute: React.FC<RoleBasedRouteProps> = ({
   // Check verification requirement
   if (requireVerification && !isVerified) {
     return (
-      <div className="flex h-screen items-center justify-center bg-gray-50 px-4">
+      <div className="flex h-screen items-center justify-center bg-muted/40 px-4">
         <Alert className="max-w-md">
           <AlertTriangle className="h-4 w-4" />
           <AlertDescription>

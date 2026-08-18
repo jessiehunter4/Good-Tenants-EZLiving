@@ -93,16 +93,16 @@ const PropertySelectionModal = ({
                   />
                   <Label 
                     htmlFor={property.id} 
-                    className="flex-1 ml-2 border rounded-md p-3 hover:bg-gray-50 cursor-pointer"
+                    className="flex-1 ml-2 border rounded-md p-3 hover:bg-muted/40 cursor-pointer"
                   >
                     <div className="flex justify-between items-start">
                       <div className="flex items-start">
-                        <div className="bg-blue-100 p-2 rounded-md mr-3">
-                          <Home className="h-5 w-5 text-blue-600" />
+                        <div className="bg-role-tenant/10 p-2 rounded-md mr-3">
+                          <Home className="h-5 w-5 text-primary" />
                         </div>
                         <div>
                           <p className="font-medium">{getPropertyAddress(property)}</p>
-                          <p className="text-sm text-gray-500">
+                          <p className="text-sm text-muted-foreground">
                             {property.bedrooms} bed {property.bathrooms} bath
                           </p>
                         </div>
@@ -115,9 +115,9 @@ const PropertySelectionModal = ({
             </RadioGroup>
           ) : (
             <div className="text-center py-6">
-              <Home className="mx-auto h-12 w-12 text-gray-400" />
+              <Home className="mx-auto h-12 w-12 text-muted-foreground" />
               <p className="mt-4 text-lg font-medium">No properties available</p>
-              <p className="text-gray-500">You need to add properties before inviting tenants.</p>
+              <p className="text-muted-foreground">You need to add properties before inviting tenants.</p>
             </div>
           )}
           

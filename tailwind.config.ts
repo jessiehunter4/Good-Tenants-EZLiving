@@ -56,6 +56,18 @@ export default {
 					DEFAULT: 'hsl(var(--brand))',
 					foreground: 'hsl(var(--brand-foreground))'
 				},
+				success: {
+					DEFAULT: 'hsl(var(--success))',
+					foreground: 'hsl(var(--success-foreground))'
+				},
+				warning: {
+					DEFAULT: 'hsl(var(--warning))',
+					foreground: 'hsl(var(--warning-foreground))'
+				},
+				info: {
+					DEFAULT: 'hsl(var(--info))',
+					foreground: 'hsl(var(--info-foreground))'
+				},
 				sand: {
 					DEFAULT: 'hsl(var(--sand))',
 					deep: 'hsl(var(--sand-deep))'

@@ -17,7 +17,7 @@ const TenantGrid = ({ tenants, onSendInvite }: TenantGridProps) => {
   if (tenants.length === 0) {
     return (
       <EmptyState
-        icon={<User className="h-6 w-6 text-gray-400" />}
+        icon={<User className="h-6 w-6 text-muted-foreground" />}
         title="No tenants found"
         description="No tenants match your search criteria."
       />

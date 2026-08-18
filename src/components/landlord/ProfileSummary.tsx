@@ -39,20 +39,20 @@ const ProfileSummary = ({ profile }: ProfileSummaryProps) => {
       <CardContent>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <h3 className="font-medium text-gray-700">Properties Owned</h3>
+            <h3 className="font-medium text-foreground">Properties Owned</h3>
             <p>{profile.property_count || 'Not specified'}</p>
           </div>
           <div>
-            <h3 className="font-medium text-gray-700">Management Type</h3>
+            <h3 className="font-medium text-foreground">Management Type</h3>
             <p>{profile.management_type === 'self_managed' ? 'Self-managed' : profile.management_type === 'property_manager' ? 'Property Manager' : 'Not specified'}</p>
           </div>
           <div>
-            <h3 className="font-medium text-gray-700">Years of Experience</h3>
+            <h3 className="font-medium text-foreground">Years of Experience</h3>
             <p>{profile.years_experience !== null ? profile.years_experience : 'Not specified'}</p>
           </div>
           {profile.preferred_tenant_criteria && (
             <div className="col-span-2">
-              <h3 className="font-medium text-gray-700">Preferred Tenant Criteria</h3>
+              <h3 className="font-medium text-foreground">Preferred Tenant Criteria</h3>
               <p className="text-sm">{profile.preferred_tenant_criteria}</p>
             </div>
           )}
@@ -60,14 +60,14 @@ const ProfileSummary = ({ profile }: ProfileSummaryProps) => {
 
         {profile.bio && (
           <div className="mt-4">
-            <h3 className="font-medium text-gray-700">Bio</h3>
-            <p className="text-sm text-gray-600">{profile.bio}</p>
+            <h3 className="font-medium text-foreground">Bio</h3>
+            <p className="text-sm text-muted-foreground">{profile.bio}</p>
           </div>
         )}
 
         {profile.status === 'incomplete' && (
-          <div className="mt-4 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
-            <p className="text-sm text-yellow-800">
+          <div className="mt-4 p-4 bg-warning/10 border border-warning/25 rounded-lg">
+            <p className="text-sm text-warning">
               <strong>Action Required:</strong> Complete your profile to access all features and start finding tenants.
             </p>
           </div>
