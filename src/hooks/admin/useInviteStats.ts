@@ -1,6 +1,7 @@
 
 import { useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
+import { countInvitesByStatus } from "./counters";
 
 export interface InviteStats {
   total: number;
@@ -26,16 +27,7 @@ export const useInviteStats = () => {
       
       if (invitesError) throw invitesError;
       
-      /* Explicit, for the same reason as the role counts: indexing an
-         accumulator by a status string turns an unexpected value into NaN. */
-      const counts = { total: 0, pending: 0, accepted: 0, declined: 0 };
-
-      for (const invite of invites ?? []) {
-        counts.total += 1;
-        if (invite.status === "pending") counts.pending += 1;
-        else if (invite.status === "accepted") counts.accepted += 1;
-        else if (invite.status === "declined") counts.declined += 1;
-      }
+      const counts = countInvitesByStatus(invites ?? []);
 
       setInviteStats(counts);
     } catch (error) {

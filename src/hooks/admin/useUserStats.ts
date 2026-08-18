@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import type { AdminUserRow } from "@/types/admin";
+import { countUsersByRole } from "./counters";
 
 export interface UserStats {
   total: number;
@@ -31,33 +32,7 @@ export const useUserStats = () => {
 
       if (usersError) throw usersError;
       
-      /*
-       * Counted explicitly rather than by indexing the accumulator with the
-       * role string. The old version did acc[user.role]++, which silently
-       * produced NaN for a null role — an account that holds no role is a real
-       * state now — and would have added a key for any role it did not expect.
-       */
-      const counts = { total: 0, tenants: 0, agents: 0, landlords: 0, admins: 0, unassigned: 0 };
-
-      for (const user of users) {
-        counts.total += 1;
-        switch (user.role) {
-          case "tenant":
-            counts.tenants += 1;
-            break;
-          case "agent":
-            counts.agents += 1;
-            break;
-          case "landlord":
-            counts.landlords += 1;
-            break;
-          case "admin":
-            counts.admins += 1;
-            break;
-          default:
-            counts.unassigned += 1;
-        }
-      }
+      const counts = countUsersByRole(users ?? []);
 
       setUserStats({
         total: counts.total,

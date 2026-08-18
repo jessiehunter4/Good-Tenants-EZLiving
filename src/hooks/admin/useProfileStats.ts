@@ -1,11 +1,8 @@
 
 import { useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
-import type {
-  ProfileStatus,
-  TenantProfileListItem,
-  UnverifiedUser,
-} from "@/types/admin";
+import type { TenantProfileListItem, UnverifiedUser } from "@/types/admin";
+import { countProfilesByStatus } from "./counters";
 
 /* Named for what it holds. It was `ProfileStatus`, which reads as a status and
    is actually a tally of them — and collided with the real enum. */
@@ -42,22 +39,7 @@ export const useProfileStats = () => {
         
         if (error) throw error;
         
-        const counts: Record<ProfileStatus, number> = {
-          incomplete: 0,
-          basic: 0,
-          verified: 0,
-          premium: 0,
-        };
-
-        for (const profile of data ?? []) {
-          /* Guarded: a status outside the enum would previously increment
-             undefined and leave NaN in a counter nobody would question. */
-          if (profile.status && profile.status in counts) {
-            counts[profile.status] += 1;
-          }
-        }
-
-        return counts;
+        return countProfilesByStatus(data ?? []);
       };
 
       const tenantProfileStats = await fetchStatusCounts("tenant_profiles");

@@ -1,18 +1,9 @@
 import { useCallback, useEffect, useState } from "react";
 
 import { supabase } from "@/integrations/supabase/client";
+import { bucketSignups, type TrendPoint } from "./signupTrend";
 
-export interface TrendPoint {
-  /** ISO date, used as the key. */
-  date: string;
-  /** Short label for the axis. */
-  label: string;
-  tenants: number;
-  landlords: number;
-  agents: number;
-  total: number;
-  cumulative: number;
-}
+export type { TrendPoint };
 
 const DAYS = 30;
 
@@ -49,42 +40,7 @@ export const useSignupTrend = () => {
       return;
     }
 
-    // Every day in the window, so gaps stay visible as gaps.
-    const buckets = new Map<string, TrendPoint>();
-    for (let index = 0; index < DAYS; index += 1) {
-      const day = new Date(since);
-      day.setDate(since.getDate() + index);
-      const key = day.toISOString().slice(0, 10);
-      buckets.set(key, {
-        date: key,
-        label: day.toLocaleDateString(undefined, { month: "short", day: "numeric" }),
-        tenants: 0,
-        landlords: 0,
-        agents: 0,
-        total: 0,
-        cumulative: 0,
-      });
-    }
-
-    for (const row of data ?? []) {
-      if (!row.created_at) continue;
-      const key = new Date(row.created_at).toISOString().slice(0, 10);
-      const point = buckets.get(key);
-      if (!point) continue;
-
-      if (row.role === "tenant") point.tenants += 1;
-      else if (row.role === "landlord") point.landlords += 1;
-      else if (row.role === "agent") point.agents += 1;
-      point.total += 1;
-    }
-
-    let running = 0;
-    const points = Array.from(buckets.values()).map((point) => {
-      running += point.total;
-      return { ...point, cumulative: running };
-    });
-
-    setTrend(points);
+    setTrend(bucketSignups(data ?? [], DAYS, new Date()));
     setLoading(false);
   }, []);
 
