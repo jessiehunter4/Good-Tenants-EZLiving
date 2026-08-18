@@ -51,6 +51,16 @@
     --brand: 222 47% 24%;
     --brand-foreground: 210 40% 98%;
 
+    /* Marketing surfaces. The public site is warmer than the app: cream ground,
+     * clay cards, espresso type. Kept as tokens so the landing page cannot
+     * drift into one-off hex values the way the register page did. */
+    --sand: 36 44% 96%;
+    --sand-deep: 30 30% 90%;
+    --clay: 24 24% 84%;
+    --clay-soft: 26 34% 92%;
+    --espresso: 20 30% 12%;
+    --espresso-muted: 20 14% 32%;
+
     /* Account types. One accent each, used by the role chooser, its badges and
      * anywhere a role needs to be identifiable at a glance. */
     --role-tenant: 217 91% 60%;

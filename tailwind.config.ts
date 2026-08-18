@@ -56,6 +56,18 @@ export default {
 					DEFAULT: 'hsl(var(--brand))',
 					foreground: 'hsl(var(--brand-foreground))'
 				},
+				sand: {
+					DEFAULT: 'hsl(var(--sand))',
+					deep: 'hsl(var(--sand-deep))'
+				},
+				clay: {
+					DEFAULT: 'hsl(var(--clay))',
+					soft: 'hsl(var(--clay-soft))'
+				},
+				espresso: {
+					DEFAULT: 'hsl(var(--espresso))',
+					muted: 'hsl(var(--espresso-muted))'
+				},
 				role: {
 					tenant: {
 						DEFAULT: 'hsl(var(--role-tenant))',

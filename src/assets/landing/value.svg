@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 420" width="560" height="420" role="img" aria-label="A home at dusk with warm windows">
+  <defs>
+    <linearGradient id="v-sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#E8D8C9"/><stop offset="1" stop-color="#F7EFE7"/>
+    </linearGradient>
+    <linearGradient id="v-glass" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F3E5D8"/><stop offset="1" stop-color="#D3BCA8"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="560" height="420" rx="20" fill="url(#v-sky)"/>
+  <path d="M0 320h560v100H0z" fill="#CDBAA7"/>
+
+  <!-- water, as in the reference's pool shot -->
+  <rect x="60" y="336" width="440" height="56" rx="10" fill="#BFD3D4"/>
+  <g stroke="#D6E3E3" stroke-width="3" stroke-linecap="round">
+    <path d="M92 356h84M212 356h72M330 356h96M120 374h60M250 374h110"/>
+  </g>
+
+  <!-- house -->
+  <rect x="110" y="150" width="340" height="132" rx="6" fill="#FBF5EF"/>
+  <rect x="150" y="96" width="240" height="60" rx="6" fill="#FFFCF8"/>
+  <path d="M110 282h340v14H110z" fill="#E3D2C1"/>
+
+  <g fill="url(#v-glass)">
+    <rect x="132" y="170" width="112" height="70" rx="3"/>
+    <rect x="256" y="170" width="76" height="70" rx="3"/>
+    <rect x="344" y="170" width="86" height="70" rx="3"/>
+    <rect x="168" y="110" width="90" height="34" rx="3"/>
+    <rect x="272" y="110" width="98" height="34" rx="3"/>
+  </g>
+
+  <g fill="#EBBE84" opacity="0.55">
+    <rect x="140" y="206" width="96" height="30" rx="2"/>
+    <rect x="352" y="206" width="70" height="30" rx="2"/>
+  </g>
+
+  <rect x="256" y="242" width="52" height="54" rx="3" fill="#8A6A50"/>
+
+  <g fill="#6E7F62">
+    <circle cx="72" cy="298" r="26"/><circle cx="104" cy="308" r="18"/>
+    <circle cx="494" cy="296" r="24"/><circle cx="466" cy="306" r="16"/>
+  </g>
+</svg>
