@@ -4,6 +4,8 @@ import { ArrowLeft, PartyPopper } from "lucide-react";
 
 import ProfileForm from "@/components/shared/form/ProfileForm";
 import { Button } from "@/components/ui/button";
+import { useAuth } from "@/contexts/AuthContext";
+import { dashboardPathFor } from "@/features/access/dashboardPath";
 import { useToast } from "@/hooks/use-toast";
 import ProfileStrengthCard from "@/components/tenant/onboarding/ProfileStrengthCard";
 import QuestList from "@/components/tenant/onboarding/QuestList";
@@ -22,6 +24,8 @@ import { FIELD_POINTS, isAnswered, scoreProfile } from "@/features/tenant/profil
 const OnboardTenant = () => {
   const { form, onSubmit, isLoading, handleCancel } = useTenantOnboarding();
   const { toast } = useToast();
+  const { getUserRole } = useAuth();
+  const dashboard = dashboardPathFor(getUserRole());
   const allFields = getTenantOnboardingFields();
 
   const [questIndex, setQuestIndex] = useState(0);
@@ -74,10 +78,20 @@ const OnboardTenant = () => {
   return (
     <div className="min-h-screen bg-muted/30">
       <div className="page-shell py-8 lg:py-12">
+        {/*
+          Back to the DASHBOARD, not the landing page.
+
+          Someone part-way through their application is signed in by
+          definition, and "/" is the page written for people who are not — so
+          the escape hatch used to drop them on a sales pitch, which then
+          redirects them anyway now that the landing page turns signed-in
+          visitors around. Naming the destination is also just more useful than
+          "home" to someone deciding whether to leave.
+        */}
         <Button asChild variant="ghost" size="sm" className="-ml-2 mb-6 text-muted-foreground">
-          <Link to="/">
+          <Link to={dashboardPathFor(getUserRole())}>
             <ArrowLeft className="mr-1.5 h-4 w-4" aria-hidden="true" />
-            Back to home
+            Back to dashboard
           </Link>
         </Button>
 
@@ -112,7 +126,7 @@ const OnboardTenant = () => {
               onCancel={isLastQuest ? handleCancel : advance}
               fields={questFields}
               submitButtonText={isLastQuest ? "Finish and save" : "Save progress"}
-              cancelButtonText={isLastQuest ? "Back to home" : "Next quest →"}
+              cancelButtonText={isLastQuest ? "Back to dashboard" : "Next quest →"}
             />
           </div>
         </div>

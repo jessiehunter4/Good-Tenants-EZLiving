@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 
+import { dashboardPathFor } from '@/features/access/dashboardPath';
 import { useAuth } from "@/contexts/AuthContext";
 import { Button } from "@/components/ui/button";
 import AuthCard from "@/components/auth/AuthCard";
@@ -52,30 +53,9 @@ const Auth = () => {
   // Handle authenticated users who access /auth directly
   useEffect(() => {
     if (user) {
-      console.log("Auth page: User is already authenticated, redirecting");
-      const userRole = getUserRole();
-      
-      if (userRole) {
-        switch (userRole) {
-          case "tenant":
-            navigate("/dashboard-tenant");
-            break;
-          case "agent":
-            navigate("/dashboard-agent");
-            break;
-          case "landlord":
-            navigate("/dashboard-landlord");
-            break;
-          case "admin":
-            navigate("/admin-dashboard");
-            break;
-          default:
-            navigate("/dashboard");
-            break;
-        }
-      } else {
-        navigate("/dashboard");
-      }
+      // `replace`, so Back does not return to a sign-in page that redirects
+      // again. See `dashboardPathFor` for why the switch is not written here.
+      navigate(dashboardPathFor(getUserRole()), { replace: true });
     }
   }, [user, getUserRole, navigate]);
 

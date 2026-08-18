@@ -1,61 +1,59 @@
-
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
+import { dashboardPathFor } from '@/features/access/dashboardPath';
 
+/**
+ * Keep a signed-in account off the pages written for people who are not.
+ *
+ * ## Why it exists
+ *
+ * The landing page, the sign-in page and registration all describe a product to
+ * someone who has not bought it yet. A signed-in tenant who lands on one has
+ * either mistyped a URL or followed a stale link, and the useful thing to do is
+ * put them where their work is. Until now this hook existed and was called from
+ * nowhere, so it did none of that.
+ *
+ * ## The three things it is careful about
+ *
+ *  - **It waits for `loading`.** The auth context starts with no user and
+ *    resolves the session asynchronously, so acting on the first render would
+ *    mean deciding that everyone is signed out and then changing its mind.
+ *  - **It replaces rather than pushes.** A redirect that pushes puts the
+ *    landing page in the history stack, so Back returns to it, which redirects
+ *    again. That is a trap, not navigation.
+ *  - **It leaves a fresh login alone.** Signing in sets `fresh_login`, and the
+ *    sign-in flow does its own navigation; racing it would send someone
+ *    somewhere other than where they asked to go.
+ */
 export const useRedirectAuthenticated = () => {
-  const { user, getUserRole } = useAuth();
+  const { user, loading, getUserRole } = useAuth();
   const navigate = useNavigate();
+  const { pathname } = useLocation();
 
   useEffect(() => {
-    // Only redirect if user is already authenticated when the component mounts
-    // Don't interfere with fresh login flows or sign-out processes
-    if (user) {
-      console.log("useRedirectAuthenticated: User is authenticated:", user.id);
-      
-      // Check if this is from a fresh login by looking at sessionStorage
-      const isFromLogin = sessionStorage.getItem('fresh_login');
-      if (isFromLogin) {
-        console.log("Fresh login detected, clearing flag and skipping auto-redirect");
-        sessionStorage.removeItem('fresh_login');
-        return;
-      }
+    // Session not resolved yet. Deciding now would mean deciding "signed out"
+    // for everyone and correcting it a frame later.
+    if (loading) return;
+    if (!user) return;
 
-      // Get user role from metadata (no async call needed)
-      const role = getUserRole();
-      console.log("useRedirectAuthenticated: User role:", role);
-      
-      if (role) {
-        // For authenticated users who are not from a fresh login,
-        // redirect them to their appropriate dashboard
-        switch (role) {
-          case "tenant":
-            navigate("/dashboard-tenant");
-            break;
-          case "agent":
-            navigate("/dashboard-agent");
-            break;
-          case "landlord":
-            navigate("/dashboard-landlord");
-            break;
-          case "admin":
-            navigate("/admin-dashboard");
-            break;
-          default:
-            navigate("/dashboard");
-            break;
-        }
-      } else {
-        console.log("No role found, redirecting to general dashboard");
-        navigate("/dashboard");
-      }
-    } else {
-      // User is not authenticated, no redirection needed
-      console.log("useRedirectAuthenticated: User is not authenticated, no redirect needed");
+    /*
+     * A fresh login navigates itself. The flag is consumed here so the next
+     * arrival at a public page is treated normally — leaving it set would
+     * disable this hook for the rest of the session.
+     */
+    if (sessionStorage.getItem('fresh_login')) {
+      sessionStorage.removeItem('fresh_login');
+      return;
     }
-  }, [user, navigate, getUserRole]);
 
-  return { user };
+    const destination = dashboardPathFor(getUserRole());
+    if (destination === pathname) return;
+
+    navigate(destination, { replace: true });
+  }, [user, loading, pathname, navigate, getUserRole]);
+
+  return { user, loading };
 };
 
 export default useRedirectAuthenticated;

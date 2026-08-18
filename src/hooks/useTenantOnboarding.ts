@@ -93,7 +93,10 @@ export const useTenantOnboarding = () => {
     );
   };
 
-  const handleCancel = () => navigate("/");
+  // The tenant dashboard, not the landing page: anyone cancelling out of
+  // tenant onboarding is a signed-in tenant, and "/" is written for visitors
+  // who are neither.
+  const handleCancel = () => navigate("/dashboard-tenant");
 
   return {
     form,

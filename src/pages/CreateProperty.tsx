@@ -1,5 +1,6 @@
 
 import { useNavigate } from "react-router-dom";
+import { dashboardPathFor } from '@/features/access/dashboardPath';
 import { useAuth } from "@/contexts/AuthContext";
 import { supabase } from "@/integrations/supabase/client";
 import { format } from "date-fns";
@@ -59,15 +60,7 @@ const CreateProperty = () => {
         successMessage: "Your property listing has been created successfully! You now have access to the tenant directory.",
         errorMessage: "There was a problem creating your property listing. Please try again.",
         onSuccess: () => {
-          // Redirect back to dashboard based on user role
-          const userRole = user?.user_metadata?.role;
-          if (userRole === 'landlord') {
-            navigate("/dashboard-landlord");
-          } else if (userRole === 'agent') {
-            navigate("/dashboard-agent");
-          } else {
-            navigate("/dashboard");
-          }
+          navigate(dashboardPathFor(user?.user_metadata?.role));
         },
       }
     );

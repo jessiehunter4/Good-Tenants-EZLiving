@@ -18,6 +18,7 @@ import NotFound from "./pages/NotFound";
 import ProtectedRoute from "./components/ProtectedRoute";
 import DevBypassBanner from "./components/DevBypassBanner";
 import { RoleBasedRoute } from "./components/access";
+import PublicOnlyRoute from "./components/access/PublicOnlyRoute";
 
 import OnboardTenant from "./pages/onboarding/OnboardTenant";
 import OnboardAgent from "./pages/onboarding/OnboardAgent";
@@ -38,10 +39,10 @@ function App() {
         <DevBypassBanner />
         <Routes>
           {/* Public Routes */}
-          <Route path="/" element={<LandingPage />} />
+          <Route path="/" element={<PublicOnlyRoute><LandingPage /></PublicOnlyRoute>} />
           <Route path="/summer" element={<SummerLandingPage />} />
-          <Route path="/auth" element={<Auth />} />
-          <Route path="/register" element={<Register />} />
+          <Route path="/auth" element={<PublicOnlyRoute><Auth /></PublicOnlyRoute>} />
+          <Route path="/register" element={<PublicOnlyRoute><Register /></PublicOnlyRoute>} />
 
           {/* Lending. Scenario authoring is open to any signed-in account;
               the lender views require the lender role. */}

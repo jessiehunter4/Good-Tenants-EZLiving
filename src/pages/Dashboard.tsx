@@ -1,5 +1,6 @@
 
 import { useEffect } from "react";
+import { dashboardPathFor, FALLBACK_DASHBOARD } from '@/features/access/dashboardPath';
 import { useAuth } from "@/contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@/components/ui/use-toast";
@@ -22,32 +23,15 @@ const Dashboard = () => {
         console.log("Dashboard: Redirecting based on role for user:", user.id);
         
         // Get user role from metadata (getUserRole returns string directly, not Promise)
-        const role = getUserRole();
-        console.log("Dashboard: User role:", role);
-        
-        if (role) {
-          // Redirect to role-specific dashboard
-          switch (role) {
-            case "tenant":
-              console.log("Redirecting to tenant dashboard");
-              navigate("/dashboard-tenant");
-              break;
-            case "agent":
-              console.log("Redirecting to agent dashboard");
-              navigate("/dashboard-agent");
-              break;
-            case "landlord":
-              console.log("Redirecting to landlord dashboard");
-              navigate("/dashboard-landlord");
-              break;
-            case "admin":
-              console.log("Redirecting to admin dashboard");
-              navigate("/admin-dashboard");
-              break;
-            default:
-              console.log("Unknown role, staying on general dashboard");
-              break;
-          }
+        const destination = dashboardPathFor(getUserRole());
+
+        /*
+         * An unknown role resolves to this page, and navigating to the page you
+         * are already on is how a render loop starts. Staying put is also the
+         * honest outcome: there is nowhere better to send them.
+         */
+        if (destination !== FALLBACK_DASHBOARD) {
+          navigate(destination, { replace: true });
         } else {
           console.log("No role found, staying on general dashboard");
         }
