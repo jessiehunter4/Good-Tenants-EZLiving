@@ -1,0 +1,86 @@
+# Good-Tenants-EZLiving — working conventions
+
+The merged platform: EZ Living Irvine, Irvine Living Daily, Coming Soon Home
+Rentals and Good Tenants in one application on one Supabase project.
+
+## Build to be changed, not just to run
+
+Every decision here is about the fourth month, not the first week.
+
+- **No file over 800 lines.** At 400 it needs a reason; at 800 it gets split.
+  A long file is not a style problem, it is a file nobody can hold in their head,
+  which is where bugs go to hide.
+- **One responsibility per module.** A page composes; a component renders; a hook
+  fetches; a pure module decides. When those blur, none of them can be tested or
+  reused.
+- **Extract logic from hooks the moment it has a decision in it.** Counting,
+  bucketing, scoring and parsing belong in pure functions that take arguments and
+  return values. A rule buried in a `useEffect` cannot be tested without a
+  database, which is exactly how two counters shipped returning `NaN`.
+
+## Structure
+
+```
+src/
+  pages/          route-level composition only, no business rules
+  components/
+    <feature>/    feature components, colocated
+    ui/           shadcn primitives — copied in, restyled, not hand-edited
+  hooks/
+    <feature>/    data fetching and React state
+  features/
+    <feature>/    pure domain logic, types, vocabulary
+  types/          shapes shared across features
+  lib/            cross-cutting helpers
+supabase/migrations/   one baseline, then forward-only
+```
+
+Feature work adds to `features/` and `components/<feature>/` rather than growing
+a shared file. If two features need the same thing, it moves to `lib/` or
+`types/` deliberately — not by import creep.
+
+## TypeScript
+
+- **Never `any`.** Not in props, not in a reducer accumulator, not as `as any`.
+  Derive from the generated database types so a schema change is a compile error
+  rather than `undefined` at runtime.
+- Model absence honestly. If the database can return null, the type says null and
+  the UI handles it. A role that is null is an account with no role, not a tenant.
+- Prefer `unknown` plus a type guard over a cast.
+
+## Database
+
+- Every new table ships GRANTs, `ENABLE ROW LEVEL SECURITY` and its policies **in
+  the same migration**. Supabase's default privileges grant `anon` everything, so
+  a table without explicit grants is open, not closed.
+- No policy with `USING (true)` on anything holding personal data — temporarily
+  or otherwise.
+- Money is `numeric`, never float. Totals that can be derived are generated
+  columns, so a stored total cannot disagree with its own inputs.
+- Migrations are forward-only. Never edit one that has been applied.
+
+## UI
+
+- **Colour comes from tokens** in `index.css` — `brand`, `role-*`, and the shadcn
+  set. Never a literal like `bg-slate-900` or `text-blue-300`: a literal is a
+  colour that cannot be changed anywhere but the file it is written in.
+- Use the shadcn primitives already in `components/ui`. Scope `dark` to a subtree
+  rather than restyling controls.
+- Every list has an empty state, every async view has a loading state, and every
+  destructive action asks first — in a dialog, never `window.confirm`.
+- Feedback is a toast, not an alert.
+
+## Testing
+
+Minimal and targeted, not comprehensive. Test the logic that decides things:
+parsers, counters, scoring, money. Skip component and snapshot tests. If a bug
+is found in pure logic, add the case that would have caught it — one test, then
+move on.
+
+`npm test` runs them.
+
+## Before saying something works
+
+Run it. `npm run build` for compilation, `npm test` for logic, and a real query
+against the project for anything touching the database. A migration that applied
+is not the same as a policy that behaves.
