@@ -15,9 +15,10 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Check, X } from "lucide-react";
 import { useDataOperation } from "@/hooks/useDataOperation";
+import type { UnverifiedUser } from "@/types/admin";
 
 interface UserVerificationTableProps {
-  users: any[];
+  users: UnverifiedUser[];
   onUserVerified: () => void;
 }
 

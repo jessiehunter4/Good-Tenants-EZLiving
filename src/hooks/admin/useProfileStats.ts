@@ -1,8 +1,15 @@
 
 import { useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
+import type {
+  ProfileStatus,
+  TenantProfileListItem,
+  UnverifiedUser,
+} from "@/types/admin";
 
-export interface ProfileStatus {
+/* Named for what it holds. It was `ProfileStatus`, which reads as a status and
+   is actually a tally of them — and collided with the real enum. */
+export interface StatusCounts {
   incomplete: number;
   basic: number;
   verified: number;
@@ -10,9 +17,9 @@ export interface ProfileStatus {
 }
 
 export interface ProfileStats {
-  tenants: ProfileStatus;
-  agents: ProfileStatus;
-  landlords: ProfileStatus;
+  tenants: StatusCounts;
+  agents: StatusCounts;
+  landlords: StatusCounts;
 }
 
 export const useProfileStats = () => {
@@ -22,8 +29,8 @@ export const useProfileStats = () => {
     agents: { incomplete: 0, basic: 0, verified: 0, premium: 0 },
     landlords: { incomplete: 0, basic: 0, verified: 0, premium: 0 },
   });
-  const [recentTenants, setRecentTenants] = useState<any[]>([]);
-  const [unverifiedUsers, setUnverifiedUsers] = useState<any[]>([]);
+  const [recentTenants, setRecentTenants] = useState<TenantProfileListItem[]>([]);
+  const [unverifiedUsers, setUnverifiedUsers] = useState<UnverifiedUser[]>([]);
 
   const fetchProfileStats = async () => {
     try {
@@ -35,10 +42,22 @@ export const useProfileStats = () => {
         
         if (error) throw error;
         
-        return data.reduce((acc: any, profile: any) => {
-          acc[profile.status]++;
-          return acc;
-        }, { incomplete: 0, basic: 0, verified: 0, premium: 0 });
+        const counts: Record<ProfileStatus, number> = {
+          incomplete: 0,
+          basic: 0,
+          verified: 0,
+          premium: 0,
+        };
+
+        for (const profile of data ?? []) {
+          /* Guarded: a status outside the enum would previously increment
+             undefined and leave NaN in a counter nobody would question. */
+          if (profile.status && profile.status in counts) {
+            counts[profile.status] += 1;
+          }
+        }
+
+        return counts;
       };
 
       const tenantProfileStats = await fetchStatusCounts("tenant_profiles");
@@ -64,7 +83,7 @@ export const useProfileStats = () => {
       if (recentTenantsError) throw recentTenantsError;
       
       // Format the data to include email from the users table
-      const formattedTenants = recentTenantsData.map((tenant: any) => ({
+      const formattedTenants = recentTenantsData.map((tenant) => ({
         ...tenant,
         email: tenant.users?.email
       }));
@@ -121,19 +140,19 @@ export const useProfileStats = () => {
       if (unverifiedLandlordsError) throw unverifiedLandlordsError;
 
       // Format all the unverified users to include email and role
-      const formattedUnverifiedTenants = unverifiedTenants.map((tenant: any) => ({
+      const formattedUnverifiedTenants = unverifiedTenants.map((tenant) => ({
         ...tenant,
         email: tenant.users?.email,
         role: 'tenant'
       }));
 
-      const formattedUnverifiedAgents = unverifiedAgents.map((agent: any) => ({
+      const formattedUnverifiedAgents = unverifiedAgents.map((agent) => ({
         ...agent,
         email: agent.users?.email,
         role: 'agent'
       }));
 
-      const formattedUnverifiedLandlords = unverifiedLandlords.map((landlord: any) => ({
+      const formattedUnverifiedLandlords = unverifiedLandlords.map((landlord) => ({
         ...landlord,
         email: landlord.users?.email,
         role: 'landlord'

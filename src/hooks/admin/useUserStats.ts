@@ -1,6 +1,7 @@
 
 import { useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
+import type { AdminUserRow } from "@/types/admin";
 
 export interface UserStats {
   total: number;
@@ -19,7 +20,7 @@ export const useUserStats = () => {
     landlords: 0,
     admins: 0,
   });
-  const [recentUsers, setRecentUsers] = useState<any[]>([]);
+  const [recentUsers, setRecentUsers] = useState<AdminUserRow[]>([]);
 
   const fetchUserStats = async () => {
     try {
@@ -30,19 +31,40 @@ export const useUserStats = () => {
 
       if (usersError) throw usersError;
       
-      // Count users by role
-      const userCounts = users.reduce((acc: any, user: any) => {
-        acc.total++;
-        acc[user.role]++;
-        return acc;
-      }, { total: 0, tenant: 0, agent: 0, landlord: 0, admin: 0 });
+      /*
+       * Counted explicitly rather than by indexing the accumulator with the
+       * role string. The old version did acc[user.role]++, which silently
+       * produced NaN for a null role — an account that holds no role is a real
+       * state now — and would have added a key for any role it did not expect.
+       */
+      const counts = { total: 0, tenants: 0, agents: 0, landlords: 0, admins: 0, unassigned: 0 };
+
+      for (const user of users) {
+        counts.total += 1;
+        switch (user.role) {
+          case "tenant":
+            counts.tenants += 1;
+            break;
+          case "agent":
+            counts.agents += 1;
+            break;
+          case "landlord":
+            counts.landlords += 1;
+            break;
+          case "admin":
+            counts.admins += 1;
+            break;
+          default:
+            counts.unassigned += 1;
+        }
+      }
 
       setUserStats({
-        total: userCounts.total,
-        tenants: userCounts.tenant,
-        agents: userCounts.agent,
-        landlords: userCounts.landlord,
-        admins: userCounts.admin,
+        total: counts.total,
+        tenants: counts.tenants,
+        agents: counts.agents,
+        landlords: counts.landlords,
+        admins: counts.admins,
       });
 
       // Fetch recent users
@@ -53,7 +75,7 @@ export const useUserStats = () => {
         .limit(10);
       
       if (recentUsersError) throw recentUsersError;
-      setRecentUsers(recentUsersData);
+      setRecentUsers(recentUsersData ?? []);
 
     } catch (error) {
       console.error("Error fetching user stats:", error);

@@ -26,13 +26,18 @@ export const useInviteStats = () => {
       
       if (invitesError) throw invitesError;
       
-      const inviteCounts = invites.reduce((acc: any, invite: any) => {
-        acc.total++;
-        acc[invite.status]++;
-        return acc;
-      }, { total: 0, pending: 0, accepted: 0, declined: 0 });
+      /* Explicit, for the same reason as the role counts: indexing an
+         accumulator by a status string turns an unexpected value into NaN. */
+      const counts = { total: 0, pending: 0, accepted: 0, declined: 0 };
 
-      setInviteStats(inviteCounts);
+      for (const invite of invites ?? []) {
+        counts.total += 1;
+        if (invite.status === "pending") counts.pending += 1;
+        else if (invite.status === "accepted") counts.accepted += 1;
+        else if (invite.status === "declined") counts.declined += 1;
+      }
+
+      setInviteStats(counts);
     } catch (error) {
       console.error("Error fetching invite stats:", error);
       throw error;

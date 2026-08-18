@@ -7,9 +7,17 @@ interface IntegrationUsageChartProps {
   usageData: IntegrationUsage[];
 }
 
+/** One bar's worth of aggregated usage. */
+interface UsagePoint {
+  date: string;
+  requests: number;
+  success: number;
+  errors: number;
+}
+
 const IntegrationUsageChart = ({ usageData }: IntegrationUsageChartProps) => {
   // Aggregate usage data by date
-  const chartData = usageData.reduce((acc, usage) => {
+  const chartData = usageData.reduce<UsagePoint[]>((acc, usage) => {
     const existingEntry = acc.find(item => item.date === usage.date);
     if (existingEntry) {
       existingEntry.requests += usage.request_count;
@@ -24,7 +32,7 @@ const IntegrationUsageChart = ({ usageData }: IntegrationUsageChartProps) => {
       });
     }
     return acc;
-  }, [] as any[]).slice(0, 7).reverse(); // Last 7 days
+  }, []).slice(0, 7).reverse(); // Last 7 days
 
   return (
     <Card>

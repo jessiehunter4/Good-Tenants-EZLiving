@@ -8,9 +8,10 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
+import type { TenantProfileListItem } from "@/types/admin";
 
 interface TenantProfileTableProps {
-  tenants: any[];
+  tenants: TenantProfileListItem[];
 }
 
 const TenantProfileTable = ({ tenants }: TenantProfileTableProps) => {
