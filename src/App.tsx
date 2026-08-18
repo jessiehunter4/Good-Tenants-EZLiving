@@ -30,7 +30,6 @@ import AgentDashboard from "./pages/dashboards/AgentDashboard";
 import LandlordDashboard from "./pages/dashboards/LandlordDashboard";
 import Index from "./pages/Index";
 
-import "./App.css";
 
 function App() {
   return (

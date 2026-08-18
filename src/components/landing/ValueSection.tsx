@@ -10,12 +10,13 @@ const PROMISES = [
   { figure: "Yours", caption: "Nothing is shared without your say-so" },
 ] as const;
 
+/** The top padding clears the hero's search bar, which overlaps into this section. */
 export const ValueSection = () => {
   const { activeListings } = useLandingStats();
 
   return (
-    <section className="bg-background py-20 sm:py-28">
-      <div className="mx-auto grid max-w-6xl items-center gap-12 px-4 sm:px-6 lg:grid-cols-2">
+    <section className="bg-background pb-20 pt-32 sm:pb-28 sm:pt-40">
+      <div className="page-shell grid items-center gap-12 lg:grid-cols-2">
         <img src={valueScene} alt="" aria-hidden="true" className="w-full rounded-2xl" />
 
         <div>

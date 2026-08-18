@@ -27,7 +27,7 @@ const COLUMNS = [
 
 export const LandingFooter = () => (
   <footer className="bg-clay">
-    <div className="mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:px-6 md:grid-cols-[1.5fr_1fr_1fr_1fr]">
+    <div className="page-shell grid gap-10 py-16 md:grid-cols-[1.5fr_1fr_1fr_1fr]">
       <div>
         <p className="text-lg font-extrabold tracking-tight text-espresso">Good Tenants</p>
         <p className="mt-3 max-w-xs font-medium text-espresso-muted">
@@ -55,7 +55,7 @@ export const LandingFooter = () => (
     </div>
 
     <div className="border-t border-espresso/10">
-      <p className="mx-auto max-w-6xl px-4 py-6 text-sm font-medium text-espresso-muted sm:px-6">
+      <p className="page-shell py-6 text-sm font-medium text-espresso-muted">
         © {new Date().getFullYear()} Good Tenants
       </p>
     </div>

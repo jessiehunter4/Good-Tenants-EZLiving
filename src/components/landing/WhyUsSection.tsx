@@ -32,7 +32,7 @@ const REASONS: readonly Reason[] = [
 
 export const WhyUsSection = () => (
   <section id="why-us" className="bg-background pb-20 sm:pb-28">
-    <div className="mx-auto max-w-6xl px-4 sm:px-6">
+    <div className="page-shell">
       <div className="mx-auto max-w-2xl text-center">
         <h2 className="text-3xl font-extrabold tracking-tight text-espresso sm:text-4xl">
           Why renters use us

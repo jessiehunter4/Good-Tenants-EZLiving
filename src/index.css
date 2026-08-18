@@ -134,6 +134,14 @@
   }
 }
 
+@layer components {
+  /* The page container. Defined once so a section cannot quietly use a
+     different width, and so "the margins are too wide" is one edit. */
+  .page-shell {
+    @apply mx-auto w-full max-w-[1440px] px-5 sm:px-8 lg:px-12;
+  }
+}
+
 @layer utilities {
   /* Custom animations for Whimsical-style interactions */
   .animate-float {

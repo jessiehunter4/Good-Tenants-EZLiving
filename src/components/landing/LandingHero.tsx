@@ -34,7 +34,7 @@ export const LandingHero = () => {
 
   return (
     <section className="bg-sand">
-      <div className="mx-auto max-w-6xl px-4 pt-12 sm:px-6 lg:pt-20">
+      <div className="page-shell pt-12 lg:pt-20">
         <div className="grid items-center gap-10 lg:grid-cols-2">
           <div>
             <h1 className="text-4xl font-extrabold leading-[1.05] tracking-tight text-espresso sm:text-5xl lg:text-6xl">
@@ -67,8 +67,10 @@ export const LandingHero = () => {
         </div>
       </div>
 
-      {/* Overlaps the section boundary, as the reference does. */}
-      <div className="mx-auto -mb-16 max-w-5xl translate-y-16 px-4 sm:px-6">
+      {/* Overlaps the section boundary, as the reference does. The pull is
+          half the card's own height and the section below reserves the same
+          space in its top padding — otherwise the bar lands on the heading. */}
+      <div className="page-shell relative z-20 -mb-14 translate-y-14">
         <div className="grid gap-3 rounded-2xl bg-clay p-4 shadow-lg sm:p-5 md:grid-cols-[1fr_1fr_1fr_auto]">
           <label className="relative">
             <span className="sr-only">Location</span>

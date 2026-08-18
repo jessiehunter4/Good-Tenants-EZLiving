@@ -54,7 +54,7 @@ export const RentalsSection = () => {
 
   return (
     <section id="rentals" className="bg-background py-20 sm:py-28">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+      <div className="page-shell">
         <h2 className="text-center text-3xl font-extrabold tracking-tight text-espresso sm:text-4xl">
           Available now
         </h2>

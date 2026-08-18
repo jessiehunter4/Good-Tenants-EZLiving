@@ -18,7 +18,7 @@ const STEPS = [
 
 export const HowItWorksSection = () => (
   <section id="how-it-works" className="bg-sand py-20 sm:py-28">
-    <div className="mx-auto max-w-6xl px-4 sm:px-6">
+    <div className="page-shell">
       <div className="mx-auto max-w-2xl text-center">
         <h2 className="text-3xl font-extrabold tracking-tight text-espresso sm:text-4xl">
           How it works
