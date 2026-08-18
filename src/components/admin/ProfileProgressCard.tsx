@@ -45,7 +45,7 @@ const ProfileProgressCard = ({ title, icon, items }: ProfileProgressCardProps) =
                 <span>{item.label}</span>
                 <span className="font-medium">{item.value}</span>
               </div>
-              <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
+              <div className="h-2 overflow-hidden rounded-full bg-muted">
                 <div
                   className={`h-full ${item.color}`}
                   style={{

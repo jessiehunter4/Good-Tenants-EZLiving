@@ -1,5 +1,4 @@
-
-import { Badge } from "@/components/ui/badge";
+import RoleBadge from "./roleBadge";
 import {
   Table,
   TableBody,
@@ -9,11 +8,30 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-interface UserTableProps {
-  users: any[];
+export interface AdminUser {
+  id: string | null;
+  email: string | null;
+  role: string | null;
+  created_at: string | null;
 }
 
+interface UserTableProps {
+  users: AdminUser[];
+}
+
+/** Dates arrive as ISO strings, and occasionally as null from a view. */
+const formatDate = (value: string | null) =>
+  value ? new Date(value).toLocaleString() : "—";
+
 const UserTable = ({ users }: UserTableProps) => {
+  if (users.length === 0) {
+    return (
+      <p className="py-8 text-center text-sm text-muted-foreground">
+        No users yet.
+      </p>
+    );
+  }
+
   return (
     <div className="overflow-x-auto">
       <Table>
@@ -21,29 +39,19 @@ const UserTable = ({ users }: UserTableProps) => {
           <TableRow>
             <TableHead>Email</TableHead>
             <TableHead>Role</TableHead>
-            <TableHead>Created</TableHead>
+            <TableHead className="text-right">Created</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {users.map((user) => (
-            <TableRow key={user.id}>
-              <TableCell className="font-medium">{user.email}</TableCell>
+            <TableRow key={user.id ?? user.email}>
+              <TableCell className="font-medium">{user.email ?? "—"}</TableCell>
               <TableCell>
-                <Badge
-                  className={
-                    user.role === "tenant"
-                      ? "bg-blue-100 text-blue-800"
-                      : user.role === "agent"
-                      ? "bg-green-100 text-green-800"
-                      : user.role === "landlord"
-                      ? "bg-purple-100 text-purple-800"
-                      : "bg-gray-100 text-gray-800"
-                  }
-                >
-                  {user.role.charAt(0).toUpperCase() + user.role.slice(1)}
-                </Badge>
+                <RoleBadge role={user.role} />
               </TableCell>
-              <TableCell>{new Date(user.created_at).toLocaleString()}</TableCell>
+              <TableCell className="text-right tabular-nums text-muted-foreground">
+                {formatDate(user.created_at)}
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>

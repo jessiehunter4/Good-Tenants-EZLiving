@@ -97,7 +97,7 @@ const UserVerificationTable = ({ users, onUserVerified }: UserVerificationTableP
                       ? "bg-green-100 text-green-800"
                       : user.role === "landlord"
                       ? "bg-purple-100 text-purple-800"
-                      : "bg-gray-100 text-gray-800"
+                      : "bg-muted text-muted-foreground"
                   }
                 >
                   {user.role.charAt(0).toUpperCase() + user.role.slice(1)}

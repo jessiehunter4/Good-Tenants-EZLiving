@@ -16,6 +16,7 @@ import IntegrationTester from "@/components/integrations/IntegrationTester";
 import useAdminStats from "@/hooks/useAdminStats";
 import { useIntegrations } from "@/hooks/useIntegrations";
 import { toast } from "@/components/ui/sonner";
+import { FileText, Home, Mail, Users } from "lucide-react";
 
 const AdminDashboard = () => {
   const { user, signOut } = useAuth();
@@ -62,8 +63,9 @@ const AdminDashboard = () => {
 
   if (loading || integrationsLoading) {
     return (
-      <div className="flex h-screen items-center justify-center">
-        <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent"></div>
+      <div className="flex h-screen flex-col items-center justify-center gap-3">
+        <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent" />
+        <p className="text-sm text-muted-foreground">Loading admin data…</p>
       </div>
     );
   }
@@ -74,14 +76,14 @@ const AdminDashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-muted/30">
       <AdminHeader email={user?.email} onSignOut={signOut} />
 
       <main className="container mx-auto px-4 py-8">
-        <h1 className="text-3xl font-bold mb-8">Admin Dashboard</h1>
+        <h1 className="mb-8 text-3xl font-bold tracking-tight">Admin Dashboard</h1>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          <KPICard title="Total Users" value={userStats.total}>
+          <KPICard title="Total Users" value={userStats.total} icon={Users}>
             <StatsBreakdown
               items={[
                 { label: "Tenants", value: userStats.tenants },
@@ -95,6 +97,7 @@ const AdminDashboard = () => {
           <KPICard
             title="Tenant Profiles"
             value={getTotalProfiles("tenants")}
+            icon={FileText}
           >
             <StatsBreakdown
               items={[
@@ -106,7 +109,7 @@ const AdminDashboard = () => {
             />
           </KPICard>
 
-          <KPICard title="Listings" value={listingStats.total}>
+          <KPICard title="Listings" value={listingStats.total} icon={Home}>
             <StatsBreakdown
               items={[
                 { label: "Active", value: listingStats.active },
@@ -115,7 +118,7 @@ const AdminDashboard = () => {
             />
           </KPICard>
 
-          <KPICard title="Invitations" value={inviteStats.total}>
+          <KPICard title="Invitations" value={inviteStats.total} icon={Mail}>
             <StatsBreakdown
               items={[
                 { label: "Pending", value: inviteStats.pending },
@@ -127,7 +130,7 @@ const AdminDashboard = () => {
         </div>
 
         <Tabs defaultValue="users">
-          <TabsList className="mb-4">
+          <TabsList className="mb-4 flex h-auto flex-wrap justify-start gap-1">
             <TabsTrigger value="users">Users</TabsTrigger>
             <TabsTrigger value="tenants">Tenant Profiles</TabsTrigger>
             <TabsTrigger value="verification">Verification</TabsTrigger>
