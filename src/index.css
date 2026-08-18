@@ -52,13 +52,17 @@
     --brand-foreground: 210 40% 98%;
 
     /* Canvas: the dark full-bleed surface used by whole-page flows such as
-     * registration. Deliberately in the brand hue rather than neutral grey, so
-     * it reads as this product rather than a generic dark theme. */
-    --canvas: 222 47% 8%;
-    --canvas-elevated: 222 40% 13%;
+     * registration.
+     *
+     * Near-neutral, not navy. Mixed at the brand hue it read as a blue page
+     * competing with the artwork on the cards — three illustrations that are
+     * already blue, orange and green do not need a fourth colour underneath
+     * them. A trace of hue (8%) keeps it from looking like flat grey. */
+    --canvas: 220 8% 7%;
+    --canvas-elevated: 220 7% 12%;
     --canvas-foreground: 210 40% 98%;
-    --canvas-muted: 215 20% 65%;
-    --canvas-border: 222 30% 22%;
+    --canvas-muted: 215 12% 65%;
+    --canvas-border: 220 6% 20%;
 
     /* Account types. One accent each, used by the role chooser, its badges and
      * anywhere a role needs to be identifiable at a glance. */

@@ -52,11 +52,11 @@ const Register = () => {
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-canvas">
-      {/* Brand wash. Two soft pools rather than a flat gradient, so the cards
-          sit on something with depth without competing with the artwork. */}
+      {/* One warm pool, kept faint. The blue one was tinting the whole page and
+          fighting the blue card's own artwork. */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_45%_at_15%_0%,hsl(var(--role-tenant)/0.28),transparent_60%),radial-gradient(55%_45%_at_85%_10%,hsl(var(--role-landlord)/0.18),transparent_60%)]"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(70%_50%_at_78%_0%,hsl(var(--role-landlord)/0.10),transparent_62%)]"
       />
 
       <div className="relative mx-auto flex min-h-screen max-w-6xl flex-col px-4 py-8 sm:px-6 lg:py-12">

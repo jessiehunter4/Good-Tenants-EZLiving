@@ -20,7 +20,7 @@ const NewScenario = () => {
     <div className="relative min-h-screen bg-canvas">
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_45%_at_15%_0%,hsl(var(--role-tenant)/0.22),transparent_60%),radial-gradient(55%_45%_at_85%_10%,hsl(var(--role-landlord)/0.16),transparent_60%)]"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(70%_50%_at_78%_0%,hsl(var(--role-landlord)/0.10),transparent_62%)]"
       />
 
       <div className="relative mx-auto flex min-h-screen max-w-6xl flex-col px-4 py-8 sm:px-6 lg:py-12">
