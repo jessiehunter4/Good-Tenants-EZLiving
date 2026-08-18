@@ -56,13 +56,6 @@ export default {
 					DEFAULT: 'hsl(var(--brand))',
 					foreground: 'hsl(var(--brand-foreground))'
 				},
-				canvas: {
-					DEFAULT: 'hsl(var(--canvas))',
-					elevated: 'hsl(var(--canvas-elevated))',
-					foreground: 'hsl(var(--canvas-foreground))',
-					muted: 'hsl(var(--canvas-muted))',
-					border: 'hsl(var(--canvas-border))'
-				},
 				role: {
 					tenant: {
 						DEFAULT: 'hsl(var(--role-tenant))',

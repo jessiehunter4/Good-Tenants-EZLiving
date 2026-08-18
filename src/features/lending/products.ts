@@ -82,7 +82,7 @@ export const PRODUCT_OPTIONS: readonly ProductOption[] = [
       "residual_stock",
     ],
     accentClass: "bg-role-tenant text-role-tenant-foreground hover:bg-role-tenant/90",
-    badgeClass: "border-role-tenant bg-canvas-elevated text-role-tenant",
+    badgeClass: "border-role-tenant bg-card text-role-tenant",
   },
   {
     value: "second_mortgage",
@@ -100,7 +100,7 @@ export const PRODUCT_OPTIONS: readonly ProductOption[] = [
       "residual_stock",
     ],
     accentClass: "bg-role-landlord text-role-landlord-foreground hover:bg-role-landlord/90",
-    badgeClass: "border-role-landlord bg-canvas-elevated text-role-landlord",
+    badgeClass: "border-role-landlord bg-card text-role-landlord",
   },
   {
     value: "construction",
@@ -109,7 +109,7 @@ export const PRODUCT_OPTIONS: readonly ProductOption[] = [
     transactions: ["development", "land_subdivision", "purchase"],
     securities: ["residential", "commercial", "industrial", "specialised", "mid_construction"],
     accentClass: "bg-role-agent text-role-agent-foreground hover:bg-role-agent/90",
-    badgeClass: "border-role-agent bg-canvas-elevated text-role-agent",
+    badgeClass: "border-role-agent bg-card text-role-agent",
   },
 ] as const;
 

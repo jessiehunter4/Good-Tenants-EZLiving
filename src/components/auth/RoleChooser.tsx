@@ -25,9 +25,9 @@ export const RoleChooser = ({ onChoose }: RoleChooserProps) => (
           type="button"
           onClick={() => onChoose(option.value)}
           className={cn(
-            "group flex flex-col overflow-hidden rounded-2xl bg-canvas-elevated text-left ring-1 ring-canvas-border",
+            "group flex flex-col overflow-hidden rounded-2xl bg-card text-left ring-1 ring-border",
             "transition-all duration-200 hover:-translate-y-1 hover:shadow-2xl hover:ring-2",
-            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-canvas-foreground",
+            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
             option.ringClass,
           )}
         >
@@ -49,8 +49,8 @@ export const RoleChooser = ({ onChoose }: RoleChooserProps) => (
           </div>
 
           <div className="flex flex-1 flex-col px-6 pb-6 pt-11 text-center">
-            <span className="block text-xl font-semibold text-canvas-foreground">{option.title}</span>
-            <span className="mt-2 block flex-1 text-sm leading-relaxed text-canvas-muted">{option.blurb}</span>
+            <span className="block text-xl font-semibold text-foreground">{option.title}</span>
+            <span className="mt-2 block flex-1 text-sm leading-relaxed text-muted-foreground">{option.blurb}</span>
             {/* Presentational: the whole card is the control, so this must
                 not be a nested button. */}
             <span

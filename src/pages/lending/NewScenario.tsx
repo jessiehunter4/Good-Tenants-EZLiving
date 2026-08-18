@@ -17,19 +17,15 @@ const NewScenario = () => {
   const [product, setProduct] = useState<ScenarioProduct | null>(null);
 
   return (
-    <div className="relative min-h-screen bg-canvas">
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(70%_50%_at_78%_0%,hsl(var(--role-landlord)/0.10),transparent_62%)]"
-      />
+    <div className="min-h-screen bg-background">
 
-      <div className="relative mx-auto flex min-h-screen max-w-6xl flex-col px-4 py-8 sm:px-6 lg:py-12">
+      <div className="mx-auto flex min-h-screen max-w-6xl flex-col px-4 py-8 sm:px-6 lg:py-12">
         <header className="flex items-center justify-between">
           <Button
             asChild
             variant="ghost"
             size="sm"
-            className="-ml-2 text-canvas-muted hover:bg-canvas-elevated hover:text-canvas-foreground"
+            className="-ml-2 text-muted-foreground hover:text-foreground"
           >
             <Link to="/">
               <ArrowLeft className="mr-1.5 h-4 w-4" aria-hidden="true" />
@@ -40,7 +36,7 @@ const NewScenario = () => {
             asChild
             variant="ghost"
             size="sm"
-            className="text-canvas-muted hover:bg-canvas-elevated hover:text-canvas-foreground"
+            className="text-muted-foreground hover:text-foreground"
           >
             <Link to="/scenarios">My scenarios</Link>
           </Button>
@@ -50,10 +46,10 @@ const NewScenario = () => {
           {product === null ? (
             <div className="duration-300 animate-in fade-in">
               <div className="mx-auto max-w-2xl text-center">
-                <h1 className="text-4xl font-bold tracking-tight text-canvas-foreground sm:text-5xl">
+                <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
                   Start a scenario
                 </h1>
-                <p className="mt-4 text-lg text-canvas-muted">
+                <p className="mt-4 text-lg text-muted-foreground">
                   What kind of funding are you looking for?
                 </p>
               </div>

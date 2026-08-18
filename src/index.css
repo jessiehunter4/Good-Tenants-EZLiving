@@ -39,7 +39,7 @@
      * Brand
      * ---------------------------------------------------------------------
      * Every colour in the product comes from this file. Components reference
-     * tokens (bg-brand, text-canvas-muted, bg-role-tenant) and never literal
+     * tokens (bg-brand, bg-role-tenant, text-muted-foreground) and never literal
      * palette classes like bg-slate-900 or text-blue-300 — a literal is a
      * colour that cannot be changed anywhere but the file it is written in.
      *
@@ -50,19 +50,6 @@
     /* The wordmark navy. Hue 222 is the same family as --primary. */
     --brand: 222 47% 24%;
     --brand-foreground: 210 40% 98%;
-
-    /* Canvas: the dark full-bleed surface used by whole-page flows such as
-     * registration.
-     *
-     * Near-neutral, not navy. Mixed at the brand hue it read as a blue page
-     * competing with the artwork on the cards — three illustrations that are
-     * already blue, orange and green do not need a fourth colour underneath
-     * them. A trace of hue (8%) keeps it from looking like flat grey. */
-    --canvas: 220 8% 7%;
-    --canvas-elevated: 220 7% 12%;
-    --canvas-foreground: 210 40% 98%;
-    --canvas-muted: 215 12% 65%;
-    --canvas-border: 220 6% 20%;
 
     /* Account types. One accent each, used by the role chooser, its badges and
      * anywhere a role needs to be identifiable at a glance. */
@@ -84,8 +71,7 @@
   }
 
   .dark {
-    /* The canvas is already dark, so it does not invert. The brand lightens so
-     * the wordmark stays legible on a dark background. */
+    /* The brand lightens in dark mode so the wordmark stays legible. */
     --brand: 217 91% 72%;
     --brand-foreground: 222 47% 11%;
 

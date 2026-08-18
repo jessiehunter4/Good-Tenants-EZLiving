@@ -26,18 +26,18 @@ export const ScenarioProductChooser = ({ onChoose }: ScenarioProductChooserProps
         type="button"
         onClick={() => onChoose(product.value)}
         className={cn(
-          "group flex flex-col rounded-2xl bg-canvas-elevated p-6 text-left ring-1 ring-canvas-border",
+          "group flex flex-col rounded-2xl bg-card p-6 text-left ring-1 ring-border",
           "transition-all duration-200 hover:-translate-y-1 hover:shadow-2xl hover:ring-2",
-          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-canvas-foreground",
+          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
         )}
       >
-        <span className="block text-lg font-semibold text-canvas-foreground">{product.title}</span>
-        <span className="mt-1 block text-sm text-canvas-muted">{product.summary}</span>
+        <span className="block text-lg font-semibold text-foreground">{product.title}</span>
+        <span className="mt-1 block text-sm text-muted-foreground">{product.summary}</span>
 
-        <span className="mt-5 block text-xs font-medium uppercase tracking-wide text-canvas-muted">
+        <span className="mt-5 block text-xs font-medium uppercase tracking-wide text-muted-foreground">
           Security types
         </span>
-        <span className="mt-2 block flex-1 text-sm leading-relaxed text-canvas-muted">
+        <span className="mt-2 block flex-1 text-sm leading-relaxed text-muted-foreground">
           {product.securities.map((security) => SECURITY_TYPE_LABELS[security]).join(", ")}
         </span>
 

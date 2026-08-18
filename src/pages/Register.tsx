@@ -51,15 +51,9 @@ const Register = () => {
   }, [roleFromUrl]);
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-canvas">
-      {/* One warm pool, kept faint. The blue one was tinting the whole page and
-          fighting the blue card's own artwork. */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(70%_50%_at_78%_0%,hsl(var(--role-landlord)/0.10),transparent_62%)]"
-      />
+    <div className="min-h-screen bg-background">
 
-      <div className="relative mx-auto flex min-h-screen max-w-6xl flex-col px-4 py-8 sm:px-6 lg:py-12">
+      <div className="mx-auto flex min-h-screen max-w-6xl flex-col px-4 py-8 sm:px-6 lg:py-12">
         <header className="flex items-center justify-between">
           {/* The wordmark used to sit here too, directly above an <h1> that
               says "Welcome to Good Tenants" — two links to / and the brand name
@@ -68,16 +62,16 @@ const Register = () => {
             asChild
             variant="ghost"
             size="sm"
-            className="-ml-2 text-canvas-muted hover:bg-canvas-elevated hover:text-canvas-foreground"
+            className="-ml-2 text-muted-foreground hover:text-foreground"
           >
             <Link to="/">
               <ArrowLeft className="mr-1.5 h-4 w-4" aria-hidden="true" />
               Back to home
             </Link>
           </Button>
-          <p className="text-sm text-canvas-muted">
+          <p className="text-sm text-muted-foreground">
             Already have an account?{" "}
-            <Link to="/auth" className="font-medium text-canvas-foreground underline-offset-4 hover:underline">
+            <Link to="/auth" className="font-medium text-foreground underline-offset-4 hover:underline">
               Sign in
             </Link>
           </p>
@@ -87,17 +81,17 @@ const Register = () => {
           {role === null ? (
             <div className="duration-300 animate-in fade-in">
               <div className="mx-auto max-w-2xl text-center">
-                <h1 className="text-4xl font-bold tracking-tight text-canvas-foreground sm:text-5xl">
+                <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
                   Welcome to Good Tenants
                 </h1>
-                <p className="mt-4 text-lg text-canvas-muted">How would you like to get started?</p>
+                <p className="mt-4 text-lg text-muted-foreground">How would you like to get started?</p>
               </div>
 
               <div className="mt-12">
                 <RoleChooser onChoose={setRole} />
               </div>
 
-              <p className="mt-10 text-center text-sm text-canvas-muted">
+              <p className="mt-10 text-center text-sm text-muted-foreground">
                 Most of this is editable later. Your account type is not, so pick the one that
                 describes you today.
               </p>
@@ -117,7 +111,7 @@ const Register = () => {
           )}
         </main>
 
-        <footer className="text-center text-xs text-canvas-muted">
+        <footer className="text-center text-xs text-muted-foreground">
           By continuing, you agree to Good Tenants' Terms of Service and Privacy Policy.
         </footer>
       </div>

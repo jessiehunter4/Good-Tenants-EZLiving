@@ -166,7 +166,7 @@ export const RegisterDetailsForm = ({
      * is nearly black: elevated sits *above* the canvas, which is what a card
      * on a page should do.
      */
-    <div className="dark w-full max-w-lg rounded-2xl bg-canvas-elevated p-6 text-canvas-foreground shadow-2xl ring-1 ring-canvas-border sm:p-8">
+    <div className="w-full max-w-lg rounded-2xl bg-card p-6 text-foreground shadow-2xl ring-1 ring-border sm:p-8">
       <ol className="mb-6 flex items-center gap-2" aria-label={`Step ${step + 1} of 3`}>
         {["Role", "Account", "Details"].map((label, index, all) => {
           const isDone = index < step;

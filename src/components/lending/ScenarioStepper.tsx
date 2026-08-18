@@ -264,7 +264,7 @@ export const ScenarioStepper = ({ product, onChangeProduct }: ScenarioStepperPro
   };
 
   return (
-    <div className="dark mx-auto w-full max-w-3xl text-canvas-foreground">
+    <div className="mx-auto w-full max-w-3xl">
       {/* Progress rail */}
       <ol className="mb-8 flex flex-wrap items-center gap-x-2 gap-y-3">
         {STEPS.map((label, index) => {
@@ -304,7 +304,7 @@ export const ScenarioStepper = ({ product, onChangeProduct }: ScenarioStepperPro
 
       {/* Same treatment as registration: dark scoped to the card so the
           controls adapt, on an elevated surface rather than a white slab. */}
-      <div className="dark rounded-2xl bg-canvas-elevated p-6 text-canvas-foreground shadow-lg ring-1 ring-canvas-border sm:p-8">
+      <div className="rounded-2xl bg-card p-6 text-foreground shadow-lg ring-1 ring-border sm:p-8">
         <div className="mb-6 flex items-start justify-between gap-4 border-b pb-4">
           <div>
             <h2 className="text-lg font-semibold">{STEPS[step]}</h2>
