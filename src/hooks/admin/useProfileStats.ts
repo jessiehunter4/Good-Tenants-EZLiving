@@ -101,7 +101,7 @@ export const useProfileStats = () => {
         .from("realtor_profiles")
         .select(`
           *,
-          users:profiles!tenant_profiles_id_fkey (email)
+          users:profiles!realtor_profiles_id_fkey (email)
         `)
         .in('status', ['incomplete', 'basic'])
         .order("created_at", { ascending: false });
@@ -113,7 +113,7 @@ export const useProfileStats = () => {
         .from("landlord_profiles")
         .select(`
           *,
-          users:profiles!tenant_profiles_id_fkey (email)
+          users:profiles!landlord_profiles_id_fkey (email)
         `)
         .in('status', ['incomplete', 'basic'])
         .order("created_at", { ascending: false });

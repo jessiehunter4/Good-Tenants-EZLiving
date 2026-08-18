@@ -4,6 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import AdminHeader from "@/components/admin/AdminHeader";
 import KPICard from "@/components/admin/KPICard";
+import AdminCharts from "@/components/admin/AdminCharts";
 import StatsBreakdown from "@/components/admin/StatsBreakdown";
 import UserTable from "@/components/admin/UserTable";
 import UserVerificationTable from "@/components/admin/UserVerificationTable";
@@ -128,6 +129,14 @@ const AdminDashboard = () => {
             />
           </KPICard>
         </div>
+
+        <AdminCharts
+          userStats={userStats}
+          tenantStatus={profileStats.tenants}
+          agentStatus={profileStats.agents}
+          landlordStatus={profileStats.landlords}
+          listingStats={listingStats}
+        />
 
         <Tabs defaultValue="users">
           <TabsList className="mb-4 flex h-auto flex-wrap justify-start gap-1">
