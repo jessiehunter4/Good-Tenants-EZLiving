@@ -9,11 +9,22 @@
     <radialGradient id="l-sun" cx="0.5" cy="0.5" r="0.5">
       <stop offset="0" stop-color="#FEF3C7" stop-opacity="0.85"/><stop offset="1" stop-color="#FEF3C7" stop-opacity="0"/>
     </radialGradient>
+    <linearGradient id="l-fade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0.62" stop-color="white" stop-opacity="1"/>
+      <stop offset="1" stop-color="white" stop-opacity="0"/>
+    </linearGradient>
+    <mask id="l-mask">
+      <rect width="400" height="260" fill="url(#l-fade)"/>
+    </mask>
   </defs>
+  <!-- The artwork dissolves into transparency over its bottom third, so the
+       card's own background shows through instead of the illustration ending
+       on a hard band of a slightly different colour. Nothing here needs to know
+       what that background is. -->
+  <g mask="url(#l-mask)">
 
   <rect width="400" height="260" fill="url(#l-sky)"/>
   <circle cx="200" cy="150" r="90" fill="url(#l-sun)"/>
-  <rect y="200" width="400" height="60" fill="url(#l-ground)"/>
 
   <!-- Cluster: 200 wide, centred, nothing past x=40..360. -->
   <g fill="#9A3412" opacity="0.6">
@@ -45,4 +56,5 @@
   <path d="M76 178v22" stroke="#7C2D12" stroke-width="3" stroke-linecap="round"/>
   <rect x="48" y="154" width="56" height="26" rx="3" fill="#FFFFFF"/>
   <path d="M60 164h32M60 172h20" stroke="#B45309" stroke-width="3.5" stroke-linecap="round"/>
+  </g>
 </svg>

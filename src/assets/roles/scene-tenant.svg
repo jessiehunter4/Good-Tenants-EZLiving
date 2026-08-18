@@ -13,10 +13,21 @@
       <circle cx="318" cy="58" r="19" fill="white"/>
       <circle cx="308" cy="51" r="17" fill="black"/>
     </mask>
+    <linearGradient id="t-fade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0.62" stop-color="white" stop-opacity="1"/>
+      <stop offset="1" stop-color="white" stop-opacity="0"/>
+    </linearGradient>
+    <mask id="t-mask">
+      <rect width="400" height="260" fill="url(#t-fade)"/>
+    </mask>
   </defs>
+  <!-- The artwork dissolves into transparency over its bottom third, so the
+       card's own background shows through instead of the illustration ending
+       on a hard band of a slightly different colour. Nothing here needs to know
+       what that background is. -->
+  <g mask="url(#t-mask)">
 
   <rect width="400" height="260" fill="url(#t-sky)"/>
-  <rect y="200" width="400" height="60" fill="url(#t-ground)"/>
 
   <!-- A real crescent: masked, so no seam where two discs overlap. -->
   <rect width="400" height="260" fill="#FDE68A" mask="url(#t-moon)"/>
@@ -44,5 +55,6 @@
   <g fill="#166534">
     <circle cx="122" cy="196" r="12"/><circle cx="136" cy="199" r="9"/>
     <circle cx="278" cy="197" r="11"/><circle cx="264" cy="200" r="8"/>
+  </g>
   </g>
 </svg>

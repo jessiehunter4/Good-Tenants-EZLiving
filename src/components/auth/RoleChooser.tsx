@@ -38,8 +38,6 @@ export const RoleChooser = ({ onChoose }: RoleChooserProps) => (
               aria-hidden="true"
               className="aspect-[16/10] w-full object-cover transition-transform duration-500 group-hover:scale-105"
             />
-            {/* Blends the artwork into the card body, as the reference does. */}
-            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-canvas-elevated to-transparent" />
             <span
               className={cn(
                 "absolute -bottom-7 left-1/2 flex h-14 w-14 -translate-x-1/2 items-center justify-center rounded-full border-2",
