@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { BRAND } from "@/config/brand";
 
 const COLUMNS = [
   {
@@ -29,9 +30,9 @@ export const LandingFooter = () => (
   <footer className="bg-clay">
     <div className="page-shell grid gap-10 py-16 md:grid-cols-[1.5fr_1fr_1fr_1fr]">
       <div>
-        <p className="text-lg font-extrabold tracking-tight text-espresso">Good Tenants</p>
+        <p className="text-lg font-extrabold tracking-tight text-espresso">{BRAND.name}</p>
         <p className="mt-3 max-w-xs font-medium text-espresso-muted">
-          Prove you qualify once, and decide who gets to see it.
+          {BRAND.tagline}
         </p>
       </div>
 
@@ -56,7 +57,7 @@ export const LandingFooter = () => (
 
     <div className="border-t border-espresso/10">
       <p className="page-shell py-6 text-sm font-medium text-espresso-muted">
-        © {new Date().getFullYear()} Good Tenants
+        © {new Date().getFullYear()} {BRAND.legalName}
       </p>
     </div>
   </footer>

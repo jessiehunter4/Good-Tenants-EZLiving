@@ -24,6 +24,7 @@ import {
 } from "@/components/ui/popover";
 import { CalendarIcon, Check, Star } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { BRAND } from "@/config/brand";
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -295,7 +296,7 @@ const SummerLandingPage = () => {
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-6">Ready to find your perfect rental?</h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto">
-            Join Good Tenants today and start receiving invitations to view properties in your area.
+            Join {BRAND.name} today and start receiving invitations to view properties in your area.
           </p>
           <Button 
             onClick={() => document.documentElement.scrollTop = 0} 
@@ -311,7 +312,7 @@ const SummerLandingPage = () => {
       <footer className="bg-gray-800 text-white py-8">
         <div className="container mx-auto px-4">
           <div className="text-center">
-            <p>&copy; {new Date().getFullYear()} Good Tenants Services, Inc. All rights reserved.</p>
+            <p>&copy; {new Date().getFullYear()} {BRAND.legalName}. All rights reserved.</p>
             <div className="mt-2">
               <a href="#" className="text-gray-400 hover:text-white mx-2">Privacy Policy</a>
               <a href="#" className="text-gray-400 hover:text-white mx-2">Terms of Service</a>

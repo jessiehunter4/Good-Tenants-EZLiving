@@ -14,6 +14,7 @@ import {
 import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
 import DashboardLoader from "@/components/dashboard/DashboardLoader";
+import { BRAND } from "@/config/brand";
 
 const WelcomeCard = () => {
   const { user, getUserRole } = useAuth();
@@ -111,7 +112,7 @@ const WelcomeCard = () => {
   return (
     <Card className="mb-8">
       <CardHeader>
-        <CardTitle>Welcome to Good Tenants</CardTitle>
+        <CardTitle>Welcome to {BRAND.name}</CardTitle>
         <CardDescription>
           Complete your profile to get started.
         </CardDescription>

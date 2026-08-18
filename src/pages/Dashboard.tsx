@@ -7,6 +7,7 @@ import DashboardLoader from "@/components/dashboard/DashboardLoader";
 import DashboardHeader from "@/components/shared/DashboardHeader";
 import WelcomeCard from "@/components/dashboard/WelcomeCard";
 import DashboardTabs from "@/components/dashboard/DashboardTabs";
+import { BRAND } from "@/config/brand";
 
 const Dashboard = () => {
   const { user, getUserRole, signOut } = useAuth();
@@ -71,7 +72,7 @@ const Dashboard = () => {
     <div className="min-h-screen bg-gray-50">
       <DashboardHeader 
         title="Dashboard"
-        subtitle="Welcome to Good Tenants"
+        subtitle={`Welcome to ${BRAND.name}`}
         email={user.email}
         onSignOut={signOut}
       />

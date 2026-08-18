@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import RoleChooser from "@/components/auth/RoleChooser";
 import RegisterDetailsForm from "@/components/auth/RegisterDetailsForm";
 import { isSignupRole, type SignupRole } from "@/components/auth/registerRoles";
+import { BRAND } from "@/config/brand";
 
 interface PrefilledRegistration {
   name?: string;
@@ -82,7 +83,7 @@ const Register = () => {
             <div className="duration-300 animate-in fade-in">
               <div className="mx-auto max-w-2xl text-center">
                 <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
-                  Welcome to Good Tenants
+                  Welcome to {BRAND.name}
                 </h1>
                 <p className="mt-4 text-lg text-muted-foreground">How would you like to get started?</p>
               </div>
@@ -112,7 +113,7 @@ const Register = () => {
         </main>
 
         <footer className="text-center text-xs text-muted-foreground">
-          By continuing, you agree to Good Tenants' Terms of Service and Privacy Policy.
+          By continuing, you agree to {BRAND.name}'s Terms of Service and Privacy Policy.
         </footer>
       </div>
     </div>

@@ -7,6 +7,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import LoginForm from "./LoginForm";
+import { BRAND } from "@/config/brand";
 
 /**
  * Sign-in only.
@@ -21,7 +22,7 @@ const AuthCard = () => (
     <CardHeader>
       <div className="mb-4 flex justify-center">
         <Link to="/" className="text-center text-2xl font-bold text-brand">
-          Good Tenants
+          {BRAND.name}
         </Link>
       </div>
       <CardTitle className="text-center">Welcome back</CardTitle>
@@ -36,7 +37,7 @@ const AuthCard = () => (
       </p>
     </CardContent>
     <CardFooter className="text-center text-sm text-muted-foreground">
-      By continuing, you agree to Good Tenants' Terms of Service and Privacy Policy.
+      By continuing, you agree to {BRAND.name}'s Terms of Service and Privacy Policy.
     </CardFooter>
   </Card>
 );

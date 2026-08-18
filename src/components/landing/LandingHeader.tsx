@@ -4,6 +4,7 @@ import { Menu, X } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { BRAND } from "@/config/brand";
 
 const NAV = [
   { label: "How it works", href: "#how-it-works" },
@@ -19,7 +20,7 @@ export const LandingHeader = () => {
     <header className="sticky top-0 z-40 border-b border-clay/40 bg-sand/90 backdrop-blur">
       <div className="page-shell flex items-center justify-between py-4">
         <Link to="/" className="text-lg font-extrabold tracking-tight text-espresso">
-          Good Tenants
+          {BRAND.name}
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex" aria-label="Main">
