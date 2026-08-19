@@ -166,3 +166,43 @@ export const REFERRAL_PROGRAM = {
     "Track referrals in your Realtor dashboard.",
   ],
 } as const;
+
+/** Source: hub `/landlords`. */
+export const LANDLORD_PITCH = {
+  eyebrow: "For landlords",
+  heading: "Landlords — start here",
+  intro:
+    "Find a good tenant and choose your next renter from the directory. Tenants arrive with a Good Tenant Application Package already built.",
+  benefitsHeading: "Why landlords choose Good Tenants",
+  benefits: [
+    "Tenants are application-ready and motivated to lease.",
+    "Each Good Tenant Application Package can include the application, income documents, rental history and screening status where legally permitted.",
+    "Choose from available tenants, invite them to apply, and reduce lease-up friction.",
+    "No fair-housing risk: we do not search, sort or rank tenants by protected class.",
+  ],
+  noneHeading: "No prescreened tenants in your area?",
+  noneBody:
+    "Post your rental need. Good Tenants can help with open-house and lead-generation support. A flat-fee leasing-support option is on the roadmap.",
+  contactHeading: "Get in touch",
+  contactBody: "Tell us about your property and we'll match you with prepared tenants.",
+} as const;
+
+/** Source: hub `/realtors`. */
+export const REALTOR_PITCH = {
+  eyebrow: "For realtors",
+  heading: "Realtors — start here",
+  intro:
+    "Find a good tenant for your rental listings, and reach ready tenants from the directory.",
+  benefitsHeading: "Benefits for REALTORS\u00AE",
+  benefits: [
+    "Good Tenants may be ready to view and apply for rental property.",
+    "Tenants are prescreened with a Good Tenant Application Package.",
+    "Send a tenant directly to your rental listing, or invite them to apply.",
+    "Future referral programme — eligibility and compensation subject to applicable law, brokerage rules, MLS rules, and a written agreement.",
+  ],
+  noneHeading: "No prescreened tenants in your area?",
+  noneBody:
+    "Post your rental listing or need. We can help generate tenant interest while you focus on your clients.",
+  contactHeading: "Talk to Good Tenants",
+  contactBody: "Send a note and we'll get back to you.",
+} as const;

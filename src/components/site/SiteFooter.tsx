@@ -14,15 +14,17 @@ const COLUMNS = [
   {
     heading: "For landlords",
     links: [
+      { label: "How it works", to: "/landlords" },
       { label: "List a property", to: "/register?role=landlord" },
-      { label: "Find tenants", to: "/register?role=landlord" },
+      { label: "Tenant directory", to: "/tenants" },
     ],
   },
   {
     heading: "For agents",
     links: [
+      { label: "How it works", to: "/realtors" },
       { label: "Join as an agent", to: "/register?role=agent" },
-      { label: "Submit a scenario", to: "/scenarios/new" },
+      { label: "Referral programme", to: "/referral-program" },
     ],
   },
   { heading: "Read", links: READ_LINKS },

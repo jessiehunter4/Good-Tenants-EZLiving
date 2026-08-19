@@ -2,6 +2,7 @@ import SiteLayout from "@/components/site/SiteLayout";
 import PageHeading from "@/components/daily/PageHeading";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import ContactForm from "@/components/site/ContactForm";
 import { Link } from "react-router-dom";
 import { useDocumentMeta } from "@/hooks/useDocumentMeta";
 
@@ -50,6 +51,16 @@ const Contact = () => {
             </Button>
           </Card>
         </div>
+
+        <Card className="mt-8 p-6">
+          <h2 className="text-lg font-bold text-espresso">Send us a message</h2>
+          <p className="mt-1 text-sm text-espresso-muted">
+            Anything that does not fit the two boxes above.
+          </p>
+          <div className="mt-4">
+            <ContactForm />
+          </div>
+        </Card>
 
         <p className="mt-8 text-sm text-espresso-muted">
           Landlord or agent with a property to list?{" "}

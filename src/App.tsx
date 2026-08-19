@@ -65,6 +65,8 @@ import ReferralProgram from "./pages/hub/ReferralProgram";
 import Tenants from "./pages/hub/Tenants";
 import TenantDetail from "./pages/hub/TenantDetail";
 import Sharing from "./pages/tenant/Sharing";
+import Landlords from "./pages/hub/Landlords";
+import Realtors from "./pages/hub/Realtors";
 
 // The editorial console, carried across from the daily's admin.
 import AdminArticles from "./pages/admin/Articles";
@@ -130,6 +132,8 @@ function App() {
           <Route path="/fair-housing" element={<FairHousing />} />
           <Route path="/accessibility" element={<Accessibility />} />
           <Route path="/referral-program" element={<ReferralProgram />} />
+          <Route path="/landlords" element={<Landlords />} />
+          <Route path="/realtors" element={<Realtors />} />
 
           {/* The tenant directory. Only landlords, agents and admins browse it;
               the view itself already limits what any of them can see. */}

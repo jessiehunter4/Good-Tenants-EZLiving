@@ -18,6 +18,7 @@ export const LANDING_NAV: readonly NavItem[] = [
 // Everywhere else: real routes.
 export const SITE_NAV: readonly NavItem[] = [
   { label: "Rentals", to: "/rentals" },
+  { label: "For landlords", to: "/landlords" },
   { label: "The daily", to: "/blog" },
   { label: "Topics", to: "/topics" },
   { label: "Ask", to: "/ask" },
