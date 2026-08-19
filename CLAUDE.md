@@ -5,13 +5,23 @@ Rentals and Good Tenants in one application on one Supabase project.
 
 ## This is a merge, not a new build
 
-Three working applications are being combined into this one:
+Four working applications are being combined into this one:
 
 | App | Repo | What it is |
 | --- | --- | --- |
 | Coming Soon Home Rentals | `comingsoonhomrentals-com` | The listings. MLS ingestion, search, listing detail, showings. 77 migrations, 49 edge functions, live users |
 | EZ Living Irvine | `Irvine Living Daily` | The daily. Content, topics, an admin CMS and an AI article pipeline. 34 routes, 15 migrations |
-| Good Tenants | this repo | The profile. Tenant directory, screening, the reusable application |
+| Good Tenants Hub | `Good Tenants Hub` | GoodTenants.com itself. The brand site and the reusable application package. 23 routes, 4 migrations |
+| Good Tenants | this repo | The MVP this merge is built in. Tenant directory, screening, dashboards |
+
+A fifth, `ezliving`, was an earlier attempt at this same merge on Next.js. Its
+own README said nothing had ever run against a real database, and it had not —
+`/properties` failed on a table that was never created anywhere. It was deleted
+on 19 August 2026, after its fair housing lint, its featured-selection engine
+and its ops health module were carried across. Two modules were let go with it:
+its prequalification rule, superseded by `features/tenant/qualification.ts`, and
+its round-robin agent assignment, which depends on a leasing-agent concept this
+app does not have.
 
 **Look in those repos before writing anything.** They have working copy, working
 schema and a working funnel. The default is to carry across what exists and adapt
@@ -47,6 +57,22 @@ Settled so far:
 - **The renter profile** is `tenant_profiles`.
   `tenant_prequalification_profiles` is only where an anonymous visitor's
   answers land before they have an account.
+
+Not settled yet — Good Tenants Hub splits the renter profile in two, and its
+version is better than the one here:
+
+- `tenant_public_profiles` is what a landlord browsing the directory sees, with
+  a per-field switch for each sensitive band — `share_rent_range`,
+  `share_credit_band`, `share_income_band` — plus `is_published` and
+  `admin_approved_at`.
+- `tenant_private_packages` holds the income band, credit band, eviction and
+  background status and rental history, released only through a granted
+  request.
+
+This app has one table and one all-or-nothing consent flag. The hub lets a
+renter show their rent range without showing their credit band, which is a
+distinction worth having and is not expressible here. Reconciling the two is
+the open question, not whether to.
 
 ## Build to be changed, not just to run
 
