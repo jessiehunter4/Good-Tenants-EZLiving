@@ -1,0 +1,367 @@
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Code coverage report for lib/devFixtures.ts</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+    
+<body>
+<div class='wrapper'>
+    <div class='pad1'>
+        <h1><a href="../index.html">All files</a> / <a href="index.html">lib</a> devFixtures.ts</h1>
+        <div class='clearfix'>
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Statements</span>
+                <span class='fraction'>0/59</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">100% </span>
+                <span class="quiet">Branches</span>
+                <span class='fraction'>1/1</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">100% </span>
+                <span class="quiet">Functions</span>
+                <span class='fraction'>1/1</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Lines</span>
+                <span class='fraction'>0/59</span>
+            </div>
+        
+            
+        </div>
+        <p class="quiet">
+            Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
+        </p>
+        <template id="filterTemplate">
+            <div class="quiet">
+                Filter:
+                <input type="search" id="fileSearch">
+            </div>
+        </template>
+    </div>
+    <div class='status-line low'></div>
+    <pre><table class="coverage">
+<tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
+<a name='L2'></a><a href='#L2'>2</a>
+<a name='L3'></a><a href='#L3'>3</a>
+<a name='L4'></a><a href='#L4'>4</a>
+<a name='L5'></a><a href='#L5'>5</a>
+<a name='L6'></a><a href='#L6'>6</a>
+<a name='L7'></a><a href='#L7'>7</a>
+<a name='L8'></a><a href='#L8'>8</a>
+<a name='L9'></a><a href='#L9'>9</a>
+<a name='L10'></a><a href='#L10'>10</a>
+<a name='L11'></a><a href='#L11'>11</a>
+<a name='L12'></a><a href='#L12'>12</a>
+<a name='L13'></a><a href='#L13'>13</a>
+<a name='L14'></a><a href='#L14'>14</a>
+<a name='L15'></a><a href='#L15'>15</a>
+<a name='L16'></a><a href='#L16'>16</a>
+<a name='L17'></a><a href='#L17'>17</a>
+<a name='L18'></a><a href='#L18'>18</a>
+<a name='L19'></a><a href='#L19'>19</a>
+<a name='L20'></a><a href='#L20'>20</a>
+<a name='L21'></a><a href='#L21'>21</a>
+<a name='L22'></a><a href='#L22'>22</a>
+<a name='L23'></a><a href='#L23'>23</a>
+<a name='L24'></a><a href='#L24'>24</a>
+<a name='L25'></a><a href='#L25'>25</a>
+<a name='L26'></a><a href='#L26'>26</a>
+<a name='L27'></a><a href='#L27'>27</a>
+<a name='L28'></a><a href='#L28'>28</a>
+<a name='L29'></a><a href='#L29'>29</a>
+<a name='L30'></a><a href='#L30'>30</a>
+<a name='L31'></a><a href='#L31'>31</a>
+<a name='L32'></a><a href='#L32'>32</a>
+<a name='L33'></a><a href='#L33'>33</a>
+<a name='L34'></a><a href='#L34'>34</a>
+<a name='L35'></a><a href='#L35'>35</a>
+<a name='L36'></a><a href='#L36'>36</a>
+<a name='L37'></a><a href='#L37'>37</a>
+<a name='L38'></a><a href='#L38'>38</a>
+<a name='L39'></a><a href='#L39'>39</a>
+<a name='L40'></a><a href='#L40'>40</a>
+<a name='L41'></a><a href='#L41'>41</a>
+<a name='L42'></a><a href='#L42'>42</a>
+<a name='L43'></a><a href='#L43'>43</a>
+<a name='L44'></a><a href='#L44'>44</a>
+<a name='L45'></a><a href='#L45'>45</a>
+<a name='L46'></a><a href='#L46'>46</a>
+<a name='L47'></a><a href='#L47'>47</a>
+<a name='L48'></a><a href='#L48'>48</a>
+<a name='L49'></a><a href='#L49'>49</a>
+<a name='L50'></a><a href='#L50'>50</a>
+<a name='L51'></a><a href='#L51'>51</a>
+<a name='L52'></a><a href='#L52'>52</a>
+<a name='L53'></a><a href='#L53'>53</a>
+<a name='L54'></a><a href='#L54'>54</a>
+<a name='L55'></a><a href='#L55'>55</a>
+<a name='L56'></a><a href='#L56'>56</a>
+<a name='L57'></a><a href='#L57'>57</a>
+<a name='L58'></a><a href='#L58'>58</a>
+<a name='L59'></a><a href='#L59'>59</a>
+<a name='L60'></a><a href='#L60'>60</a>
+<a name='L61'></a><a href='#L61'>61</a>
+<a name='L62'></a><a href='#L62'>62</a>
+<a name='L63'></a><a href='#L63'>63</a>
+<a name='L64'></a><a href='#L64'>64</a>
+<a name='L65'></a><a href='#L65'>65</a>
+<a name='L66'></a><a href='#L66'>66</a>
+<a name='L67'></a><a href='#L67'>67</a>
+<a name='L68'></a><a href='#L68'>68</a>
+<a name='L69'></a><a href='#L69'>69</a>
+<a name='L70'></a><a href='#L70'>70</a>
+<a name='L71'></a><a href='#L71'>71</a>
+<a name='L72'></a><a href='#L72'>72</a>
+<a name='L73'></a><a href='#L73'>73</a>
+<a name='L74'></a><a href='#L74'>74</a>
+<a name='L75'></a><a href='#L75'>75</a>
+<a name='L76'></a><a href='#L76'>76</a>
+<a name='L77'></a><a href='#L77'>77</a>
+<a name='L78'></a><a href='#L78'>78</a>
+<a name='L79'></a><a href='#L79'>79</a>
+<a name='L80'></a><a href='#L80'>80</a>
+<a name='L81'></a><a href='#L81'>81</a>
+<a name='L82'></a><a href='#L82'>82</a>
+<a name='L83'></a><a href='#L83'>83</a>
+<a name='L84'></a><a href='#L84'>84</a>
+<a name='L85'></a><a href='#L85'>85</a>
+<a name='L86'></a><a href='#L86'>86</a>
+<a name='L87'></a><a href='#L87'>87</a>
+<a name='L88'></a><a href='#L88'>88</a>
+<a name='L89'></a><a href='#L89'>89</a>
+<a name='L90'></a><a href='#L90'>90</a>
+<a name='L91'></a><a href='#L91'>91</a>
+<a name='L92'></a><a href='#L92'>92</a>
+<a name='L93'></a><a href='#L93'>93</a>
+<a name='L94'></a><a href='#L94'>94</a>
+<a name='L95'></a><a href='#L95'>95</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/**
+ * Sample rows for the development stub.
+ *
+ * These exist so the dashboards can be evaluated as interfaces. Empty tables
+ * show you the column headers and nothing else: not how a status badge renders,
+ * not whether a long name wraps, not what the verification queue looks like
+ * with items in it. Those are the questions worth asking of this app before
+ * deciding what Phase 5 should rebuild.
+ *
+ * ---------------------------------------------------------------------------
+ * These are fabricated. Every row below is invented.
+ * ---------------------------------------------------------------------------
+ * The amber banner across the top of the app says so on every screen, which is
+ * the only reason it is acceptable to show them at all. If you screenshot a
+ * dashboard for anyone, the banner has to stay in the frame.
+ *
+ * Dev only. Never reachable from a production build.
+ */
+&nbsp;
+<span class="cstat-no" title="statement not covered" >const DAY = 86_400_000;</span>
+&nbsp;
+/** Dates relative to now, so the data never looks stale. */
+<span class="cstat-no" title="statement not covered" >function daysAgo(days: number): string {</span>
+<span class="cstat-no" title="statement not covered" >  return new Date(Date.now() - days * DAY).toISOString();</span>
+<span class="cstat-no" title="statement not covered" >}</span>
+&nbsp;
+/**
+ * Names drawn from a wide range of origins, as a real Irvine tenant base would
+ * be. Placeholder data that is all one demographic quietly shapes how the
+ * people reading it picture the users.
+ */
+<span class="cstat-no" title="statement not covered" >const USERS = [</span>
+<span class="cstat-no" title="statement not covered" >  { id: "u-01", email: "amara.okafor@example.com", role: "tenant", created_at: daysAgo(2), updated_at: daysAgo(2) },</span>
+<span class="cstat-no" title="statement not covered" >  { id: "u-02", email: "j.almeida@example.com", role: "tenant", created_at: daysAgo(5), updated_at: daysAgo(1) },</span>
+<span class="cstat-no" title="statement not covered" >  { id: "u-03", email: "wei.zhang@example.com", role: "tenant", created_at: daysAgo(9), updated_at: daysAgo(9) },</span>
+<span class="cstat-no" title="statement not covered" >  { id: "u-04", email: "s.mahmoud@example.com", role: "tenant", created_at: daysAgo(14), updated_at: daysAgo(3) },</span>
+<span class="cstat-no" title="statement not covered" >  { id: "u-05", email: "priya.raghunathan@example.com", role: "agent", created_at: daysAgo(31), updated_at: daysAgo(4) },</span>
+<span class="cstat-no" title="statement not covered" >  { id: "u-06", email: "devon.ashworth@example.com", role: "agent", created_at: daysAgo(48), updated_at: daysAgo(6) },</span>
+<span class="cstat-no" title="statement not covered" >  { id: "u-07", email: "m.okonkwo@example.com", role: "landlord", created_at: daysAgo(60), updated_at: daysAgo(8) },</span>
+<span class="cstat-no" title="statement not covered" >  { id: "u-08", email: "t.lindqvist@example.com", role: "landlord", created_at: daysAgo(72), updated_at: daysAgo(12) },</span>
+<span class="cstat-no" title="statement not covered" >  { id: "u-09", email: "r.castellanos@example.com", role: "landlord", created_at: daysAgo(88), updated_at: daysAgo(20) },</span>
+<span class="cstat-no" title="statement not covered" >  { id: "u-10", email: "ops@goodtenants.example", role: "admin", created_at: daysAgo(120), updated_at: daysAgo(1) },</span>
+<span class="cstat-no" title="statement not covered" >];</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >const TENANT_PROFILES = [</span>
+<span class="cstat-no" title="statement not covered" >  { id: "u-01", status: "verified", is_pre_screened: true, screening_status: "approved", household_income: 9200, household_size: 2, max_monthly_rent: 3600, desired_cities: ["Irvine"], move_in_date: daysAgo(-30), created_at: daysAgo(2), updated_at: daysAgo(2) },</span>
+<span class="cstat-no" title="statement not covered" >  { id: "u-02", status: "premium", is_pre_screened: true, screening_status: "approved", household_income: 14500, household_size: 3, max_monthly_rent: 5200, desired_cities: ["Irvine", "Tustin"], move_in_date: daysAgo(-14), created_at: daysAgo(5), updated_at: daysAgo(1) },</span>
+<span class="cstat-no" title="statement not covered" >  { id: "u-03", status: "basic", is_pre_screened: false, screening_status: "pending", household_income: 6800, household_size: 1, max_monthly_rent: 2600, desired_cities: ["Irvine"], move_in_date: daysAgo(-45), created_at: daysAgo(9), updated_at: daysAgo(9) },</span>
+<span class="cstat-no" title="statement not covered" >  { id: "u-04", status: "incomplete", is_pre_screened: false, screening_status: "not_started", household_income: null, household_size: null, max_monthly_rent: null, desired_cities: [], move_in_date: null, created_at: daysAgo(14), updated_at: daysAgo(3) },</span>
+<span class="cstat-no" title="statement not covered" >];</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >const LISTINGS = [</span>
+<span class="cstat-no" title="statement not covered" >  { id: "l-01", title: "Two bedroom condo, Woodbridge", price: 3850, is_active: true, city: "Irvine", bedrooms: 2, bathrooms: 2, created_at: daysAgo(4) },</span>
+<span class="cstat-no" title="statement not covered" >  { id: "l-02", title: "Four bedroom house, Northwood", price: 5200, is_active: true, city: "Irvine", bedrooms: 4, bathrooms: 3, created_at: daysAgo(11) },</span>
+<span class="cstat-no" title="statement not covered" >  { id: "l-03", title: "Townhouse, Turtle Rock", price: 4400, is_active: true, city: "Irvine", bedrooms: 3, bathrooms: 2.5, created_at: daysAgo(18) },</span>
+<span class="cstat-no" title="statement not covered" >  { id: "l-04", title: "Condo, Quail Hill", price: 4100, is_active: false, city: "Irvine", bedrooms: 2, bathrooms: 2, created_at: daysAgo(64) },</span>
+<span class="cstat-no" title="statement not covered" >];</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >const INVITES = [</span>
+<span class="cstat-no" title="statement not covered" >  { id: "i-01", email: "n.varga@example.com", status: "pending", created_at: daysAgo(1) },</span>
+<span class="cstat-no" title="statement not covered" >  { id: "i-02", email: "k.osei@example.com", status: "pending", created_at: daysAgo(3) },</span>
+<span class="cstat-no" title="statement not covered" >  { id: "i-03", email: "l.fontaine@example.com", status: "accepted", created_at: daysAgo(16) },</span>
+<span class="cstat-no" title="statement not covered" >  { id: "i-04", email: "h.nakamura@example.com", status: "accepted", created_at: daysAgo(29) },</span>
+<span class="cstat-no" title="statement not covered" >  { id: "i-05", email: "b.kowalczyk@example.com", status: "declined", created_at: daysAgo(41) },</span>
+<span class="cstat-no" title="statement not covered" >];</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >const INTEGRATIONS = [</span>
+<span class="cstat-no" title="statement not covered" >  { id: "int-01", name: "Screening provider", status: "active", created_at: daysAgo(90) },</span>
+<span class="cstat-no" title="statement not covered" >  { id: "int-02", name: "Rent reporting", status: "active", created_at: daysAgo(55) },</span>
+<span class="cstat-no" title="statement not covered" >  { id: "int-03", name: "Document storage", status: "inactive", created_at: daysAgo(140) },</span>
+<span class="cstat-no" title="statement not covered" >];</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >const INTEGRATION_REQUESTS = [</span>
+<span class="cstat-no" title="statement not covered" >  { id: "ir-01", integration_id: "int-01", status: "pending", created_at: daysAgo(2) },</span>
+<span class="cstat-no" title="statement not covered" >  { id: "ir-02", integration_id: "int-02", status: "approved", created_at: daysAgo(21) },</span>
+<span class="cstat-no" title="statement not covered" >];</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >const FIXTURES: Readonly&lt;Record&lt;string, readonly unknown[]&gt;&gt; = {</span>
+<span class="cstat-no" title="statement not covered" >  users: USERS,</span>
+<span class="cstat-no" title="statement not covered" >  tenant_profiles: TENANT_PROFILES,</span>
+<span class="cstat-no" title="statement not covered" >  realtor_profiles: USERS.filter((u) =&gt; u.role === "agent"),</span>
+<span class="cstat-no" title="statement not covered" >  landlord_profiles: USERS.filter((u) =&gt; u.role === "landlord"),</span>
+<span class="cstat-no" title="statement not covered" >  listings: LISTINGS,</span>
+<span class="cstat-no" title="statement not covered" >  invites: INVITES,</span>
+<span class="cstat-no" title="statement not covered" >  integrations: INTEGRATIONS,</span>
+<span class="cstat-no" title="statement not covered" >  integration_requests: INTEGRATION_REQUESTS,</span>
+<span class="cstat-no" title="statement not covered" >  integration_usage: [],</span>
+<span class="cstat-no" title="statement not covered" >  integration_audit_log: [],</span>
+<span class="cstat-no" title="statement not covered" >};</span>
+&nbsp;
+/** Rows for a table, or an empty list when nothing is defined for it. */
+<span class="cstat-no" title="statement not covered" >export function fixturesFor(table: string): readonly unknown[] {</span>
+<span class="cstat-no" title="statement not covered" >  return FIXTURES[table] ?? [];</span>
+<span class="cstat-no" title="statement not covered" >}</span>
+&nbsp;</pre></td></tr></table></pre>
+
+                <div class='push'></div><!-- for sticky footer -->
+            </div><!-- /wrapper -->
+            <div class='footer quiet pad2 space-top1 center small'>
+                Code coverage generated by
+                <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
+                at 2026-08-18T15:13:07.484Z
+            </div>
+        <script src="../prettify.js"></script>
+        <script>
+            window.onload = function () {
+                prettyPrint();
+            };
+        </script>
+        <script src="../sorter.js"></script>
+        <script src="../block-navigation.js"></script>
+    </body>
+</html>
+    

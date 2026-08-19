@@ -1,4 +1,5 @@
-import LandingHeader from "@/components/landing/LandingHeader";
+import SiteLayout from "@/components/site/SiteLayout";
+import { LANDING_NAV } from "@/components/site/siteNav";
 import MergedHero from "@/components/landing/MergedHero";
 import DoorsSection from "@/components/landing/DoorsSection";
 import FunnelSection from "@/components/landing/FunnelSection";
@@ -7,7 +8,6 @@ import DailySection from "@/components/landing/DailySection";
 import OwnersSection from "@/components/landing/OwnersSection";
 import FaqSection from "@/components/landing/FaqSection";
 import HelpSection from "@/components/landing/HelpSection";
-import LandingFooter from "@/components/landing/LandingFooter";
 
 /**
  * The merged landing page.
@@ -20,20 +20,16 @@ import LandingFooter from "@/components/landing/LandingFooter";
  * Composition only. Each section owns its copy and its data.
  */
 const LandingPage = () => (
-  <div className="min-h-screen bg-background">
-    <LandingHeader />
-    <main>
-      <MergedHero />
-      <DoorsSection />
-      <FunnelSection />
-      <RentalsSection />
-      <DailySection />
-      <OwnersSection />
-      <FaqSection />
-      <HelpSection />
-    </main>
-    <LandingFooter />
-  </div>
+  <SiteLayout nav={LANDING_NAV}>
+    <MergedHero />
+    <DoorsSection />
+    <FunnelSection />
+    <RentalsSection />
+    <DailySection />
+    <OwnersSection />
+    <FaqSection />
+    <HelpSection />
+  </SiteLayout>
 );
 
 export default LandingPage;

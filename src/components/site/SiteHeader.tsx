@@ -5,16 +5,28 @@ import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { BRAND } from "@/config/brand";
+import { SITE_NAV, isAnchor, type NavItem } from "./siteNav";
 
-const NAV = [
-  { label: "Rentals", href: "#rentals" },
-  { label: "The daily", href: "#daily" },
-  { label: "How it works", href: "#how-it-works" },
-  { label: "For owners", href: "#owners" },
-  { label: "FAQ", href: "#faq" },
-] as const;
+type SiteHeaderProps = {
+  /** Defaults to the interior-page routes; the landing page passes its anchors. */
+  nav?: readonly NavItem[];
+};
 
-export const LandingHeader = () => {
+const NavLink = ({ item, onNavigate }: { item: NavItem; onNavigate?: () => void }) => {
+  const className =
+    "text-sm font-semibold text-espresso-muted transition-colors hover:text-espresso";
+  return isAnchor(item.to) ? (
+    <a href={item.to} className={className} onClick={onNavigate}>
+      {item.label}
+    </a>
+  ) : (
+    <Link to={item.to} className={className} onClick={onNavigate}>
+      {item.label}
+    </Link>
+  );
+};
+
+export const SiteHeader = ({ nav = SITE_NAV }: SiteHeaderProps) => {
   const [open, setOpen] = useState(false);
 
   return (
@@ -25,14 +37,8 @@ export const LandingHeader = () => {
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex" aria-label="Main">
-          {NAV.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              className="text-sm font-semibold text-espresso-muted transition-colors hover:text-espresso"
-            >
-              {item.label}
-            </a>
+          {nav.map((item) => (
+            <NavLink key={item.to} item={item} />
           ))}
         </nav>
 
@@ -59,19 +65,14 @@ export const LandingHeader = () => {
         className={cn("border-t border-clay/40 px-4 md:hidden", open ? "block" : "hidden")}
         aria-label="Main, mobile"
       >
-        {NAV.map((item) => (
-          <a
-            key={item.href}
-            href={item.href}
-            onClick={() => setOpen(false)}
-            className="block py-3 text-sm font-semibold text-espresso-muted"
-          >
-            {item.label}
-          </a>
+        {nav.map((item) => (
+          <div key={item.to} className="py-3">
+            <NavLink item={item} onNavigate={() => setOpen(false)} />
+          </div>
         ))}
       </nav>
     </header>
   );
 };
 
-export default LandingHeader;
+export default SiteHeader;

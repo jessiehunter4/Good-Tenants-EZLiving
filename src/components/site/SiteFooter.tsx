@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { BRAND } from "@/config/brand";
+import { READ_LINKS } from "./siteNav";
 
 const COLUMNS = [
   {
@@ -24,16 +25,15 @@ const COLUMNS = [
       { label: "Submit a scenario", to: "/scenarios/new" },
     ],
   },
+  { heading: "Read", links: READ_LINKS },
 ] as const;
 
-export const LandingFooter = () => (
+export const SiteFooter = () => (
   <footer className="bg-clay">
-    <div className="page-shell grid gap-10 py-16 md:grid-cols-[1.5fr_1fr_1fr_1fr]">
+    <div className="page-shell grid gap-10 py-16 md:grid-cols-[1.4fr_repeat(4,1fr)]">
       <div>
         <p className="text-lg font-extrabold tracking-tight text-espresso">{BRAND.name}</p>
-        <p className="mt-3 max-w-xs font-medium text-espresso-muted">
-          {BRAND.tagline}
-        </p>
+        <p className="mt-3 max-w-xs font-medium text-espresso-muted">{BRAND.tagline}</p>
       </div>
 
       {COLUMNS.map((column) => (
@@ -63,4 +63,4 @@ export const LandingFooter = () => (
   </footer>
 );
 
-export default LandingFooter;
+export default SiteFooter;

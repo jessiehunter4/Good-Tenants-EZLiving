@@ -161,6 +161,28 @@
   .page-shell {
     @apply mx-auto w-full max-w-[1440px] px-5 sm:px-8 lg:px-12;
   }
+
+  /* Article body typography, carried across from
+     `Irvine Living Daily/src/styles.css`. The daily's posts are written as
+     heading-and-paragraph sections, so the rhythm lives here rather than in
+     class soup on every section. */
+  .article-content h2 {
+    @apply mt-10 mb-4 text-2xl font-bold tracking-tight text-espresso;
+    scroll-margin-top: 6rem;
+  }
+
+  .article-content h3 {
+    @apply mt-8 mb-3 text-xl font-bold tracking-tight text-espresso;
+    scroll-margin-top: 6rem;
+  }
+
+  .article-content p {
+    @apply mb-4 leading-relaxed text-espresso-muted;
+  }
+
+  .article-content a {
+    @apply font-semibold text-espresso underline;
+  }
 }
 
 @layer utilities {

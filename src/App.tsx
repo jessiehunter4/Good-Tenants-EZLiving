@@ -1,5 +1,6 @@
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { AuthProvider } from "./contexts/AuthContext";
 import { Toaster } from "./components/ui/sonner";
 
@@ -31,10 +32,33 @@ import AgentDashboard from "./pages/dashboards/AgentDashboard";
 import LandlordDashboard from "./pages/dashboards/LandlordDashboard";
 import Index from "./pages/Index";
 
+// The daily. Public content carried across from Irvine Living Daily.
+import Blog from "./pages/daily/Blog";
+import BlogPost from "./pages/daily/BlogPost";
+import Topics from "./pages/daily/Topics";
+import TopicDetail from "./pages/daily/TopicDetail";
+import CaseStudies from "./pages/daily/CaseStudies";
+import SearchPage from "./pages/daily/SearchPage";
+import Ask from "./pages/daily/Ask";
+import AskThanks from "./pages/daily/AskThanks";
+import Start from "./pages/daily/Start";
+
+/**
+ * One client for the whole app. Content is public and changes a few times a
+ * day, so a short stale time is enough — the per-query values live with their
+ * query definitions rather than here.
+ */
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: { retry: 1, refetchOnWindowFocus: false },
+  },
+});
+
 
 function App() {
   return (
-    <AuthProvider>
+    <QueryClientProvider client={queryClient}>
+      <AuthProvider>
       <Router>
         <DevBypassBanner />
         <Routes>
@@ -43,6 +67,17 @@ function App() {
           <Route path="/summer" element={<SummerLandingPage />} />
           <Route path="/auth" element={<PublicOnlyRoute><Auth /></PublicOnlyRoute>} />
           <Route path="/register" element={<PublicOnlyRoute><Register /></PublicOnlyRoute>} />
+
+          {/* The daily — readable signed in or out, so no PublicOnlyRoute. */}
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:slug" element={<BlogPost />} />
+          <Route path="/topics" element={<Topics />} />
+          <Route path="/topics/:slug" element={<TopicDetail />} />
+          <Route path="/case-studies" element={<CaseStudies />} />
+          <Route path="/search" element={<SearchPage />} />
+          <Route path="/ask" element={<Ask />} />
+          <Route path="/ask/thanks" element={<AskThanks />} />
+          <Route path="/start" element={<Start />} />
 
           {/* Lending. Scenario authoring is open to any signed-in account;
               the lender views require the lender role. */}
@@ -192,7 +227,8 @@ function App() {
         </Routes>
       </Router>
       <Toaster />
-    </AuthProvider>
+      </AuthProvider>
+    </QueryClientProvider>
   );
 }
 
