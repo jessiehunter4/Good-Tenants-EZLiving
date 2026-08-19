@@ -1450,6 +1450,59 @@ export type Database = {
           },
         ]
       }
+      listing_image_analysis: {
+        Row: {
+          id: string
+          listing_id: string
+          image_url: string
+          image_type: string
+          room_type: string | null
+          topics: string[] | null
+          detected_features: Json | null
+          style_assessment: string | null
+          quality_score: number | null
+          is_hero_candidate: boolean | null
+          taxonomy_version: number | null
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          listing_id: string
+          image_url: string
+          image_type?: string
+          room_type?: string | null
+          topics?: string[] | null
+          detected_features?: Json | null
+          style_assessment?: string | null
+          quality_score?: number | null
+          is_hero_candidate?: boolean | null
+          taxonomy_version?: number | null
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          listing_id?: string
+          image_url?: string
+          image_type?: string
+          room_type?: string | null
+          topics?: string[] | null
+          detected_features?: Json | null
+          style_assessment?: string | null
+          quality_score?: number | null
+          is_hero_candidate?: boolean | null
+          taxonomy_version?: number | null
+          created_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "listing_image_analysis_listing_id_fkey"
+            columns: ["listing_id"]
+            isOneToOne: false
+            referencedRelation: "mls_listings"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       listing_images: {
         Row: {
           id: string
@@ -1744,6 +1797,340 @@ export type Database = {
           },
         ]
       }
+      mls_listing_photos: {
+        Row: {
+          id: string
+          listing_id: string | null
+          photo_url: string
+          ordering: number | null
+          created_at: string | null
+        }
+        Insert: {
+          id?: string
+          listing_id?: string | null
+          photo_url: string
+          ordering?: number | null
+          created_at?: string | null
+        }
+        Update: {
+          id?: string
+          listing_id?: string | null
+          photo_url?: string
+          ordering?: number | null
+          created_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "mls_listing_photos_listing_id_fkey"
+            columns: ["listing_id"]
+            isOneToOne: false
+            referencedRelation: "mls_listings"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      mls_listings: {
+        Row: {
+          id: string
+          mls_number: string | null
+          source_mls: string | null
+          source_updated_at: string | null
+          slug: string | null
+          realtor_account_id: string | null
+          address: string
+          neighborhood: string | null
+          county: string | null
+          subdivision: string | null
+          latitude: number | null
+          longitude: number | null
+          rent: number | null
+          security_deposit: number | null
+          application_fee: number | null
+          bedrooms: number | null
+          bathrooms: number | null
+          sqft: number | null
+          lot_size: number | null
+          year_built: number | null
+          property_type: string | null
+          property_sub_type: string | null
+          architectural_style: string | null
+          description: string | null
+          status: string | null
+          computed_status: string | null
+          date_available: string | null
+          list_date: string | null
+          start_showing_date: string | null
+          lease_expiration_date: string | null
+          lease_terms: string | null
+          tenant_occupied: boolean | null
+          contract_status_change_date: string | null
+          pets_allowed: boolean | null
+          min_credit_score: number | null
+          income_requirement_multiplier: number | null
+          occupancy_limits: string | null
+          special_conditions: string | null
+          utilities_included: string[] | null
+          appliances: string[] | null
+          exterior_features: string[] | null
+          cooling_type: string | null
+          heating_type: string | null
+          flooring_type: string | null
+          roof_type: string | null
+          construction_materials: string | null
+          fencing: string | null
+          fireplace_features: string | null
+          landscaping: string | null
+          pool_features: string | null
+          garage_spaces: number | null
+          covered_parking_spaces: number | null
+          total_parking_spaces: number | null
+          parking_spaces: number | null
+          hoa_fee: number | null
+          hoa_frequency: string | null
+          mello_roos: number | null
+          property_taxes: number | null
+          tax_year: number | null
+          school_district: string | null
+          elementary_school: string | null
+          middle_school: string | null
+          high_school: string | null
+          walk_score: number | null
+          transit_score: number | null
+          bike_score: number | null
+          video_url: string | null
+          virtual_tour_url: string | null
+          floor_plan_url: string | null
+          disclosure_documents: string[] | null
+          agent_name: string | null
+          agent_phone: string | null
+          agent_license: string | null
+          brokerage: string | null
+          listing_agent_name: string | null
+          listing_agent_phone: string | null
+          listing_agent_email: string | null
+          listing_agent_license: string | null
+          listing_office_name: string | null
+          listing_office_license: string | null
+          listing_office_phone: string | null
+          co_listing_agent_name: string | null
+          co_listing_office_name: string | null
+          internet_display_allowed: boolean
+          address_display_allowed: boolean
+          media_display_allowed: boolean
+          showing_allowed: boolean
+          open_house_allowed: boolean
+          suppressed_reason: string | null
+          showing_instructions: string | null
+          bac: string | null
+          uploaded_by: string | null
+          csv_row: Json | null
+          created_at: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          id?: string
+          mls_number?: string | null
+          source_mls?: string | null
+          source_updated_at?: string | null
+          slug?: string | null
+          realtor_account_id?: string | null
+          address: string
+          neighborhood?: string | null
+          county?: string | null
+          subdivision?: string | null
+          latitude?: number | null
+          longitude?: number | null
+          rent?: number | null
+          security_deposit?: number | null
+          application_fee?: number | null
+          bedrooms?: number | null
+          bathrooms?: number | null
+          sqft?: number | null
+          lot_size?: number | null
+          year_built?: number | null
+          property_type?: string | null
+          property_sub_type?: string | null
+          architectural_style?: string | null
+          description?: string | null
+          status?: string | null
+          computed_status?: string | null
+          date_available?: string | null
+          list_date?: string | null
+          start_showing_date?: string | null
+          lease_expiration_date?: string | null
+          lease_terms?: string | null
+          tenant_occupied?: boolean | null
+          contract_status_change_date?: string | null
+          pets_allowed?: boolean | null
+          min_credit_score?: number | null
+          income_requirement_multiplier?: number | null
+          occupancy_limits?: string | null
+          special_conditions?: string | null
+          utilities_included?: string[] | null
+          appliances?: string[] | null
+          exterior_features?: string[] | null
+          cooling_type?: string | null
+          heating_type?: string | null
+          flooring_type?: string | null
+          roof_type?: string | null
+          construction_materials?: string | null
+          fencing?: string | null
+          fireplace_features?: string | null
+          landscaping?: string | null
+          pool_features?: string | null
+          garage_spaces?: number | null
+          covered_parking_spaces?: number | null
+          total_parking_spaces?: number | null
+          parking_spaces?: number | null
+          hoa_fee?: number | null
+          hoa_frequency?: string | null
+          mello_roos?: number | null
+          property_taxes?: number | null
+          tax_year?: number | null
+          school_district?: string | null
+          elementary_school?: string | null
+          middle_school?: string | null
+          high_school?: string | null
+          walk_score?: number | null
+          transit_score?: number | null
+          bike_score?: number | null
+          video_url?: string | null
+          virtual_tour_url?: string | null
+          floor_plan_url?: string | null
+          disclosure_documents?: string[] | null
+          agent_name?: string | null
+          agent_phone?: string | null
+          agent_license?: string | null
+          brokerage?: string | null
+          listing_agent_name?: string | null
+          listing_agent_phone?: string | null
+          listing_agent_email?: string | null
+          listing_agent_license?: string | null
+          listing_office_name?: string | null
+          listing_office_license?: string | null
+          listing_office_phone?: string | null
+          co_listing_agent_name?: string | null
+          co_listing_office_name?: string | null
+          internet_display_allowed?: boolean
+          address_display_allowed?: boolean
+          media_display_allowed?: boolean
+          showing_allowed?: boolean
+          open_house_allowed?: boolean
+          suppressed_reason?: string | null
+          showing_instructions?: string | null
+          bac?: string | null
+          uploaded_by?: string | null
+          csv_row?: Json | null
+          created_at?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          id?: string
+          mls_number?: string | null
+          source_mls?: string | null
+          source_updated_at?: string | null
+          slug?: string | null
+          realtor_account_id?: string | null
+          address?: string
+          neighborhood?: string | null
+          county?: string | null
+          subdivision?: string | null
+          latitude?: number | null
+          longitude?: number | null
+          rent?: number | null
+          security_deposit?: number | null
+          application_fee?: number | null
+          bedrooms?: number | null
+          bathrooms?: number | null
+          sqft?: number | null
+          lot_size?: number | null
+          year_built?: number | null
+          property_type?: string | null
+          property_sub_type?: string | null
+          architectural_style?: string | null
+          description?: string | null
+          status?: string | null
+          computed_status?: string | null
+          date_available?: string | null
+          list_date?: string | null
+          start_showing_date?: string | null
+          lease_expiration_date?: string | null
+          lease_terms?: string | null
+          tenant_occupied?: boolean | null
+          contract_status_change_date?: string | null
+          pets_allowed?: boolean | null
+          min_credit_score?: number | null
+          income_requirement_multiplier?: number | null
+          occupancy_limits?: string | null
+          special_conditions?: string | null
+          utilities_included?: string[] | null
+          appliances?: string[] | null
+          exterior_features?: string[] | null
+          cooling_type?: string | null
+          heating_type?: string | null
+          flooring_type?: string | null
+          roof_type?: string | null
+          construction_materials?: string | null
+          fencing?: string | null
+          fireplace_features?: string | null
+          landscaping?: string | null
+          pool_features?: string | null
+          garage_spaces?: number | null
+          covered_parking_spaces?: number | null
+          total_parking_spaces?: number | null
+          parking_spaces?: number | null
+          hoa_fee?: number | null
+          hoa_frequency?: string | null
+          mello_roos?: number | null
+          property_taxes?: number | null
+          tax_year?: number | null
+          school_district?: string | null
+          elementary_school?: string | null
+          middle_school?: string | null
+          high_school?: string | null
+          walk_score?: number | null
+          transit_score?: number | null
+          bike_score?: number | null
+          video_url?: string | null
+          virtual_tour_url?: string | null
+          floor_plan_url?: string | null
+          disclosure_documents?: string[] | null
+          agent_name?: string | null
+          agent_phone?: string | null
+          agent_license?: string | null
+          brokerage?: string | null
+          listing_agent_name?: string | null
+          listing_agent_phone?: string | null
+          listing_agent_email?: string | null
+          listing_agent_license?: string | null
+          listing_office_name?: string | null
+          listing_office_license?: string | null
+          listing_office_phone?: string | null
+          co_listing_agent_name?: string | null
+          co_listing_office_name?: string | null
+          internet_display_allowed?: boolean
+          address_display_allowed?: boolean
+          media_display_allowed?: boolean
+          showing_allowed?: boolean
+          open_house_allowed?: boolean
+          suppressed_reason?: string | null
+          showing_instructions?: string | null
+          bac?: string | null
+          uploaded_by?: string | null
+          csv_row?: Json | null
+          created_at?: string | null
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "mls_listings_realtor_account_id_fkey"
+            columns: ["realtor_account_id"]
+            isOneToOne: false
+            referencedRelation: "realtor_accounts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       profiles: {
         Row: {
           id: string
@@ -1752,6 +2139,7 @@ export type Database = {
           created_at: string
           updated_at: string
           phone: string | null
+          ghl_contact_id: string | null
         }
         Insert: {
           id: string
@@ -1760,6 +2148,7 @@ export type Database = {
           created_at?: string
           updated_at?: string
           phone?: string | null
+          ghl_contact_id?: string | null
         }
         Update: {
           id?: string
@@ -1768,6 +2157,7 @@ export type Database = {
           created_at?: string
           updated_at?: string
           phone?: string | null
+          ghl_contact_id?: string | null
         }
         Relationships: []
       }
@@ -1956,6 +2346,50 @@ export type Database = {
         }
         Relationships: []
       }
+      realtor_accounts: {
+        Row: {
+          id: string
+          user_id: string | null
+          business_name: string
+          contact_email: string | null
+          contact_phone: string | null
+          is_active: boolean
+          subscription_tier: string
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          user_id?: string | null
+          business_name: string
+          contact_email?: string | null
+          contact_phone?: string | null
+          is_active?: boolean
+          subscription_tier?: string
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          user_id?: string | null
+          business_name?: string
+          contact_email?: string | null
+          contact_phone?: string | null
+          is_active?: boolean
+          subscription_tier?: string
+          created_at?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "realtor_accounts_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       realtor_profiles: {
         Row: {
           id: string
@@ -2005,6 +2439,78 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      rental_import_jobs: {
+        Row: {
+          id: string
+          name: string
+          city: string
+          target_zips: string[]
+          bedrooms_min: number | null
+          bedrooms_max: number | null
+          rent_min: number | null
+          rent_max: number | null
+          statuses: string[]
+          active_max_days_on_market: number | null
+          schedule_type: string
+          schedule_config: Json
+          enabled: boolean
+          next_sync_at: string | null
+          last_sync_at: string | null
+          last_sync_status: string | null
+          last_sync_error: string | null
+          last_imported_count: number | null
+          run_once_completed_at: string | null
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          name: string
+          city: string
+          target_zips?: string[]
+          bedrooms_min?: number | null
+          bedrooms_max?: number | null
+          rent_min?: number | null
+          rent_max?: number | null
+          statuses?: string[]
+          active_max_days_on_market?: number | null
+          schedule_type: string
+          schedule_config?: Json
+          enabled?: boolean
+          next_sync_at?: string | null
+          last_sync_at?: string | null
+          last_sync_status?: string | null
+          last_sync_error?: string | null
+          last_imported_count?: number | null
+          run_once_completed_at?: string | null
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          name?: string
+          city?: string
+          target_zips?: string[]
+          bedrooms_min?: number | null
+          bedrooms_max?: number | null
+          rent_min?: number | null
+          rent_max?: number | null
+          statuses?: string[]
+          active_max_days_on_market?: number | null
+          schedule_type?: string
+          schedule_config?: Json
+          enabled?: boolean
+          next_sync_at?: string | null
+          last_sync_at?: string | null
+          last_sync_status?: string | null
+          last_sync_error?: string | null
+          last_imported_count?: number | null
+          run_once_completed_at?: string | null
+          created_at?: string
+          updated_at?: string
+        }
+        Relationships: []
       }
       scenario_documents: {
         Row: {
@@ -2233,6 +2739,95 @@ export type Database = {
           },
         ]
       }
+      showing_appointments: {
+        Row: {
+          id: string
+          listing_id: string
+          prequalification_profile_id: string | null
+          tenant_contact_id: string | null
+          user_id: string | null
+          session_id: string
+          property_active_date: string | null
+          listing_address: string
+          ghl_calendar_id: string
+          ghl_appointment_id: string
+          ghl_contact_id: string | null
+          ghl_staff_id: string | null
+          booked_datetime: string
+          booking_timestamp: string | null
+          status: string | null
+          created_at: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          id?: string
+          listing_id: string
+          prequalification_profile_id?: string | null
+          tenant_contact_id?: string | null
+          user_id?: string | null
+          session_id: string
+          property_active_date?: string | null
+          listing_address: string
+          ghl_calendar_id: string
+          ghl_appointment_id: string
+          ghl_contact_id?: string | null
+          ghl_staff_id?: string | null
+          booked_datetime: string
+          booking_timestamp?: string | null
+          status?: string | null
+          created_at?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          id?: string
+          listing_id?: string
+          prequalification_profile_id?: string | null
+          tenant_contact_id?: string | null
+          user_id?: string | null
+          session_id?: string
+          property_active_date?: string | null
+          listing_address?: string
+          ghl_calendar_id?: string
+          ghl_appointment_id?: string
+          ghl_contact_id?: string | null
+          ghl_staff_id?: string | null
+          booked_datetime?: string
+          booking_timestamp?: string | null
+          status?: string | null
+          created_at?: string | null
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "showing_appointments_listing_id_fkey"
+            columns: ["listing_id"]
+            isOneToOne: false
+            referencedRelation: "mls_listings"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "showing_appointments_prequalification_profile_id_fkey"
+            columns: ["prequalification_profile_id"]
+            isOneToOne: false
+            referencedRelation: "tenant_prequalification_profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "showing_appointments_tenant_contact_id_fkey"
+            columns: ["tenant_contact_id"]
+            isOneToOne: false
+            referencedRelation: "tenant_contacts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "showing_appointments_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       sidebar_promos: {
         Row: {
           id: string
@@ -2272,6 +2867,78 @@ export type Database = {
         }
         Relationships: []
       }
+      site_settings: {
+        Row: {
+          id: string
+          setting_key: string
+          setting_value: string
+          description: string | null
+          created_at: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          id?: string
+          setting_key: string
+          setting_value: string
+          description?: string | null
+          created_at?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          id?: string
+          setting_key?: string
+          setting_value?: string
+          description?: string | null
+          created_at?: string | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      tenant_contacts: {
+        Row: {
+          id: string
+          listing_id: string | null
+          user_id: string | null
+          full_name: string
+          email: string
+          mobile_number: string
+          created_at: string | null
+        }
+        Insert: {
+          id?: string
+          listing_id?: string | null
+          user_id?: string | null
+          full_name: string
+          email: string
+          mobile_number: string
+          created_at?: string | null
+        }
+        Update: {
+          id?: string
+          listing_id?: string | null
+          user_id?: string | null
+          full_name?: string
+          email?: string
+          mobile_number?: string
+          created_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "tenant_contacts_listing_id_fkey"
+            columns: ["listing_id"]
+            isOneToOne: false
+            referencedRelation: "mls_listings"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "tenant_contacts_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       tenant_listing_matches: {
         Row: {
           id: string
@@ -2310,6 +2977,84 @@ export type Database = {
             columns: ["tenant_id"]
             isOneToOne: false
             referencedRelation: "tenant_profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      tenant_prequalification_profiles: {
+        Row: {
+          id: string
+          session_id: string | null
+          user_id: string | null
+          tenant_contact_id: string | null
+          household_income: number
+          num_adults: number | null
+          num_children: number | null
+          has_pets: boolean | null
+          num_pets: number | null
+          pet_sizes: string[] | null
+          credit_score_estimate: string
+          earliest_move_date: string
+          latest_move_date: string | null
+          max_rent: number | null
+          min_bedrooms: number | null
+          preferred_locations: string[] | null
+          created_at: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          id?: string
+          session_id?: string | null
+          user_id?: string | null
+          tenant_contact_id?: string | null
+          household_income: number
+          num_adults?: number | null
+          num_children?: number | null
+          has_pets?: boolean | null
+          num_pets?: number | null
+          pet_sizes?: string[] | null
+          credit_score_estimate: string
+          earliest_move_date: string
+          latest_move_date?: string | null
+          max_rent?: number | null
+          min_bedrooms?: number | null
+          preferred_locations?: string[] | null
+          created_at?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          id?: string
+          session_id?: string | null
+          user_id?: string | null
+          tenant_contact_id?: string | null
+          household_income?: number
+          num_adults?: number | null
+          num_children?: number | null
+          has_pets?: boolean | null
+          num_pets?: number | null
+          pet_sizes?: string[] | null
+          credit_score_estimate?: string
+          earliest_move_date?: string
+          latest_move_date?: string | null
+          max_rent?: number | null
+          min_bedrooms?: number | null
+          preferred_locations?: string[] | null
+          created_at?: string | null
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "tenant_prequalification_profiles_tenant_contact_id_fkey"
+            columns: ["tenant_contact_id"]
+            isOneToOne: false
+            referencedRelation: "tenant_contacts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "tenant_prequalification_profiles_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
             referencedColumns: ["id"]
           },
         ]
@@ -2402,6 +3147,123 @@ export type Database = {
             columns: ["id"]
             isOneToOne: false
             referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      tenant_property_views: {
+        Row: {
+          id: string
+          user_id: string
+          listing_id: string
+          viewed_at: string
+          is_favourite: boolean | null
+          is_bookmarked: boolean | null
+          notes: string | null
+          created_at: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          id?: string
+          user_id: string
+          listing_id: string
+          viewed_at?: string
+          is_favourite?: boolean | null
+          is_bookmarked?: boolean | null
+          notes?: string | null
+          created_at?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          id?: string
+          user_id?: string
+          listing_id?: string
+          viewed_at?: string
+          is_favourite?: boolean | null
+          is_bookmarked?: boolean | null
+          notes?: string | null
+          created_at?: string | null
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "tenant_property_views_listing_id_fkey"
+            columns: ["listing_id"]
+            isOneToOne: false
+            referencedRelation: "mls_listings"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "tenant_property_views_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      tenant_screenings: {
+        Row: {
+          id: string
+          tenant_contact_id: string | null
+          listing_id: string | null
+          num_tenants_over_18: number
+          has_pets: boolean
+          num_pets: number | null
+          pet_sizes: string[] | null
+          credit_score_estimate: string
+          earliest_move_date: string
+          latest_move_date: string
+          total_household_income: number
+          qualification_result: string | null
+          qualification_reasons: string[] | null
+          created_at: string | null
+        }
+        Insert: {
+          id?: string
+          tenant_contact_id?: string | null
+          listing_id?: string | null
+          num_tenants_over_18: number
+          has_pets: boolean
+          num_pets?: number | null
+          pet_sizes?: string[] | null
+          credit_score_estimate: string
+          earliest_move_date: string
+          latest_move_date: string
+          total_household_income: number
+          qualification_result?: string | null
+          qualification_reasons?: string[] | null
+          created_at?: string | null
+        }
+        Update: {
+          id?: string
+          tenant_contact_id?: string | null
+          listing_id?: string | null
+          num_tenants_over_18?: number
+          has_pets?: boolean
+          num_pets?: number | null
+          pet_sizes?: string[] | null
+          credit_score_estimate?: string
+          earliest_move_date?: string
+          latest_move_date?: string
+          total_household_income?: number
+          qualification_result?: string | null
+          qualification_reasons?: string[] | null
+          created_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "tenant_screenings_listing_id_fkey"
+            columns: ["listing_id"]
+            isOneToOne: false
+            referencedRelation: "mls_listings"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "tenant_screenings_tenant_contact_id_fkey"
+            columns: ["tenant_contact_id"]
+            isOneToOne: false
+            referencedRelation: "tenant_contacts"
             referencedColumns: ["id"]
           },
         ]
