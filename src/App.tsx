@@ -62,6 +62,9 @@ import Faq from "./pages/hub/Faq";
 import FairHousing from "./pages/hub/FairHousing";
 import Accessibility from "./pages/hub/Accessibility";
 import ReferralProgram from "./pages/hub/ReferralProgram";
+import Tenants from "./pages/hub/Tenants";
+import TenantDetail from "./pages/hub/TenantDetail";
+import Sharing from "./pages/tenant/Sharing";
 
 // The editorial console, carried across from the daily's admin.
 import AdminArticles from "./pages/admin/Articles";
@@ -127,6 +130,33 @@ function App() {
           <Route path="/fair-housing" element={<FairHousing />} />
           <Route path="/accessibility" element={<Accessibility />} />
           <Route path="/referral-program" element={<ReferralProgram />} />
+
+          {/* The tenant directory. Only landlords, agents and admins browse it;
+              the view itself already limits what any of them can see. */}
+          <Route
+            path="/tenants"
+            element={
+              <RoleBasedRoute allowedRoles={["landlord", "agent", "admin"]}>
+                <Tenants />
+              </RoleBasedRoute>
+            }
+          />
+          <Route
+            path="/tenants/:id"
+            element={
+              <RoleBasedRoute allowedRoles={["landlord", "agent", "admin", "tenant"]}>
+                <TenantDetail />
+              </RoleBasedRoute>
+            }
+          />
+          <Route
+            path="/sharing"
+            element={
+              <RoleBasedRoute allowedRoles={["tenant", "admin"]}>
+                <Sharing />
+              </RoleBasedRoute>
+            }
+          />
 
           {/* The rentals. Public: a suppressed listing never leaves the
               database, so these need no guard of their own. */}

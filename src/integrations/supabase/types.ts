@@ -643,6 +643,42 @@ export type Database = {
           },
         ]
       }
+      contact_messages: {
+        Row: {
+          id: string
+          name: string
+          email: string
+          phone: string | null
+          role: string | null
+          message: string
+          source_path: string | null
+          status: string
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          name: string
+          email: string
+          phone?: string | null
+          role?: string | null
+          message: string
+          source_path?: string | null
+          status?: string
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          name?: string
+          email?: string
+          phone?: string | null
+          role?: string | null
+          message?: string
+          source_path?: string | null
+          status?: string
+          created_at?: string
+        }
+        Relationships: []
+      }
       cshr_drops: {
         Row: {
           id: string
@@ -2162,6 +2198,62 @@ export type Database = {
         }
         Relationships: []
       }
+      property_needs: {
+        Row: {
+          id: string
+          owner_id: string
+          city: string | null
+          state: string | null
+          beds_min: number | null
+          baths_min: number | null
+          rent_min: number | null
+          rent_max: number | null
+          pets_ok: boolean | null
+          notes: string | null
+          is_active: boolean
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          owner_id: string
+          city?: string | null
+          state?: string | null
+          beds_min?: number | null
+          baths_min?: number | null
+          rent_min?: number | null
+          rent_max?: number | null
+          pets_ok?: boolean | null
+          notes?: string | null
+          is_active?: boolean
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          owner_id?: string
+          city?: string | null
+          state?: string | null
+          beds_min?: number | null
+          baths_min?: number | null
+          rent_min?: number | null
+          rent_max?: number | null
+          pets_ok?: boolean | null
+          notes?: string | null
+          is_active?: boolean
+          created_at?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "property_needs_owner_id_fkey"
+            columns: ["owner_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       property_posts: {
         Row: {
           id: string
@@ -3060,6 +3152,47 @@ export type Database = {
           },
         ]
       }
+      tenant_private_packages: {
+        Row: {
+          user_id: string
+          income_band: string | null
+          credit_band: string | null
+          eviction_status: string | null
+          background_status: string | null
+          rental_history: Json
+          notes: string | null
+          updated_at: string
+        }
+        Insert: {
+          user_id: string
+          income_band?: string | null
+          credit_band?: string | null
+          eviction_status?: string | null
+          background_status?: string | null
+          rental_history?: Json
+          notes?: string | null
+          updated_at?: string
+        }
+        Update: {
+          user_id?: string
+          income_band?: string | null
+          credit_band?: string | null
+          eviction_status?: string | null
+          background_status?: string | null
+          rental_history?: Json
+          notes?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "tenant_private_packages_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       tenant_profiles: {
         Row: {
           id: string
@@ -3090,6 +3223,13 @@ export type Database = {
           num_pets: number
           earliest_move_date: string | null
           is_pre_screened: boolean | null
+          display_name: string | null
+          household_type: string | null
+          share_rent_range: boolean
+          share_credit_band: boolean
+          share_income_band: boolean
+          is_published: boolean
+          admin_approved_at: string | null
         }
         Insert: {
           id: string
@@ -3119,6 +3259,13 @@ export type Database = {
           credit_score_estimate?: string | null
           num_pets?: number
           earliest_move_date?: string | null
+          display_name?: string | null
+          household_type?: string | null
+          share_rent_range?: boolean
+          share_credit_band?: boolean
+          share_income_band?: boolean
+          is_published?: boolean
+          admin_approved_at?: string | null
         }
         Update: {
           id?: string
@@ -3148,6 +3295,13 @@ export type Database = {
           credit_score_estimate?: string | null
           num_pets?: number
           earliest_move_date?: string | null
+          display_name?: string | null
+          household_type?: string | null
+          share_rent_range?: boolean
+          share_credit_band?: boolean
+          share_income_band?: boolean
+          is_published?: boolean
+          admin_approved_at?: string | null
         }
         Relationships: [
           {
@@ -3477,6 +3631,42 @@ export type Database = {
         }
         Relationships: []
       }
+      tenant_directory: {
+        Row: {
+          id: string | null
+          display_name: string | null
+          household_type: string | null
+          household_size: number | null
+          desired_cities: string[] | null
+          desired_state: string | null
+          min_bedrooms: number | null
+          min_bathrooms: number | null
+          pets: boolean | null
+          move_in_date: string | null
+          earliest_move_date: string | null
+          move_date_flexibility: string | null
+          bio: string | null
+          profile_image_url: string | null
+          is_pre_screened: boolean | null
+          screening_status: string | null
+          status: Database["public"]["Enums"]["profile_status"] | null
+          max_monthly_rent: number | null
+          credit_band: string | null
+          income_band: string | null
+          share_rent_range: boolean | null
+          share_credit_band: boolean | null
+          share_income_band: boolean | null
+          created_at: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          [_ in never]: never
+        }
+        Update: {
+          [_ in never]: never
+        }
+        Relationships: []
+      }
       users: {
         Row: {
           id: string | null
@@ -3510,6 +3700,10 @@ export type Database = {
       has_role: {
         Args: { _user_id: string; _role: string }
         Returns: boolean
+      }
+      income_band: {
+        Args: { monthly: number }
+        Returns: string
       }
       is_admin: {
         Args: Record<PropertyKey, never>
