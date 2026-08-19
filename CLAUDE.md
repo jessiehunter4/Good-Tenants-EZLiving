@@ -3,6 +3,31 @@
 The merged platform: EZ Living Irvine, Irvine Living Daily, Coming Soon Home
 Rentals and Good Tenants in one application on one Supabase project.
 
+## This is a merge, not a new build
+
+Three working applications are being combined into this one:
+
+| App | Repo | What it is |
+| --- | --- | --- |
+| Coming Soon Home Rentals | `comingsoonhomrentals-com` | The listings. MLS ingestion, search, listing detail, showings. 77 migrations, 49 edge functions, live users |
+| EZ Living Irvine | `Irvine Living Daily` | The daily. Content, topics, an admin CMS and an AI article pipeline. 34 routes, 15 migrations |
+| Good Tenants | this repo | The profile. Tenant directory, screening, the reusable application |
+
+**Look in those repos before writing anything.** They have working copy, working
+schema and a working funnel. The default is to carry across what exists and adapt
+it, not to design a fourth version of it — and where a decision was already made
+there, the burden is on changing it, not on keeping it.
+
+That applies to design as much as code. The landing page was once written from an
+unrelated reference site while both apps being merged already had landing pages,
+their own value propositions and their own FAQ. The result was plausible and
+wrong.
+
+**Carry the source with it.** When copy, a rule or a schema comes from one of the
+three, say so in a comment or a `source` field. It is the difference between "we
+decided this" and "this is what the live site says", which matters when a claim
+turns out to be a marketing number nobody has checked.
+
 ## Build to be changed, not just to run
 
 Every decision here is about the fourth month, not the first week.
