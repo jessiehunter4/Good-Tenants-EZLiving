@@ -3080,13 +3080,16 @@ export type Database = {
           pets: boolean | null
           pets_allowed: boolean | null
           profile_image_url: string | null
-          is_pre_screened: boolean
           screening_status: string | null
           status: Database["public"]["Enums"]["profile_status"]
           last_activity: string | null
           created_at: string
           updated_at: string
           desired_property_types: string[] | null
+          credit_score_estimate: string | null
+          num_pets: number
+          earliest_move_date: string | null
+          is_pre_screened: boolean | null
         }
         Insert: {
           id: string
@@ -3107,13 +3110,15 @@ export type Database = {
           pets?: boolean | null
           pets_allowed?: boolean | null
           profile_image_url?: string | null
-          is_pre_screened?: boolean
           screening_status?: string | null
           status?: Database["public"]["Enums"]["profile_status"]
           last_activity?: string | null
           created_at?: string
           updated_at?: string
           desired_property_types?: string[] | null
+          credit_score_estimate?: string | null
+          num_pets?: number
+          earliest_move_date?: string | null
         }
         Update: {
           id?: string
@@ -3134,13 +3139,15 @@ export type Database = {
           pets?: boolean | null
           pets_allowed?: boolean | null
           profile_image_url?: string | null
-          is_pre_screened?: boolean
           screening_status?: string | null
           status?: Database["public"]["Enums"]["profile_status"]
           last_activity?: string | null
           created_at?: string
           updated_at?: string
           desired_property_types?: string[] | null
+          credit_score_estimate?: string | null
+          num_pets?: number
+          earliest_move_date?: string | null
         }
         Relationships: [
           {

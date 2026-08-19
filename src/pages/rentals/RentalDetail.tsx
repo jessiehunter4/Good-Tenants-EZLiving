@@ -4,6 +4,7 @@ import { Bath, BedDouble, CalendarDays, PawPrint, Square } from "lucide-react";
 
 import SiteLayout from "@/components/site/SiteLayout";
 import ListingAttribution from "@/components/rentals/ListingAttribution";
+import QualificationPanel from "@/components/rentals/QualificationPanel";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -109,7 +110,17 @@ const RentalDetail = () => {
             </div>
           </div>
 
-          <aside className="lg:sticky lg:top-24 lg:self-start">
+          <aside className="space-y-4 lg:sticky lg:top-24 lg:self-start">
+            <QualificationPanel
+              listing={{
+                rent: listing.rent,
+                minCreditScore: listing.minCreditScore,
+                petsAllowed: listing.petsAllowed,
+                dateAvailable: listing.dateAvailable,
+                incomeMultiplier: listing.incomeMultiplier,
+              }}
+            />
+
             <Card className="p-6">
               <h2 className="text-lg font-bold text-espresso">Want to see it?</h2>
 
@@ -138,11 +149,6 @@ const RentalDetail = () => {
                 </p>
               )}
 
-              {listing.minCreditScore != null && (
-                <p className="mt-4 text-xs text-espresso-muted">
-                  This landlord looks for a credit score of {listing.minCreditScore} or above.
-                </p>
-              )}
             </Card>
           </aside>
         </div>

@@ -1,21 +1,22 @@
 import { describe, expect, it } from "vitest";
 import {
   DEFAULT_INCOME_MULTIPLIER,
+  isPreScreened,
   meetsCreditRequirement,
   qualifyForListing,
   requiredIncomeFor,
-  type QualificationListing,
-  type QualificationProfile,
+  type QualifiableListing,
+  type QualifiableProfile,
 } from "./qualification";
 
-const profile: QualificationProfile = {
+const profile: QualifiableProfile = {
   householdIncome: 12000,
   creditEstimate: "good",
   hasPets: false,
   earliestMoveDate: "2026-09-01",
 };
 
-const listing: QualificationListing = {
+const listing: QualifiableListing = {
   rent: 4000,
   minCreditScore: 680,
   petsAllowed: true,
@@ -94,5 +95,35 @@ describe("meetsCreditRequirement", () => {
   it("treats not-sure as 600 rather than as a pass", () => {
     expect(meetsCreditRequirement("not_sure", 650)).toBe(false);
     expect(meetsCreditRequirement("not_sure", 580)).toBe(true);
+  });
+});
+
+describe("an incomplete profile", () => {
+  it("cannot be qualified, and says what is missing rather than failing silently", () => {
+    const result = qualifyForListing(
+      { householdIncome: null, creditEstimate: null, hasPets: false, earliestMoveDate: null },
+      listing,
+    );
+    expect(result.answerable).toBe(false);
+    expect(result.qualified).toBe(false);
+    expect(result.checks).toEqual([]);
+    expect(result.missing).toEqual([
+      "your household income",
+      "your credit estimate",
+      "when you could move",
+    ]);
+  });
+
+  it("is not treated as qualified just because nothing failed", () => {
+    // The old flag was set by hand, so an empty profile could read as
+    // pre-screened. Now the same three fields decide it in both places.
+    const empty = { householdIncome: null, creditEstimate: null, hasPets: null, earliestMoveDate: null };
+    expect(isPreScreened(empty)).toBe(false);
+    expect(qualifyForListing(empty, listing).qualified).toBe(false);
+  });
+
+  it("is answerable as soon as the three fields are there", () => {
+    expect(isPreScreened(profile)).toBe(true);
+    expect(qualifyForListing(profile, listing).answerable).toBe(true);
   });
 });

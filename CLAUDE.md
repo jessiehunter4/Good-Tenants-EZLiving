@@ -28,6 +28,26 @@ three, say so in a comment or a `source` field. It is the difference between "we
 decided this" and "this is what the live site says", which matters when a claim
 turns out to be a marketing number nobody has checked.
 
+## One question, one answer
+
+Three apps asked overlapping questions in different words. Where two of them
+turn out to be the same question, they get one answer in one place — that is
+what the merge is for. Where they turn out to be *different* questions wearing
+similar names, they stay apart and the code says why.
+
+Settled so far:
+
+- **Qualification** — would a landlord approve this renter — is
+  `features/tenant/qualification.ts`, and nowhere else.
+- **Fit** — does this home suit what they asked for — is
+  `calculate_match_score`. A renter can qualify for a home that suits them
+  badly, so this is not the same question.
+- **Verification** — have we checked their documents — is
+  `tenant_profiles.screening_status`. Also not the same question.
+- **The renter profile** is `tenant_profiles`.
+  `tenant_prequalification_profiles` is only where an anonymous visitor's
+  answers land before they have an account.
+
 ## Build to be changed, not just to run
 
 Every decision here is about the fourth month, not the first week.

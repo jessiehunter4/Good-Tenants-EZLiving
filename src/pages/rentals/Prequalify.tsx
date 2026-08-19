@@ -25,19 +25,20 @@ import { Switch } from "@/components/ui/switch";
 import { errorMessage } from "@/hooks/admin/crud";
 import { EMPTY_FILTERS, rentalsQuery, retentionDaysQuery } from "@/hooks/rentals/useRentals";
 import {
-  myPrequalificationQuery,
-  toQualificationProfile,
-  useSavePrequalification,
-} from "@/hooks/rentals/usePrequalification";
+  myRenterProfileQuery,
+  toQualifiable,
+  useSaveRenterProfile,
+} from "@/hooks/tenant/useRenterProfile";
 import { isPubliclyListed, type RentalListing } from "@/features/rentals/listing";
 import {
   CREDIT_LABELS,
+  CREDIT_OPTIONS,
+  missingForQualification,
   qualifyForListing,
   type CreditEstimate,
-  type QualificationProfile,
-} from "@/features/rentals/qualification";
+  type QualifiableProfile,
+} from "@/features/tenant/qualification";
 import {
-  CREDIT_OPTIONS,
   PREQUALIFY_DEFAULTS,
   prequalifySchema,
   type PrequalifyForm,
@@ -53,10 +54,10 @@ import { useDocumentMeta } from "@/hooks/useDocumentMeta";
  * below are every displayable listing scored against the same stored profile.
  */
 const Prequalify = () => {
-  const { data: saved, isLoading } = useQuery(myPrequalificationQuery);
+  const { data: saved, isLoading } = useQuery(myRenterProfileQuery);
   const { data: retentionDays = 30 } = useQuery(retentionDaysQuery);
   const { data: listings = [] } = useQuery(rentalsQuery(EMPTY_FILTERS, retentionDays));
-  const save = useSavePrequalification();
+  const save = useSaveRenterProfile();
 
   const form = useForm<PrequalifyForm>({
     resolver: zodResolver(prequalifySchema),
@@ -67,21 +68,21 @@ const Prequalify = () => {
   useEffect(() => {
     if (!saved) return;
     form.reset({
-      householdIncome: Number(saved.household_income),
-      creditEstimate: saved.credit_score_estimate as CreditEstimate,
-      numAdults: saved.num_adults ?? 1,
-      numChildren: saved.num_children ?? 0,
-      hasPets: saved.has_pets ?? false,
+      householdIncome: saved.household_income == null ? 0 : Number(saved.household_income),
+      creditEstimate: (saved.credit_score_estimate as CreditEstimate | null) ?? "not_sure",
+      numAdults: saved.household_size ?? 1,
+      numChildren: 0,
+      hasPets: saved.pets ?? false,
       numPets: saved.num_pets ?? 0,
-      earliestMoveDate: saved.earliest_move_date,
-      latestMoveDate: saved.latest_move_date ?? "",
-      maxRent: saved.max_rent,
+      earliestMoveDate: saved.earliest_move_date ?? saved.move_in_date ?? "",
+      latestMoveDate: saved.desired_move_date ?? "",
+      maxRent: saved.max_monthly_rent == null ? null : Number(saved.max_monthly_rent),
       minBedrooms: saved.min_bedrooms,
     });
   }, [saved, form]);
 
-  const profile: QualificationProfile | null = useMemo(
-    () => (saved ? toQualificationProfile(saved) : null),
+  const profile: QualifiableProfile | null = useMemo(
+    () => (saved ? toQualifiable(saved) : null),
     [saved],
   );
 
@@ -92,7 +93,17 @@ const Prequalify = () => {
   });
 
   const submit = form.handleSubmit((values) => {
-    save.mutate(values, {
+    save.mutate({
+      household_income: values.householdIncome,
+      credit_score_estimate: values.creditEstimate,
+      household_size: values.numAdults + values.numChildren,
+      pets: values.hasPets,
+      num_pets: values.hasPets ? values.numPets : 0,
+      earliest_move_date: values.earliestMoveDate,
+      desired_move_date: values.latestMoveDate || null,
+      max_monthly_rent: values.maxRent,
+      min_bedrooms: values.minBedrooms,
+    }, {
       onSuccess: () => toast.success("Saved. Your results are below."),
       onError: (e) => toast.error(errorMessage(e)),
     });
@@ -193,11 +204,13 @@ const Prequalify = () => {
           <div className="min-w-0">
             {isLoading ? (
               <div className="h-40 animate-pulse rounded-2xl bg-clay/30" />
-            ) : !profile ? (
+            ) : !profile || missingForQualification(profile).length > 0 ? (
               <Card className="border-dashed p-10 text-center">
                 <p className="font-semibold text-espresso">Your results appear here</p>
                 <p className="mt-1 text-sm text-espresso-muted">
-                  Fill in the form and every available rental will tell you where you stand.
+                  {profile && missingForQualification(profile).length > 0
+                    ? `Still needed: ${missingForQualification(profile).join(", ")}.`
+                    : "Fill in the form and every available rental will tell you where you stand."}
                 </p>
               </Card>
             ) : (
@@ -214,7 +227,7 @@ const Results = ({
   profile,
   listings,
 }: {
-  profile: QualificationProfile;
+  profile: QualifiableProfile;
   listings: RentalListing[];
 }) => {
   const scored = listings.map((listing) => ({
