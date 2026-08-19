@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import { supabase } from "@/integrations/supabase/client";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
 import { useForm } from "react-hook-form";
 import ProfileForm from "@/components/shared/form/ProfileForm";
 import { useDataOperation } from "@/hooks/useDataOperation";
@@ -27,7 +28,7 @@ const OnboardLandlord = () => {
     },
   });
 
-  const onSubmit = async (values) => {
+  const onSubmit = async (values: z.infer<typeof landlordSchema>) => {
     if (!user) return;
 
     // Use the executeOperation function from useDataOperation for consistent error handling

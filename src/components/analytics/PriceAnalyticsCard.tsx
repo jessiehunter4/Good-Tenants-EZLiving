@@ -34,14 +34,19 @@ const PriceAnalyticsCard = ({ type }: PriceAnalyticsCardProps) => {
           icon: Activity,
           trend: metrics?.rentChange || 0,
         };
-      case "price-change":
+      case "price-change": {
+        // Read once. `metrics?.priceChange >= 0` compares undefined to a number
+        // when metrics has not arrived, which is false — so a missing metric
+        // used to render as a fall rather than as no change.
+        const priceChange = metrics?.priceChange ?? 0;
         return {
           title: "Price Change",
-          value: `${metrics?.priceChange >= 0 ? '+' : ''}${metrics?.priceChange || 0}%`,
+          value: `${priceChange >= 0 ? "+" : ""}${priceChange}%`,
           description: "From last month",
-          icon: metrics?.priceChange >= 0 ? TrendingUp : TrendingDown,
-          trend: metrics?.priceChange || 0,
+          icon: priceChange >= 0 ? TrendingUp : TrendingDown,
+          trend: priceChange,
         };
+      }
       case "market-activity":
         return {
           title: "Active Listings",

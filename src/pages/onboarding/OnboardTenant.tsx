@@ -46,7 +46,12 @@ const OnboardTenant = () => {
     const entries = QUESTS.map((quest) => [
       quest.id,
       {
-        done: quest.fields.filter((field) => isAnswered(values?.[field])).length,
+        // The quest lists its fields by name, so the lookup is by string. The
+        // form's values are a known shape; index through a record view of it
+        // rather than widening the whole form type.
+        done: quest.fields.filter((field) =>
+          isAnswered((values as Record<string, unknown> | undefined)?.[field]),
+        ).length,
         total: quest.fields.length,
       },
     ]);

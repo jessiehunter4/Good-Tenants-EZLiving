@@ -5,8 +5,8 @@ import { CheckCircle, Clock, AlertCircle, Shield } from "lucide-react";
 interface ProfileVerificationBadgeProps {
   status: string;
   userRole: 'tenant' | 'landlord' | 'agent';
-  isVerified?: boolean;
-  licenseNumber?: string;
+  isVerified?: boolean | null;
+  licenseNumber?: string | null;
 }
 
 const ProfileVerificationBadge = ({ 

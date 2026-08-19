@@ -116,6 +116,18 @@ export const useIntegrations = () => {
     }
   };
 
+
+  /*
+   * The id to record against an admin action. `integration_audit_log.
+   * performed_by` is NOT NULL, so a missing session has to stop the write
+   * rather than send `undefined` and fail on a constraint.
+   */
+  const requireActorId = async (): Promise<string> => {
+    const { data } = await supabase.auth.getUser();
+    if (!data.user) throw new Error("You need to be signed in to do that.");
+    return data.user.id;
+  };
+
   const updateIntegrationStatus = async (integrationId: string, status: Integration['status']) => {
     try {
       const { error } = await supabase
@@ -134,7 +146,7 @@ export const useIntegrations = () => {
         .insert({
           integration_id: integrationId,
           action: `status_changed_to_${status}`,
-          performed_by: (await supabase.auth.getUser()).data.user?.id,
+          performed_by: await requireActorId(),
           details: { new_status: status }
         });
 
@@ -162,7 +174,7 @@ export const useIntegrations = () => {
         .update({ 
           status,
           admin_notes: adminNotes,
-          reviewed_by: (await supabase.auth.getUser()).data.user?.id,
+          reviewed_by: await requireActorId(),
           reviewed_at: new Date().toISOString(),
           updated_at: new Date().toISOString()
         })
@@ -203,7 +215,7 @@ export const useIntegrations = () => {
         .insert({
           integration_id: integrationId,
           action: 'test_initiated',
-          performed_by: (await supabase.auth.getUser()).data.user?.id,
+          performed_by: await requireActorId(),
           details: { test_type: 'manual' }
         });
 

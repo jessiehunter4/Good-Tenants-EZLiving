@@ -71,7 +71,19 @@ export const validationSchemas = {
 };
 
 // Helper function to create a schema with common fields plus role-specific ones
-export function createProfileSchema(role: 'tenant' | 'agent' | 'landlord') {
+/*
+ * Generic in the role so the caller gets the schema for the role it asked for.
+ * Typed as a plain union parameter this returned the union of all three, and
+ * every field access on the parsed values was an error waiting for strict mode
+ * to be switched on.
+ */
+export type ProfileRole = "tenant" | "agent" | "landlord";
+
+type RoleSchemas = { [K in ProfileRole]: (typeof validationSchemas)[K] };
+
+export function createProfileSchema<R extends ProfileRole>(
+  role: R,
+): RoleSchemas[R]["base"] {
   return validationSchemas[role].base;
 }
 

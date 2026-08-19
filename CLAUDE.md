@@ -66,6 +66,10 @@ a shared file. If two features need the same thing, it moves to `lib/` or
 
 ## TypeScript
 
+- **`strict` is on, and stays on.** It was off for a long time, which made most
+  of the rules below unenforceable: with `strictNullChecks` off every zod schema
+  infers as all-optional and every `| null` is decorative. If a change seems to
+  need it turned off, the change is wrong.
 - **Never `any`.** Not in props, not in a reducer accumulator, not as `as any`.
   Derive from the generated database types so a schema change is a compile error
   rather than `undefined` at runtime.
