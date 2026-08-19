@@ -49,6 +49,11 @@ import Rentals from "./pages/rentals/Rentals";
 import RentalDetail from "./pages/rentals/RentalDetail";
 import Prequalify from "./pages/rentals/Prequalify";
 
+// Legal and contact, carried across from the rentals site and the daily.
+import Privacy from "./pages/legal/Privacy";
+import Terms from "./pages/legal/Terms";
+import Contact from "./pages/Contact";
+
 // The editorial console, carried across from the daily's admin.
 import AdminArticles from "./pages/admin/Articles";
 import AdminAskQa from "./pages/admin/AskQa";
@@ -104,6 +109,9 @@ function App() {
           <Route path="/ask" element={<Ask />} />
           <Route path="/ask/thanks" element={<AskThanks />} />
           <Route path="/start" element={<Start />} />
+          <Route path="/privacy" element={<Privacy />} />
+          <Route path="/terms" element={<Terms />} />
+          <Route path="/contact" element={<Contact />} />
 
           {/* The rentals. Public: a suppressed listing never leaves the
               database, so these need no guard of their own. */}

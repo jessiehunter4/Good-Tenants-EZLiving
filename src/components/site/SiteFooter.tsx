@@ -26,11 +26,19 @@ const COLUMNS = [
     ],
   },
   { heading: "Read", links: READ_LINKS },
+  {
+    heading: "Company",
+    links: [
+      { label: "Contact", to: "/contact" },
+      { label: "Privacy", to: "/privacy" },
+      { label: "Terms", to: "/terms" },
+    ],
+  },
 ] as const;
 
 export const SiteFooter = () => (
   <footer className="bg-clay">
-    <div className="page-shell grid gap-10 py-16 md:grid-cols-[1.4fr_repeat(4,1fr)]">
+    <div className="page-shell grid gap-10 py-16 md:grid-cols-[1.3fr_repeat(5,1fr)]">
       <div>
         <p className="text-lg font-extrabold tracking-tight text-espresso">{BRAND.name}</p>
         <p className="mt-3 max-w-xs font-medium text-espresso-muted">{BRAND.tagline}</p>
@@ -56,9 +64,10 @@ export const SiteFooter = () => (
     </div>
 
     <div className="border-t border-espresso/10">
-      <p className="page-shell py-6 text-sm font-medium text-espresso-muted">
-        © {new Date().getFullYear()} {BRAND.legalName}
-      </p>
+      <div className="page-shell flex flex-wrap items-center justify-between gap-2 py-6 text-sm font-medium text-espresso-muted">
+        <p>© {new Date().getFullYear()} {BRAND.legalName}</p>
+        <p>Equal Housing Opportunity</p>
+      </div>
     </div>
   </footer>
 );
