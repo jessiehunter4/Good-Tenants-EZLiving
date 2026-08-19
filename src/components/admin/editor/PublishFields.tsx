@@ -15,11 +15,9 @@ import {
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { adminListQuery } from "@/hooks/admin/crud";
+import { topicsQuery } from "@/hooks/admin/queries";
 
 const NO_TOPIC = "__none__";
-
-export const topicsQuery = adminListQuery("topics", [{ column: "name" }]);
 
 /**
  * The fields every publishable thing has: where it lives, when it goes out, who
@@ -45,9 +43,12 @@ type PublishShape = {
 export function PublishFields<T extends FieldValues & PublishShape>({
   form,
   summaryLabel = "Summary",
+  showSummary = true,
 }: {
   form: UseFormReturn<T>;
   summaryLabel?: string;
+  /** Questions have no summary column — their short answer plays that part. */
+  showSummary?: boolean;
 }) {
   const { data: topics = [] } = useQuery(topicsQuery);
   const field = (name: keyof PublishShape) => name as Path<T>;
@@ -103,9 +104,11 @@ export function PublishFields<T extends FieldValues & PublishShape>({
         />
       </EditorField>
 
-      <EditorField label={summaryLabel} htmlFor="content-summary">
-        <Textarea id="content-summary" rows={2} {...form.register(field("summary"))} />
-      </EditorField>
+      {showSummary && (
+        <EditorField label={summaryLabel} htmlFor="content-summary">
+          <Textarea id="content-summary" rows={2} {...form.register(field("summary"))} />
+        </EditorField>
+      )}
 
       <EditorField label="Tags" htmlFor="content-tags">
         <TagInput

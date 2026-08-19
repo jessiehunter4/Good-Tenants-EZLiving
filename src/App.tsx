@@ -1,4 +1,5 @@
 
+import type { ReactNode } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { AuthProvider } from "./contexts/AuthContext";
@@ -43,6 +44,21 @@ import Ask from "./pages/daily/Ask";
 import AskThanks from "./pages/daily/AskThanks";
 import Start from "./pages/daily/Start";
 
+// The editorial console, carried across from the daily's admin.
+import AdminArticles from "./pages/admin/Articles";
+import AdminAskQa from "./pages/admin/AskQa";
+import AdminCalendar from "./pages/admin/Calendar";
+import AdminCaseStudies from "./pages/admin/CaseStudies";
+import AdminCtas from "./pages/admin/Ctas";
+import AdminDrops from "./pages/admin/Drops";
+import AdminInbox from "./pages/admin/Inbox";
+import AdminLeads from "./pages/admin/Leads";
+import AdminNotifications from "./pages/admin/Notifications";
+import AdminPromos from "./pages/admin/Promos";
+import AdminSeeds from "./pages/admin/Seeds";
+import AdminTeam from "./pages/admin/Team";
+import AdminTopics from "./pages/admin/Topics";
+
 /**
  * One client for the whole app. Content is public and changes a few times a
  * day, so a short stale time is enough — the per-query values live with their
@@ -54,6 +70,11 @@ const queryClient = new QueryClient({
   },
 });
 
+
+/** Every editorial route sits behind the same guard. */
+const AdminOnly = ({ children }: { children: ReactNode }) => (
+  <RoleBasedRoute allowedRoles={["admin"]}>{children}</RoleBasedRoute>
+);
 
 function App() {
   return (
@@ -221,6 +242,22 @@ function App() {
               </RoleBasedRoute>
             }
           />
+
+          {/* The editorial console. Every screen reads tables whose policies are
+              admin-only, so the guard here and the database agree. */}
+          <Route path="/admin/calendar" element={<AdminOnly><AdminCalendar /></AdminOnly>} />
+          <Route path="/admin/drops" element={<AdminOnly><AdminDrops /></AdminOnly>} />
+          <Route path="/admin/articles" element={<AdminOnly><AdminArticles /></AdminOnly>} />
+          <Route path="/admin/ask" element={<AdminOnly><AdminAskQa /></AdminOnly>} />
+          <Route path="/admin/case-studies" element={<AdminOnly><AdminCaseStudies /></AdminOnly>} />
+          <Route path="/admin/topics" element={<AdminOnly><AdminTopics /></AdminOnly>} />
+          <Route path="/admin/promos" element={<AdminOnly><AdminPromos /></AdminOnly>} />
+          <Route path="/admin/seeds" element={<AdminOnly><AdminSeeds /></AdminOnly>} />
+          <Route path="/admin/ctas" element={<AdminOnly><AdminCtas /></AdminOnly>} />
+          <Route path="/admin/leads" element={<AdminOnly><AdminLeads /></AdminOnly>} />
+          <Route path="/admin/inbox" element={<AdminOnly><AdminInbox /></AdminOnly>} />
+          <Route path="/admin/notifications" element={<AdminOnly><AdminNotifications /></AdminOnly>} />
+          <Route path="/admin/team" element={<AdminOnly><AdminTeam /></AdminOnly>} />
 
           {/* 404 - Not Found */}
           <Route path="*" element={<NotFound />} />
