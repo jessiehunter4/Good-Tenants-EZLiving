@@ -80,6 +80,16 @@ export default {
 					DEFAULT: 'hsl(var(--espresso))',
 					muted: 'hsl(var(--espresso-muted))'
 				},
+				cta: {
+					browse: {
+						DEFAULT: 'hsl(var(--cta-browse))',
+						foreground: 'hsl(var(--cta-browse-foreground))'
+					},
+					qualify: {
+						DEFAULT: 'hsl(var(--cta-qualify))',
+						foreground: 'hsl(var(--cta-qualify-foreground))'
+					}
+				},
 				role: {
 					tenant: {
 						DEFAULT: 'hsl(var(--role-tenant))',

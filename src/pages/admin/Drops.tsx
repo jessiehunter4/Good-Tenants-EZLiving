@@ -10,6 +10,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import ConfirmDialog from "@/components/ui/confirm-dialog";
+import FairHousingNotice from "@/components/admin/FairHousingNotice";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   adminListQuery,
@@ -254,6 +255,13 @@ const DropInbox = () => {
           reviewing
             ? `“${reviewing.headline || reviewing.address}” goes live immediately as a rental drop post, with a quick-facts block built from the feed. You can edit it afterwards.`
             : ""
+        }
+        body={
+          reviewing ? (
+            <FairHousingNotice
+              copy={[reviewing.headline, reviewing.summary].filter(Boolean).join("\n")}
+            />
+          ) : null
         }
         confirmText="Publish"
         isLoading={publish.isPending}

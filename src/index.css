@@ -78,6 +78,16 @@
     --espresso: 20 30% 12%;
     --espresso-muted: 20 14% 32%;
 
+    /* The rentals funnel's two calls to action, carried across from Coming Soon
+     * Home Rentals. That site used a blue "browse" and a green "get qualified"
+     * to keep the two paths apart at a glance, which is worth keeping — but in
+     * this palette rather than its own, so the landing page belongs to the same
+     * product as everything behind it. Both clear 4.5:1 on their foreground. */
+    --cta-browse: 205 62% 34%;
+    --cta-browse-foreground: 36 44% 96%;
+    --cta-qualify: 152 46% 26%;
+    --cta-qualify-foreground: 36 44% 96%;
+
     /* Account types. One accent each, used by the role chooser, its badges and
      * anywhere a role needs to be identifiable at a glance. */
     /* Chosen to satisfy two constraints at once: each is at least 4.5:1 on

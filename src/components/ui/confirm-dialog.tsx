@@ -8,6 +8,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
+import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
 export type ConfirmDialogProps = {
@@ -20,6 +21,8 @@ export type ConfirmDialogProps = {
   cancelText?: string;
   variant?: "default" | "destructive";
   isLoading?: boolean;
+  /** Extra content between the description and the buttons. */
+  body?: ReactNode;
 };
 
 /**
@@ -39,6 +42,7 @@ export const ConfirmDialog = ({
   cancelText = "Cancel",
   variant = "default",
   isLoading = false,
+  body,
 }: ConfirmDialogProps) => (
   <AlertDialog open={open} onOpenChange={onOpenChange}>
     <AlertDialogContent>
@@ -46,6 +50,7 @@ export const ConfirmDialog = ({
         <AlertDialogTitle>{title}</AlertDialogTitle>
         <AlertDialogDescription>{description}</AlertDialogDescription>
       </AlertDialogHeader>
+      {body}
       <AlertDialogFooter>
         <AlertDialogCancel disabled={isLoading}>{cancelText}</AlertDialogCancel>
         <AlertDialogAction

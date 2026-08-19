@@ -6,23 +6,21 @@ import {
 } from "@/components/ui/accordion";
 import { FAQ } from "@/features/landing/content";
 
-/** Coming Soon Home Rentals' questions, which are the ones people actually ask. */
+/** Carried across from `comingsoonhomrentals-com/src/components/home/FAQSection.tsx`. */
 export const FaqSection = () => (
-  <section id="faq" className="bg-sand py-20 sm:py-28">
-    <div className="page-shell max-w-3xl">
-      <h2 className="text-center text-3xl font-extrabold tracking-tight text-espresso sm:text-4xl">
+  <section id="faq" className="bg-background py-16">
+    <div className="mx-auto max-w-3xl px-5 sm:px-8">
+      <h2 className="text-center text-2xl font-extrabold tracking-tight text-espresso md:text-3xl">
         Questions people ask
       </h2>
 
-      <Accordion type="single" collapsible className="mt-10">
-        {FAQ.map((item) => (
-          <AccordionItem key={item.question} value={item.question} className="border-espresso/10">
-            <AccordionTrigger className="text-left font-bold text-espresso hover:no-underline">
+      <Accordion type="single" collapsible className="mt-8">
+        {FAQ.map((item, i) => (
+          <AccordionItem key={item.question} value={`faq-${i}`}>
+            <AccordionTrigger className="text-left font-semibold text-espresso">
               {item.question}
             </AccordionTrigger>
-            <AccordionContent className="font-medium leading-relaxed text-espresso-muted">
-              {item.answer}
-            </AccordionContent>
+            <AccordionContent className="text-espresso-muted">{item.answer}</AccordionContent>
           </AccordionItem>
         ))}
       </Accordion>

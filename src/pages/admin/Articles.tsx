@@ -10,6 +10,7 @@ import AdminList from "@/components/admin/AdminTable";
 import ContentRow from "@/components/admin/ContentRow";
 import ResourceDialog from "@/components/admin/ResourceDialog";
 import EditorField from "@/components/admin/editor/EditorField";
+import FairHousingNotice from "@/components/admin/FairHousingNotice";
 import PublishFields from "@/components/admin/editor/PublishFields";
 import SectionsEditor from "@/components/admin/editor/SectionsEditor";
 import TagInput from "@/components/admin/editor/TagInput";
@@ -28,6 +29,7 @@ import {
 import { topicsQuery } from "@/hooks/admin/queries";
 import { useConfirm } from "@/hooks/admin/useConfirm";
 import { orNull, slugify } from "@/features/admin/schemas";
+import { assertFairHousingCompliant } from "@/features/compliance/fairHousing";
 import {
   articleSchema,
   jsonToSections,
@@ -160,6 +162,19 @@ const ArticleFields = ({ article, onDone }: { article: Article | null; onDone: (
   });
 
   const submit = form.handleSubmit((values) => {
+    // Blocking copy stops a publish, never a draft: a writer has to be able to
+    // save work in progress, but nothing goes live saying who a home suits.
+    if (values.published) {
+      try {
+        assertFairHousingCompliant(
+          [values.title, values.summary, ...values.sections.map((s) => s.body)].join("\n"),
+        );
+      } catch (error) {
+        toast.error(errorMessage(error));
+        return;
+      }
+    }
+
     upsert.mutate(
       {
         id: article?.id,
@@ -217,6 +232,14 @@ const ArticleFields = ({ article, onDone }: { article: Article | null; onDone: (
           onChange={(v) => form.setValue("sections", v)}
         />
       </EditorField>
+
+      <FairHousingNotice
+        copy={[
+          form.watch("title"),
+          form.watch("summary"),
+          ...form.watch("sections").map((s) => s.body),
+        ].join("\n")}
+      />
 
       <EditorField label="Hashtags" htmlFor="article-hashtags">
         <TagInput

@@ -1,44 +1,45 @@
 import { Link } from "react-router-dom";
+import { Check } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import { STATS } from "@/features/landing/content";
+import { OWNERS } from "@/features/landing/content";
 
 /**
- * The owner side, from Coming Soon Home Rentals.
- *
- * The figures are that platform's published claims, carried across rather than
- * invented — and they describe its network, not the merged database. They are
- * worth confirming before this page goes anywhere near production.
+ * Carried across from `comingsoonhomrentals-com/src/components/home/
+ * LandlordSection.tsx`. Its two buttons went to `/verify` and an upload screen;
+ * here they go to the registration this app actually has.
  */
 export const OwnersSection = () => (
-  <section id="owners" className="bg-background py-20 sm:py-28">
-    <div className="page-shell grid items-center gap-12 lg:grid-cols-2">
-      <div>
-        <h2 className="text-3xl font-extrabold tracking-tight text-espresso sm:text-4xl">
-          Letting a property?
-        </h2>
-        <p className="mt-5 max-w-lg text-lg font-medium text-espresso-muted">
-          Promote your coming-soon properties to qualified applicants first. New listings go
-          out to a pre-qualified, prescreened network the moment they are posted.
-        </p>
-        <div className="mt-8 flex flex-wrap gap-3">
-          <Button asChild size="lg" className="bg-espresso text-sand hover:bg-espresso/90">
-            <Link to="/register?role=landlord">List a property</Link>
-          </Button>
-          <Button asChild size="lg" variant="outline" className="border-espresso/20 text-espresso">
-            <Link to="/register?role=agent">Join as an agent</Link>
-          </Button>
-        </div>
-      </div>
+  <section id="owners" className="bg-espresso py-16">
+    <div className="page-shell text-center">
+      <h2 className="text-2xl font-extrabold tracking-tight text-sand md:text-3xl">
+        {OWNERS.heading}
+      </h2>
+      <h3 className="mt-3 text-xl text-sand/90">{OWNERS.subheading}</h3>
+      <p className="mx-auto mt-6 max-w-3xl text-sand/80">{OWNERS.intro}</p>
 
-      <dl className="grid grid-cols-2 gap-6 rounded-2xl bg-clay p-8">
-        {STATS.map((stat) => (
-          <div key={stat.label}>
-            <dt className="text-3xl font-extrabold text-espresso">{stat.value}</dt>
-            <dd className="mt-1 text-sm font-medium text-espresso-muted">{stat.label}</dd>
+      <div className="mx-auto mt-8 max-w-2xl space-y-4">
+        {OWNERS.points.map((point) => (
+          <div key={point} className="flex items-start gap-3 text-left">
+            <Check className="mt-0.5 h-5 w-5 shrink-0 text-cta-qualify-foreground" />
+            <span className="text-sand/90">{point}</span>
           </div>
         ))}
-      </dl>
+      </div>
+
+      <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <Button asChild size="lg" className="bg-sand px-8 text-espresso hover:bg-sand/90">
+          <Link to="/register?role=landlord">List a property</Link>
+        </Button>
+        <Button
+          asChild
+          size="lg"
+          variant="outline"
+          className="border-sand bg-transparent px-8 text-sand hover:bg-sand/10 hover:text-sand"
+        >
+          <Link to="/register?role=agent">Join as an agent</Link>
+        </Button>
+      </div>
     </div>
   </section>
 );
