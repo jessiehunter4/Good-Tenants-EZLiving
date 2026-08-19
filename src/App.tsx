@@ -44,6 +44,10 @@ import Ask from "./pages/daily/Ask";
 import AskThanks from "./pages/daily/AskThanks";
 import Start from "./pages/daily/Start";
 
+// The rentals, carried across from Coming Soon Home Rentals.
+import Rentals from "./pages/rentals/Rentals";
+import RentalDetail from "./pages/rentals/RentalDetail";
+
 // The editorial console, carried across from the daily's admin.
 import AdminArticles from "./pages/admin/Articles";
 import AdminAskQa from "./pages/admin/AskQa";
@@ -99,6 +103,11 @@ function App() {
           <Route path="/ask" element={<Ask />} />
           <Route path="/ask/thanks" element={<AskThanks />} />
           <Route path="/start" element={<Start />} />
+
+          {/* The rentals. Public: a suppressed listing never leaves the
+              database, so these need no guard of their own. */}
+          <Route path="/rentals" element={<Rentals />} />
+          <Route path="/rentals/:slug" element={<RentalDetail />} />
 
           {/* Lending. Scenario authoring is open to any signed-in account;
               the lender views require the lender role. */}

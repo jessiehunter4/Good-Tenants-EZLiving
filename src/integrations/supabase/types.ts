@@ -1926,6 +1926,7 @@ export type Database = {
           csv_row: Json | null
           created_at: string | null
           updated_at: string | null
+          display_address: string | null
         }
         Insert: {
           id?: string
@@ -3363,6 +3364,112 @@ export type Database = {
       }
     }
     Views: {
+      rental_listing_photos: {
+        Row: {
+          id: string | null
+          listing_id: string | null
+          photo_url: string | null
+          ordering: number | null
+          created_at: string | null
+        }
+        Insert: {
+          [_ in never]: never
+        }
+        Update: {
+          [_ in never]: never
+        }
+        Relationships: []
+      }
+      rental_listings: {
+        Row: {
+          id: string | null
+          slug: string | null
+          display_address: string | null
+          neighborhood: string | null
+          county: string | null
+          subdivision: string | null
+          rent: number | null
+          security_deposit: number | null
+          application_fee: number | null
+          bedrooms: number | null
+          bathrooms: number | null
+          sqft: number | null
+          lot_size: number | null
+          year_built: number | null
+          property_type: string | null
+          property_sub_type: string | null
+          architectural_style: string | null
+          description: string | null
+          status: string | null
+          computed_status: string | null
+          date_available: string | null
+          list_date: string | null
+          start_showing_date: string | null
+          lease_terms: string | null
+          contract_status_change_date: string | null
+          pets_allowed: boolean | null
+          min_credit_score: number | null
+          income_requirement_multiplier: number | null
+          occupancy_limits: string | null
+          special_conditions: string | null
+          utilities_included: string[] | null
+          appliances: string[] | null
+          exterior_features: string[] | null
+          cooling_type: string | null
+          heating_type: string | null
+          flooring_type: string | null
+          roof_type: string | null
+          construction_materials: string | null
+          fencing: string | null
+          fireplace_features: string | null
+          landscaping: string | null
+          pool_features: string | null
+          garage_spaces: number | null
+          covered_parking_spaces: number | null
+          total_parking_spaces: number | null
+          parking_spaces: number | null
+          hoa_fee: number | null
+          hoa_frequency: string | null
+          mello_roos: number | null
+          property_taxes: number | null
+          tax_year: number | null
+          school_district: string | null
+          elementary_school: string | null
+          middle_school: string | null
+          high_school: string | null
+          walk_score: number | null
+          transit_score: number | null
+          bike_score: number | null
+          video_url: string | null
+          virtual_tour_url: string | null
+          floor_plan_url: string | null
+          mls_number: string | null
+          source_mls: string | null
+          source_updated_at: string | null
+          agent_name: string | null
+          agent_license: string | null
+          brokerage: string | null
+          listing_agent_name: string | null
+          listing_agent_license: string | null
+          listing_office_name: string | null
+          listing_office_license: string | null
+          co_listing_agent_name: string | null
+          co_listing_office_name: string | null
+          address_display_allowed: boolean | null
+          media_display_allowed: boolean | null
+          showing_allowed: boolean | null
+          open_house_allowed: boolean | null
+          created_at: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          [_ in never]: never
+        }
+        Update: {
+          [_ in never]: never
+        }
+        Relationships: []
+      }
       users: {
         Row: {
           id: string | null

@@ -1,56 +1,31 @@
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { BedDouble, MapPin, Maximize } from "lucide-react";
+import { useQuery } from "@tanstack/react-query";
 
-import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
+import ListingCard from "@/components/rentals/ListingCard";
+import { rentalsQuery, retentionDaysQuery, EMPTY_FILTERS } from "@/hooks/rentals/useRentals";
+import { isPubliclyListed } from "@/features/rentals/listing";
 
-interface PublicListing {
-  id: string;
-  city: string | null;
-  state: string | null;
-  price: number | null;
-  bedrooms: number | null;
-  square_feet: number | null;
-}
-
-const money = (value: number | null) =>
-  value === null
-    ? "Price on application"
-    : `${new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-        maximumFractionDigits: 0,
-      }).format(value)} / month`;
+const SHOWN = 3;
 
 /**
  * Live listings, or an honest empty state.
  *
- * The reference fills this row with invented properties. Showing three fictional
- * homes on a rental site is not a placeholder, it is a false advertisement — so
- * when the table is empty this says so and points at the thing that actually
- * helps: building a profile before the inventory arrives.
+ * This used to read the platform's own `listings` table — the one a landlord
+ * fills in about their own property, which has nothing in it. The inventory the
+ * business actually runs on arrives from the MLS feed, so that is what "available
+ * now" now shows, through the same compliance layer as the rentals pages: a
+ * suppressed listing never reaches the browser, a masked address stays masked,
+ * and a listing past its retention window is not shown at all.
+ *
+ * The empty state stays. Filling this row with invented properties would not be
+ * a placeholder, it would be a false advertisement.
  */
 export const RentalsSection = () => {
-  const [listings, setListings] = useState<PublicListing[]>([]);
-  const [loading, setLoading] = useState(true);
+  const { data: retentionDays = 30 } = useQuery(retentionDaysQuery);
+  const { data = [], isLoading } = useQuery(rentalsQuery(EMPTY_FILTERS, retentionDays));
 
-  useEffect(() => {
-    const load = async () => {
-      const { data, error } = await supabase
-        .from("listings")
-        .select("id, city, state, price, bedrooms, square_feet")
-        .eq("is_active", true)
-        .order("created_at", { ascending: false })
-        .limit(3);
-
-      if (error) console.error("Could not load listings:", error);
-      setListings(data ?? []);
-      setLoading(false);
-    };
-
-    void load();
-  }, []);
+  const listings = data.filter(isPubliclyListed).slice(0, SHOWN);
 
   return (
     <section id="rentals" className="bg-background py-20 sm:py-28">
@@ -59,16 +34,15 @@ export const RentalsSection = () => {
           Available now
         </h2>
 
-        {loading && (
+        {isLoading && (
           <p className="mt-10 text-center font-medium text-espresso-muted">Loading…</p>
         )}
 
-        {!loading && listings.length === 0 && (
+        {!isLoading && listings.length === 0 && (
           <div className="mx-auto mt-10 max-w-xl rounded-2xl bg-clay p-10 text-center">
             <p className="font-bold text-espresso">No properties listed yet</p>
             <p className="mt-2 font-medium text-espresso-muted">
-              Landlords are still coming aboard. Build your profile now and you will be ready to
-              apply the day something suits you.
+              Build your profile now and you will be ready to apply the day something suits you.
             </p>
             <Button asChild className="mt-6 bg-espresso text-sand hover:bg-espresso/90">
               <Link to="/register?role=tenant">Build my profile</Link>
@@ -77,34 +51,18 @@ export const RentalsSection = () => {
         )}
 
         {listings.length > 0 && (
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
-            {listings.map((listing) => (
-              <article key={listing.id} className="overflow-hidden rounded-2xl bg-clay">
-                <div className="aspect-[4/3] bg-clay-soft" aria-hidden="true" />
-                <div className="space-y-3 p-5">
-                  <p className="flex items-center gap-2 font-bold text-espresso">
-                    <MapPin className="h-4 w-4" aria-hidden="true" />
-                    {[listing.city, listing.state].filter(Boolean).join(", ") || "Location on request"}
-                  </p>
-                  <div className="flex gap-5 text-sm font-medium text-espresso-muted">
-                    {listing.bedrooms !== null && (
-                      <span className="flex items-center gap-1.5">
-                        <BedDouble className="h-4 w-4" aria-hidden="true" />
-                        {listing.bedrooms} bed
-                      </span>
-                    )}
-                    {listing.square_feet !== null && (
-                      <span className="flex items-center gap-1.5">
-                        <Maximize className="h-4 w-4" aria-hidden="true" />
-                        {listing.square_feet} sq ft
-                      </span>
-                    )}
-                  </div>
-                  <p className="pt-1 text-lg font-extrabold text-espresso">{money(listing.price)}</p>
-                </div>
-              </article>
-            ))}
-          </div>
+          <>
+            <div className="mt-12 grid gap-6 md:grid-cols-3">
+              {listings.map((listing) => (
+                <ListingCard key={listing.id} listing={listing} />
+              ))}
+            </div>
+            <div className="mt-10 text-center">
+              <Button asChild className="bg-espresso text-sand hover:bg-espresso/90">
+                <Link to="/rentals">See every rental</Link>
+              </Button>
+            </div>
+          </>
         )}
       </div>
     </section>

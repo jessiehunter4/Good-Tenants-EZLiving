@@ -8,7 +8,7 @@ export type NavItem = { label: string; to: string };
 
 // Landing page: same-page anchors, because the sections are all on it.
 export const LANDING_NAV: readonly NavItem[] = [
-  { label: "Rentals", to: "#rentals" },
+  { label: "Rentals", to: "/rentals" },
   { label: "The daily", to: "#daily" },
   { label: "How it works", to: "#how-it-works" },
   { label: "For owners", to: "#owners" },
@@ -17,6 +17,7 @@ export const LANDING_NAV: readonly NavItem[] = [
 
 // Everywhere else: real routes.
 export const SITE_NAV: readonly NavItem[] = [
+  { label: "Rentals", to: "/rentals" },
   { label: "The daily", to: "/blog" },
   { label: "Topics", to: "/topics" },
   { label: "Ask", to: "/ask" },
