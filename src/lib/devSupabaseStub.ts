@@ -1,4 +1,5 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
+import type { Database } from '@/integrations/supabase/types';
 
 import { devBypassSession, devBypassUser } from "./devBypass";
 import { fixturesFor } from "./devFixtures";
@@ -111,7 +112,7 @@ function createChannelStub(): unknown {
   return channel;
 }
 
-export function createDevSupabaseStub(): SupabaseClient {
+export function createDevSupabaseStub(): SupabaseClient<Database> {
   const stub = {
     from: (table: string) => createQueryBuilder(table),
     rpc: () => createQueryBuilder("__rpc"),

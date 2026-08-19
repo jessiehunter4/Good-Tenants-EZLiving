@@ -46,7 +46,7 @@ export const useIntegrations = () => {
         .from("integration_requests")
         .select(`
           *,
-          requested_by_user:users!integration_requests_requested_by_fkey(email, role)
+          requested_by_user:profiles!integration_requests_requested_by_fkey(email)
         `)
         .order("created_at", { ascending: false });
 
@@ -59,7 +59,6 @@ export const useIntegrations = () => {
         status: item.status as IntegrationRequest['status'],
         user: item.requested_by_user ? {
           email: item.requested_by_user.email,
-          role: item.requested_by_user.role
         } : undefined
       }));
       
@@ -95,7 +94,7 @@ export const useIntegrations = () => {
         .from("integration_audit_log")
         .select(`
           *,
-          performed_by_user:users!integration_audit_log_performed_by_fkey(email)
+          performed_by_user:profiles!integration_audit_log_performed_by_fkey(email)
         `)
         .order("created_at", { ascending: false })
         .limit(50);

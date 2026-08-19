@@ -125,19 +125,19 @@ export const useProfileStats = () => {
       const formattedUnverifiedTenants = unverifiedTenants.map((tenant) => ({
         ...tenant,
         email: tenant.users?.email,
-        role: 'tenant'
+        role: 'tenant' as const,
       }));
 
       const formattedUnverifiedAgents = unverifiedAgents.map((agent) => ({
         ...agent,
         email: agent.users?.email,
-        role: 'agent'
+        role: 'agent' as const,
       }));
 
       const formattedUnverifiedLandlords = unverifiedLandlords.map((landlord) => ({
         ...landlord,
         email: landlord.users?.email,
-        role: 'landlord'
+        role: 'landlord' as const,
       }));
 
       // Combine all unverified users

@@ -1,3 +1,11 @@
+// Generated from the live platform schema (project wgryjqfokqiorfuihjqc).
+//
+// The Supabase CLI generates this file, but it shells out to Docker, which is
+// not available here. This was produced by scripts/gen-supabase-types.py, which
+// reads the same catalogs the CLI does. Regenerate it after every migration —
+// a stale file is worse than none, because it type-checks against a schema that
+// no longer exists.
+
 export type Json =
   | string
   | number
@@ -9,72 +17,1006 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      admin_invites: {
+        Row: {
+          id: string
+          email: string
+          first_name: string
+          last_name: string
+          token_hash: string
+          invited_by: string | null
+          sent_at: string
+          accepted_at: string | null
+          revoked_at: string | null
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          email: string
+          first_name: string
+          last_name: string
+          token_hash: string
+          invited_by?: string | null
+          sent_at?: string
+          accepted_at?: string | null
+          revoked_at?: string | null
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          email?: string
+          first_name?: string
+          last_name?: string
+          token_hash?: string
+          invited_by?: string | null
+          sent_at?: string
+          accepted_at?: string | null
+          revoked_at?: string | null
+          created_at?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "admin_invites_invited_by_fkey"
+            columns: ["invited_by"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      ai_article_batches: {
+        Row: {
+          id: string
+          week_start: string
+          status: string
+          created_by: string | null
+          notes: string | null
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          week_start: string
+          status?: string
+          created_by?: string | null
+          notes?: string | null
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          week_start?: string
+          status?: string
+          created_by?: string | null
+          notes?: string | null
+          created_at?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ai_article_batches_created_by_fkey"
+            columns: ["created_by"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      ai_article_drafts: {
+        Row: {
+          id: string
+          batch_id: string | null
+          slot: string
+          source_seed_id: string | null
+          status: string
+          generated_article: Json
+          hero_image_url: string | null
+          cta_destination_id: string | null
+          cta_custom_url: string | null
+          cta_custom_label: string | null
+          scheduled_for: string | null
+          model_used: string | null
+          generation_log: Json
+          regeneration_count: number
+          reject_reason: string | null
+          reviewed_at: string | null
+          reviewed_by: string | null
+          published_article_id: string | null
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          batch_id?: string | null
+          slot: string
+          source_seed_id?: string | null
+          status?: string
+          generated_article?: Json
+          hero_image_url?: string | null
+          cta_destination_id?: string | null
+          cta_custom_url?: string | null
+          cta_custom_label?: string | null
+          scheduled_for?: string | null
+          model_used?: string | null
+          generation_log?: Json
+          regeneration_count?: number
+          reject_reason?: string | null
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          published_article_id?: string | null
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          batch_id?: string | null
+          slot?: string
+          source_seed_id?: string | null
+          status?: string
+          generated_article?: Json
+          hero_image_url?: string | null
+          cta_destination_id?: string | null
+          cta_custom_url?: string | null
+          cta_custom_label?: string | null
+          scheduled_for?: string | null
+          model_used?: string | null
+          generation_log?: Json
+          regeneration_count?: number
+          reject_reason?: string | null
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          published_article_id?: string | null
+          created_at?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ai_article_drafts_batch_id_fkey"
+            columns: ["batch_id"]
+            isOneToOne: false
+            referencedRelation: "ai_article_batches"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "ai_article_drafts_cta_destination_id_fkey"
+            columns: ["cta_destination_id"]
+            isOneToOne: false
+            referencedRelation: "cta_destinations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "ai_article_drafts_published_article_id_fkey"
+            columns: ["published_article_id"]
+            isOneToOne: false
+            referencedRelation: "articles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "ai_article_drafts_reviewed_by_fkey"
+            columns: ["reviewed_by"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "ai_article_drafts_source_seed_id_fkey"
+            columns: ["source_seed_id"]
+            isOneToOne: false
+            referencedRelation: "article_seeds"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       application_documents: {
         Row: {
+          id: string
+          tenant_id: string
           document_type: string
           file_name: string
-          file_size: number | null
           file_url: string
-          id: string
+          file_size: number | null
           notes: string | null
-          tenant_id: string
-          upload_date: string
           verification_status: string
           verified_at: string | null
           verified_by: string | null
+          upload_date: string
         }
         Insert: {
+          id?: string
+          tenant_id: string
           document_type: string
           file_name: string
-          file_size?: number | null
           file_url: string
-          id?: string
+          file_size?: number | null
           notes?: string | null
-          tenant_id: string
-          upload_date?: string
           verification_status?: string
           verified_at?: string | null
           verified_by?: string | null
+          upload_date?: string
         }
         Update: {
+          id?: string
+          tenant_id?: string
           document_type?: string
           file_name?: string
-          file_size?: number | null
           file_url?: string
-          id?: string
+          file_size?: number | null
           notes?: string | null
-          tenant_id?: string
-          upload_date?: string
           verification_status?: string
           verified_at?: string | null
           verified_by?: string | null
+          upload_date?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "application_documents_tenant_id_fkey"
+            columns: ["tenant_id"]
+            isOneToOne: false
+            referencedRelation: "tenant_profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "application_documents_verified_by_fkey"
+            columns: ["verified_by"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      article_seeds: {
+        Row: {
+          id: string
+          slot: string
+          title_angle: string
+          visual_description: string | null
+          citation: string | null
+          reference_urls: string[]
+          notes: string | null
+          source_week: number | null
+          last_used_at: string | null
+          active: boolean
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          slot: string
+          title_angle: string
+          visual_description?: string | null
+          citation?: string | null
+          reference_urls?: string[]
+          notes?: string | null
+          source_week?: number | null
+          last_used_at?: string | null
+          active?: boolean
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          slot?: string
+          title_angle?: string
+          visual_description?: string | null
+          citation?: string | null
+          reference_urls?: string[]
+          notes?: string | null
+          source_week?: number | null
+          last_used_at?: string | null
+          active?: boolean
+          created_at?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      articles: {
+        Row: {
+          id: string
+          slug: string
+          title: string
+          hero_image: string | null
+          author: string
+          publish_date: string
+          summary: string | null
+          body: string | null
+          sections: Json
+          topic_id: string | null
+          tags: string[]
+          read_time_minutes: number | null
+          cta_label: string | null
+          cta_url: string | null
+          cta_type: string
+          cta_responder: string | null
+          sidebar_promos_enabled: boolean
+          social_caption_short: string | null
+          social_caption_long: string | null
+          hashtags: string[]
+          utm_source: string | null
+          utm_medium: string | null
+          utm_campaign: string | null
+          utm_content: string | null
+          published: boolean
+          created_at: string
+          updated_at: string
+          meta_title: string | null
+          meta_description: string | null
+          focus_keyword: string | null
+          keywords: string[]
+          og_image: string | null
+          og_title: string | null
+          og_description: string | null
+          twitter_card: string
+          canonical_url: string | null
+          noindex: boolean
+          schema_jsonld: Json | null
+          internal_links: Json
+          cta_destination_id: string | null
+          citation: string | null
+          social_cta_phrase: string | null
+          link_in_bio_url: string | null
+        }
+        Insert: {
+          id?: string
+          slug: string
+          title: string
+          hero_image?: string | null
+          author?: string
+          publish_date?: string
+          summary?: string | null
+          body?: string | null
+          sections?: Json
+          topic_id?: string | null
+          tags?: string[]
+          read_time_minutes?: number | null
+          cta_label?: string | null
+          cta_url?: string | null
+          cta_type?: string
+          cta_responder?: string | null
+          sidebar_promos_enabled?: boolean
+          social_caption_short?: string | null
+          social_caption_long?: string | null
+          hashtags?: string[]
+          utm_source?: string | null
+          utm_medium?: string | null
+          utm_campaign?: string | null
+          utm_content?: string | null
+          published?: boolean
+          created_at?: string
+          updated_at?: string
+          meta_title?: string | null
+          meta_description?: string | null
+          focus_keyword?: string | null
+          keywords?: string[]
+          og_image?: string | null
+          og_title?: string | null
+          og_description?: string | null
+          twitter_card?: string
+          canonical_url?: string | null
+          noindex?: boolean
+          schema_jsonld?: Json | null
+          internal_links?: Json
+          cta_destination_id?: string | null
+          citation?: string | null
+          social_cta_phrase?: string | null
+          link_in_bio_url?: string | null
+        }
+        Update: {
+          id?: string
+          slug?: string
+          title?: string
+          hero_image?: string | null
+          author?: string
+          publish_date?: string
+          summary?: string | null
+          body?: string | null
+          sections?: Json
+          topic_id?: string | null
+          tags?: string[]
+          read_time_minutes?: number | null
+          cta_label?: string | null
+          cta_url?: string | null
+          cta_type?: string
+          cta_responder?: string | null
+          sidebar_promos_enabled?: boolean
+          social_caption_short?: string | null
+          social_caption_long?: string | null
+          hashtags?: string[]
+          utm_source?: string | null
+          utm_medium?: string | null
+          utm_campaign?: string | null
+          utm_content?: string | null
+          published?: boolean
+          created_at?: string
+          updated_at?: string
+          meta_title?: string | null
+          meta_description?: string | null
+          focus_keyword?: string | null
+          keywords?: string[]
+          og_image?: string | null
+          og_title?: string | null
+          og_description?: string | null
+          twitter_card?: string
+          canonical_url?: string | null
+          noindex?: boolean
+          schema_jsonld?: Json | null
+          internal_links?: Json
+          cta_destination_id?: string | null
+          citation?: string | null
+          social_cta_phrase?: string | null
+          link_in_bio_url?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "articles_cta_destination_id_fkey"
+            columns: ["cta_destination_id"]
+            isOneToOne: false
+            referencedRelation: "cta_destinations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "articles_topic_id_fkey"
+            columns: ["topic_id"]
+            isOneToOne: false
+            referencedRelation: "topics"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      ask_notification_recipients: {
+        Row: {
+          id: string
+          name: string
+          email: string
+          active: boolean
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          name: string
+          email: string
+          active?: boolean
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          name?: string
+          email?: string
+          active?: boolean
+          created_at?: string
+        }
+        Relationships: []
+      }
+      ask_qa: {
+        Row: {
+          id: string
+          slug: string
+          question: string
+          short_answer: string | null
+          full_answer: string | null
+          tags: string[]
+          related_links: Json
+          author: string
+          publish_date: string
+          hero_image: string | null
+          topic_id: string | null
+          published: boolean
+          created_at: string
+          cta_destination_id: string | null
+          cta_label: string | null
+          cta_url: string | null
+          cta_responder: string | null
+          meta_title: string | null
+          meta_description: string | null
+          emotion: string | null
+          image_prompt: string | null
+        }
+        Insert: {
+          id?: string
+          slug: string
+          question: string
+          short_answer?: string | null
+          full_answer?: string | null
+          tags?: string[]
+          related_links?: Json
+          author?: string
+          publish_date?: string
+          hero_image?: string | null
+          topic_id?: string | null
+          published?: boolean
+          created_at?: string
+          cta_destination_id?: string | null
+          cta_label?: string | null
+          cta_url?: string | null
+          cta_responder?: string | null
+          meta_title?: string | null
+          meta_description?: string | null
+          emotion?: string | null
+          image_prompt?: string | null
+        }
+        Update: {
+          id?: string
+          slug?: string
+          question?: string
+          short_answer?: string | null
+          full_answer?: string | null
+          tags?: string[]
+          related_links?: Json
+          author?: string
+          publish_date?: string
+          hero_image?: string | null
+          topic_id?: string | null
+          published?: boolean
+          created_at?: string
+          cta_destination_id?: string | null
+          cta_label?: string | null
+          cta_url?: string | null
+          cta_responder?: string | null
+          meta_title?: string | null
+          meta_description?: string | null
+          emotion?: string | null
+          image_prompt?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ask_qa_topic_id_fkey"
+            columns: ["topic_id"]
+            isOneToOne: false
+            referencedRelation: "topics"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      case_studies: {
+        Row: {
+          id: string
+          slug: string
+          headline: string
+          hero_image: string | null
+          summary: string | null
+          steps: Json
+          outcomes: string | null
+          author: string
+          publish_date: string
+          topic_id: string | null
+          tags: string[]
+          cta_label: string | null
+          cta_url: string | null
+          cta_responder: string | null
+          social_caption_short: string | null
+          social_caption_long: string | null
+          hashtags: string[]
+          published: boolean
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          slug: string
+          headline: string
+          hero_image?: string | null
+          summary?: string | null
+          steps?: Json
+          outcomes?: string | null
+          author?: string
+          publish_date?: string
+          topic_id?: string | null
+          tags?: string[]
+          cta_label?: string | null
+          cta_url?: string | null
+          cta_responder?: string | null
+          social_caption_short?: string | null
+          social_caption_long?: string | null
+          hashtags?: string[]
+          published?: boolean
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          slug?: string
+          headline?: string
+          hero_image?: string | null
+          summary?: string | null
+          steps?: Json
+          outcomes?: string | null
+          author?: string
+          publish_date?: string
+          topic_id?: string | null
+          tags?: string[]
+          cta_label?: string | null
+          cta_url?: string | null
+          cta_responder?: string | null
+          social_caption_short?: string | null
+          social_caption_long?: string | null
+          hashtags?: string[]
+          published?: boolean
+          created_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "case_studies_topic_id_fkey"
+            columns: ["topic_id"]
+            isOneToOne: false
+            referencedRelation: "topics"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      cshr_drops: {
+        Row: {
+          id: string
+          listing_url: string
+          external_id: string | null
+          address: string | null
+          headline: string | null
+          summary: string | null
+          hero_image: string | null
+          price: number | null
+          beds: number | null
+          baths: number | null
+          sqft: number | null
+          available_at: string | null
+          raw: Json
+          status: string
+          property_post_id: string | null
+          selection_score: number | null
+          selection_notes: string | null
+          synced_at: string
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          listing_url: string
+          external_id?: string | null
+          address?: string | null
+          headline?: string | null
+          summary?: string | null
+          hero_image?: string | null
+          price?: number | null
+          beds?: number | null
+          baths?: number | null
+          sqft?: number | null
+          available_at?: string | null
+          raw?: Json
+          status?: string
+          property_post_id?: string | null
+          selection_score?: number | null
+          selection_notes?: string | null
+          synced_at?: string
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          listing_url?: string
+          external_id?: string | null
+          address?: string | null
+          headline?: string | null
+          summary?: string | null
+          hero_image?: string | null
+          price?: number | null
+          beds?: number | null
+          baths?: number | null
+          sqft?: number | null
+          available_at?: string | null
+          raw?: Json
+          status?: string
+          property_post_id?: string | null
+          selection_score?: number | null
+          selection_notes?: string | null
+          synced_at?: string
+          created_at?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "cshr_drops_property_post_id_fkey"
+            columns: ["property_post_id"]
+            isOneToOne: false
+            referencedRelation: "property_posts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      cshr_selection_config: {
+        Row: {
+          id: string
+          auto_publish: boolean
+          score_threshold: number
+          daily_cap: number
+          community_weights: Json | null
+          price_min: number | null
+          price_max: number | null
+          require_hero_image: boolean
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          auto_publish?: boolean
+          score_threshold?: number
+          daily_cap?: number
+          community_weights?: Json | null
+          price_min?: number | null
+          price_max?: number | null
+          require_hero_image?: boolean
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          auto_publish?: boolean
+          score_threshold?: number
+          daily_cap?: number
+          community_weights?: Json | null
+          price_min?: number | null
+          price_max?: number | null
+          require_hero_image?: boolean
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      cshr_sync_runs: {
+        Row: {
+          id: string
+          started_at: string
+          finished_at: string | null
+          source: string
+          inserted_count: number
+          updated_count: number
+          error: string | null
+        }
+        Insert: {
+          id?: string
+          started_at?: string
+          finished_at?: string | null
+          source?: string
+          inserted_count?: number
+          updated_count?: number
+          error?: string | null
+        }
+        Update: {
+          id?: string
+          started_at?: string
+          finished_at?: string | null
+          source?: string
+          inserted_count?: number
+          updated_count?: number
+          error?: string | null
+        }
+        Relationships: []
+      }
+      cta_destinations: {
+        Row: {
+          id: string
+          slug: string
+          label: string
+          kind: string
+          url: string
+          responder: string
+          description: string | null
+          button_text: string | null
+          default_for_slot: string | null
+          active: boolean
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          slug: string
+          label: string
+          kind: string
+          url: string
+          responder?: string
+          description?: string | null
+          button_text?: string | null
+          default_for_slot?: string | null
+          active?: boolean
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          slug?: string
+          label?: string
+          kind?: string
+          url?: string
+          responder?: string
+          description?: string | null
+          button_text?: string | null
+          default_for_slot?: string | null
+          active?: boolean
+          created_at?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      directory_access_requests: {
+        Row: {
+          id: string
+          requester_id: string
+          tenant_id: string
+          purpose: string | null
+          listing_id: string | null
+          consent_granted: boolean | null
+          decided_at: string | null
+          expires_at: string | null
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          requester_id: string
+          tenant_id: string
+          purpose?: string | null
+          listing_id?: string | null
+          consent_granted?: boolean | null
+          decided_at?: string | null
+          expires_at?: string | null
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          requester_id?: string
+          tenant_id?: string
+          purpose?: string | null
+          listing_id?: string | null
+          consent_granted?: boolean | null
+          decided_at?: string | null
+          expires_at?: string | null
+          created_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "directory_access_requests_requester_id_fkey"
+            columns: ["requester_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "directory_access_requests_tenant_id_fkey"
+            columns: ["tenant_id"]
+            isOneToOne: false
+            referencedRelation: "tenant_profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      featured_history: {
+        Row: {
+          id: string
+          featured_date: string
+          drop_id: string | null
+          property_post_id: string | null
+          community: string | null
+          property_type: string | null
+          ai_score: number | null
+          ai_reasons: Json
+          diversity_passed: boolean | null
+          was_override: boolean
+          state: string
+          slug: string | null
+          published_at: string | null
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          featured_date: string
+          drop_id?: string | null
+          property_post_id?: string | null
+          community?: string | null
+          property_type?: string | null
+          ai_score?: number | null
+          ai_reasons?: Json
+          diversity_passed?: boolean | null
+          was_override?: boolean
+          state?: string
+          slug?: string | null
+          published_at?: string | null
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          featured_date?: string
+          drop_id?: string | null
+          property_post_id?: string | null
+          community?: string | null
+          property_type?: string | null
+          ai_score?: number | null
+          ai_reasons?: Json
+          diversity_passed?: boolean | null
+          was_override?: boolean
+          state?: string
+          slug?: string | null
+          published_at?: string | null
+          created_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "featured_history_drop_id_fkey"
+            columns: ["drop_id"]
+            isOneToOne: false
+            referencedRelation: "cshr_drops"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "featured_history_property_post_id_fkey"
+            columns: ["property_post_id"]
+            isOneToOne: false
+            referencedRelation: "property_posts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      funnel_sessions: {
+        Row: {
+          id: string
+          session_token: string
+          claimed_by: string | null
+          claimed_at: string | null
+          utm_source: string | null
+          utm_medium: string | null
+          utm_campaign: string | null
+          utm_content: string | null
+          landing_path: string | null
+          created_at: string
+          updated_at: string
+          expires_at: string
+        }
+        Insert: {
+          id?: string
+          session_token: string
+          claimed_by?: string | null
+          claimed_at?: string | null
+          utm_source?: string | null
+          utm_medium?: string | null
+          utm_campaign?: string | null
+          utm_content?: string | null
+          landing_path?: string | null
+          created_at?: string
+          updated_at?: string
+          expires_at?: string
+        }
+        Update: {
+          id?: string
+          session_token?: string
+          claimed_by?: string | null
+          claimed_at?: string | null
+          utm_source?: string | null
+          utm_medium?: string | null
+          utm_campaign?: string | null
+          utm_content?: string | null
+          landing_path?: string | null
+          created_at?: string
+          updated_at?: string
+          expires_at?: string
         }
         Relationships: []
       }
       integration_audit_log: {
         Row: {
-          action: string
-          created_at: string
-          details: Json | null
           id: string
           integration_id: string
+          action: string
+          details: Json | null
           performed_by: string
+          created_at: string
         }
         Insert: {
-          action: string
-          created_at?: string
-          details?: Json | null
           id?: string
           integration_id: string
+          action: string
+          details?: Json | null
           performed_by: string
+          created_at?: string
         }
         Update: {
-          action?: string
-          created_at?: string
-          details?: Json | null
           id?: string
           integration_id?: string
+          action?: string
+          details?: Json | null
           performed_by?: string
+          created_at?: string
         }
         Relationships: [
           {
@@ -88,55 +1030,55 @@ export type Database = {
             foreignKeyName: "integration_audit_log_performed_by_fkey"
             columns: ["performed_by"]
             isOneToOne: false
-            referencedRelation: "users"
+            referencedRelation: "profiles"
             referencedColumns: ["id"]
           },
         ]
       }
       integration_requests: {
         Row: {
-          admin_notes: string | null
-          business_justification: string
-          created_at: string
-          estimated_completion: string | null
           id: string
           integration_name: string
-          priority: string
           provider_name: string
-          requested_by: string
-          reviewed_at: string | null
-          reviewed_by: string | null
+          business_justification: string
+          priority: string
           status: string
+          admin_notes: string | null
+          estimated_completion: string | null
+          requested_by: string
+          reviewed_by: string | null
+          reviewed_at: string | null
+          created_at: string
           updated_at: string
         }
         Insert: {
-          admin_notes?: string | null
-          business_justification: string
-          created_at?: string
-          estimated_completion?: string | null
           id?: string
           integration_name: string
-          priority?: string
           provider_name: string
-          requested_by: string
-          reviewed_at?: string | null
-          reviewed_by?: string | null
+          business_justification: string
+          priority?: string
           status?: string
+          admin_notes?: string | null
+          estimated_completion?: string | null
+          requested_by: string
+          reviewed_by?: string | null
+          reviewed_at?: string | null
+          created_at?: string
           updated_at?: string
         }
         Update: {
-          admin_notes?: string | null
-          business_justification?: string
-          created_at?: string
-          estimated_completion?: string | null
           id?: string
           integration_name?: string
-          priority?: string
           provider_name?: string
-          requested_by?: string
-          reviewed_at?: string | null
-          reviewed_by?: string | null
+          business_justification?: string
+          priority?: string
           status?: string
+          admin_notes?: string | null
+          estimated_completion?: string | null
+          requested_by?: string
+          reviewed_by?: string | null
+          reviewed_at?: string | null
+          created_at?: string
           updated_at?: string
         }
         Relationships: [
@@ -144,54 +1086,54 @@ export type Database = {
             foreignKeyName: "integration_requests_requested_by_fkey"
             columns: ["requested_by"]
             isOneToOne: false
-            referencedRelation: "users"
+            referencedRelation: "profiles"
             referencedColumns: ["id"]
           },
           {
             foreignKeyName: "integration_requests_reviewed_by_fkey"
             columns: ["reviewed_by"]
             isOneToOne: false
-            referencedRelation: "users"
+            referencedRelation: "profiles"
             referencedColumns: ["id"]
           },
         ]
       }
       integration_usage: {
         Row: {
-          avg_response_time: number | null
-          created_at: string
-          date: string
-          endpoint: string | null
-          error_count: number
           id: string
           integration_id: string
+          user_id: string | null
+          date: string
+          endpoint: string | null
           request_count: number
           success_count: number
-          user_id: string | null
+          error_count: number
+          avg_response_time: number | null
+          created_at: string
         }
         Insert: {
-          avg_response_time?: number | null
-          created_at?: string
-          date?: string
-          endpoint?: string | null
-          error_count?: number
           id?: string
           integration_id: string
-          request_count?: number
-          success_count?: number
           user_id?: string | null
-        }
-        Update: {
-          avg_response_time?: number | null
-          created_at?: string
           date?: string
           endpoint?: string | null
-          error_count?: number
-          id?: string
-          integration_id?: string
           request_count?: number
           success_count?: number
+          error_count?: number
+          avg_response_time?: number | null
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          integration_id?: string
           user_id?: string | null
+          date?: string
+          endpoint?: string | null
+          request_count?: number
+          success_count?: number
+          error_count?: number
+          avg_response_time?: number | null
+          created_at?: string
         }
         Relationships: [
           {
@@ -205,58 +1147,58 @@ export type Database = {
             foreignKeyName: "integration_usage_user_id_fkey"
             columns: ["user_id"]
             isOneToOne: false
-            referencedRelation: "users"
+            referencedRelation: "profiles"
             referencedColumns: ["id"]
           },
         ]
       }
       integrations: {
         Row: {
-          api_endpoint: string | null
-          config: Json | null
-          created_at: string
-          created_by: string | null
-          description: string | null
           id: string
-          integration_type: string
-          last_tested_at: string | null
           name: string
           provider: string
-          requires_api_key: boolean | null
+          integration_type: string
+          description: string | null
+          api_endpoint: string | null
+          config: Json | null
+          requires_api_key: boolean
           status: string
           test_result: string | null
+          last_tested_at: string | null
+          created_by: string | null
+          created_at: string
           updated_at: string
         }
         Insert: {
-          api_endpoint?: string | null
-          config?: Json | null
-          created_at?: string
-          created_by?: string | null
-          description?: string | null
           id?: string
-          integration_type?: string
-          last_tested_at?: string | null
           name: string
           provider: string
-          requires_api_key?: boolean | null
+          integration_type: string
+          description?: string | null
+          api_endpoint?: string | null
+          config?: Json | null
+          requires_api_key?: boolean
           status?: string
           test_result?: string | null
+          last_tested_at?: string | null
+          created_by?: string | null
+          created_at?: string
           updated_at?: string
         }
         Update: {
-          api_endpoint?: string | null
-          config?: Json | null
-          created_at?: string
-          created_by?: string | null
-          description?: string | null
           id?: string
-          integration_type?: string
-          last_tested_at?: string | null
           name?: string
           provider?: string
-          requires_api_key?: boolean | null
+          integration_type?: string
+          description?: string | null
+          api_endpoint?: string | null
+          config?: Json | null
+          requires_api_key?: boolean
           status?: string
           test_result?: string | null
+          last_tested_at?: string | null
+          created_by?: string | null
+          created_at?: string
           updated_at?: string
         }
         Relationships: [
@@ -264,40 +1206,40 @@ export type Database = {
             foreignKeyName: "integrations_created_by_fkey"
             columns: ["created_by"]
             isOneToOne: false
-            referencedRelation: "users"
+            referencedRelation: "profiles"
             referencedColumns: ["id"]
           },
         ]
       }
       invites: {
         Row: {
-          created_at: string
           id: string
+          sender_id: string | null
+          tenant_id: string | null
           listing_id: string | null
           message: string | null
-          sender_id: string | null
-          status: string | null
-          tenant_id: string | null
+          status: string
+          created_at: string
           updated_at: string
         }
         Insert: {
-          created_at?: string
           id?: string
+          sender_id?: string | null
+          tenant_id?: string | null
           listing_id?: string | null
           message?: string | null
-          sender_id?: string | null
-          status?: string | null
-          tenant_id?: string | null
+          status?: string
+          created_at?: string
           updated_at?: string
         }
         Update: {
-          created_at?: string
           id?: string
+          sender_id?: string | null
+          tenant_id?: string | null
           listing_id?: string | null
           message?: string | null
-          sender_id?: string | null
-          status?: string | null
-          tenant_id?: string | null
+          status?: string
+          created_at?: string
           updated_at?: string
         }
         Relationships: [
@@ -308,541 +1250,129 @@ export type Database = {
             referencedRelation: "listings"
             referencedColumns: ["id"]
           },
+          {
+            foreignKeyName: "invites_sender_id_fkey"
+            columns: ["sender_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "invites_tenant_id_fkey"
+            columns: ["tenant_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
         ]
       }
       landlord_profiles: {
         Row: {
-          bio: string | null
-          created_at: string
           id: string
-          is_verified: boolean | null
+          bio: string | null
           management_type: Database["public"]["Enums"]["management_type"] | null
           preferred_tenant_criteria: string | null
           property_count: number | null
-          status: Database["public"]["Enums"]["profile_status"]
-          updated_at: string
-          verification_documents: string[] | null
           years_experience: number | null
+          is_verified: boolean
+          verification_documents: string[] | null
+          status: Database["public"]["Enums"]["profile_status"]
+          created_at: string
+          updated_at: string
         }
         Insert: {
-          bio?: string | null
-          created_at?: string
           id: string
-          is_verified?: boolean | null
-          management_type?:
-            | Database["public"]["Enums"]["management_type"]
-            | null
+          bio?: string | null
+          management_type?: Database["public"]["Enums"]["management_type"] | null
           preferred_tenant_criteria?: string | null
           property_count?: number | null
-          status?: Database["public"]["Enums"]["profile_status"]
-          updated_at?: string
-          verification_documents?: string[] | null
           years_experience?: number | null
+          is_verified?: boolean
+          verification_documents?: string[] | null
+          status?: Database["public"]["Enums"]["profile_status"]
+          created_at?: string
+          updated_at?: string
         }
         Update: {
-          bio?: string | null
-          created_at?: string
           id?: string
-          is_verified?: boolean | null
-          management_type?:
-            | Database["public"]["Enums"]["management_type"]
-            | null
+          bio?: string | null
+          management_type?: Database["public"]["Enums"]["management_type"] | null
           preferred_tenant_criteria?: string | null
           property_count?: number | null
-          status?: Database["public"]["Enums"]["profile_status"]
-          updated_at?: string
-          verification_documents?: string[] | null
           years_experience?: number | null
-        }
-        Relationships: []
-      }
-      listing_images: {
-        Row: {
-          created_at: string | null
-          display_order: number | null
-          id: string
-          image_url: string
-          is_primary: boolean | null
-          listing_id: string | null
-        }
-        Insert: {
-          created_at?: string | null
-          display_order?: number | null
-          id?: string
-          image_url: string
-          is_primary?: boolean | null
-          listing_id?: string | null
-        }
-        Update: {
-          created_at?: string | null
-          display_order?: number | null
-          id?: string
-          image_url?: string
-          is_primary?: boolean | null
-          listing_id?: string | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "listing_images_listing_id_fkey"
-            columns: ["listing_id"]
-            isOneToOne: false
-            referencedRelation: "listings"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      listings: {
-        Row: {
-          address: string | null
-          available_date: string | null
-          bathrooms: number | null
-          bedrooms: number | null
-          city: string | null
-          created_at: string
-          description: string | null
-          featured: boolean | null
-          full_baths: number | null
-          half_baths: number | null
-          id: string
-          is_active: boolean | null
-          listing_status: Database["public"]["Enums"]["listing_status"] | null
-          owner_id: string
-          pets_allowed: boolean | null
-          price: number | null
-          property_type: Database["public"]["Enums"]["property_type"] | null
-          square_feet: number | null
-          state: string | null
-          three_quarter_baths: number | null
-          total_baths: number | null
-          updated_at: string
-          zip: string | null
-        }
-        Insert: {
-          address?: string | null
-          available_date?: string | null
-          bathrooms?: number | null
-          bedrooms?: number | null
-          city?: string | null
-          created_at?: string
-          description?: string | null
-          featured?: boolean | null
-          full_baths?: number | null
-          half_baths?: number | null
-          id?: string
-          is_active?: boolean | null
-          listing_status?: Database["public"]["Enums"]["listing_status"] | null
-          owner_id: string
-          pets_allowed?: boolean | null
-          price?: number | null
-          property_type?: Database["public"]["Enums"]["property_type"] | null
-          square_feet?: number | null
-          state?: string | null
-          three_quarter_baths?: number | null
-          total_baths?: number | null
-          updated_at?: string
-          zip?: string | null
-        }
-        Update: {
-          address?: string | null
-          available_date?: string | null
-          bathrooms?: number | null
-          bedrooms?: number | null
-          city?: string | null
-          created_at?: string
-          description?: string | null
-          featured?: boolean | null
-          full_baths?: number | null
-          half_baths?: number | null
-          id?: string
-          is_active?: boolean | null
-          listing_status?: Database["public"]["Enums"]["listing_status"] | null
-          owner_id?: string
-          pets_allowed?: boolean | null
-          price?: number | null
-          property_type?: Database["public"]["Enums"]["property_type"] | null
-          square_feet?: number | null
-          state?: string | null
-          three_quarter_baths?: number | null
-          total_baths?: number | null
-          updated_at?: string
-          zip?: string | null
-        }
-        Relationships: []
-      }
-      message_threads: {
-        Row: {
-          created_at: string
-          id: string
-          listing_id: string | null
-          property_showing_id: string | null
-          thread_type: string
-          title: string | null
-          updated_at: string
-        }
-        Insert: {
-          created_at?: string
-          id?: string
-          listing_id?: string | null
-          property_showing_id?: string | null
-          thread_type?: string
-          title?: string | null
-          updated_at?: string
-        }
-        Update: {
-          created_at?: string
-          id?: string
-          listing_id?: string | null
-          property_showing_id?: string | null
-          thread_type?: string
-          title?: string | null
-          updated_at?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "message_threads_listing_id_fkey"
-            columns: ["listing_id"]
-            isOneToOne: false
-            referencedRelation: "listings"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "message_threads_property_showing_id_fkey"
-            columns: ["property_showing_id"]
-            isOneToOne: false
-            referencedRelation: "property_showings"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      messages: {
-        Row: {
-          content: string
-          created_at: string
-          id: string
-          read_at: string | null
-          sender_id: string
-          thread_id: string
-        }
-        Insert: {
-          content: string
-          created_at?: string
-          id?: string
-          read_at?: string | null
-          sender_id: string
-          thread_id: string
-        }
-        Update: {
-          content?: string
-          created_at?: string
-          id?: string
-          read_at?: string | null
-          sender_id?: string
-          thread_id?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "messages_thread_id_fkey"
-            columns: ["thread_id"]
-            isOneToOne: false
-            referencedRelation: "message_threads"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      property_showings: {
-        Row: {
-          created_at: string | null
-          id: string
-          listing_id: string | null
-          message: string | null
-          requested_date: string | null
-          requested_time: string | null
-          status: string | null
-          tenant_id: string | null
-          updated_at: string | null
-        }
-        Insert: {
-          created_at?: string | null
-          id?: string
-          listing_id?: string | null
-          message?: string | null
-          requested_date?: string | null
-          requested_time?: string | null
-          status?: string | null
-          tenant_id?: string | null
-          updated_at?: string | null
-        }
-        Update: {
-          created_at?: string | null
-          id?: string
-          listing_id?: string | null
-          message?: string | null
-          requested_date?: string | null
-          requested_time?: string | null
-          status?: string | null
-          tenant_id?: string | null
-          updated_at?: string | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "property_showings_listing_id_fkey"
-            columns: ["listing_id"]
-            isOneToOne: false
-            referencedRelation: "listings"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "property_showings_tenant_id_fkey"
-            columns: ["tenant_id"]
-            isOneToOne: false
-            referencedRelation: "tenant_profiles"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      realtor_profiles: {
-        Row: {
-          agency: string | null
-          bio: string | null
-          created_at: string
-          id: string
-          is_verified: boolean | null
-          license_number: string | null
-          specialties: string[] | null
-          status: Database["public"]["Enums"]["profile_status"]
-          updated_at: string
-          verification_documents: string[] | null
-          years_experience: number | null
-        }
-        Insert: {
-          agency?: string | null
-          bio?: string | null
-          created_at?: string
-          id: string
-          is_verified?: boolean | null
-          license_number?: string | null
-          specialties?: string[] | null
-          status?: Database["public"]["Enums"]["profile_status"]
-          updated_at?: string
+          is_verified?: boolean
           verification_documents?: string[] | null
-          years_experience?: number | null
-        }
-        Update: {
-          agency?: string | null
-          bio?: string | null
-          created_at?: string
-          id?: string
-          is_verified?: boolean | null
-          license_number?: string | null
-          specialties?: string[] | null
           status?: Database["public"]["Enums"]["profile_status"]
+          created_at?: string
           updated_at?: string
-          verification_documents?: string[] | null
-          years_experience?: number | null
-        }
-        Relationships: []
-      }
-      tenant_listing_matches: {
-        Row: {
-          created_at: string | null
-          criteria_met: Json | null
-          id: string
-          listing_id: string | null
-          match_score: number | null
-          tenant_id: string | null
-        }
-        Insert: {
-          created_at?: string | null
-          criteria_met?: Json | null
-          id?: string
-          listing_id?: string | null
-          match_score?: number | null
-          tenant_id?: string | null
-        }
-        Update: {
-          created_at?: string | null
-          criteria_met?: Json | null
-          id?: string
-          listing_id?: string | null
-          match_score?: number | null
-          tenant_id?: string | null
         }
         Relationships: [
           {
-            foreignKeyName: "tenant_listing_matches_listing_id_fkey"
-            columns: ["listing_id"]
+            foreignKeyName: "landlord_profiles_id_fkey"
+            columns: ["id"]
             isOneToOne: false
-            referencedRelation: "listings"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "tenant_listing_matches_tenant_id_fkey"
-            columns: ["tenant_id"]
-            isOneToOne: false
-            referencedRelation: "tenant_profiles"
+            referencedRelation: "profiles"
             referencedColumns: ["id"]
           },
         ]
       }
-      tenant_profiles: {
-        Row: {
-          bio: string | null
-          contact_preferences: Json | null
-          created_at: string
-          desired_cities: string[] | null
-          desired_move_date: string | null
-          desired_property_types:
-            | Database["public"]["Enums"]["property_type"][]
-            | null
-          desired_state: string | null
-          desired_zip_code: string | null
-          household_income: number | null
-          household_size: number | null
-          id: string
-          is_pre_screened: boolean | null
-          last_activity: string | null
-          max_monthly_rent: number | null
-          min_bathrooms: number | null
-          min_bedrooms: number | null
-          move_date_flexibility: string | null
-          move_in_date: string | null
-          pets: boolean | null
-          pets_allowed: boolean | null
-          preferred_locations: string[] | null
-          profile_image_url: string | null
-          screening_status: string | null
-          status: Database["public"]["Enums"]["profile_status"]
-          updated_at: string
-        }
-        Insert: {
-          bio?: string | null
-          contact_preferences?: Json | null
-          created_at?: string
-          desired_cities?: string[] | null
-          desired_move_date?: string | null
-          desired_property_types?:
-            | Database["public"]["Enums"]["property_type"][]
-            | null
-          desired_state?: string | null
-          desired_zip_code?: string | null
-          household_income?: number | null
-          household_size?: number | null
-          id: string
-          is_pre_screened?: boolean | null
-          last_activity?: string | null
-          max_monthly_rent?: number | null
-          min_bathrooms?: number | null
-          min_bedrooms?: number | null
-          move_date_flexibility?: string | null
-          move_in_date?: string | null
-          pets?: boolean | null
-          pets_allowed?: boolean | null
-          preferred_locations?: string[] | null
-          profile_image_url?: string | null
-          screening_status?: string | null
-          status?: Database["public"]["Enums"]["profile_status"]
-          updated_at?: string
-        }
-        Update: {
-          bio?: string | null
-          contact_preferences?: Json | null
-          created_at?: string
-          desired_cities?: string[] | null
-          desired_move_date?: string | null
-          desired_property_types?:
-            | Database["public"]["Enums"]["property_type"][]
-            | null
-          desired_state?: string | null
-          desired_zip_code?: string | null
-          household_income?: number | null
-          household_size?: number | null
-          id?: string
-          is_pre_screened?: boolean | null
-          last_activity?: string | null
-          max_monthly_rent?: number | null
-          min_bathrooms?: number | null
-          min_bedrooms?: number | null
-          move_date_flexibility?: string | null
-          move_in_date?: string | null
-          pets?: boolean | null
-          pets_allowed?: boolean | null
-          preferred_locations?: string[] | null
-          profile_image_url?: string | null
-          screening_status?: string | null
-          status?: Database["public"]["Enums"]["profile_status"]
-          updated_at?: string
-        }
-        Relationships: []
-      }
-      thread_participants: {
+      lead_captures: {
         Row: {
           id: string
-          is_muted: boolean
-          joined_at: string
-          left_at: string | null
-          role: string
-          thread_id: string
-          user_id: string
-        }
-        Insert: {
-          id?: string
-          is_muted?: boolean
-          joined_at?: string
-          left_at?: string | null
-          role: string
-          thread_id: string
-          user_id: string
-        }
-        Update: {
-          id?: string
-          is_muted?: boolean
-          joined_at?: string
-          left_at?: string | null
-          role?: string
-          thread_id?: string
-          user_id?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "thread_participants_thread_id_fkey"
-            columns: ["thread_id"]
-            isOneToOne: false
-            referencedRelation: "message_threads"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      /**
-       * A view over profiles and user_roles, not a table. Reads work; writes do
-       * not, which is the point — role stopped being writable by the account it
-       * describes. `role` is text rather than the old user_role enum because the
-       * view maps 'realtor' to 'agent' for these screens.
-       */
-      users: {
-        Row: {
-          created_at: string | null
+          intent: string
+          source: string
+          source_slug: string | null
+          name: string | null
           email: string | null
-          id: string | null
-          role: string | null
-          updated_at: string | null
+          phone: string | null
+          message: string | null
+          utm_source: string | null
+          utm_medium: string | null
+          utm_campaign: string | null
+          utm_content: string | null
+          utm_term: string | null
+          status: string
+          user_agent: string | null
+          created_at: string
         }
         Insert: {
-          created_at?: never
-          email?: never
-          id?: never
-          role?: never
-          updated_at?: never
+          id?: string
+          intent: string
+          source?: string
+          source_slug?: string | null
+          name?: string | null
+          email?: string | null
+          phone?: string | null
+          message?: string | null
+          utm_source?: string | null
+          utm_medium?: string | null
+          utm_campaign?: string | null
+          utm_content?: string | null
+          utm_term?: string | null
+          status?: string
+          user_agent?: string | null
+          created_at?: string
         }
         Update: {
-          created_at?: never
-          email?: never
-          id?: never
-          role?: never
-          updated_at?: never
+          id?: string
+          intent?: string
+          source?: string
+          source_slug?: string | null
+          name?: string | null
+          email?: string | null
+          phone?: string | null
+          message?: string | null
+          utm_source?: string | null
+          utm_medium?: string | null
+          utm_campaign?: string | null
+          utm_content?: string | null
+          utm_term?: string | null
+          status?: string
+          user_agent?: string | null
+          created_at?: string
         }
         Relationships: []
       }
-    },
       lender_profiles: {
         Row: {
           id: string
@@ -910,8 +1440,137 @@ export type Database = {
           created_at?: string
           updated_at?: string
         }
-        Relationships: []
-      },
+        Relationships: [
+          {
+            foreignKeyName: "lender_profiles_id_fkey"
+            columns: ["id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      listing_images: {
+        Row: {
+          id: string
+          listing_id: string | null
+          image_url: string
+          display_order: number
+          is_primary: boolean
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          listing_id?: string | null
+          image_url: string
+          display_order?: number
+          is_primary?: boolean
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          listing_id?: string | null
+          image_url?: string
+          display_order?: number
+          is_primary?: boolean
+          created_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "listing_images_listing_id_fkey"
+            columns: ["listing_id"]
+            isOneToOne: false
+            referencedRelation: "listings"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      listings: {
+        Row: {
+          id: string
+          owner_id: string
+          address: string | null
+          city: string | null
+          state: string | null
+          zip: string | null
+          description: string | null
+          price: number | null
+          bedrooms: number | null
+          bathrooms: number | null
+          full_baths: number | null
+          half_baths: number | null
+          three_quarter_baths: number | null
+          total_baths: number | null
+          square_feet: number | null
+          property_type: Database["public"]["Enums"]["property_type"] | null
+          listing_status: Database["public"]["Enums"]["listing_status"] | null
+          available_date: string | null
+          pets_allowed: boolean | null
+          featured: boolean
+          is_active: boolean
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          owner_id: string
+          address?: string | null
+          city?: string | null
+          state?: string | null
+          zip?: string | null
+          description?: string | null
+          price?: number | null
+          bedrooms?: number | null
+          bathrooms?: number | null
+          full_baths?: number | null
+          half_baths?: number | null
+          three_quarter_baths?: number | null
+          total_baths?: number | null
+          square_feet?: number | null
+          property_type?: Database["public"]["Enums"]["property_type"] | null
+          listing_status?: Database["public"]["Enums"]["listing_status"] | null
+          available_date?: string | null
+          pets_allowed?: boolean | null
+          featured?: boolean
+          is_active?: boolean
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          owner_id?: string
+          address?: string | null
+          city?: string | null
+          state?: string | null
+          zip?: string | null
+          description?: string | null
+          price?: number | null
+          bedrooms?: number | null
+          bathrooms?: number | null
+          full_baths?: number | null
+          half_baths?: number | null
+          three_quarter_baths?: number | null
+          total_baths?: number | null
+          square_feet?: number | null
+          property_type?: Database["public"]["Enums"]["property_type"] | null
+          listing_status?: Database["public"]["Enums"]["listing_status"] | null
+          available_date?: string | null
+          pets_allowed?: boolean | null
+          featured?: boolean
+          is_active?: boolean
+          created_at?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "listings_owner_id_fkey"
+            columns: ["owner_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       loan_scenarios: {
         Row: {
           id: string
@@ -940,7 +1599,7 @@ export type Database = {
         }
         Insert: {
           id?: string
-          reference?: never
+          reference?: number
           created_by: string
           product: Database["public"]["Enums"]["scenario_product"]
           status?: Database["public"]["Enums"]["scenario_status"]
@@ -965,7 +1624,7 @@ export type Database = {
         }
         Update: {
           id?: string
-          reference?: never
+          reference?: number
           created_by?: string
           product?: Database["public"]["Enums"]["scenario_product"]
           status?: Database["public"]["Enums"]["scenario_status"]
@@ -988,8 +1647,539 @@ export type Database = {
           created_at?: string
           updated_at?: string
         }
+        Relationships: [
+          {
+            foreignKeyName: "loan_scenarios_created_by_fkey"
+            columns: ["created_by"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      message_threads: {
+        Row: {
+          id: string
+          title: string | null
+          thread_type: string
+          listing_id: string | null
+          property_showing_id: string | null
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          title?: string | null
+          thread_type?: string
+          listing_id?: string | null
+          property_showing_id?: string | null
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          title?: string | null
+          thread_type?: string
+          listing_id?: string | null
+          property_showing_id?: string | null
+          created_at?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "message_threads_listing_id_fkey"
+            columns: ["listing_id"]
+            isOneToOne: false
+            referencedRelation: "listings"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "message_threads_property_showing_id_fkey"
+            columns: ["property_showing_id"]
+            isOneToOne: false
+            referencedRelation: "property_showings"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      messages: {
+        Row: {
+          id: string
+          thread_id: string
+          sender_id: string
+          content: string
+          read_at: string | null
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          thread_id: string
+          sender_id: string
+          content: string
+          read_at?: string | null
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          thread_id?: string
+          sender_id?: string
+          content?: string
+          read_at?: string | null
+          created_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "messages_sender_id_fkey"
+            columns: ["sender_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "messages_thread_id_fkey"
+            columns: ["thread_id"]
+            isOneToOne: false
+            referencedRelation: "message_threads"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          id: string
+          email: string | null
+          display_name: string | null
+          created_at: string
+          updated_at: string
+          phone: string | null
+        }
+        Insert: {
+          id: string
+          email?: string | null
+          display_name?: string | null
+          created_at?: string
+          updated_at?: string
+          phone?: string | null
+        }
+        Update: {
+          id?: string
+          email?: string | null
+          display_name?: string | null
+          created_at?: string
+          updated_at?: string
+          phone?: string | null
+        }
         Relationships: []
-      },
+      }
+      property_posts: {
+        Row: {
+          id: string
+          slug: string
+          headline: string
+          hero_image: string | null
+          summary: string | null
+          body: string | null
+          sections: Json
+          video_url: string | null
+          property_status: string
+          cshr_listing_url: string | null
+          listing_credit_office: string | null
+          listing_credit_agent: string | null
+          author: string
+          publish_date: string
+          topic_id: string | null
+          tags: string[]
+          cta_label: string
+          cta_responder: string
+          social_caption_short: string | null
+          social_caption_long: string | null
+          hashtags: string[]
+          utm_source: string | null
+          utm_medium: string | null
+          utm_campaign: string | null
+          utm_content: string | null
+          published: boolean
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          slug: string
+          headline: string
+          hero_image?: string | null
+          summary?: string | null
+          body?: string | null
+          sections?: Json
+          video_url?: string | null
+          property_status?: string
+          cshr_listing_url?: string | null
+          listing_credit_office?: string | null
+          listing_credit_agent?: string | null
+          author?: string
+          publish_date?: string
+          topic_id?: string | null
+          tags?: string[]
+          cta_label?: string
+          cta_responder?: string
+          social_caption_short?: string | null
+          social_caption_long?: string | null
+          hashtags?: string[]
+          utm_source?: string | null
+          utm_medium?: string | null
+          utm_campaign?: string | null
+          utm_content?: string | null
+          published?: boolean
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          slug?: string
+          headline?: string
+          hero_image?: string | null
+          summary?: string | null
+          body?: string | null
+          sections?: Json
+          video_url?: string | null
+          property_status?: string
+          cshr_listing_url?: string | null
+          listing_credit_office?: string | null
+          listing_credit_agent?: string | null
+          author?: string
+          publish_date?: string
+          topic_id?: string | null
+          tags?: string[]
+          cta_label?: string
+          cta_responder?: string
+          social_caption_short?: string | null
+          social_caption_long?: string | null
+          hashtags?: string[]
+          utm_source?: string | null
+          utm_medium?: string | null
+          utm_campaign?: string | null
+          utm_content?: string | null
+          published?: boolean
+          created_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "property_posts_topic_id_fkey"
+            columns: ["topic_id"]
+            isOneToOne: false
+            referencedRelation: "topics"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      property_showings: {
+        Row: {
+          id: string
+          listing_id: string | null
+          tenant_id: string | null
+          requested_date: string | null
+          requested_time: string | null
+          message: string | null
+          status: string
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          listing_id?: string | null
+          tenant_id?: string | null
+          requested_date?: string | null
+          requested_time?: string | null
+          message?: string | null
+          status?: string
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          listing_id?: string | null
+          tenant_id?: string | null
+          requested_date?: string | null
+          requested_time?: string | null
+          message?: string | null
+          status?: string
+          created_at?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "property_showings_listing_id_fkey"
+            columns: ["listing_id"]
+            isOneToOne: false
+            referencedRelation: "listings"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "property_showings_tenant_id_fkey"
+            columns: ["tenant_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      question_submissions: {
+        Row: {
+          id: string
+          name: string | null
+          email: string | null
+          question: string
+          context: string | null
+          status: string
+          user_agent: string | null
+          created_at: string
+          answered_qa_id: string | null
+        }
+        Insert: {
+          id?: string
+          name?: string | null
+          email?: string | null
+          question: string
+          context?: string | null
+          status?: string
+          user_agent?: string | null
+          created_at?: string
+          answered_qa_id?: string | null
+        }
+        Update: {
+          id?: string
+          name?: string | null
+          email?: string | null
+          question?: string
+          context?: string | null
+          status?: string
+          user_agent?: string | null
+          created_at?: string
+          answered_qa_id?: string | null
+        }
+        Relationships: []
+      }
+      realtor_profiles: {
+        Row: {
+          id: string
+          agency: string | null
+          bio: string | null
+          license_number: string | null
+          specialties: string[] | null
+          years_experience: number | null
+          is_verified: boolean
+          verification_documents: string[] | null
+          status: Database["public"]["Enums"]["profile_status"]
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id: string
+          agency?: string | null
+          bio?: string | null
+          license_number?: string | null
+          specialties?: string[] | null
+          years_experience?: number | null
+          is_verified?: boolean
+          verification_documents?: string[] | null
+          status?: Database["public"]["Enums"]["profile_status"]
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          agency?: string | null
+          bio?: string | null
+          license_number?: string | null
+          specialties?: string[] | null
+          years_experience?: number | null
+          is_verified?: boolean
+          verification_documents?: string[] | null
+          status?: Database["public"]["Enums"]["profile_status"]
+          created_at?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "realtor_profiles_id_fkey"
+            columns: ["id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      scenario_documents: {
+        Row: {
+          id: string
+          scenario_id: string
+          storage_path: string
+          file_name: string
+          file_size: number | null
+          content_type: string | null
+          document_type: string | null
+          uploaded_by: string | null
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          scenario_id: string
+          storage_path: string
+          file_name: string
+          file_size?: number | null
+          content_type?: string | null
+          document_type?: string | null
+          uploaded_by?: string | null
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          scenario_id?: string
+          storage_path?: string
+          file_name?: string
+          file_size?: number | null
+          content_type?: string | null
+          document_type?: string | null
+          uploaded_by?: string | null
+          created_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "scenario_documents_scenario_id_fkey"
+            columns: ["scenario_id"]
+            isOneToOne: false
+            referencedRelation: "loan_scenarios"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "scenario_documents_uploaded_by_fkey"
+            columns: ["uploaded_by"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      scenario_guarantors: {
+        Row: {
+          id: string
+          scenario_id: string
+          position: number
+          full_name: string | null
+          employment_type: string | null
+          property_assets: number
+          property_liabilities: number
+          other_assets: number
+          other_liabilities: number
+          total_assets: number | null
+          total_liabilities: number | null
+          net_position: number | null
+          outstanding_tax: boolean | null
+          credit_impairments: boolean | null
+          comments: string | null
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          scenario_id: string
+          position?: number
+          full_name?: string | null
+          employment_type?: string | null
+          property_assets?: number
+          property_liabilities?: number
+          other_assets?: number
+          other_liabilities?: number
+          outstanding_tax?: boolean | null
+          credit_impairments?: boolean | null
+          comments?: string | null
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          scenario_id?: string
+          position?: number
+          full_name?: string | null
+          employment_type?: string | null
+          property_assets?: number
+          property_liabilities?: number
+          other_assets?: number
+          other_liabilities?: number
+          outstanding_tax?: boolean | null
+          credit_impairments?: boolean | null
+          comments?: string | null
+          created_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "scenario_guarantors_scenario_id_fkey"
+            columns: ["scenario_id"]
+            isOneToOne: false
+            referencedRelation: "loan_scenarios"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      scenario_lender_access: {
+        Row: {
+          id: string
+          scenario_id: string
+          lender_id: string
+          shared_by: string | null
+          shared_at: string
+          revoked_at: string | null
+          response: string | null
+          responded_at: string | null
+          indicative_rate: number | null
+          indicative_amount: number | null
+          lender_notes: string | null
+        }
+        Insert: {
+          id?: string
+          scenario_id: string
+          lender_id: string
+          shared_by?: string | null
+          shared_at?: string
+          revoked_at?: string | null
+          response?: string | null
+          responded_at?: string | null
+          indicative_rate?: number | null
+          indicative_amount?: number | null
+          lender_notes?: string | null
+        }
+        Update: {
+          id?: string
+          scenario_id?: string
+          lender_id?: string
+          shared_by?: string | null
+          shared_at?: string
+          revoked_at?: string | null
+          response?: string | null
+          responded_at?: string | null
+          indicative_rate?: number | null
+          indicative_amount?: number | null
+          lender_notes?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "scenario_lender_access_lender_id_fkey"
+            columns: ["lender_id"]
+            isOneToOne: false
+            referencedRelation: "lender_profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "scenario_lender_access_scenario_id_fkey"
+            columns: ["scenario_id"]
+            isOneToOne: false
+            referencedRelation: "loan_scenarios"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "scenario_lender_access_shared_by_fkey"
+            columns: ["shared_by"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       scenario_properties: {
         Row: {
           id: string
@@ -1033,167 +2223,349 @@ export type Database = {
           comments?: string | null
           created_at?: string
         }
-        Relationships: []
-      },
-      scenario_guarantors: {
+        Relationships: [
+          {
+            foreignKeyName: "scenario_properties_scenario_id_fkey"
+            columns: ["scenario_id"]
+            isOneToOne: false
+            referencedRelation: "loan_scenarios"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      sidebar_promos: {
         Row: {
           id: string
-          scenario_id: string
-          position: number
-          full_name: string | null
-          employment_type: string | null
-          property_assets: number
-          property_liabilities: number
-          other_assets: number
-          other_liabilities: number
-          total_assets: number | null
-          total_liabilities: number | null
-          net_position: number | null
-          outstanding_tax: boolean | null
-          credit_impairments: boolean | null
-          comments: string | null
+          title: string
+          image: string | null
+          short_copy: string | null
+          button_label: string | null
+          button_url: string | null
+          priority: number
+          accent: boolean
+          active: boolean
           created_at: string
         }
         Insert: {
           id?: string
-          scenario_id: string
-          position?: number
-          full_name?: string | null
-          employment_type?: string | null
-          property_assets?: number
-          property_liabilities?: number
-          other_assets?: number
-          other_liabilities?: number
-          total_assets?: never
-          total_liabilities?: never
-          net_position?: never
-          outstanding_tax?: boolean | null
-          credit_impairments?: boolean | null
-          comments?: string | null
+          title: string
+          image?: string | null
+          short_copy?: string | null
+          button_label?: string | null
+          button_url?: string | null
+          priority?: number
+          accent?: boolean
+          active?: boolean
           created_at?: string
         }
         Update: {
           id?: string
-          scenario_id?: string
-          position?: number
-          full_name?: string | null
-          employment_type?: string | null
-          property_assets?: number
-          property_liabilities?: number
-          other_assets?: number
-          other_liabilities?: number
-          total_assets?: never
-          total_liabilities?: never
-          net_position?: never
-          outstanding_tax?: boolean | null
-          credit_impairments?: boolean | null
-          comments?: string | null
+          title?: string
+          image?: string | null
+          short_copy?: string | null
+          button_label?: string | null
+          button_url?: string | null
+          priority?: number
+          accent?: boolean
+          active?: boolean
           created_at?: string
-        }
-        Relationships: []
-      },
-      scenario_documents: {
-        Row: {
-          id: string
-          scenario_id: string
-          storage_path: string
-          file_name: string
-          file_size: number | null
-          content_type: string | null
-          document_type: string | null
-          uploaded_by: string | null
-          created_at: string
-        }
-        Insert: {
-          id?: string
-          scenario_id: string
-          storage_path: string
-          file_name: string
-          file_size?: number | null
-          content_type?: string | null
-          document_type?: string | null
-          uploaded_by?: string | null
-          created_at?: string
-        }
-        Update: {
-          id?: string
-          scenario_id?: string
-          storage_path?: string
-          file_name?: string
-          file_size?: number | null
-          content_type?: string | null
-          document_type?: string | null
-          uploaded_by?: string | null
-          created_at?: string
-        }
-        Relationships: []
-      },
-      scenario_lender_access: {
-        Row: {
-          id: string
-          scenario_id: string
-          lender_id: string
-          shared_by: string | null
-          shared_at: string
-          revoked_at: string | null
-          response: string | null
-          responded_at: string | null
-          indicative_rate: number | null
-          indicative_amount: number | null
-          lender_notes: string | null
-        }
-        Insert: {
-          id?: string
-          scenario_id: string
-          lender_id: string
-          shared_by?: string | null
-          shared_at?: string
-          revoked_at?: string | null
-          response?: string | null
-          responded_at?: string | null
-          indicative_rate?: number | null
-          indicative_amount?: number | null
-          lender_notes?: string | null
-        }
-        Update: {
-          id?: string
-          scenario_id?: string
-          lender_id?: string
-          shared_by?: string | null
-          shared_at?: string
-          revoked_at?: string | null
-          response?: string | null
-          responded_at?: string | null
-          indicative_rate?: number | null
-          indicative_amount?: number | null
-          lender_notes?: string | null
         }
         Relationships: []
       }
-
+      tenant_listing_matches: {
+        Row: {
+          id: string
+          tenant_id: string | null
+          listing_id: string | null
+          match_score: number | null
+          criteria_met: Json | null
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          tenant_id?: string | null
+          listing_id?: string | null
+          match_score?: number | null
+          criteria_met?: Json | null
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          tenant_id?: string | null
+          listing_id?: string | null
+          match_score?: number | null
+          criteria_met?: Json | null
+          created_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "tenant_listing_matches_listing_id_fkey"
+            columns: ["listing_id"]
+            isOneToOne: false
+            referencedRelation: "listings"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "tenant_listing_matches_tenant_id_fkey"
+            columns: ["tenant_id"]
+            isOneToOne: false
+            referencedRelation: "tenant_profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      tenant_profiles: {
+        Row: {
+          id: string
+          bio: string | null
+          contact_preferences: Json | null
+          desired_cities: string[] | null
+          desired_state: string | null
+          desired_zip_code: string | null
+          desired_move_date: string | null
+          move_in_date: string | null
+          move_date_flexibility: string | null
+          household_income: number | null
+          household_size: number | null
+          max_monthly_rent: number | null
+          min_bedrooms: number | null
+          min_bathrooms: number | null
+          preferred_locations: string[] | null
+          pets: boolean | null
+          pets_allowed: boolean | null
+          profile_image_url: string | null
+          is_pre_screened: boolean
+          screening_status: string | null
+          status: Database["public"]["Enums"]["profile_status"]
+          last_activity: string | null
+          created_at: string
+          updated_at: string
+          desired_property_types: string[] | null
+        }
+        Insert: {
+          id: string
+          bio?: string | null
+          contact_preferences?: Json | null
+          desired_cities?: string[] | null
+          desired_state?: string | null
+          desired_zip_code?: string | null
+          desired_move_date?: string | null
+          move_in_date?: string | null
+          move_date_flexibility?: string | null
+          household_income?: number | null
+          household_size?: number | null
+          max_monthly_rent?: number | null
+          min_bedrooms?: number | null
+          min_bathrooms?: number | null
+          preferred_locations?: string[] | null
+          pets?: boolean | null
+          pets_allowed?: boolean | null
+          profile_image_url?: string | null
+          is_pre_screened?: boolean
+          screening_status?: string | null
+          status?: Database["public"]["Enums"]["profile_status"]
+          last_activity?: string | null
+          created_at?: string
+          updated_at?: string
+          desired_property_types?: string[] | null
+        }
+        Update: {
+          id?: string
+          bio?: string | null
+          contact_preferences?: Json | null
+          desired_cities?: string[] | null
+          desired_state?: string | null
+          desired_zip_code?: string | null
+          desired_move_date?: string | null
+          move_in_date?: string | null
+          move_date_flexibility?: string | null
+          household_income?: number | null
+          household_size?: number | null
+          max_monthly_rent?: number | null
+          min_bedrooms?: number | null
+          min_bathrooms?: number | null
+          preferred_locations?: string[] | null
+          pets?: boolean | null
+          pets_allowed?: boolean | null
+          profile_image_url?: string | null
+          is_pre_screened?: boolean
+          screening_status?: string | null
+          status?: Database["public"]["Enums"]["profile_status"]
+          last_activity?: string | null
+          created_at?: string
+          updated_at?: string
+          desired_property_types?: string[] | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "tenant_profiles_id_fkey"
+            columns: ["id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      thread_participants: {
+        Row: {
+          id: string
+          thread_id: string
+          user_id: string
+          role: string
+          is_muted: boolean
+          joined_at: string
+          left_at: string | null
+        }
+        Insert: {
+          id?: string
+          thread_id: string
+          user_id: string
+          role?: string
+          is_muted?: boolean
+          joined_at?: string
+          left_at?: string | null
+        }
+        Update: {
+          id?: string
+          thread_id?: string
+          user_id?: string
+          role?: string
+          is_muted?: boolean
+          joined_at?: string
+          left_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "thread_participants_thread_id_fkey"
+            columns: ["thread_id"]
+            isOneToOne: false
+            referencedRelation: "message_threads"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "thread_participants_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      topics: {
+        Row: {
+          id: string
+          slug: string
+          name: string
+          description: string | null
+          hero_image: string | null
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          slug: string
+          name: string
+          description?: string | null
+          hero_image?: string | null
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          slug?: string
+          name?: string
+          description?: string | null
+          hero_image?: string | null
+          created_at?: string
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          id: string
+          user_id: string
+          role: Database["public"]["Enums"]["app_role"]
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          user_id: string
+          role: Database["public"]["Enums"]["app_role"]
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          user_id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          created_at?: string
+        }
+        Relationships: []
+      }
+    }
     Views: {
-      [_ in never]: never
+      users: {
+        Row: {
+          id: string | null
+          email: string | null
+          role: string | null
+          created_at: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          [_ in never]: never
+        }
+        Update: {
+          [_ in never]: never
+        }
+        Relationships: []
+      }
     }
     Functions: {
       calculate_match_score: {
         Args: { tenant_id_param: string; listing_id_param: string }
         Returns: number
       }
+      handle_new_user: {
+        Args: Record<PropertyKey, never>
+        Returns: Json
+      }
+      has_directory_access: {
+        Args: { _requester: string; _tenant: string }
+        Returns: boolean
+      }
+      has_role: {
+        Args: { _user_id: string; _role: string }
+        Returns: boolean
+      }
       is_admin: {
         Args: Record<PropertyKey, never>
         Returns: boolean
       }
+      is_thread_participant: {
+        Args: { _thread: string; _user: string }
+        Returns: boolean
+      }
+      lender_can_see_scenario: {
+        Args: { _lender: string; _scenario: string }
+        Returns: boolean
+      }
+      safe_numeric: {
+        Args: { _value: string }
+        Returns: number
+      }
+      set_updated_at: {
+        Args: Record<PropertyKey, never>
+        Returns: Json
+      }
     }
     Enums: {
-      app_role: 'admin' | 'editor' | 'tenant' | 'landlord' | 'realtor' | 'lender'
-      listing_status: 'active' | 'coming_soon' | 'rented' | 'inactive'
-      management_type: 'self' | 'company' | 'hybrid'
-      profile_status: 'incomplete' | 'basic' | 'verified' | 'premium'
-      property_type: 'house' | 'townhouse_condo' | 'apartment'
-      scenario_product: 'first_mortgage' | 'second_mortgage' | 'construction'
-      scenario_status: 'draft' | 'submitted' | 'in_review' | 'quoted' | 'closed' | 'withdrawn'
-      security_type: 'residential' | 'commercial' | 'industrial' | 'agriculture_farming' | 'development_site' | 'vacant_land' | 'specialised' | 'residual_stock' | 'mid_construction'
-      transaction_type: 'purchase' | 'refinance' | 'equity_release' | 'development' | 'land_subdivision'
+      app_role: "admin" | "editor" | "tenant" | "landlord" | "realtor" | "lender"
+      listing_status: "active" | "coming_soon" | "rented" | "inactive"
+      management_type: "self" | "company" | "hybrid"
+      profile_status: "incomplete" | "basic" | "verified" | "premium"
+      property_type: "house" | "townhouse_condo" | "apartment"
+      scenario_product: "first_mortgage" | "second_mortgage" | "construction"
+      scenario_status: "draft" | "submitted" | "in_review" | "quoted" | "closed" | "withdrawn"
+      security_type: "residential" | "commercial" | "industrial" | "agriculture_farming" | "development_site" | "vacant_land" | "specialised" | "residual_stock" | "mid_construction"
+      transaction_type: "purchase" | "refinance" | "equity_release" | "development" | "land_subdivision"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -1201,119 +2573,20 @@ export type Database = {
   }
 }
 
-type DefaultSchema = Database[Extract<keyof Database, "public">]
+type DefaultSchema = Database["public"]
 
 export type Tables<
-  DefaultSchemaTableNameOrOptions extends
-    | keyof (DefaultSchema["Tables"] & DefaultSchema["Views"])
-    | { schema: keyof Database },
-  TableName extends DefaultSchemaTableNameOrOptions extends {
-    schema: keyof Database
-  }
-    ? keyof (Database[DefaultSchemaTableNameOrOptions["schema"]]["Tables"] &
-        Database[DefaultSchemaTableNameOrOptions["schema"]]["Views"])
-    : never = never,
-> = DefaultSchemaTableNameOrOptions extends { schema: keyof Database }
-  ? (Database[DefaultSchemaTableNameOrOptions["schema"]]["Tables"] &
-      Database[DefaultSchemaTableNameOrOptions["schema"]]["Views"])[TableName] extends {
-      Row: infer R
-    }
-    ? R
-    : never
-  : DefaultSchemaTableNameOrOptions extends keyof (DefaultSchema["Tables"] &
-        DefaultSchema["Views"])
-    ? (DefaultSchema["Tables"] &
-        DefaultSchema["Views"])[DefaultSchemaTableNameOrOptions] extends {
-        Row: infer R
-      }
-      ? R
-      : never
-    : never
+  T extends keyof (DefaultSchema["Tables"] & DefaultSchema["Views"]),
+> = (DefaultSchema["Tables"] & DefaultSchema["Views"])[T] extends { Row: infer R }
+  ? R
+  : never
 
-export type TablesInsert<
-  DefaultSchemaTableNameOrOptions extends
-    | keyof DefaultSchema["Tables"]
-    | { schema: keyof Database },
-  TableName extends DefaultSchemaTableNameOrOptions extends {
-    schema: keyof Database
-  }
-    ? keyof Database[DefaultSchemaTableNameOrOptions["schema"]]["Tables"]
-    : never = never,
-> = DefaultSchemaTableNameOrOptions extends { schema: keyof Database }
-  ? Database[DefaultSchemaTableNameOrOptions["schema"]]["Tables"][TableName] extends {
-      Insert: infer I
-    }
-    ? I
-    : never
-  : DefaultSchemaTableNameOrOptions extends keyof DefaultSchema["Tables"]
-    ? DefaultSchema["Tables"][DefaultSchemaTableNameOrOptions] extends {
-        Insert: infer I
-      }
-      ? I
-      : never
-    : never
+export type TablesInsert<T extends keyof DefaultSchema["Tables"]> =
+  DefaultSchema["Tables"][T] extends { Insert: infer I } ? I : never
 
-export type TablesUpdate<
-  DefaultSchemaTableNameOrOptions extends
-    | keyof DefaultSchema["Tables"]
-    | { schema: keyof Database },
-  TableName extends DefaultSchemaTableNameOrOptions extends {
-    schema: keyof Database
-  }
-    ? keyof Database[DefaultSchemaTableNameOrOptions["schema"]]["Tables"]
-    : never = never,
-> = DefaultSchemaTableNameOrOptions extends { schema: keyof Database }
-  ? Database[DefaultSchemaTableNameOrOptions["schema"]]["Tables"][TableName] extends {
-      Update: infer U
-    }
-    ? U
-    : never
-  : DefaultSchemaTableNameOrOptions extends keyof DefaultSchema["Tables"]
-    ? DefaultSchema["Tables"][DefaultSchemaTableNameOrOptions] extends {
-        Update: infer U
-      }
-      ? U
-      : never
-    : never
+export type TablesUpdate<T extends keyof DefaultSchema["Tables"]> =
+  DefaultSchema["Tables"][T] extends { Update: infer U } ? U : never
 
-export type Enums<
-  DefaultSchemaEnumNameOrOptions extends
-    | keyof DefaultSchema["Enums"]
-    | { schema: keyof Database },
-  EnumName extends DefaultSchemaEnumNameOrOptions extends {
-    schema: keyof Database
-  }
-    ? keyof Database[DefaultSchemaEnumNameOrOptions["schema"]]["Enums"]
-    : never = never,
-> = DefaultSchemaEnumNameOrOptions extends { schema: keyof Database }
-  ? Database[DefaultSchemaEnumNameOrOptions["schema"]]["Enums"][EnumName]
-  : DefaultSchemaEnumNameOrOptions extends keyof DefaultSchema["Enums"]
-    ? DefaultSchema["Enums"][DefaultSchemaEnumNameOrOptions]
-    : never
+export type Enums<T extends keyof DefaultSchema["Enums"]> =
+  DefaultSchema["Enums"][T]
 
-export type CompositeTypes<
-  PublicCompositeTypeNameOrOptions extends
-    | keyof DefaultSchema["CompositeTypes"]
-    | { schema: keyof Database },
-  CompositeTypeName extends PublicCompositeTypeNameOrOptions extends {
-    schema: keyof Database
-  }
-    ? keyof Database[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"]
-    : never = never,
-> = PublicCompositeTypeNameOrOptions extends { schema: keyof Database }
-  ? Database[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"][CompositeTypeName]
-  : PublicCompositeTypeNameOrOptions extends keyof DefaultSchema["CompositeTypes"]
-    ? DefaultSchema["CompositeTypes"][PublicCompositeTypeNameOrOptions]
-    : never
-
-export const Constants = {
-  public: {
-    Enums: {
-      listing_status: ["active", "coming_soon", "rented", "inactive"],
-      management_type: ["self", "company", "hybrid"],
-      profile_status: ["incomplete", "basic", "verified", "premium"],
-      property_type: ["house", "townhouse_condo", "apartment"],
-      user_role: ["tenant", "agent", "landlord", "admin"],
-    },
-  },
-} as const

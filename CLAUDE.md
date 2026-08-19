@@ -83,6 +83,15 @@ a shared file. If two features need the same thing, it moves to `lib/` or
 - Money is `numeric`, never float. Totals that can be derived are generated
   columns, so a stored total cannot disagree with its own inputs.
 - Migrations are forward-only. Never edit one that has been applied.
+- **Regenerate `src/integrations/supabase/types.ts` after every migration**, with
+  `python3 scripts/gen-supabase-types.py > src/integrations/supabase/types.ts`.
+  The Supabase CLI does this too, but it shells out to Docker, which is not
+  available here. A stale types file is worse than no types file: it compiles
+  against a schema that no longer exists.
+- The generated types are what makes `supabase.from(...)` safe. If a table name
+  that does not exist ever type-checks, the typing has silently degraded to
+  `any` somewhere — check that every value assigned to the client is
+  `SupabaseClient<Database>`, including test doubles and dev stubs.
 
 ## UI
 

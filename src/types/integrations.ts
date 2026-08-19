@@ -30,9 +30,14 @@ export interface IntegrationRequest {
   updated_at: string;
   reviewed_by?: string;
   reviewed_at?: string;
+  /*
+   * Filled from an embed of `profiles`, which is what the requested_by foreign
+   * key points at. It used to embed the `users` view and read a role off it;
+   * the view has no foreign key, so PostgREST could not resolve the join and
+   * the role was never rendered anyway.
+   */
   user?: {
-    email: string;
-    role: string;
+    email: string | null;
   };
 }
 

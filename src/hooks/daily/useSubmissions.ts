@@ -70,8 +70,12 @@ export type LeadInput = {
 export function useSubmitLead() {
   return useMutation({
     mutationFn: async (input: LeadInput) => {
-      const parsed = leadSchema.parse(input);
-      const { error } = await supabase.from("lead_captures").insert(parsed);
+      // Validate, then insert the input rather than the parse output: zod's
+      // inferred output makes every nullable field optional, which no longer
+      // matches the row's required `intent` now that the generated types
+      // describe the real table.
+      leadSchema.parse(input);
+      const { error } = await supabase.from("lead_captures").insert(input);
       if (error) throw new Error(error.message);
     },
   });
