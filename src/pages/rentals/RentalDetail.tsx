@@ -112,6 +112,7 @@ const RentalDetail = () => {
 
           <aside className="space-y-4 lg:sticky lg:top-24 lg:self-start">
             <QualificationPanel
+              applyTo={listing.showingAllowed ? (listing.slug ?? listing.id) : undefined}
               listing={{
                 rent: listing.rent,
                 minCreditScore: listing.minCreditScore,

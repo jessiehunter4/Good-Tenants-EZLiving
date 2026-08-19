@@ -48,6 +48,7 @@ import Start from "./pages/daily/Start";
 import Rentals from "./pages/rentals/Rentals";
 import RentalDetail from "./pages/rentals/RentalDetail";
 import Prequalify from "./pages/rentals/Prequalify";
+import Apply from "./pages/rentals/Apply";
 
 // Legal and contact, carried across from the rentals site and the daily.
 import Privacy from "./pages/legal/Privacy";
@@ -117,6 +118,14 @@ function App() {
               database, so these need no guard of their own. */}
           <Route path="/rentals" element={<Rentals />} />
           <Route path="/rentals/:slug" element={<RentalDetail />} />
+          <Route
+            path="/rentals/:slug/apply"
+            element={
+              <RoleBasedRoute allowedRoles={["tenant", "admin"]}>
+                <Apply />
+              </RoleBasedRoute>
+            }
+          />
           <Route
             path="/prequalify"
             element={

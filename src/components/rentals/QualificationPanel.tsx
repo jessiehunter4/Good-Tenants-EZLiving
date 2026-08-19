@@ -15,7 +15,14 @@ import { qualifyForListing, type QualifiableListing } from "@/features/tenant/qu
  * dates on every property; the answers now live on the renter's one profile, so
  * a listing can say where they stand without asking anything.
  */
-export const QualificationPanel = ({ listing }: { listing: QualifiableListing }) => {
+export const QualificationPanel = ({
+  listing,
+  applyTo,
+}: {
+  listing: QualifiableListing;
+  /** The slug to apply against. Omitted where there is nothing to apply to. */
+  applyTo?: string;
+}) => {
   const { user } = useAuth();
   const { data: profile, isLoading } = useQuery({
     ...myRenterProfileQuery,
@@ -75,6 +82,12 @@ export const QualificationPanel = ({ listing }: { listing: QualifiableListing })
           </li>
         ))}
       </ul>
+
+      {applyTo && (
+        <Button asChild className="mt-4 w-full bg-espresso text-sand hover:bg-espresso/90">
+          <Link to={`/rentals/${applyTo}/apply`}>Apply with my profile</Link>
+        </Button>
+      )}
 
       <p className="mt-4 text-xs text-espresso-muted">
         Based on the profile you already filled in. Nothing here is shared with a landlord until
