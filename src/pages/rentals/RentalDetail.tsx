@@ -123,9 +123,7 @@ const RentalDetail = () => {
                     asChild
                     className="mt-4 w-full bg-espresso text-sand hover:bg-espresso/90"
                   >
-                    <Link to={`/register?role=tenant&listing=${listing.slug ?? listing.id}`}>
-                      Start my renter profile
-                    </Link>
+                    <Link to="/prequalify">Check if I qualify</Link>
                   </Button>
                 </>
               ) : (
