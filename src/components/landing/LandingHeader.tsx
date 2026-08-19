@@ -7,10 +7,11 @@ import { cn } from "@/lib/utils";
 import { BRAND } from "@/config/brand";
 
 const NAV = [
-  { label: "How it works", href: "#how-it-works" },
-  { label: "Why us", href: "#why-us" },
   { label: "Rentals", href: "#rentals" },
-  { label: "Help", href: "#help" },
+  { label: "The daily", href: "#daily" },
+  { label: "How it works", href: "#how-it-works" },
+  { label: "For owners", href: "#owners" },
+  { label: "FAQ", href: "#faq" },
 ] as const;
 
 export const LandingHeader = () => {

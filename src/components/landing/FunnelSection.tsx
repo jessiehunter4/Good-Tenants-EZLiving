@@ -1,22 +1,7 @@
-const STEPS = [
-  {
-    number: "01",
-    title: "Build your profile",
-    body: "Budget, timing, household and the documents a landlord always asks for. Fifteen minutes, once.",
-  },
-  {
-    number: "02",
-    title: "Get verified",
-    body: "We check what you have uploaded so a landlord does not have to take your word for it.",
-  },
-  {
-    number: "03",
-    title: "Share it, on your terms",
-    body: "Approve each landlord or agent who wants to see it. Access expires; nothing is public.",
-  },
-] as const;
+import { BENEFITS, STEPS } from "@/features/landing/content";
 
-export const HowItWorksSection = () => (
+/** Coming Soon Home Rentals' funnel and tenant benefits, merged into one block. */
+export const FunnelSection = () => (
   <section id="how-it-works" className="bg-sand py-20 sm:py-28">
     <div className="page-shell">
       <div className="mx-auto max-w-2xl text-center">
@@ -24,7 +9,7 @@ export const HowItWorksSection = () => (
           How it works
         </h2>
         <p className="mt-4 text-lg font-medium text-espresso-muted">
-          Three steps, and the last one is yours to control.
+          Three steps, and the first one takes minutes.
         </p>
       </div>
 
@@ -39,8 +24,19 @@ export const HowItWorksSection = () => (
           </li>
         ))}
       </ol>
+
+      <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        {BENEFITS.map((benefit) => (
+          <article key={benefit.title} className="rounded-2xl bg-clay p-6">
+            <h3 className="font-bold text-espresso">{benefit.title}</h3>
+            <p className="mt-2 text-sm font-medium leading-relaxed text-espresso-muted">
+              {benefit.body}
+            </p>
+          </article>
+        ))}
+      </div>
     </div>
   </section>
 );
 
-export default HowItWorksSection;
+export default FunnelSection;

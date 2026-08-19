@@ -1,42 +1,39 @@
-import { useRedirectAuthenticated } from "@/hooks/useRedirectAuthenticated";
 import LandingHeader from "@/components/landing/LandingHeader";
-import LandingHero from "@/components/landing/LandingHero";
-import ValueSection from "@/components/landing/ValueSection";
-import WhyUsSection from "@/components/landing/WhyUsSection";
+import MergedHero from "@/components/landing/MergedHero";
+import DoorsSection from "@/components/landing/DoorsSection";
+import FunnelSection from "@/components/landing/FunnelSection";
 import RentalsSection from "@/components/landing/RentalsSection";
-import HowItWorksSection from "@/components/landing/HowItWorksSection";
+import DailySection from "@/components/landing/DailySection";
+import OwnersSection from "@/components/landing/OwnersSection";
+import FaqSection from "@/components/landing/FaqSection";
 import HelpSection from "@/components/landing/HelpSection";
 import LandingFooter from "@/components/landing/LandingFooter";
 
 /**
- * The public landing page.
+ * The merged landing page.
  *
- * Composition only — every section owns its own data and copy, so this file
- * stays readable as sections are added, reordered or dropped.
+ * Assembled from the three sites it replaces rather than written fresh: Coming
+ * Soon Home Rentals supplies the promise, the funnel, the owner pitch and the
+ * questions; Irvine Living Daily supplies the three-doors framing and the daily
+ * slot; Good Tenants supplies the reusable profile running through both.
  *
- * The one thing it does beyond composing: a signed-in account is sent to its
- * own dashboard. This page describes the product to someone who has not signed
- * up, and a tenant who arrives here has mistyped a URL or followed a stale
- * link — every second they spend reading the pitch is a second they are not
- * looking at their application.
+ * Composition only. Each section owns its copy and its data.
  */
-const LandingPage = () => {
-  useRedirectAuthenticated();
-
-  return (
+const LandingPage = () => (
   <div className="min-h-screen bg-background">
     <LandingHeader />
     <main>
-      <LandingHero />
-      <ValueSection />
-      <WhyUsSection />
+      <MergedHero />
+      <DoorsSection />
+      <FunnelSection />
       <RentalsSection />
-      <HowItWorksSection />
+      <DailySection />
+      <OwnersSection />
+      <FaqSection />
       <HelpSection />
     </main>
     <LandingFooter />
   </div>
-  );
-};
+);
 
 export default LandingPage;
