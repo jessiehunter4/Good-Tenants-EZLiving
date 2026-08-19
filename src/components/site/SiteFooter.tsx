@@ -29,16 +29,26 @@ const COLUMNS = [
   {
     heading: "Company",
     links: [
+      { label: "About", to: "/about" },
+      { label: "Pricing", to: "/pricing" },
+      { label: "FAQ", to: "/faq" },
       { label: "Contact", to: "/contact" },
+    ],
+  },
+  {
+    heading: "Legal",
+    links: [
       { label: "Privacy", to: "/privacy" },
       { label: "Terms", to: "/terms" },
+      { label: "Fair housing", to: "/fair-housing" },
+      { label: "Accessibility", to: "/accessibility" },
     ],
   },
 ] as const;
 
 export const SiteFooter = () => (
   <footer className="bg-clay">
-    <div className="page-shell grid gap-10 py-16 md:grid-cols-[1.3fr_repeat(5,1fr)]">
+    <div className="page-shell grid gap-10 py-16 md:grid-cols-2 lg:grid-cols-[1.2fr_repeat(5,1fr)]">
       <div>
         <p className="text-lg font-extrabold tracking-tight text-espresso">{BRAND.name}</p>
         <p className="mt-3 max-w-xs font-medium text-espresso-muted">{BRAND.tagline}</p>
@@ -66,7 +76,9 @@ export const SiteFooter = () => (
     <div className="border-t border-espresso/10">
       <div className="page-shell flex flex-wrap items-center justify-between gap-2 py-6 text-sm font-medium text-espresso-muted">
         <p>© {new Date().getFullYear()} {BRAND.legalName}</p>
-        <p>Equal Housing Opportunity</p>
+        <Link to="/fair-housing" className="hover:text-espresso">
+          Equal Housing Opportunity
+        </Link>
       </div>
     </div>
   </footer>

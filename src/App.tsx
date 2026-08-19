@@ -55,6 +55,14 @@ import Privacy from "./pages/legal/Privacy";
 import Terms from "./pages/legal/Terms";
 import Contact from "./pages/Contact";
 
+// The brand pages, carried across from Good Tenants Hub.
+import About from "./pages/hub/About";
+import Pricing from "./pages/hub/Pricing";
+import Faq from "./pages/hub/Faq";
+import FairHousing from "./pages/hub/FairHousing";
+import Accessibility from "./pages/hub/Accessibility";
+import ReferralProgram from "./pages/hub/ReferralProgram";
+
 // The editorial console, carried across from the daily's admin.
 import AdminArticles from "./pages/admin/Articles";
 import AdminAskQa from "./pages/admin/AskQa";
@@ -113,6 +121,12 @@ function App() {
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/terms" element={<Terms />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/pricing" element={<Pricing />} />
+          <Route path="/faq" element={<Faq />} />
+          <Route path="/fair-housing" element={<FairHousing />} />
+          <Route path="/accessibility" element={<Accessibility />} />
+          <Route path="/referral-program" element={<ReferralProgram />} />
 
           {/* The rentals. Public: a suppressed listing never leaves the
               database, so these need no guard of their own. */}
