@@ -83,11 +83,20 @@ export default {
 				cta: {
 					browse: {
 						DEFAULT: 'hsl(var(--cta-browse))',
-						foreground: 'hsl(var(--cta-browse-foreground))'
+						foreground: 'hsl(var(--cta-browse-foreground))',
+						/* Darkened, for small text on a white surface. */
+						ink: 'hsl(var(--cta-browse-ink, var(--cta-browse)))'
 					},
 					qualify: {
 						DEFAULT: 'hsl(var(--cta-qualify))',
-						foreground: 'hsl(var(--cta-qualify-foreground))'
+						foreground: 'hsl(var(--cta-qualify-foreground))',
+						ink: 'hsl(var(--cta-qualify-ink, var(--cta-qualify)))'
+					}
+				},
+				landlord: {
+					navy: {
+						DEFAULT: 'hsl(var(--landlord-navy, var(--espresso)))',
+						foreground: 'hsl(var(--landlord-navy-foreground, var(--sand)))'
 					}
 				},
 				role: {

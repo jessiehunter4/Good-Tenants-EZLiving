@@ -21,7 +21,7 @@ export const UrgencySection = () => (
           return (
             <Card key={card.title} className="p-6 transition-shadow hover:shadow-lg">
               <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-cta-browse/10">
-                <Icon className="h-7 w-7 text-cta-browse" />
+                <Icon className="h-7 w-7 text-cta-browse-ink" />
               </div>
               <h3 className="text-xl font-bold text-espresso">{card.title}</h3>
               <p className="mt-2 text-espresso-muted">{card.description}</p>

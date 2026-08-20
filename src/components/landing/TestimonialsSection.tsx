@@ -22,7 +22,7 @@ export const TestimonialsSection = () => (
             <p className="italic text-espresso-muted">“{testimonial.quote}”</p>
             <div className="mt-6 border-t border-clay/50 pt-4">
               <p className="font-semibold text-espresso">{testimonial.name}</p>
-              <p className="text-sm text-cta-browse">{testimonial.role}</p>
+              <p className="text-sm text-cta-browse-ink">{testimonial.role}</p>
               <p className="text-xs text-espresso-muted">{testimonial.location}</p>
             </div>
           </Card>

@@ -87,6 +87,10 @@
     --cta-browse-foreground: 36 44% 96%;
     --cta-qualify: 152 46% 26%;
     --cta-qualify-foreground: 36 44% 96%;
+    --cta-browse-ink: 205 62% 34%;
+    --cta-qualify-ink: 152 46% 26%;
+    --landlord-navy: 20 30% 12%;
+    --landlord-navy-foreground: 36 44% 96%;
 
     /* Account types. One accent each, used by the role chooser, its badges and
      * anywhere a role needs to be identifiable at a glance. */
@@ -162,6 +166,60 @@
   body {
     @apply bg-background text-foreground;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  }
+}
+
+@layer base {
+  /* -------------------------------------------------------------------------
+   * The rentals palette
+   * -------------------------------------------------------------------------
+   * The landing page is Coming Soon Home Rentals' page, and it should look
+   * like it. That site runs on the cool default palette — white surfaces, slate
+   * type — with a blue "browse" and a green "get qualified" keeping the two
+   * paths apart, and a navy band for the owner pitch.
+   *
+   * It lives as a scoped theme rather than as new global values so the rest of
+   * the product keeps the warm palette. A page opts in by class, and every
+   * token beneath it resolves to these instead. Nothing needed rewriting: the
+   * components already read tokens rather than literal colours.
+   *
+   * Two departures, both about contrast. That site's blue and green reach only
+   * 3.6:1 and 3.4:1 against white — enough for large text, not for normal — so
+   * the surface colours are kept exactly for buttons and bands, and a darkened
+   * pair is used where the colour has to carry small text on white. Same look,
+   * legible either way.
+   * --------------------------------------------------------------------- */
+  .theme-rentals {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    /* The warm surface tokens the shared components use, mapped onto that
+       site's neutrals so header, footer and cards follow the page. */
+    --sand: 210 40% 98%;
+    --sand-deep: 210 40% 96.1%;
+    --clay: 214.3 31.8% 91.4%;
+    --clay-soft: 210 40% 96.1%;
+    --espresso: 222.2 47.4% 11.2%;
+    --espresso-muted: 215.4 16.3% 46.9%;
+
+    /* Exactly the source's values. Used as button and band surfaces. */
+    --cta-browse: 217 91% 60%;
+    --cta-browse-foreground: 0 0% 100%;
+    --cta-qualify: 142 76% 36%;
+    --cta-qualify-foreground: 0 0% 100%;
+
+    /* Darkened for small text on white, where the originals fail. */
+    --cta-browse-ink: 217 91% 42%;
+    --cta-qualify-ink: 142 76% 28%;
+
+    --landlord-navy: 215 50% 23%;
+    --landlord-navy-foreground: 0 0% 100%;
   }
 }
 

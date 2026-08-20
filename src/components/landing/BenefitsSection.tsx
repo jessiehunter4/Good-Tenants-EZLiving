@@ -26,7 +26,7 @@ export const BenefitsSection = () => (
           return (
             <Card key={benefit.title} className="flex items-start gap-4 p-6 text-left">
               <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-cta-browse/10">
-                <Icon className="h-6 w-6 text-cta-browse" />
+                <Icon className="h-6 w-6 text-cta-browse-ink" />
               </div>
               <div>
                 <h3 className="text-lg font-bold text-espresso">{benefit.title}</h3>

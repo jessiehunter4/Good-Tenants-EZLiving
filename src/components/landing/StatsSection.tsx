@@ -14,7 +14,7 @@ export const StatsSection = () => (
       <div className="grid grid-cols-2 gap-6 text-center md:grid-cols-4">
         {STATS.map((stat) => (
           <div key={stat.label} className="p-4">
-            <div className="text-3xl font-extrabold text-cta-browse md:text-4xl">{stat.value}</div>
+            <div className="text-3xl font-extrabold text-cta-browse-ink md:text-4xl">{stat.value}</div>
             <div className="mt-1 text-sm text-espresso-muted md:text-base">{stat.label}</div>
           </div>
         ))}

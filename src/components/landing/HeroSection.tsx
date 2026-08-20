@@ -18,9 +18,9 @@ export const HeroSection = () => (
       </p>
       <p className="mx-auto mt-3 max-w-2xl text-base font-semibold text-espresso md:text-lg">
         {HERO.promise}{" "}
-        <span className="text-cta-browse">{HERO.promiseParts[0]}</span>{" "}
-        <span className="text-cta-qualify">{HERO.promiseParts[1]}</span>{" "}
-        <span className="text-cta-browse">{HERO.promiseParts[2]}</span>
+        <span className="text-cta-browse-ink">{HERO.promiseParts[0]}</span>{" "}
+        <span className="text-cta-qualify-ink">{HERO.promiseParts[1]}</span>{" "}
+        <span className="text-cta-browse-ink">{HERO.promiseParts[2]}</span>
       </p>
 
       <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">

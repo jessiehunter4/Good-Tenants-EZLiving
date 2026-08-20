@@ -31,7 +31,7 @@ import FinalCtaSection from "@/components/landing/FinalCtaSection";
  * the posts that came across from EZ Living Irvine.
  */
 const LandingPage = () => (
-  <SiteLayout nav={LANDING_NAV}>
+  <SiteLayout nav={LANDING_NAV} theme="rentals">
     <HeroSection />
     <UrgencySection />
     <HowItWorksSection />
