@@ -163,7 +163,7 @@ export type LandingFaqItem = {
 
 export const FAQ: readonly LandingFaqItem[] = [
   {
-    question: "What is ComingSoonHomeRentals.com?",
+    question: "What is Good Tenants EZ Living?",
     answer: "<> Good Tenants EZ Living is a real-time rental listing platform that showcases upcoming and newly listed home rentals. Pre-qualified tenants can book showings and apply before rentals hit the open market. We connect ready-to-rent tenants with verified landlords and licensed real estate professionals.",
     primary: { text: "Browse Coming Soon Rentals", to: "/rentals" },
     secondary: { text: "Get Pre-Qualified for Early Access", to: "/prequalify" },
