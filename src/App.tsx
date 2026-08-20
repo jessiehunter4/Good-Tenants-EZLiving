@@ -66,6 +66,7 @@ import Tenants from "./pages/hub/Tenants";
 import TenantDetail from "./pages/hub/TenantDetail";
 import Sharing from "./pages/tenant/Sharing";
 import Documents from "./pages/tenant/Documents";
+import Verify from "./pages/partner/Verify";
 import Landlords from "./pages/hub/Landlords";
 import Realtors from "./pages/hub/Realtors";
 
@@ -83,6 +84,7 @@ import AdminPromos from "./pages/admin/Promos";
 import AdminSeeds from "./pages/admin/Seeds";
 import AdminTeam from "./pages/admin/Team";
 import AdminTopics from "./pages/admin/Topics";
+import AdminVerification from "./pages/admin/Verification";
 
 /**
  * One client for the whole app. Content is public and changes a few times a
@@ -151,6 +153,14 @@ function App() {
             element={
               <RoleBasedRoute allowedRoles={["landlord", "agent", "admin", "tenant"]}>
                 <TenantDetail />
+              </RoleBasedRoute>
+            }
+          />
+          <Route
+            path="/verify"
+            element={
+              <RoleBasedRoute allowedRoles={["landlord", "agent", "admin"]}>
+                <Verify />
               </RoleBasedRoute>
             }
           />
@@ -350,6 +360,7 @@ function App() {
           <Route path="/admin/inbox" element={<AdminOnly><AdminInbox /></AdminOnly>} />
           <Route path="/admin/notifications" element={<AdminOnly><AdminNotifications /></AdminOnly>} />
           <Route path="/admin/team" element={<AdminOnly><AdminTeam /></AdminOnly>} />
+          <Route path="/admin/verification" element={<AdminOnly><AdminVerification /></AdminOnly>} />
 
           {/* 404 - Not Found */}
           <Route path="*" element={<NotFound />} />

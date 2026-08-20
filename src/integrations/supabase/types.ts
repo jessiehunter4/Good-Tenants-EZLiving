@@ -1525,6 +1525,9 @@ export type Database = {
           status: Database["public"]["Enums"]["profile_status"]
           created_at: string
           updated_at: string
+          property_addresses: string | null
+          verification_submitted_at: string | null
+          verification_notes: string | null
         }
         Insert: {
           id: string
@@ -1538,6 +1541,9 @@ export type Database = {
           status?: Database["public"]["Enums"]["profile_status"]
           created_at?: string
           updated_at?: string
+          property_addresses?: string | null
+          verification_submitted_at?: string | null
+          verification_notes?: string | null
         }
         Update: {
           id?: string
@@ -1551,6 +1557,9 @@ export type Database = {
           status?: Database["public"]["Enums"]["profile_status"]
           created_at?: string
           updated_at?: string
+          property_addresses?: string | null
+          verification_submitted_at?: string | null
+          verification_notes?: string | null
         }
         Relationships: [
           {
@@ -3198,6 +3207,9 @@ export type Database = {
           status: Database["public"]["Enums"]["profile_status"]
           created_at: string
           updated_at: string
+          brokerage_address: string | null
+          verification_submitted_at: string | null
+          verification_notes: string | null
         }
         Insert: {
           id: string
@@ -3211,6 +3223,9 @@ export type Database = {
           status?: Database["public"]["Enums"]["profile_status"]
           created_at?: string
           updated_at?: string
+          brokerage_address?: string | null
+          verification_submitted_at?: string | null
+          verification_notes?: string | null
         }
         Update: {
           id?: string
@@ -3224,6 +3239,9 @@ export type Database = {
           status?: Database["public"]["Enums"]["profile_status"]
           created_at?: string
           updated_at?: string
+          brokerage_address?: string | null
+          verification_submitted_at?: string | null
+          verification_notes?: string | null
         }
         Relationships: [
           {
@@ -4780,6 +4798,10 @@ export type Database = {
       calculate_match_score: {
         Args: { tenant_id_param: string; listing_id_param: string }
         Returns: number
+      }
+      guard_partner_verification: {
+        Args: Record<PropertyKey, never>
+        Returns: Json
       }
       handle_new_user: {
         Args: Record<PropertyKey, never>

@@ -1,4 +1,5 @@
 import {
+  BadgeCheck,
   Bell,
   CalendarDays,
   FileText,
@@ -47,6 +48,7 @@ export const ADMIN_NAV: readonly AdminNavGroup[] = [
     items: [
       { to: "/admin", label: "Overview", icon: LayoutDashboard, exact: true },
       { to: "/admin/team", label: "Team", icon: Users },
+      { to: "/admin/verification", label: "Verification", icon: BadgeCheck },
     ],
   },
   {
