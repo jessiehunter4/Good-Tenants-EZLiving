@@ -17,6 +17,42 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      admin_campaign_actions: {
+        Row: {
+          action_type: string
+          admin_user_id: string
+          campaign_id: string
+          created_at: string
+          id: string
+          new_state: Json
+          previous_state: Json
+          reason: string | null
+          target_post_id: string | null
+        }
+        Insert: {
+          action_type: string
+          admin_user_id: string
+          campaign_id: string
+          created_at?: string
+          id?: string
+          new_state: Json
+          previous_state: Json
+          reason?: string | null
+          target_post_id?: string | null
+        }
+        Update: {
+          action_type?: string
+          admin_user_id?: string
+          campaign_id?: string
+          created_at?: string
+          id?: string
+          new_state?: Json
+          previous_state?: Json
+          reason?: string | null
+          target_post_id?: string | null
+        }
+        Relationships: []
+      }
       admin_invites: {
         Row: {
           id: string
@@ -66,6 +102,33 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      admin_settings_audit: {
+        Row: {
+          admin_user_id: string
+          created_at: string
+          id: string
+          new_value: string
+          previous_value: string | null
+          setting_key: string
+        }
+        Insert: {
+          admin_user_id: string
+          created_at?: string
+          id?: string
+          new_value: string
+          previous_value?: string | null
+          setting_key: string
+        }
+        Update: {
+          admin_user_id?: string
+          created_at?: string
+          id?: string
+          new_value?: string
+          previous_value?: string | null
+          setting_key?: string
+        }
+        Relationships: []
       }
       ai_article_batches: {
         Row: {
@@ -209,6 +272,45 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      ai_prompt_templates: {
+        Row: {
+          content: string
+          created_at: string | null
+          description: string | null
+          id: string
+          is_active: boolean | null
+          name: string
+          platform: string | null
+          prompt_type: string
+          updated_at: string | null
+          version: number | null
+        }
+        Insert: {
+          content: string
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          is_active?: boolean | null
+          name: string
+          platform?: string | null
+          prompt_type: string
+          updated_at?: string | null
+          version?: number | null
+        }
+        Update: {
+          content?: string
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          is_active?: boolean | null
+          name?: string
+          platform?: string | null
+          prompt_type?: string
+          updated_at?: string | null
+          version?: number | null
+        }
+        Relationships: []
       }
       application_documents: {
         Row: {
@@ -575,6 +677,42 @@ export type Database = {
           },
         ]
       }
+      ayrshare_usage_tracking: {
+        Row: {
+          created_at: string | null
+          id: string
+          last_reset_date: string | null
+          month_year: string
+          plan_type: string | null
+          posts_limit: number | null
+          posts_used: number | null
+          quota_alerts_sent: Json | null
+          updated_at: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          last_reset_date?: string | null
+          month_year: string
+          plan_type?: string | null
+          posts_limit?: number | null
+          posts_used?: number | null
+          quota_alerts_sent?: Json | null
+          updated_at?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          last_reset_date?: string | null
+          month_year?: string
+          plan_type?: string | null
+          posts_limit?: number | null
+          posts_used?: number | null
+          quota_alerts_sent?: Json | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
       case_studies: {
         Row: {
           id: string
@@ -924,6 +1062,48 @@ export type Database = {
           },
         ]
       }
+      elevenlabs_voices: {
+        Row: {
+          created_at: string
+          default_speed: number | null
+          default_style: number | null
+          id: string
+          is_active: boolean
+          model_id: string
+          name: string
+          similarity_boost: number | null
+          stability: number | null
+          voice_id: string
+          weight: number
+        }
+        Insert: {
+          created_at?: string
+          default_speed?: number | null
+          default_style?: number | null
+          id?: string
+          is_active: boolean
+          model_id: string
+          name: string
+          similarity_boost?: number | null
+          stability?: number | null
+          voice_id: string
+          weight: number
+        }
+        Update: {
+          created_at?: string
+          default_speed?: number | null
+          default_style?: number | null
+          id?: string
+          is_active?: boolean
+          model_id?: string
+          name?: string
+          similarity_boost?: number | null
+          stability?: number | null
+          voice_id?: string
+          weight?: number
+        }
+        Relationships: []
+      }
       featured_history: {
         Row: {
           id: string
@@ -1032,6 +1212,30 @@ export type Database = {
           created_at?: string
           updated_at?: string
           expires_at?: string
+        }
+        Relationships: []
+      }
+      hashtag_sets: {
+        Row: {
+          created_at: string
+          hashtags: string
+          id: string
+          name: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          hashtags: string
+          id?: string
+          name: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          hashtags?: string
+          id?: string
+          name?: string
+          updated_at?: string
         }
         Relationships: []
       }
@@ -1492,6 +1696,225 @@ export type Database = {
           },
         ]
       }
+      listing_analysis_queue: {
+        Row: {
+          attempts: number
+          enqueued_at: string
+          id: string
+          last_error: string | null
+          listing_id: string
+          status: string
+          taxonomy_version: number
+          updated_at: string
+        }
+        Insert: {
+          attempts: number
+          enqueued_at?: string
+          id?: string
+          last_error?: string | null
+          listing_id: string
+          status: string
+          taxonomy_version: number
+          updated_at?: string
+        }
+        Update: {
+          attempts?: number
+          enqueued_at?: string
+          id?: string
+          last_error?: string | null
+          listing_id?: string
+          status?: string
+          taxonomy_version?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      listing_campaign_platform_videos: {
+        Row: {
+          created_at: string
+          creatomate_template_id: string | null
+          error_message: string | null
+          id: string
+          listing_campaign_id: string
+          platform: string
+          render_id: string | null
+          render_status: string
+          template_id: string | null
+          template_version: number | null
+          updated_at: string
+          variable_mapping: Json | null
+          video_url: string | null
+        }
+        Insert: {
+          created_at?: string
+          creatomate_template_id?: string | null
+          error_message?: string | null
+          id?: string
+          listing_campaign_id: string
+          platform: string
+          render_id?: string | null
+          render_status: string
+          template_id?: string | null
+          template_version?: number | null
+          updated_at?: string
+          variable_mapping?: Json | null
+          video_url?: string | null
+        }
+        Update: {
+          created_at?: string
+          creatomate_template_id?: string | null
+          error_message?: string | null
+          id?: string
+          listing_campaign_id?: string
+          platform?: string
+          render_id?: string | null
+          render_status?: string
+          template_id?: string | null
+          template_version?: number | null
+          updated_at?: string
+          variable_mapping?: Json | null
+          video_url?: string | null
+        }
+        Relationships: []
+      }
+      listing_campaigns: {
+        Row: {
+          campaign_id: string | null
+          campaign_type: string
+          created_at: string | null
+          id: string
+          intended_platforms: Json | null
+          is_disabled: boolean | null
+          listing_id: string
+          listing_index: number | null
+          override_by_admin_id: string | null
+          override_reason: string | null
+          photo_threshold_override: boolean | null
+          updated_at: string | null
+          video_render_id: string | null
+          video_status: string | null
+          video_url: string | null
+          voiceover_enabled: boolean | null
+          voiceover_provider: string | null
+          voiceover_script: string | null
+        }
+        Insert: {
+          campaign_id?: string | null
+          campaign_type: string
+          created_at?: string | null
+          id?: string
+          intended_platforms?: Json | null
+          is_disabled?: boolean | null
+          listing_id: string
+          listing_index?: number | null
+          override_by_admin_id?: string | null
+          override_reason?: string | null
+          photo_threshold_override?: boolean | null
+          updated_at?: string | null
+          video_render_id?: string | null
+          video_status?: string | null
+          video_url?: string | null
+          voiceover_enabled?: boolean | null
+          voiceover_provider?: string | null
+          voiceover_script?: string | null
+        }
+        Update: {
+          campaign_id?: string | null
+          campaign_type?: string
+          created_at?: string | null
+          id?: string
+          intended_platforms?: Json | null
+          is_disabled?: boolean | null
+          listing_id?: string
+          listing_index?: number | null
+          override_by_admin_id?: string | null
+          override_reason?: string | null
+          photo_threshold_override?: boolean | null
+          updated_at?: string | null
+          video_render_id?: string | null
+          video_status?: string | null
+          video_url?: string | null
+          voiceover_enabled?: boolean | null
+          voiceover_provider?: string | null
+          voiceover_script?: string | null
+        }
+        Relationships: []
+      }
+      listing_commission_audit: {
+        Row: {
+          action: string
+          created_at: string | null
+          error_message: string | null
+          id: string
+          listing_id: string
+          new_state: Json | null
+          previous_state: Json | null
+          source: string
+        }
+        Insert: {
+          action: string
+          created_at?: string | null
+          error_message?: string | null
+          id?: string
+          listing_id: string
+          new_state?: Json | null
+          previous_state?: Json | null
+          source: string
+        }
+        Update: {
+          action?: string
+          created_at?: string | null
+          error_message?: string | null
+          id?: string
+          listing_id?: string
+          new_state?: Json | null
+          previous_state?: Json | null
+          source?: string
+        }
+        Relationships: []
+      }
+      listing_commissions: {
+        Row: {
+          commission_available: boolean | null
+          commission_notes: string | null
+          commission_type: string | null
+          commission_value: number | null
+          created_at: string | null
+          everycatch_response_at: string | null
+          everycatch_sync_status: string | null
+          everycatch_webhook_sent_at: string | null
+          id: string
+          listing_id: string
+          updated_at: string | null
+        }
+        Insert: {
+          commission_available?: boolean | null
+          commission_notes?: string | null
+          commission_type?: string | null
+          commission_value?: number | null
+          created_at?: string | null
+          everycatch_response_at?: string | null
+          everycatch_sync_status?: string | null
+          everycatch_webhook_sent_at?: string | null
+          id?: string
+          listing_id: string
+          updated_at?: string | null
+        }
+        Update: {
+          commission_available?: boolean | null
+          commission_notes?: string | null
+          commission_type?: string | null
+          commission_value?: number | null
+          created_at?: string | null
+          everycatch_response_at?: string | null
+          everycatch_sync_status?: string | null
+          everycatch_webhook_sent_at?: string | null
+          id?: string
+          listing_id?: string
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
       listing_image_analysis: {
         Row: {
           id: string
@@ -1579,6 +2002,126 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      listing_post_schedule: {
+        Row: {
+          approved_by_admin: string | null
+          ayrshare_post_id: string | null
+          campaign_id: string | null
+          compliance_error: string | null
+          compliance_status: string
+          content_id: string | null
+          created_at: string | null
+          error_message: string | null
+          id: string
+          includes_cta_disclosure: boolean
+          includes_listing_agent: boolean
+          includes_listing_office: boolean
+          includes_mls_number: boolean
+          includes_source_mls: boolean
+          includes_status_label: boolean
+          listing_campaign_id: string | null
+          listing_id: string | null
+          platforms: string[] | null
+          post_sequence: number
+          posted_at: string | null
+          retry_count: number | null
+          scheduled_for: string
+          showing_language_detected: boolean
+          status: string | null
+          updated_at: string | null
+          uses_primary_photo_only: boolean
+        }
+        Insert: {
+          approved_by_admin?: string | null
+          ayrshare_post_id?: string | null
+          campaign_id?: string | null
+          compliance_error?: string | null
+          compliance_status: string
+          content_id?: string | null
+          created_at?: string | null
+          error_message?: string | null
+          id?: string
+          includes_cta_disclosure: boolean
+          includes_listing_agent: boolean
+          includes_listing_office: boolean
+          includes_mls_number: boolean
+          includes_source_mls: boolean
+          includes_status_label: boolean
+          listing_campaign_id?: string | null
+          listing_id?: string | null
+          platforms?: string[] | null
+          post_sequence: number
+          posted_at?: string | null
+          retry_count?: number | null
+          scheduled_for: string
+          showing_language_detected: boolean
+          status?: string | null
+          updated_at?: string | null
+          uses_primary_photo_only: boolean
+        }
+        Update: {
+          approved_by_admin?: string | null
+          ayrshare_post_id?: string | null
+          campaign_id?: string | null
+          compliance_error?: string | null
+          compliance_status?: string
+          content_id?: string | null
+          created_at?: string | null
+          error_message?: string | null
+          id?: string
+          includes_cta_disclosure?: boolean
+          includes_listing_agent?: boolean
+          includes_listing_office?: boolean
+          includes_mls_number?: boolean
+          includes_source_mls?: boolean
+          includes_status_label?: boolean
+          listing_campaign_id?: string | null
+          listing_id?: string | null
+          platforms?: string[] | null
+          post_sequence?: number
+          posted_at?: string | null
+          retry_count?: number | null
+          scheduled_for?: string
+          showing_language_detected?: boolean
+          status?: string | null
+          updated_at?: string | null
+          uses_primary_photo_only?: boolean
+        }
+        Relationships: []
+      }
+      listing_visual_summary: {
+        Row: {
+          conversational_highlights: Json | null
+          created_at: string
+          dominant_style: string | null
+          exterior_count: number | null
+          interior_count: number | null
+          listing_id: string
+          neighbourhood_count: number | null
+          tone_hint: string | null
+        }
+        Insert: {
+          conversational_highlights?: Json | null
+          created_at?: string
+          dominant_style?: string | null
+          exterior_count?: number | null
+          interior_count?: number | null
+          listing_id: string
+          neighbourhood_count?: number | null
+          tone_hint?: string | null
+        }
+        Update: {
+          conversational_highlights?: Json | null
+          created_at?: string
+          dominant_style?: string | null
+          exterior_count?: number | null
+          interior_count?: number | null
+          listing_id?: string
+          neighbourhood_count?: number | null
+          tone_hint?: string | null
+        }
+        Relationships: []
       }
       listings: {
         Row: {
@@ -2174,6 +2717,159 @@ export type Database = {
           },
         ]
       }
+      oauth_states: {
+        Row: {
+          created_at: string | null
+          expires_at: string | null
+          id: string
+          platform: string
+          realtor_account_id: string | null
+          redirect_url: string | null
+          state_token: string
+        }
+        Insert: {
+          created_at?: string | null
+          expires_at?: string | null
+          id?: string
+          platform: string
+          realtor_account_id?: string | null
+          redirect_url?: string | null
+          state_token: string
+        }
+        Update: {
+          created_at?: string | null
+          expires_at?: string | null
+          id?: string
+          platform?: string
+          realtor_account_id?: string | null
+          redirect_url?: string | null
+          state_token?: string
+        }
+        Relationships: []
+      }
+      platform_configurations: {
+        Row: {
+          ai_caption_enabled: boolean
+          ai_enhancement_enabled: boolean
+          caption_template: string | null
+          created_at: string
+          creatomate_template_id: string | null
+          custom_hashtags: string | null
+          extract_features_enabled: boolean
+          hashtag_set_id: string | null
+          id: string
+          inter_listing_delay_minutes: number | null
+          is_active: boolean
+          is_available: boolean
+          last_availability_check: string | null
+          platform: string
+          post_interval_hours: number | null
+          posting_time_window_end: string | null
+          posting_time_window_start: string | null
+          spin_tax_enabled: boolean
+          title_template: string | null
+          updated_at: string
+          variable_mapping: Json | null
+          variation_strength: string
+          voice_override_id: string | null
+          voiceover_template: string | null
+          voiceover_variants: number
+        }
+        Insert: {
+          ai_caption_enabled: boolean
+          ai_enhancement_enabled: boolean
+          caption_template?: string | null
+          created_at?: string
+          creatomate_template_id?: string | null
+          custom_hashtags?: string | null
+          extract_features_enabled: boolean
+          hashtag_set_id?: string | null
+          id?: string
+          inter_listing_delay_minutes?: number | null
+          is_active: boolean
+          is_available: boolean
+          last_availability_check?: string | null
+          platform: string
+          post_interval_hours?: number | null
+          posting_time_window_end?: string | null
+          posting_time_window_start?: string | null
+          spin_tax_enabled: boolean
+          title_template?: string | null
+          updated_at?: string
+          variable_mapping?: Json | null
+          variation_strength: string
+          voice_override_id?: string | null
+          voiceover_template?: string | null
+          voiceover_variants: number
+        }
+        Update: {
+          ai_caption_enabled?: boolean
+          ai_enhancement_enabled?: boolean
+          caption_template?: string | null
+          created_at?: string
+          creatomate_template_id?: string | null
+          custom_hashtags?: string | null
+          extract_features_enabled?: boolean
+          hashtag_set_id?: string | null
+          id?: string
+          inter_listing_delay_minutes?: number | null
+          is_active?: boolean
+          is_available?: boolean
+          last_availability_check?: string | null
+          platform?: string
+          post_interval_hours?: number | null
+          posting_time_window_end?: string | null
+          posting_time_window_start?: string | null
+          spin_tax_enabled?: boolean
+          title_template?: string | null
+          updated_at?: string
+          variable_mapping?: Json | null
+          variation_strength?: string
+          voice_override_id?: string | null
+          voiceover_template?: string | null
+          voiceover_variants?: number
+        }
+        Relationships: []
+      }
+      platform_posting_queue: {
+        Row: {
+          content_id: string | null
+          created_at: string | null
+          error_message: string | null
+          id: string
+          listing_id: string | null
+          platform: string
+          post_number: number
+          posted_at: string | null
+          scheduled_for: string
+          status: string | null
+        }
+        Insert: {
+          content_id?: string | null
+          created_at?: string | null
+          error_message?: string | null
+          id?: string
+          listing_id?: string | null
+          platform: string
+          post_number: number
+          posted_at?: string | null
+          scheduled_for: string
+          status?: string | null
+        }
+        Update: {
+          content_id?: string | null
+          created_at?: string | null
+          error_message?: string | null
+          id?: string
+          listing_id?: string | null
+          platform?: string
+          post_number?: number
+          posted_at?: string | null
+          scheduled_for?: string
+          status?: string | null
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           id: string
@@ -2533,6 +3229,54 @@ export type Database = {
           {
             foreignKeyName: "realtor_profiles_id_fkey"
             columns: ["id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      referrals: {
+        Row: {
+          id: string
+          referrer_id: string
+          referred_email: string | null
+          referred_user_id: string | null
+          source: string | null
+          status: string
+          notes: string | null
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          referrer_id: string
+          referred_email?: string | null
+          referred_user_id?: string | null
+          source?: string | null
+          status?: string
+          notes?: string | null
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          referrer_id?: string
+          referred_email?: string | null
+          referred_user_id?: string | null
+          source?: string | null
+          status?: string
+          notes?: string | null
+          created_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "referrals_referred_user_id_fkey"
+            columns: ["referred_user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "referrals_referrer_id_fkey"
+            columns: ["referrer_id"]
             isOneToOne: false
             referencedRelation: "profiles"
             referencedColumns: ["id"]
@@ -2990,6 +3734,348 @@ export type Database = {
           description?: string | null
           created_at?: string | null
           updated_at?: string | null
+        }
+        Relationships: []
+      }
+      social_media_accounts: {
+        Row: {
+          access_token: string | null
+          account_id: string | null
+          account_info: Json | null
+          account_name: string
+          ayrshare_connected: boolean | null
+          connection_health: string | null
+          connection_method: string | null
+          created_at: string
+          id: string
+          is_active: boolean | null
+          last_sync_at: string | null
+          platform: string
+          platform_user_id: string | null
+          platform_username: string | null
+          realtor_account_id: string | null
+          refresh_token: string | null
+          scope: string | null
+          token_expires_at: string | null
+          token_type: string | null
+          updated_at: string
+        }
+        Insert: {
+          access_token?: string | null
+          account_id?: string | null
+          account_info?: Json | null
+          account_name: string
+          ayrshare_connected?: boolean | null
+          connection_health?: string | null
+          connection_method?: string | null
+          created_at?: string
+          id?: string
+          is_active?: boolean | null
+          last_sync_at?: string | null
+          platform: string
+          platform_user_id?: string | null
+          platform_username?: string | null
+          realtor_account_id?: string | null
+          refresh_token?: string | null
+          scope?: string | null
+          token_expires_at?: string | null
+          token_type?: string | null
+          updated_at?: string
+        }
+        Update: {
+          access_token?: string | null
+          account_id?: string | null
+          account_info?: Json | null
+          account_name?: string
+          ayrshare_connected?: boolean | null
+          connection_health?: string | null
+          connection_method?: string | null
+          created_at?: string
+          id?: string
+          is_active?: boolean | null
+          last_sync_at?: string | null
+          platform?: string
+          platform_user_id?: string | null
+          platform_username?: string | null
+          realtor_account_id?: string | null
+          refresh_token?: string | null
+          scope?: string | null
+          token_expires_at?: string | null
+          token_type?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      social_media_analytics: {
+        Row: {
+          id: string
+          metric_type: string
+          metric_value: number
+          platform: string
+          post_id: string | null
+          recorded_at: string
+        }
+        Insert: {
+          id?: string
+          metric_type: string
+          metric_value: number
+          platform: string
+          post_id?: string | null
+          recorded_at?: string
+        }
+        Update: {
+          id?: string
+          metric_type?: string
+          metric_value?: number
+          platform?: string
+          post_id?: string | null
+          recorded_at?: string
+        }
+        Relationships: []
+      }
+      social_media_campaigns: {
+        Row: {
+          budget_spent: number | null
+          budget_total: number | null
+          created_at: string
+          description: string | null
+          end_date: string | null
+          id: string
+          name: string
+          realtor_account_id: string | null
+          start_date: string | null
+          status: string
+          target_platforms: string[]
+          updated_at: string
+        }
+        Insert: {
+          budget_spent?: number | null
+          budget_total?: number | null
+          created_at?: string
+          description?: string | null
+          end_date?: string | null
+          id?: string
+          name: string
+          realtor_account_id?: string | null
+          start_date?: string | null
+          status: string
+          target_platforms: string[]
+          updated_at?: string
+        }
+        Update: {
+          budget_spent?: number | null
+          budget_total?: number | null
+          created_at?: string
+          description?: string | null
+          end_date?: string | null
+          id?: string
+          name?: string
+          realtor_account_id?: string | null
+          start_date?: string | null
+          status?: string
+          target_platforms?: string[]
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      social_media_content: {
+        Row: {
+          ai_prompt: string | null
+          campaign_id: string | null
+          content_type: string
+          created_at: string
+          description: string | null
+          generated_text: string | null
+          generation_status: string
+          hashtags: string[] | null
+          id: string
+          listing_id: string | null
+          media_urls: string[] | null
+          platform: string
+          title: string | null
+          updated_at: string
+        }
+        Insert: {
+          ai_prompt?: string | null
+          campaign_id?: string | null
+          content_type: string
+          created_at?: string
+          description?: string | null
+          generated_text?: string | null
+          generation_status: string
+          hashtags?: string[] | null
+          id?: string
+          listing_id?: string | null
+          media_urls?: string[] | null
+          platform: string
+          title?: string | null
+          updated_at?: string
+        }
+        Update: {
+          ai_prompt?: string | null
+          campaign_id?: string | null
+          content_type?: string
+          created_at?: string
+          description?: string | null
+          generated_text?: string | null
+          generation_status?: string
+          hashtags?: string[] | null
+          id?: string
+          listing_id?: string | null
+          media_urls?: string[] | null
+          platform?: string
+          title?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      social_media_posts: {
+        Row: {
+          content_id: string | null
+          created_at: string
+          engagement_metrics: Json | null
+          error_message: string | null
+          id: string
+          platform: string
+          platform_post_id: string | null
+          platform_post_url: string | null
+          post_url: string | null
+          published_at: string | null
+          scheduled_at: string | null
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          content_id?: string | null
+          created_at?: string
+          engagement_metrics?: Json | null
+          error_message?: string | null
+          id?: string
+          platform: string
+          platform_post_id?: string | null
+          platform_post_url?: string | null
+          post_url?: string | null
+          published_at?: string | null
+          scheduled_at?: string | null
+          status: string
+          updated_at?: string
+        }
+        Update: {
+          content_id?: string | null
+          created_at?: string
+          engagement_metrics?: Json | null
+          error_message?: string | null
+          id?: string
+          platform?: string
+          platform_post_id?: string | null
+          platform_post_url?: string | null
+          post_url?: string | null
+          published_at?: string | null
+          scheduled_at?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      social_media_template_logs: {
+        Row: {
+          campaign_id: string | null
+          created_at: string
+          details: Json
+          id: string
+          kind: string
+          listing_id: string | null
+          message: string | null
+          platform: string | null
+          status: string
+          template_id: string | null
+          version: number | null
+        }
+        Insert: {
+          campaign_id?: string | null
+          created_at?: string
+          details: Json
+          id?: string
+          kind: string
+          listing_id?: string | null
+          message?: string | null
+          platform?: string | null
+          status: string
+          template_id?: string | null
+          version?: number | null
+        }
+        Update: {
+          campaign_id?: string | null
+          created_at?: string
+          details?: Json
+          id?: string
+          kind?: string
+          listing_id?: string | null
+          message?: string | null
+          platform?: string | null
+          status?: string
+          template_id?: string | null
+          version?: number | null
+        }
+        Relationships: []
+      }
+      social_media_templates: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          id: string
+          is_default: boolean
+          last_preview_at: string | null
+          last_preview_status: string | null
+          last_preview_version: number | null
+          last_used_at: string | null
+          note: string | null
+          preview_url: string | null
+          status: string
+          template_key: string
+          template_payload: Json
+          title: string
+          updated_at: string
+          updated_by: string | null
+          version: number
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          is_default: boolean
+          last_preview_at?: string | null
+          last_preview_status?: string | null
+          last_preview_version?: number | null
+          last_used_at?: string | null
+          note?: string | null
+          preview_url?: string | null
+          status: string
+          template_key: string
+          template_payload: Json
+          title: string
+          updated_at?: string
+          updated_by?: string | null
+          version: number
+        }
+        Update: {
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          is_default?: boolean
+          last_preview_at?: string | null
+          last_preview_status?: string | null
+          last_preview_version?: number | null
+          last_used_at?: string | null
+          note?: string | null
+          preview_url?: string | null
+          status?: string
+          template_key?: string
+          template_payload?: Json
+          title?: string
+          updated_at?: string
+          updated_by?: string | null
+          version?: number
         }
         Relationships: []
       }
