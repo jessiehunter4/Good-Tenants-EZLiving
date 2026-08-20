@@ -8,7 +8,8 @@ const COLUMNS = [
     links: [
       { label: "Create a profile", to: "/register?role=tenant" },
       { label: "How it works", to: "/#how-it-works" },
-      { label: "Sign in", to: "/auth" },
+      { label: "Resources", to: "/resources" },
+      { label: "Help", to: "/help" },
     ],
   },
   {

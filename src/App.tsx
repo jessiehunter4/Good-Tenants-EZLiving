@@ -9,6 +9,8 @@ import LandingPage from "./pages/LandingPage";
 import SummerLandingPage from "./pages/SummerLandingPage";
 import Auth from "./pages/Auth";
 import Register from "./pages/Register";
+import ForgotPassword from "./pages/auth/ForgotPassword";
+import ResetPassword from "./pages/auth/ResetPassword";
 import NewScenario from "./pages/lending/NewScenario";
 import MyScenarios from "./pages/lending/MyScenarios";
 import LenderDashboard from "./pages/lending/LenderDashboard";
@@ -67,6 +69,9 @@ import TenantDetail from "./pages/hub/TenantDetail";
 import Sharing from "./pages/tenant/Sharing";
 import Documents from "./pages/tenant/Documents";
 import Verify from "./pages/partner/Verify";
+import Account from "./pages/tenant/Account";
+import Resources from "./pages/hub/Resources";
+import Help from "./pages/hub/Help";
 import Landlords from "./pages/hub/Landlords";
 import Realtors from "./pages/hub/Realtors";
 
@@ -116,6 +121,12 @@ function App() {
           <Route path="/auth" element={<PublicOnlyRoute><Auth /></PublicOnlyRoute>} />
           <Route path="/register" element={<PublicOnlyRoute><Register /></PublicOnlyRoute>} />
 
+          {/* Password recovery. Not behind PublicOnlyRoute: arriving from a
+              reset link establishes a session, so the guard would bounce the
+              person away from the page that link exists to reach. */}
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
+
           {/* The daily — readable signed in or out, so no PublicOnlyRoute. */}
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:slug" element={<BlogPost />} />
@@ -135,6 +146,8 @@ function App() {
           <Route path="/fair-housing" element={<FairHousing />} />
           <Route path="/accessibility" element={<Accessibility />} />
           <Route path="/referral-program" element={<ReferralProgram />} />
+          <Route path="/resources" element={<Resources />} />
+          <Route path="/help" element={<Help />} />
           <Route path="/landlords" element={<Landlords />} />
           <Route path="/realtors" element={<Realtors />} />
 
@@ -161,6 +174,14 @@ function App() {
             element={
               <RoleBasedRoute allowedRoles={["landlord", "agent", "admin"]}>
                 <Verify />
+              </RoleBasedRoute>
+            }
+          />
+          <Route
+            path="/account"
+            element={
+              <RoleBasedRoute allowedRoles={["tenant", "admin"]}>
+                <Account />
               </RoleBasedRoute>
             }
           />

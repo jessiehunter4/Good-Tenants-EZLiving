@@ -206,3 +206,26 @@ export const REALTOR_PITCH = {
   contactHeading: "Talk to Good Tenants",
   contactBody: "Send a note and we'll get back to you.",
 } as const;
+
+/**
+ * Source: hub `/resources`.
+ *
+ * Every one of these is marked "coming soon" on that site, and none of them
+ * exists yet. They are carried across as announced-but-unbuilt rather than
+ * quietly dropped, because they are what the brand has told people is coming.
+ */
+export const RESOURCES = [
+  {
+    title: "Credit education",
+    body: "Understand your credit and the steps that move it in the right direction.",
+  },
+  {
+    title: "Home purchase education",
+    body: "From renter to first-time homeowner — what to know before you start.",
+  },
+  {
+    title: "Home finder service",
+    body: "Personalised help finding the right rental for your situation.",
+  },
+  { title: "Ready buyer programme", body: "Stay ready for the day you decide to buy." },
+] as const;
