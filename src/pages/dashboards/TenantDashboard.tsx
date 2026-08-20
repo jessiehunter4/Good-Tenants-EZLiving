@@ -5,6 +5,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import TenantHeader from "@/components/tenant/TenantHeader";
 import ProfileSummary from "@/components/tenant/ProfileSummary";
+import FinishProfileCard from "@/components/tenant/FinishProfileCard";
 import InvitationsList from "@/components/tenant/InvitationsList";
 import UpgradeSection from "@/components/tenant/UpgradeSection";
 import PropertyDirectory from "@/components/tenant/PropertyDirectory";
@@ -58,6 +59,7 @@ const TenantDashboard = () => {
       <main className="container mx-auto px-4 py-8">
         {profile && (
           <div className="mb-8">
+            <FinishProfileCard />
             <ProfileSummary profile={profile} />
           </div>
         )}

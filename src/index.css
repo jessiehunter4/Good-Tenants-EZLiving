@@ -5,40 +5,46 @@
 
 @layer base {
   :root {
-    /* The whole app runs on the warm palette, not just the landing page: one
-     * hue family (20-36) across neutrals, so a button, a border and a muted
-     * caption belong to the same product. Every shadcn primitive reads these,
-     * which is why the theme moves without touching a component. */
-    --background: 40 33% 99%;
-    --foreground: 20 30% 12%;
+    /* One palette, the rentals site's, across the whole product.
+     *
+     * It was espresso and warm neutrals until the landing page was carried
+     * across properly; then the front page ran on that site's cool palette and
+     * everything behind it did not, which is two products wearing one name.
+     * These are its values, promoted from the scoped theme they were proved in.
+     *
+     * The warm token names — sand, clay, espresso — are kept because 60-odd
+     * components read them. They now resolve to the neutrals above, so the
+     * rename can happen later without a redesign, or never. */
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
 
     --card: 0 0% 100%;
-    --card-foreground: 20 30% 12%;
+    --card-foreground: 222.2 84% 4.9%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 20 30% 12%;
+    --popover-foreground: 222.2 84% 4.9%;
 
     /* Espresso. Buttons, links, focus rings and active states. */
-    --primary: 20 30% 12%;
-    --primary-foreground: 36 44% 96%;
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
 
-    --secondary: 30 25% 94%;
-    --secondary-foreground: 20 30% 12%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
 
-    --muted: 32 24% 95%;
-    --muted-foreground: 20 14% 42%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
 
-    --accent: 26 34% 92%;
-    --accent-foreground: 20 30% 12%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
 
     /* Warmed so a destructive action reads as part of the same palette rather
        than a browser default red. */
-    --destructive: 8 62% 47%;
-    --destructive-foreground: 36 44% 96%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
 
-    --border: 28 20% 88%;
-    --input: 28 20% 88%;
-    --ring: 20 30% 12%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
 
     --radius: 0.5rem;
 
@@ -55,7 +61,7 @@
      */
 
     /* The wordmark navy. Hue 222 is the same family as --primary. */
-    --brand: 20 30% 12%;
+    --brand: 222.2 47.4% 11.2%;
     --brand-foreground: 210 40% 98%;
 
     /* Status. Warmed to sit with the palette, but still readable as success,
@@ -71,26 +77,26 @@
     /* Marketing surfaces. The public site is warmer than the app: cream ground,
      * clay cards, espresso type. Kept as tokens so the landing page cannot
      * drift into one-off hex values the way the register page did. */
-    --sand: 36 44% 96%;
-    --sand-deep: 30 30% 90%;
-    --clay: 24 24% 84%;
-    --clay-soft: 26 34% 92%;
-    --espresso: 20 30% 12%;
-    --espresso-muted: 20 14% 32%;
+    --sand: 210 40% 98%;
+    --sand-deep: 210 40% 96.1%;
+    --clay: 214.3 31.8% 91.4%;
+    --clay-soft: 210 40% 96.1%;
+    --espresso: 222.2 47.4% 11.2%;
+    --espresso-muted: 215.4 16.3% 46.9%;
 
     /* The rentals funnel's two calls to action, carried across from Coming Soon
      * Home Rentals. That site used a blue "browse" and a green "get qualified"
      * to keep the two paths apart at a glance, which is worth keeping — but in
      * this palette rather than its own, so the landing page belongs to the same
      * product as everything behind it. Both clear 4.5:1 on their foreground. */
-    --cta-browse: 205 62% 34%;
-    --cta-browse-foreground: 36 44% 96%;
-    --cta-qualify: 152 46% 26%;
-    --cta-qualify-foreground: 36 44% 96%;
-    --cta-browse-ink: 205 62% 34%;
-    --cta-qualify-ink: 152 46% 26%;
-    --landlord-navy: 20 30% 12%;
-    --landlord-navy-foreground: 36 44% 96%;
+    --cta-browse: 217 91% 60%;
+    --cta-browse-foreground: 0 0% 100%;
+    --cta-qualify: 142 76% 36%;
+    --cta-qualify-foreground: 0 0% 100%;
+    --cta-browse-ink: 217 91% 42%;
+    --cta-qualify-ink: 142 76% 28%;
+    --landlord-navy: 215 50% 23%;
+    --landlord-navy-foreground: 0 0% 100%;
 
     /* Account types. One accent each, used by the role chooser, its badges and
      * anywhere a role needs to be identifiable at a glance. */
@@ -116,37 +122,51 @@
   }
 
   .dark {
-    /* The brand lightens in dark mode so the wordmark stays legible. */
-    --brand: 34 40% 88%;
-    --brand-foreground: 222 47% 11%;
+    /* The surface names the components read had no dark values at all, so a
+       card, a band or a muted caption stayed light while the page went dark.
+       They are defined here for the first time. */
+    --sand: 217.2 32.6% 17.5%;
+    --sand-deep: 217.2 32.6% 22%;
+    --clay: 217.2 32.6% 26%;
+    --clay-soft: 217.2 32.6% 17.5%;
+    --espresso: 210 40% 98%;
+    --espresso-muted: 215 20.2% 65.1%;
+    --cta-browse-ink: 217 91% 68%;
+    --cta-qualify-ink: 142 60% 60%;
+    --landlord-navy: 215 50% 16%;
+    --landlord-navy-foreground: 0 0% 100%;
 
-    --background: 22 18% 9%;
-    --foreground: 36 30% 95%;
+    /* The brand follows the foreground so the wordmark stays legible. */
+    --brand: 210 40% 98%;
+    --brand-foreground: 222.2 47.4% 11.2%;
 
-    --card: 22 16% 12%;
-    --card-foreground: 36 30% 95%;
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
 
-    --popover: 22 16% 12%;
-    --popover-foreground: 36 30% 95%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
 
-    --primary: 34 40% 88%;
-    --primary-foreground: 20 30% 12%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
 
-    --secondary: 22 12% 18%;
-    --secondary-foreground: 36 30% 95%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
 
-    --muted: 22 12% 18%;
-    --muted-foreground: 30 12% 68%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
 
-    --accent: 22 12% 20%;
-    --accent-foreground: 36 30% 95%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
 
-    --destructive: 8 52% 38%;
-    --destructive-foreground: 36 30% 95%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
 
-    --border: 22 12% 20%;
-    --input: 22 12% 20%;
-    --ring: 34 30% 70%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -166,60 +186,6 @@
   body {
     @apply bg-background text-foreground;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-  }
-}
-
-@layer base {
-  /* -------------------------------------------------------------------------
-   * The rentals palette
-   * -------------------------------------------------------------------------
-   * The landing page is Coming Soon Home Rentals' page, and it should look
-   * like it. That site runs on the cool default palette — white surfaces, slate
-   * type — with a blue "browse" and a green "get qualified" keeping the two
-   * paths apart, and a navy band for the owner pitch.
-   *
-   * It lives as a scoped theme rather than as new global values so the rest of
-   * the product keeps the warm palette. A page opts in by class, and every
-   * token beneath it resolves to these instead. Nothing needed rewriting: the
-   * components already read tokens rather than literal colours.
-   *
-   * Two departures, both about contrast. That site's blue and green reach only
-   * 3.6:1 and 3.4:1 against white — enough for large text, not for normal — so
-   * the surface colours are kept exactly for buttons and bands, and a darkened
-   * pair is used where the colour has to carry small text on white. Same look,
-   * legible either way.
-   * --------------------------------------------------------------------- */
-  .theme-rentals {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    /* The warm surface tokens the shared components use, mapped onto that
-       site's neutrals so header, footer and cards follow the page. */
-    --sand: 210 40% 98%;
-    --sand-deep: 210 40% 96.1%;
-    --clay: 214.3 31.8% 91.4%;
-    --clay-soft: 210 40% 96.1%;
-    --espresso: 222.2 47.4% 11.2%;
-    --espresso-muted: 215.4 16.3% 46.9%;
-
-    /* Exactly the source's values. Used as button and band surfaces. */
-    --cta-browse: 217 91% 60%;
-    --cta-browse-foreground: 0 0% 100%;
-    --cta-qualify: 142 76% 36%;
-    --cta-qualify-foreground: 0 0% 100%;
-
-    /* Darkened for small text on white, where the originals fail. */
-    --cta-browse-ink: 217 91% 42%;
-    --cta-qualify-ink: 142 76% 28%;
-
-    --landlord-navy: 215 50% 23%;
-    --landlord-navy-foreground: 0 0% 100%;
   }
 }
 
