@@ -1,7 +1,6 @@
 import { Calendar, Clock, Repeat, Shield } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
-import { Card } from "@/components/ui/card";
 import { BENEFITS } from "@/features/landing/content";
 import { BRAND } from "@/config/brand";
 
@@ -12,27 +11,34 @@ const ICONS: Record<string, LucideIcon> = {
   calendar: Calendar,
 };
 
-/** Carried across from `comingsoonhomrentals-com/src/components/home/TenantBenefits.tsx`. */
+/**
+ * Carried across from `comingsoonhomrentals-com/src/components/home/
+ * TenantBenefits.tsx`: a muted band, `max-w-5xl`, two columns at `gap-6`, and
+ * a 12×12 rounded icon tile beside left-aligned text.
+ */
 export const BenefitsSection = () => (
-  <section className="bg-sand py-16">
-    <div className="page-shell text-center">
-      <h2 className="text-2xl font-extrabold tracking-tight text-espresso md:text-3xl">
-        Why renters choose {BRAND.name}
+  <section className="bg-muted px-4 py-16">
+    <div className="mx-auto max-w-5xl text-center">
+      <h2 className="mb-10 text-2xl font-bold text-foreground md:text-3xl">
+        Why Renters Choose {BRAND.name}
       </h2>
 
-      <div className="mt-10 grid gap-6 sm:grid-cols-2">
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
         {BENEFITS.map((benefit) => {
           const Icon = ICONS[benefit.icon] ?? Clock;
           return (
-            <Card key={benefit.title} className="flex items-start gap-4 p-6 text-left">
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-cta-browse/10">
+            <div
+              key={benefit.title}
+              className="flex items-start gap-4 rounded-xl border border-border bg-card p-6 shadow-sm transition-shadow hover:shadow-md"
+            >
+              <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-lg bg-cta-browse/10">
                 <Icon className="h-6 w-6 text-cta-browse-ink" />
               </div>
-              <div>
-                <h3 className="text-lg font-bold text-espresso">{benefit.title}</h3>
-                <p className="mt-1 text-espresso-muted">{benefit.description}</p>
+              <div className="text-left">
+                <h3 className="mb-1 text-lg font-semibold text-foreground">{benefit.title}</h3>
+                <p className="text-muted-foreground">{benefit.description}</p>
               </div>
-            </Card>
+            </div>
           );
         })}
       </div>

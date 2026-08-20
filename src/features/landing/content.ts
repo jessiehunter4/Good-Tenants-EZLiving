@@ -143,31 +143,79 @@ export const TESTIMONIALS = [
   },
 ] as const;
 
-/** Source: Coming Soon Home Rentals, FAQSection, condensed. */
-export const FAQ = [
+/**
+ * Source: Coming Soon Home Rentals, FAQSection.
+ *
+ * Each answer ends in a way forward — that page's FAQ is part of the funnel,
+ * not a help article, and the buttons are why. Their destinations are this
+ * app's routes; the questions and answers are theirs.
+ */
+export type LandingFaqItem = {
+  question: string;
+  answer: string;
+  primary: { text: string; to: string };
+  secondary: { text: string; to: string } | null;
+};
+
+export const FAQ: readonly LandingFaqItem[] = [
   {
-    question: "What is Good Tenants EZ Living?",
-    answer:
-      "A rental platform showing upcoming and newly listed homes. Pre-qualified tenants can book showings and apply before a rental reaches the open market. It connects ready-to-rent tenants with verified landlords and licensed real estate professionals.",
+    question: "What is ComingSoonHomeRentals.com?",
+    answer: "<> Good Tenants EZ Living is a real-time rental listing platform that showcases upcoming and newly listed home rentals. Pre-qualified tenants can book showings and apply before rentals hit the open market. We connect ready-to-rent tenants with verified landlords and licensed real estate professionals.",
+    primary: { text: "Browse Coming Soon Rentals", to: "/rentals" },
+    secondary: { text: "Get Pre-Qualified for Early Access", to: "/prequalify" },
   },
   {
-    question: "What does coming soon mean?",
-    answer:
-      "A home that is going to be listed but is not yet on the open market. Seeing it early is the difference between being one of many applications and being the first.",
+    question: "How do I get pre-qualified?",
+    answer: "<> Getting pre-qualified is quick and easy! Answer a few simple questions about your rental needs, budget, timeline, and basic qualifications. Once pre-qualified, you'll get early access to exclusive listings and can book showings instantly.",
+    primary: { text: "Get Pre-Qualified Now", to: "/prequalify" },
+    secondary: { text: "Browse Available Rentals", to: "/rentals" },
   },
   {
-    question: "What does pre-qualified mean?",
-    answer:
-      "You have told us your household income, your credit range and when you can move. We check that against each listing's requirements so you know where you stand before you apply — and you only answer once.",
+    question: "What is a Good Tenants Reusable Application?",
+    answer: "<> The Good Tenants Reusable Application Package is a comprehensive screening package that includes verified income, credit check, rental history, and references. Complete it once and use it for multiple properties \u2014 no more filling out the same application repeatedly! This makes you stand out to landlords as a pre-qualified tenant.",
+    primary: { text: "Start Your Application Package", to: "/prequalify" },
+    secondary: null,
   },
   {
-    question: "Does it cost anything to get pre-qualified?",
-    answer:
-      "No. Building your profile is free, and it is what gives you early access to new listings.",
+    question: "How do I list my property?",
+    answer: "<> Landlords and licensed Realtors can upload listings through our admin panel. First, get verified by providing your credentials, then upload your listings directly or via CSV file. Your listings will be promoted to our pre-qualified tenant network instantly.",
+    primary: { text: "Get Verified as a Landlord or Realtor", to: "/verify" },
+    secondary: null,
   },
   {
-    question: "Who sees my profile?",
-    answer:
-      "Only the landlords and agents you approve. A request to view your profile comes to you first, and nothing is shared until you say yes.",
+    question: "Is there a cost to tenants?",
+    answer: "<> Basic pre-qualification and browsing listings is completely free for tenants. Optional premium services are available if you want to become fully pre-screened with the Good Tenants Reusable Application Package.",
+    primary: { text: "Get Pre-Qualified Free", to: "/prequalify" },
+    secondary: { text: "Browse Free Listings", to: "/rentals" },
+  },
+  {
+    question: "How do I become a verified landlord or realtor?",
+    answer: "<> Click 'Get Verified' and provide your information. Realtors need their DRE license number and brokerage details. Landlords need to verify property ownership. Once verified, you'll have access to our pre-qualified tenant database and can list properties immediately.",
+    primary: { text: "Get Verified Now", to: "/verify" },
+    secondary: null,
+  },
+  {
+    question: "How do landlords and licensed real estate professionals get verified?",
+    answer: "<> To protect tenant privacy and ensure compliance, access to tenant information is restricted to verified parties only. Landlords are verified through proof of property ownership or authorised representation. Licensed real estate professionals are verified via their DRE license number and MLS records.",
+    primary: { text: "Landlord Verification", to: "/verify" },
+    secondary: { text: "Real Estate Professional Verification", to: "/verify" },
+  },
+  {
+    question: "What happens after I get pre-qualified?",
+    answer: "<> Once pre-qualified, you'll be matched with properties that fit your criteria and can book showings faster than other applicants. Pre-qualification helps you stand out, but it does not guarantee final approval \u2014 each landlord makes their own decision.",
+    primary: { text: "Browse Homes I Qualify For", to: "/rentals" },
+    secondary: { text: "Get Pre-Screened for Stronger Applications", to: "/prequalify" },
+  },
+  {
+    question: "Is pre-qualification or pre-screening required to rent a home?",
+    answer: "<> No, it's not legally required. However, in competitive rental markets, pre-qualified and pre-screened tenants move faster and have a significantly higher success rate. Taking early action gives you a real advantage when good rentals go quickly.",
+    primary: { text: "Get Pre-Qualified", to: "/prequalify" },
+    secondary: null,
+  },
+  {
+    question: "Is this service free for tenants?",
+    answer: "Browsing listings and getting pre-qualified is completely free for renters. Optional paid services include the Good Tenants Reusable Application Package, which provides comprehensive pre-screening with verified income, credit and background checks.",
+    primary: { text: "Get Started Free", to: "/prequalify" },
+    secondary: null,
   },
 ] as const;

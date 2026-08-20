@@ -165,6 +165,18 @@ move on.
 
 ## Before saying something works
 
-Run it. `npm run build` for compilation, `npm test` for logic, and a real query
-against the project for anything touching the database. A migration that applied
-is not the same as a policy that behaves.
+Check the thing you changed, not everything.
+
+- **Changed pure logic** — run its tests. That is what caught `resolveIntent`
+  accepting `__proto__` and a date bucket that misfiled by a day.
+- **Changed a policy, a grant or a migration** — query the database as each role
+  that matters. A migration that applied is not the same as a policy that
+  behaves, and nothing else will tell you the difference.
+- **Changed types, imports or anything structural** — typecheck.
+- **Changed only copy, colour tokens or markup** — look at it. Tests and builds
+  have nothing to say about whether a page reads well or a palette matches.
+
+Run the whole suite before a commit that touches logic, and when several
+changes have accumulated. Running all 232 tests after editing a CSS variable is
+ceremony, not verification — and reporting it as though it proved something is
+worse, because it implies a check that did not happen.

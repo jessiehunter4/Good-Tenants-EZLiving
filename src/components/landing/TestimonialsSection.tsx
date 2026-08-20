@@ -1,31 +1,35 @@
 import { Quote } from "lucide-react";
 
-import { Card } from "@/components/ui/card";
 import { TESTIMONIALS } from "@/features/landing/content";
 
 /**
  * Carried across from `comingsoonhomrentals-com/src/components/home/
- * TestimonialsSection.tsx`. See the note in content.ts: these are live on that
- * site, but nobody here has confirmed they are attributable.
+ * TestimonialsSection.tsx`: `max-w-6xl`, three columns at `gap-6`, the quote
+ * mark sitting 4 from the top-right of each card.
+ *
+ * See the note in content.ts — these are live on that site, unverified here.
  */
 export const TestimonialsSection = () => (
-  <section className="bg-sand py-16">
-    <div className="page-shell">
-      <h2 className="text-center text-2xl font-extrabold tracking-tight text-espresso md:text-3xl">
-        What people say
+  <section className="bg-background px-4 py-16">
+    <div className="mx-auto max-w-6xl">
+      <h2 className="mb-10 text-center text-2xl font-bold text-foreground md:text-3xl">
+        What Our Users Say
       </h2>
 
-      <div className="mt-10 grid gap-6 md:grid-cols-3">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
         {TESTIMONIALS.map((testimonial) => (
-          <Card key={testimonial.name} className="relative p-6">
-            <Quote className="absolute right-4 top-4 h-8 w-8 text-clay" aria-hidden="true" />
-            <p className="italic text-espresso-muted">“{testimonial.quote}”</p>
-            <div className="mt-6 border-t border-clay/50 pt-4">
-              <p className="font-semibold text-espresso">{testimonial.name}</p>
+          <div
+            key={testimonial.name}
+            className="relative rounded-xl border border-border bg-card p-6 shadow-md"
+          >
+            <Quote className="absolute right-4 top-4 h-8 w-8 text-cta-browse/20" aria-hidden="true" />
+            <p className="mb-6 italic text-muted-foreground">“{testimonial.quote}”</p>
+            <div className="border-t border-border pt-4">
+              <p className="font-semibold text-foreground">{testimonial.name}</p>
               <p className="text-sm text-cta-browse-ink">{testimonial.role}</p>
-              <p className="text-xs text-espresso-muted">{testimonial.location}</p>
+              <p className="text-xs text-muted-foreground">{testimonial.location}</p>
             </div>
-          </Card>
+          </div>
         ))}
       </div>
     </div>

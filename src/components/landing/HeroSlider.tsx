@@ -39,15 +39,15 @@ export const HeroSlider = () => {
   }, [emblaApi, onSelect]);
 
   return (
-    <div className="relative w-full bg-sand-deep">
-      <div className="h-[52vh] min-h-[340px] overflow-hidden md:h-[64vh]" ref={emblaRef}>
+    <div className="relative w-full bg-muted">
+      <div className="h-[60vh] overflow-hidden md:h-[70vh]" ref={emblaRef}>
         <div className="flex h-full">
           {SLIDES.map((slide, i) => (
             <div key={slide.src} className="relative h-full min-w-0 flex-[0_0_100%]">
               <img
                 src={slide.src}
                 alt={slide.alt}
-                className="h-full w-full object-cover"
+                className="h-full w-full object-contain"
                 loading={i === 0 ? "eager" : "lazy"}
                 fetchPriority={i === 0 ? "high" : "auto"}
                 decoding="async"
@@ -67,8 +67,8 @@ export const HeroSlider = () => {
             onClick={() => emblaApi?.scrollTo(i)}
             className={
               selected === i
-                ? "h-2.5 w-8 rounded-full bg-sand transition-all"
-                : "h-2.5 w-2.5 rounded-full bg-sand/50 transition-all hover:bg-sand/80"
+                ? "h-2.5 w-8 rounded-full bg-primary transition-all"
+                : "h-2.5 w-2.5 rounded-full bg-primary/40 transition-all hover:bg-primary/60"
             }
           />
         ))}

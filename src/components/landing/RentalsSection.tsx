@@ -1,69 +1,88 @@
 import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
+import { ArrowRight } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
 import ListingCard from "@/components/rentals/ListingCard";
-import { rentalsQuery, retentionDaysQuery, EMPTY_FILTERS } from "@/hooks/rentals/useRentals";
+import { Button } from "@/components/ui/button";
+import { EMPTY_FILTERS, rentalsQuery, retentionDaysQuery } from "@/hooks/rentals/useRentals";
 import { isPubliclyListed } from "@/features/rentals/listing";
 
-const SHOWN = 3;
+const SHOWN = 6;
+const SKELETONS = 3;
 
 /**
- * Live listings, or an honest empty state.
+ * Carried across from `comingsoonhomrentals-com/src/components/home/
+ * FeaturedListings.tsx`: `max-w-6xl`, a three-up grid at `gap-6`, six
+ * listings, and a "View All" link sitting opposite the heading.
  *
- * This used to read the platform's own `listings` table — the one a landlord
- * fills in about their own property, which has nothing in it. The inventory the
- * business actually runs on arrives from the MLS feed, so that is what "available
- * now" now shows, through the same compliance layer as the rentals pages: a
- * suppressed listing never reaches the browser, a masked address stays masked,
- * and a listing past its retention window is not shown at all.
- *
- * The empty state stays. Filling this row with invented properties would not be
- * a placeholder, it would be a false advertisement.
+ * One departure. That component returns null when there is nothing to show,
+ * which on an empty database leaves the page with no listings row at all and
+ * no explanation. A rental site with no inventory should say so and offer the
+ * thing that helps — filling in a profile before anything lands — rather than
+ * quietly omitting the section.
  */
 export const RentalsSection = () => {
   const { data: retentionDays = 30 } = useQuery(retentionDaysQuery);
   const { data = [], isLoading } = useQuery(rentalsQuery(EMPTY_FILTERS, retentionDays));
-
   const listings = data.filter(isPubliclyListed).slice(0, SHOWN);
 
-  return (
-    <section id="rentals" className="bg-background py-20 sm:py-28">
-      <div className="page-shell">
-        <h2 className="text-center text-3xl font-extrabold tracking-tight text-espresso sm:text-4xl">
-          Available now
-        </h2>
-
-        {isLoading && (
-          <p className="mt-10 text-center font-medium text-espresso-muted">Loading…</p>
-        )}
-
-        {!isLoading && listings.length === 0 && (
-          <div className="mx-auto mt-10 max-w-xl rounded-2xl bg-clay p-10 text-center">
-            <p className="font-bold text-espresso">No properties listed yet</p>
-            <p className="mt-2 font-medium text-espresso-muted">
-              Build your profile now and you will be ready to apply the day something suits you.
-            </p>
-            <Button asChild className="mt-6 bg-espresso text-sand hover:bg-espresso/90">
-              <Link to="/register?role=tenant">Build my profile</Link>
-            </Button>
+  if (isLoading) {
+    return (
+      <section id="rentals" className="bg-background px-4 py-16">
+        <div className="mx-auto max-w-6xl text-center">
+          <h2 className="mb-8 text-2xl font-bold text-foreground md:text-3xl">
+            Featured Listings
+          </h2>
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {Array.from({ length: SKELETONS }, (_, i) => (
+              <div key={i} className="h-80 animate-pulse rounded-xl bg-muted" />
+            ))}
           </div>
-        )}
+        </div>
+      </section>
+    );
+  }
 
-        {listings.length > 0 && (
-          <>
-            <div className="mt-12 grid gap-6 md:grid-cols-3">
-              {listings.map((listing) => (
-                <ListingCard key={listing.id} listing={listing} />
-              ))}
-            </div>
-            <div className="mt-10 text-center">
-              <Button asChild className="bg-espresso text-sand hover:bg-espresso/90">
-                <Link to="/rentals">See every rental</Link>
-              </Button>
-            </div>
-          </>
-        )}
+  if (listings.length === 0) {
+    return (
+      <section id="rentals" className="bg-background px-4 py-16">
+        <div className="mx-auto max-w-6xl text-center">
+          <h2 className="mb-4 text-2xl font-bold text-foreground md:text-3xl">
+            Featured Listings
+          </h2>
+          <p className="mx-auto mb-8 max-w-2xl text-muted-foreground">
+            Nothing is listed at this moment. Build your profile now and you will be first in line
+            the day something suits you.
+          </p>
+          <Button
+            asChild
+            className="rounded-lg bg-cta-qualify px-8 py-3 text-lg font-semibold text-cta-qualify-foreground shadow-lg hover:bg-cta-qualify/90"
+          >
+            <Link to="/prequalify">Get Pre-Qualified</Link>
+          </Button>
+        </div>
+      </section>
+    );
+  }
+
+  return (
+    <section id="rentals" className="bg-background px-4 py-16">
+      <div className="mx-auto max-w-6xl">
+        <div className="mb-8 flex items-center justify-between">
+          <h2 className="text-2xl font-bold text-foreground md:text-3xl">Featured Listings</h2>
+          <Link
+            to="/rentals"
+            className="flex items-center gap-1 font-medium text-cta-browse-ink hover:underline"
+          >
+            View All <ArrowRight className="h-4 w-4" />
+          </Link>
+        </div>
+
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {listings.map((listing) => (
+            <ListingCard key={listing.id} listing={listing} />
+          ))}
+        </div>
       </div>
     </section>
   );
