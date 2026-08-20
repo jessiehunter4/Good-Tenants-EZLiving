@@ -65,6 +65,7 @@ import ReferralProgram from "./pages/hub/ReferralProgram";
 import Tenants from "./pages/hub/Tenants";
 import TenantDetail from "./pages/hub/TenantDetail";
 import Sharing from "./pages/tenant/Sharing";
+import Documents from "./pages/tenant/Documents";
 import Landlords from "./pages/hub/Landlords";
 import Realtors from "./pages/hub/Realtors";
 
@@ -150,6 +151,14 @@ function App() {
             element={
               <RoleBasedRoute allowedRoles={["landlord", "agent", "admin", "tenant"]}>
                 <TenantDetail />
+              </RoleBasedRoute>
+            }
+          />
+          <Route
+            path="/documents"
+            element={
+              <RoleBasedRoute allowedRoles={["tenant", "admin"]}>
+                <Documents />
               </RoleBasedRoute>
             }
           />

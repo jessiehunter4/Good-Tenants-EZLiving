@@ -223,6 +223,8 @@ export type Database = {
           verified_at: string | null
           verified_by: string | null
           upload_date: string
+          storage_path: string | null
+          bucket_id: string
         }
         Insert: {
           id?: string
@@ -236,6 +238,8 @@ export type Database = {
           verified_at?: string | null
           verified_by?: string | null
           upload_date?: string
+          storage_path?: string | null
+          bucket_id?: string
         }
         Update: {
           id?: string
@@ -249,6 +253,8 @@ export type Database = {
           verified_at?: string | null
           verified_by?: string | null
           upload_date?: string
+          storage_path?: string | null
+          bucket_id?: string
         }
         Relationships: [
           {
