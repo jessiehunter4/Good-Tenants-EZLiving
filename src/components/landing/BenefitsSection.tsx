@@ -20,7 +20,7 @@ export const BenefitsSection = () => (
   <section className="bg-muted px-4 py-16">
     <div className="mx-auto max-w-5xl text-center">
       <h2 className="mb-10 text-2xl font-bold text-foreground md:text-3xl">
-        Why Renters Choose {BRAND.name}
+        Why Tenants Choose {BRAND.name}
       </h2>
 
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">

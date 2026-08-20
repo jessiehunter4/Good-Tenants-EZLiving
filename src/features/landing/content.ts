@@ -1,144 +1,148 @@
 /**
  * The landing page's words.
  *
- * Every line here is carried from a live site, not written for this one. The
- * source is named on each block. Where a claim is a marketing number nobody
- * here has checked, it says so — see STATS and TESTIMONIALS.
+ * Every line is carried verbatim from Coming Soon Home Rentals, including its
+ * capitalisation. An earlier version of this file paraphrased — sentence-cased
+ * the headings, shortened the bullets, softened "Stop wasting time" to "Stop
+ * spending time" — which is rewriting a page that has been tuned against real
+ * traffic, on no evidence. Where a claim is a marketing number nobody here has
+ * checked, it says so; it does not get edited.
+ *
+ * The site's own name is the one exception, since it is this app now.
  */
 
-/** Source: Coming Soon Home Rentals, HeroSection. */
+/** Source: HeroSection. */
 export const HERO = {
-  title: "Find rental homes first",
-  subtitle: "Fresh new and coming soon rental homes daily.",
+  title: "Find rental homes first!",
+  subtitle: "Fresh New and Coming Soon Rental Homes Daily.",
   promise: "The best rentals go fast.",
   promiseParts: ["See first.", "Apply first.", "Get approved first."],
 } as const;
 
-/** Source: Coming Soon Home Rentals, UrgencySection. */
+/** Source: UrgencySection. */
 export const URGENCY = {
-  heading: "The best rentals in the best locations don't last",
+  heading: "The Best Rentals in the Best Locations Don't Last",
   intro:
     "Quality homes in desirable neighborhoods get multiple applications within hours of listing. To secure your ideal rental, you need to:",
   cards: [
     {
       icon: "eye",
-      title: "See first",
+      title: "See First",
       description:
-        "Access exclusive coming soon and new listings, sometimes before they reach the big portals.",
+        "Access exclusive Coming Soon and new listings sometimes even before they hit the big portals",
     },
     {
       icon: "file",
-      title: "Apply first",
+      title: "Apply First",
       description:
-        "Submit your application instantly with a reusable Good Tenants screening package.",
+        "Submit your application instantly with a reusable Good Tenants screening package",
     },
     {
       icon: "check",
-      title: "Get approved first",
+      title: "Get Approved First",
       description:
-        "Stand out to landlords who prioritise pre-qualified, prescreened, verified tenants.",
+        "Stand out to landlords who prioritize pre-qualified, prescreened, verified tenants",
     },
   ],
 } as const;
 
-/** Source: Coming Soon Home Rentals, HowItWorks. */
+/** Source: HowItWorks. */
 export const STEPS = [
   {
     number: 1,
-    title: "Get pre-qualified",
-    description: "A few quick questions gets you started.",
+    title: "Get Pre-qualified",
+    description: "Just a few quick questions gets you started.",
   },
   {
     number: 2,
-    title: "Browse exclusive listings",
-    description: "Coming soon properties and new listings, daily.",
+    title: "Browse Exclusive Listings",
+    description: "Access Coming Soon properties and new listings daily.",
   },
   {
     number: 3,
-    title: "Book showings instantly",
-    description: "Schedule viewings on the site, without chasing a callback.",
+    title: "Book Showings Instantly",
+    description: "Schedule viewings directly on the site. No chasing and hoping for a response.",
   },
 ] as const;
 
-/** Source: Coming Soon Home Rentals, TenantBenefits. */
+/** Source: TenantBenefits. */
 export const BENEFITS = [
   {
     icon: "clock",
-    title: "Early access",
-    description: "See listings before they appear on public sites.",
+    title: "Early Access",
+    description: "See listings hours before they appear on public sites",
   },
   {
     icon: "repeat",
-    title: "Reusable application",
-    description: "One screening package works for every listing here.",
+    title: "Reusable Application",
+    description: "One screening package works for all our listings - no repeated applications",
   },
   {
     icon: "shield",
-    title: "Verified properties",
-    description: "Every listing comes from a licensed realtor or a verified landlord.",
+    title: "Verified Properties",
+    description: "Every listing comes from licensed Realtors or verified landlords",
   },
   {
     icon: "calendar",
-    title: "Direct booking",
-    description: "Schedule showings without waiting for a callback.",
+    title: "Direct Booking",
+    description: "Schedule showings instantly without waiting for callbacks",
   },
 ] as const;
 
-/** Source: Coming Soon Home Rentals, LandlordSection. */
+/** Source: LandlordSection. */
 export const OWNERS = {
-  heading: "For landlords and licensed realtors",
-  subheading: "Fill vacancies faster with pre-qualified, prescreened tenants",
+  heading: "For Landlords & Licensed Realtors",
+  subheading: "Fill Vacancies Faster with Pre-Qualified and Prescreened Tenants",
   intro:
-    "Stop spending time on unqualified leads. Our prescreened tenants have verified income, checked credit, and are actively searching.",
+    "Stop wasting time on unqualified leads. Our pre-qualified and prescreened tenant network is ready to rent now! Prescreened tenants have verified income, credit checked, and are actively searching.",
   points: [
-    "Reach tenants already pre-qualified for your listing",
-    "Promote your coming soon properties to qualified applicants first",
-    "New listings go out to the prescreened tenant network immediately",
+    "Access our database of tenants pre-qualified for your listing and fully prescreened, ready-to-rent tenants",
+    "Promote your Coming Soon properties to qualified applicants first",
+    "We blast new listings to our pre-qualified and prescreened ready to rent tenant network instantly",
   ],
 } as const;
 
 /**
- * Source: Coming Soon Home Rentals, StatsSection.
+ * Source: StatsSection.
  *
  * UNVERIFIED. These are the numbers that site publishes today. Nobody here has
- * checked them against the database, and after the merge the database is right
- * there — so they should either be confirmed or computed.
+ * checked them against the database, and after the merge the database is in the
+ * same application — so they should be confirmed or computed.
  */
 export const STATS = [
-  { value: "500+", label: "Exclusive listings" },
-  { value: "24hrs", label: "Average early access" },
-  { value: "1,000+", label: "Prescreened tenants" },
-  { value: "95%", label: "Faster lease time" },
+  { value: "500+", label: "Exclusive Listings" },
+  { value: "24hrs", label: "Average Early Access" },
+  { value: "1,000+", label: "Prescreened Tenants" },
+  { value: "95%", label: "Faster Lease Time" },
 ] as const;
 
 /**
- * Source: Coming Soon Home Rentals, TestimonialsSection.
+ * Source: TestimonialsSection.
  *
- * UNVERIFIED. Carried across because they are live on that site today, not
- * because anyone here has confirmed them. If they cannot be attributed to real
- * people who agreed to be quoted, this block should come out — a testimonial is
- * a claim about a person, and the site makes it in their name.
+ * UNVERIFIED. Carried because they are live on that site today, not because
+ * anyone here has confirmed them. A testimonial is a claim made in a real
+ * person's name; if it cannot be attributed, this block should come out.
  */
 export const TESTIMONIALS = [
   {
     quote:
-      "I found my rental two days before it was listed anywhere else. Being pre-qualified made the whole process smooth.",
+      "I found my dream rental 2 days before it was listed anywhere else. Being pre-qualified made the whole process so smooth!",
     name: "Sarah M.",
     role: "Tenant",
     location: "Los Angeles, CA",
   },
   {
     quote:
-      "As a realtor this has been a game-changer. I can connect my coming soon listings with pre-qualified tenants instantly.",
+      "As a Realtor, this platform has been a game-changer. I can connect my Coming Soon listings with pre-qualified tenants instantly.",
     name: "Michael R.",
-    role: "Licensed realtor",
+    role: "Licensed Realtor",
     location: "Orange County, CA",
   },
   {
     quote:
-      "No more chasing unqualified leads. Every enquiry from this site has been serious and pre-verified.",
+      "No more chasing unqualified leads. Every tenant inquiry from this site has been serious and pre-verified.",
     name: "David L.",
-    role: "Property owner",
+    role: "Property Owner",
     location: "San Diego, CA",
   },
 ] as const;

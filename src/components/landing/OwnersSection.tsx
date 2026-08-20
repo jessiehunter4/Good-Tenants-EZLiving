@@ -40,14 +40,14 @@ export const OwnersSection = () => (
           to="/register?role=landlord"
           className="rounded-lg border-2 border-landlord-navy-foreground px-8 py-3 font-semibold text-landlord-navy-foreground transition hover:bg-white/10"
         >
-          List a Property
+          Upload Listings
         </Link>
       </div>
 
       <p className="text-sm text-landlord-navy-foreground/70">
-        Want the tenant directory?{" "}
+        Need full-service leasing?{" "}
         <Link to="/landlords" className="underline transition hover:text-landlord-navy-foreground">
-          See how it works
+          Inquire about our leasing services
         </Link>
       </p>
     </div>
