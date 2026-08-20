@@ -124,6 +124,18 @@ export function formatRent(rent: number | null): string {
   return `$${rent.toLocaleString("en-US")}/mo`;
 }
 
+/** Carried from the source card: blue while coming soon, green once active. */
+export function statusBadgeClass(status: ListingStatus): string {
+  switch (status) {
+    case "active":
+      return "bg-cta-qualify";
+    case "dropped":
+      return "bg-muted-foreground";
+    default:
+      return "bg-cta-browse";
+  }
+}
+
 export function formatBeds(listing: RentalListing): string {
   const parts: string[] = [];
   if (listing.bedrooms != null) parts.push(`${listing.bedrooms} bd`);
